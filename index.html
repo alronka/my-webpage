@@ -3,22 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oma Sivustoni | Tervetuloa</title>
+    <title>Animoitu AI-sivusto</title>
     <style>
-        /* Tyylit (CSS) */
         :root {
-            --primary-color: #2563eb;
-            --dark-bg: #0f172a;
-            --text-light: #f8fafc;
-            --text-gray: #94a3b8;
+            --primary: #6366f1;
+            --accent: #a855f7;
+            --dark: #0f172a;
         }
 
         body {
-            font-family: 'Inter', -apple-system, sans-serif;
+            font-family: 'Inter', sans-serif;
             margin: 0;
-            background-color: var(--dark-bg);
-            color: var(--text-light);
-            line-height: 1.6;
+            background-color: var(--dark);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* 1. Sisääntuloanimaatio */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         header {
@@ -28,96 +32,102 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
-            padding: 20px;
+            /* Liikkuva taustagradientti */
+            background: linear-gradient(-45deg, #0f172a, #1e293b, #312e81, #0f172a);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         h1 {
-            font-size: 4rem;
-            margin-bottom: 10px;
-            background: linear-gradient(90deg, #60a5fa, #c084fc);
+            font-size: clamp(2rem, 8vw, 5rem);
+            margin: 0;
+            animation: fadeInUp 1s ease-out;
+            background: linear-gradient(to right, #818cf8, #d8b4fe);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        p.subtitle {
-            font-size: 1.25rem;
-            color: var(--text-gray);
+        .subtitle {
+            animation: fadeInUp 1.2s ease-out;
+            color: #94a3b8;
             max-width: 600px;
+        }
+
+        /* 2. Interaktiiviset kortit */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 50px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        /* Kortin "vau-efekti" hiirellä */
+        .card:hover {
+            background: rgba(255, 255, 255, 0.07);
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
 
         .cta-button {
             margin-top: 30px;
-            padding: 12px 30px;
-            background-color: var(--primary-color);
+            padding: 15px 40px;
+            background: var(--primary);
             color: white;
             text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            transition: transform 0.2s;
+            border-radius: 100px;
+            font-weight: 600;
+            animation: fadeInUp 1.4s ease-out;
+            transition: 0.3s;
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
         }
 
         .cta-button:hover {
-            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(99, 102, 241, 0.5);
+            background: var(--accent);
         }
 
-        section {
-            padding: 100px 20px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 40px;
-        }
-
-        .card {
-            background: #1e293b;
-            padding: 30px;
-            border-radius: 15px;
-            border: 1px solid #334155;
-        }
-
-        footer {
-            text-align: center;
-            padding: 40px;
-            color: var(--text-gray);
-            font-size: 0.9rem;
-        }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Tervetuloa Sivustolleni</h1>
-        <p class="subtitle">Tämä sivu on luotu tekoälyn avulla ja julkaistu täysin ilmaiseksi GitHub Pagesin kautta.</p>
-        <a href="#palvelut" class="cta-button">Lue lisää</a>
+        <h1>Tulevaisuus on täällä.</h1>
+        <p class="subtitle">Tämä sivu herää eloon pehmeillä animaatioilla ilman raskaita lisäosia.</p>
+        <a href="#about" class="cta-button">Katso tehosteet</a>
     </header>
 
-    <section id="palvelut">
-        <h2 style="text-align: center;">Mitä teen?</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>Suunnittelu</h3>
-                <p>Luon kauniita ja käyttäjäystävällisiä kokemuksia digitaalisiin tuotteisiin.</p>
-            </div>
-            <div class="card">
-                <h3>Kehitys</h3>
-                <p>Rakennan nopeita ja saavutettavia verkkosivuja nykyaikaisilla tekniikoilla.</p>
-            </div>
-            <div class="card">
-                <h3>Strategia</h3>
-                <p>Autan brändejä löytämään oman äänensä ja kasvamaan verkossa.</p>
-            </div>
+    <div class="grid" id="about">
+        <div class="card">
+            <h3 style="color: var(--primary)">Sulava</h3>
+            <p>60fps animaatiot takaavat, että käyttökokemus tuntuu premium-tasolta.</p>
         </div>
-    </section>
-
-    <footer>
-        &copy; 2026 Oma Nimesi. Kaikki oikeudet pidätetään.
-    </footer>
+        <div class="card">
+            <h3 style="color: var(--primary)">Kevyt</h3>
+            <p>Ei turhaa koodia, vain puhdasta suorituskykyä GitHub Pagesissa.</p>
+        </div>
+        <div class="card">
+            <h3 style="color: var(--primary)">Moderni</h3>
+            <p>Automaattiset gradientit ja varjot luovat syvyyttä selaimeen.</p>
+        </div>
+    </div>
 
 </body>
 </html>
