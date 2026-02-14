@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pulsr-Style Mobile Ready</title>
+    <title>Pulsr-Style | Pro</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -19,149 +19,191 @@
             color: white;
             margin: 0;
             overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
         }
 
-        /* Animoitu taustapallo */
-        .orb {
+        /* --- NAVIGAATIO --- */
+        nav {
             position: fixed;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, transparent 70%);
-            border-radius: 50%;
-            top: 10%;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: -1;
-            filter: blur(60px);
-            animation: pulseOrb 8s ease-in-out infinite;
-        }
-
-        @keyframes pulseOrb {
-            0%, 100% { transform: translate(-50%, 0) scale(1); opacity: 0.5; }
-            50% { transform: translate(-50%, 20px) scale(1.2); opacity: 0.8; }
-        }
-
-        header {
-            min-height: 90vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 40px 20px;
-            text-align: center;
-        }
-
-        .badge {
-            background: var(--glass);
-            border: 1px solid var(--border);
-            padding: 6px 16px;
-            border-radius: 100px;
-            font-size: 0.7rem;
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 24px;
-            backdrop-filter: blur(10px);
-        }
-
-        h1 {
-            /* Skaalautuva fontti: min 2rem, max 6rem */
-            font-size: clamp(2.2rem, 12vw, 5.5rem);
-            font-weight: 800;
-            line-height: 1.1;
-            margin: 0;
-            background: linear-gradient(180deg, #fff 30%, #64748b 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-p {
-            color: #94a3b8;
-            max-width: 500px;
-            font-size: clamp(1rem, 4vw, 1.2rem);
-            margin: 25px 0;
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto 100px;
-            padding: 0 20px;
-            display: grid;
-            /* Yksi sarake mobiilissa, kolme työpöydällä */
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-
-        .card {
-            background: var(--glass);
+            top: 0;
+            width: 100%;
+            z-index: 1000;
             backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px); /* Safari-tuki */
-            border: 1px solid var(--border);
-            padding: 30px;
-            border-radius: 24px;
-            transition: 0.3s ease;
+            border-bottom: 1px solid var(--border);
         }
 
-        .card h3 {
-            margin-top: 0;
-            font-size: 1.4rem;
-            color: #fff;
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
         }
 
-        .card p {
+        .logo { font-weight: 800; font-size: 1.2rem; letter-spacing: -1px; }
+
+        .nav-links a {
             color: #94a3b8;
-            font-size: 0.95rem;
-            margin-bottom: 0;
-        }
-
-        .btn {
-            background: #fff;
-            color: #000;
-            padding: 16px 40px;
-            border-radius: 14px;
             text-decoration: none;
-            font-weight: 700;
-            font-size: 1rem;
+            margin-left: 25px;
+            font-size: 0.9rem;
             transition: 0.3s;
-            display: inline-block;
         }
 
-        /* Mobiilioptimoitu napin koko */
-        @media (max-width: 600px) {
-            .btn {
-                width: 80%;
-                padding: 18px 20px;
-            }
+        .nav-links a:hover { color: white; }
+
+        /* --- LOGOKARUSELLI --- */
+        .carousel-section {
+            padding: 60px 0;
+            background: rgba(255,255,255,0.01);
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
         }
+
+        .logo-track {
+            display: inline-flex;
+            animation: scroll 30s linear infinite;
+        }
+
+        .logo-item {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #4b5563;
+            margin: 0 50px;
+            display: flex;
+            align-items: center;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 80px 20px 40px;
+            margin-top: 100px;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-col h4 { margin-bottom: 20px; font-size: 0.9rem; text-transform: uppercase; color: var(--accent); }
+        .footer-col ul { list-style: none; padding: 0; }
+        .footer-col li { margin-bottom: 10px; color: #94a3b8; font-size: 0.9rem; cursor: pointer; }
+        .footer-col li:hover { color: white; }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 60px auto 0;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            font-size: 0.8rem;
+            color: #4b5563;
+        }
+
+        /* Hero & Containerit */
+        header { height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .card { background: var(--glass); backdrop-filter: blur(15px); border: 1px solid var(--border); padding: 40px; border-radius: 24px; }
+        .btn { background: white; color: black; padding: 15px 35px; border-radius: 12px; text-decoration: none; font-weight: 600; margin-top: 20px; display: inline-block; }
+
+        @media (max-width: 600px) { .nav-links { display: none; } }
     </style>
 </head>
 <body>
 
-    <div class="orb"></div>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">PULSR.STUDIO</div>
+            <div class="nav-links">
+                <a href="#features">Palvelut</a>
+                <a href="#refs">Referenssit</a>
+                <a href="#">Ota yhteyttä</a>
+            </div>
+        </div>
+    </nav>
 
     <header>
-        <div class="badge">Future Tech 2026</div>
-        <h1>Simply <br>Advanced.</h1>
-        <p class="hero-p">Koe uuden sukupolven verkkosivukehitys. Nopeaa, kaunista ja täysin ilmaista.</p>
-        <a href="#" class="btn">Kokeile ilmaiseksi</a>
+        <h1>Creativity <br>Reimagined.</h1>
+        <p style="color: #94a3b8; max-width: 500px;">Huippuluokan digitaalisia kokemuksia, jotka on rakennettu huomispäivän teknologioilla.</p>
+        <a href="#" class="btn">Aloitetaan projekti</a>
     </header>
 
-    <div class="container">
-        <div class="card">
-            <h3>Visionääri</h3>
-            <p>Design, joka tuntuu elävältä jokaisella pyyhkäisyllä.</p>
-        </div>
-        <div class="card">
-            <h3>Globaali</h3>
-            <p>Julkaistu GitHubin kautta koko maailman nähtäväksi.</p>
-        </div>
-        <div class="card">
-            <h3>Responsiivinen</h3>
-            <p>Toimii täydellisesti niin iPhonella kuin iMacilla.</p>
+    <div class="carousel-section" id="refs">
+        <div style="text-align: center; color: #4b5563; font-size: 0.8rem; margin-bottom: 30px; letter-spacing: 2px;">LUOTETTAVAT KUMPPANIT</div>
+        <div class="logo-track">
+            <div class="logo-item">SAMSUNG</div>
+            <div class="logo-item">NIKE</div>
+            <div class="logo-item">TESLA</div>
+            <div class="logo-item">APPLE</div>
+            <div class="logo-item">ADIDAS</div>
+            <div class="logo-item">SAMSUNG</div>
+            <div class="logo-item">NIKE</div>
+            <div class="logo-item">TESLA</div>
+            <div class="logo-item">APPLE</div>
+            <div class="logo-item">ADIDAS</div>
         </div>
     </div>
+
+    <div class="container" id="features" style="margin-top: 100px;">
+        <div class="card">
+            <h3>Strategia</h3>
+            <p>Analysoimme markkinat ja luomme polun menestykseen.</p>
+        </div>
+        <div class="card">
+            <h3>Design</h3>
+            <p>Pulsr-tason visuaalisuus, joka jää asiakkaiden mieleen.</p>
+        </div>
+        <div class="card">
+            <h3>Koodi</h3>
+            <p>Puhdasta, nopeaa ja hakukoneoptimoitua suorituskykyä.</p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="logo">PULSR.</div>
+                <p style="color: #4b5563; margin-top: 20px;">Helsinki, Finland <br> 2026</p>
+            </div>
+            <div class="footer-col">
+                <h4>Tuote</h4>
+                <ul>
+                    <li>Ominaisuudet</li>
+                    <li>Referenssit</li>
+                    <li>Hinnasto</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Yhtiö</h4>
+                <ul>
+                    <li>Tietoa meistä</li>
+                    <li>Blogi</li>
+                    <li>Urat</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Seuraa</h4>
+                <ul>
+                    <li>X (Twitter)</li>
+                    <li>Instagram</li>
+                    <li>LinkedIn</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Pulsr Studio. Kaikki oikeudet pidätetään.
+        </div>
+    </footer>
 
 </body>
 </html>
