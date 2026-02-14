@@ -3,26 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Animoitu AI-sivusto</title>
+    <title>Pulsr-Style AI Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #6366f1;
-            --accent: #a855f7;
-            --dark: #0f172a;
+            --bg: #030712;
+            --accent: #6366f1;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            background-color: var(--dark);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
             color: white;
+            margin: 0;
             overflow-x: hidden;
         }
 
-        /* 1. Sisääntuloanimaatio */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Taustan hehkuva pallo (kuten Pulsrissa) */
+        .orb {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+            z-index: -1;
+            filter: blur(50px);
+            animation: float 10s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-30px, 50px); }
         }
 
         header {
@@ -31,101 +46,106 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            padding: 0 20px;
             text-align: center;
-            /* Liikkuva taustagradientti */
-            background: linear-gradient(-45deg, #0f172a, #1e293b, #312e81, #0f172a);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
         }
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        /* Pulsr-tyylinen badge */
+        .badge {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 5px 15px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
         }
 
         h1 {
-            font-size: clamp(2rem, 8vw, 5rem);
+            font-size: clamp(2.5rem, 10vw, 6rem);
+            font-weight: 800;
+            line-height: 0.9;
             margin: 0;
-            animation: fadeInUp 1s ease-out;
-            background: linear-gradient(to right, #818cf8, #d8b4fe);
+            background: linear-gradient(180deg, #fff 0%, #94a3b8 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .subtitle {
-            animation: fadeInUp 1.2s ease-out;
+        .hero-p {
             color: #94a3b8;
-            max-width: 600px;
+            max-width: 500px;
+            font-size: 1.1rem;
+            margin: 20px 0;
         }
 
-        /* 2. Interaktiiviset kortit */
-        .grid {
+        /* Lasikortit */
+        .container {
+            max-width: 1200px;
+            margin: -100px auto 100px;
+            padding: 20px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            padding: 50px 20px;
-            max-width: 1100px;
-            margin: 0 auto;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.03);
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
             padding: 40px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
+            border-radius: 24px;
+            transition: 0.4s cubic-bezier(0.2, 1, 0.3, 1);
         }
 
-        /* Kortin "vau-efekti" hiirellä */
         .card:hover {
-            background: rgba(255, 255, 255, 0.07);
-            transform: translateY(-10px) scale(1.02);
-            border-color: var(--primary);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            border-color: rgba(99, 102, 241, 0.5);
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.05);
         }
 
-        .cta-button {
-            margin-top: 30px;
-            padding: 15px 40px;
-            background: var(--primary);
-            color: white;
+        .btn {
+            background: white;
+            color: black;
+            padding: 15px 35px;
+            border-radius: 12px;
             text-decoration: none;
-            border-radius: 100px;
             font-weight: 600;
-            animation: fadeInUp 1.4s ease-out;
             transition: 0.3s;
-            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
         }
 
-        .cta-button:hover {
-            box-shadow: 0 15px 30px rgba(99, 102, 241, 0.5);
+        .btn:hover {
             background: var(--accent);
+            color: white;
+            box-shadow: 0 0 30px rgba(99, 102, 241, 0.5);
         }
-
     </style>
 </head>
 <body>
 
+    <div class="orb"></div>
+
     <header>
-        <h1>Tulevaisuus on täällä.</h1>
-        <p class="subtitle">Tämä sivu herää eloon pehmeillä animaatioilla ilman raskaita lisäosia.</p>
-        <a href="#about" class="cta-button">Katso tehosteet</a>
+        <div class="badge">AI-Powered Design 2026</div>
+        <h1>Design for the <br>Future.</h1>
+        <p class="hero-p">Rakenna upeita verkkosivuja suoraan selaimessasi tekoälyn ja GitHubin avulla.</p>
+        <a href="#" class="btn">Aloita nyt</a>
     </header>
 
-    <div class="grid" id="about">
+    <div class="container">
         <div class="card">
-            <h3 style="color: var(--primary)">Sulava</h3>
-            <p>60fps animaatiot takaavat, että käyttökokemus tuntuu premium-tasolta.</p>
+            <h3>Visual Search</h3>
+            <p>Hae ja analysoi dataa visuaalisesti hienostuneen käyttöliittymän kautta.</p>
         </div>
         <div class="card">
-            <h3 style="color: var(--primary)">Kevyt</h3>
-            <p>Ei turhaa koodia, vain puhdasta suorituskykyä GitHub Pagesissa.</p>
+            <h3>Smart Logic</h3>
+            <p>Pulsr-tyylinen älykkyys yhdistettynä minimalistiseen muotoiluun.</p>
         </div>
         <div class="card">
-            <h3 style="color: var(--primary)">Moderni</h3>
-            <p>Automaattiset gradientit ja varjot luovat syvyyttä selaimeen.</p>
+            <h3>Fast Global</h3>
+            <p>Sivustosi latautuu sekunneissa ympäri maailman GitHubin CDN-verkon kautta.</p>
         </div>
     </div>
 
