@@ -3,207 +3,311 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pulsr-Style | Pro</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg: #030712;
-            --accent: #6366f1;
-            --glass: rgba(255, 255, 255, 0.03);
-            --border: rgba(255, 255, 255, 0.1);
-        }
-
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg);
-            color: white;
-            margin: 0;
-            overflow-x: hidden;
-        }
-
-        /* --- NAVIGAATIO --- */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-        }
-
-        .logo { font-weight: 800; font-size: 1.2rem; letter-spacing: -1px; }
-
-        .nav-links a {
-            color: #94a3b8;
-            text-decoration: none;
-            margin-left: 25px;
-            font-size: 0.9rem;
-            transition: 0.3s;
-        }
-
-        .nav-links a:hover { color: white; }
-
-        /* --- LOGOKARUSELLI --- */
-        .carousel-section {
-            padding: 60px 0;
-            background: rgba(255,255,255,0.01);
-            overflow: hidden;
-            white-space: nowrap;
-            position: relative;
-        }
-
-        .logo-track {
-            display: inline-flex;
-            animation: scroll 30s linear infinite;
-        }
-
-        .logo-item {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: #4b5563;
-            margin: 0 50px;
-            display: flex;
-            align-items: center;
-        }
-
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            border-top: 1px solid var(--border);
-            padding: 80px 20px 40px;
-            margin-top: 100px;
-        }
-
-        .footer-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-        }
-
-        .footer-col h4 { margin-bottom: 20px; font-size: 0.9rem; text-transform: uppercase; color: var(--accent); }
-        .footer-col ul { list-style: none; padding: 0; }
-        .footer-col li { margin-bottom: 10px; color: #94a3b8; font-size: 0.9rem; cursor: pointer; }
-        .footer-col li:hover { color: white; }
-
-        .footer-bottom {
-            max-width: 1200px;
-            margin: 60px auto 0;
-            text-align: center;
-            border-top: 1px solid var(--border);
-            padding-top: 20px;
-            font-size: 0.8rem;
-            color: #4b5563;
-        }
-
-        /* Hero & Containerit */
-        header { height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .card { background: var(--glass); backdrop-filter: blur(15px); border: 1px solid var(--border); padding: 40px; border-radius: 24px; }
-        .btn { background: white; color: black; padding: 15px 35px; border-radius: 12px; text-decoration: none; font-weight: 600; margin-top: 20px; display: inline-block; }
-
-        @media (max-width: 600px) { .nav-links { display: none; } }
-    </style>
+    <title>Valok — Prosessien automatisointi & tekoälyratkaisut</title>
+    <meta name="description" content="Valok auttaa suomalaisia PK-yrityksiä automatisoimaan prosessejaan ja rakentamaan dedikoituja tekoälyratkaisuja. Projektipohjaista kehitystä tuloksiin keskittyen.">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <nav>
+    <!-- PARTICLE CANVAS -->
+    <canvas id="particles"></canvas>
+
+    <!-- NAVIGATION -->
+    <nav id="navbar">
         <div class="nav-container">
-            <div class="logo">PULSR.STUDIO</div>
-            <div class="nav-links">
-                <a href="#features">Palvelut</a>
-                <a href="#refs">Referenssit</a>
-                <a href="#">Ota yhteyttä</a>
+            <a href="#" class="logo">VALOK<span class="logo-dot">.</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="#palvelut">Palvelut</a>
+                <a href="#prosessi">Prosessi</a>
+                <a href="#tulokset">Tulokset</a>
+                <a href="#teknologiat">Teknologiat</a>
+                <a href="#yhteystiedot" class="nav-cta">Ota yhteyttä</a>
             </div>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Avaa valikko">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </nav>
 
-    <header>
-        <h1>Creativity <br>Reimagined.</h1>
-        <p style="color: #94a3b8; max-width: 500px;">Huippuluokan digitaalisia kokemuksia, jotka on rakennettu huomispäivän teknologioilla.</p>
-        <a href="#" class="btn">Aloitetaan projekti</a>
+    <!-- HERO -->
+    <header id="hero">
+        <div class="hero-badge animate-in">
+            <span class="badge-dot"></span>
+            Prosessien automatisointi & tekoäly
+        </div>
+        <h1 class="animate-in">Automatisoidaan<br>yrityksesi <span class="gradient-text">tulevaisuuteen.</span></h1>
+        <p class="hero-sub animate-in">Rakennamme suomalaisille PK-yrityksille räätälöityjä automaatio- ja tekoälyratkaisuja, jotka vapauttavat aikaa, vähentävät virheitä ja kiihdyttävät kasvua.</p>
+        <div class="hero-actions animate-in">
+            <a href="#yhteystiedot" class="btn btn-primary">Aloitetaan projekti
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#palvelut" class="btn btn-ghost">Tutustu palveluihin</a>
+        </div>
+        <div class="hero-glow"></div>
     </header>
 
-    <div class="carousel-section" id="refs">
-        <div style="text-align: center; color: #4b5563; font-size: 0.8rem; margin-bottom: 30px; letter-spacing: 2px;">LUOTETTAVAT KUMPPANIT</div>
-        <div class="logo-track">
-            <div class="logo-item">SAMSUNG</div>
-            <div class="logo-item">NIKE</div>
-            <div class="logo-item">TESLA</div>
-            <div class="logo-item">APPLE</div>
-            <div class="logo-item">ADIDAS</div>
-            <div class="logo-item">SAMSUNG</div>
-            <div class="logo-item">NIKE</div>
-            <div class="logo-item">TESLA</div>
-            <div class="logo-item">APPLE</div>
-            <div class="logo-item">ADIDAS</div>
+    <!-- SERVICES -->
+    <section id="palvelut" class="section">
+        <div class="section-header">
+            <span class="section-tag">Palvelut</span>
+            <h2>Kaiken mitä tarvitset<br><span class="gradient-text">älykkäämpään liiketoimintaan.</span></h2>
+            <p class="section-desc">Jokainen projekti räätälöidään juuri teidän tarpeisiinne. Ei valmiita tuotteita — vain ratkaisuja, jotka oikeasti toimivat.</p>
         </div>
-    </div>
+        <div class="services-grid">
+            <div class="service-card" data-animate>
+                <div class="service-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <h3>Prosessien automatisointi</h3>
+                <p>Tunnistamme toistuvat manuaaliset prosessit ja automatisoimme ne. Raportoinnista tiedonkeruuseen, laskutuksesta varastonhallintaan — vapautamme tiimisi arvokkaampaan työhön.</p>
+                <ul class="service-features">
+                    <li>Työnkulkujen automatisointi</li>
+                    <li>Tietojen integrointi järjestelmien välillä</li>
+                    <li>Automaattinen raportointi</li>
+                </ul>
+            </div>
+            <div class="service-card featured" data-animate>
+                <div class="featured-badge">Suosituin</div>
+                <div class="service-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+                </div>
+                <h3>Dedikoitu tekoäly</h3>
+                <p>Rakennamme yrityksellenne oman tekoälyratkaisun, joka ymmärtää juuri teidän datanne ja prosessinne. Chatbotista ennustavaan analytiikkaan — ilman geneerisiä tuotteita.</p>
+                <ul class="service-features">
+                    <li>Räätälöidyt kielimallit (LLM)</li>
+                    <li>Ennustava analytiikka</li>
+                    <li>Älykkäät chatbotit ja assistentit</li>
+                </ul>
+            </div>
+            <div class="service-card" data-animate>
+                <div class="service-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                </div>
+                <h3>Data & konsultointi</h3>
+                <p>Autamme ymmärtämään datanne arvon ja rakentamaan dataputket, jotka ruokkivat päätöksentekoa. Strategisesta suunnittelusta tekniseen toteutukseen.</p>
+                <ul class="service-features">
+                    <li>Data-arkkitehtuuri ja -putket</li>
+                    <li>BI-raportointi ja dashboardit</li>
+                    <li>Teknologiastrategia</li>
+                </ul>
+            </div>
+        </div>
+    </section>
 
-    <div class="container" id="features" style="margin-top: 100px;">
-        <div class="card">
-            <h3>Strategia</h3>
-            <p>Analysoimme markkinat ja luomme polun menestykseen.</p>
+    <!-- PROCESS / TIMELINE -->
+    <section id="prosessi" class="section">
+        <div class="section-header">
+            <span class="section-tag">Prosessi</span>
+            <h2>Projektista tuloksiin<br><span class="gradient-text">neljässä vaiheessa.</span></h2>
         </div>
-        <div class="card">
-            <h3>Design</h3>
-            <p>Pulsr-tason visuaalisuus, joka jää asiakkaiden mieleen.</p>
+        <div class="timeline">
+            <div class="timeline-item" data-animate>
+                <div class="timeline-number">01</div>
+                <div class="timeline-content">
+                    <h3>Kartoitus</h3>
+                    <p>Analysoimme nykyiset prosessinne, tunnistamme pullonkaulat ja määrittelemme yhdessä automatisoinnin tavoitteet. Maksuton alkukartoitus.</p>
+                </div>
+            </div>
+            <div class="timeline-item" data-animate>
+                <div class="timeline-number">02</div>
+                <div class="timeline-content">
+                    <h3>Suunnittelu</h3>
+                    <p>Suunnittelemme ratkaisun arkkitehtuurin, valitsemme teknologiat ja luomme aikataulun. Läpinäkyvä projektisuunnitelma ilman yllätyksiä.</p>
+                </div>
+            </div>
+            <div class="timeline-item" data-animate>
+                <div class="timeline-number">03</div>
+                <div class="timeline-content">
+                    <h3>Toteutus</h3>
+                    <p>Rakennamme ratkaisun iteratiivisesti — testaamme joka viikko ja pidämme teidät ajan tasalla. Ketterä lähestymistapa joka toimii.</p>
+                </div>
+            </div>
+            <div class="timeline-item" data-animate>
+                <div class="timeline-number">04</div>
+                <div class="timeline-content">
+                    <h3>Käyttöönotto & tuki</h3>
+                    <p>Otamme ratkaisun käyttöön, koulutamme tiimin ja varmistamme sujuvan siirtymän. Jatkuva tuki varmistaa, ettei mikään jää kesken.</p>
+                </div>
+            </div>
         </div>
-        <div class="card">
-            <h3>Koodi</h3>
-            <p>Puhdasta, nopeaa ja hakukoneoptimoitua suorituskykyä.</p>
-        </div>
-    </div>
+    </section>
 
+    <!-- STATS -->
+    <section id="tulokset" class="section stats-section">
+        <div class="stats-bg-glow"></div>
+        <div class="section-header">
+            <span class="section-tag">Tulokset</span>
+            <h2>Lukuja jotka <span class="gradient-text">puhuvat puolestaan.</span></h2>
+        </div>
+        <div class="stats-grid">
+            <div class="stat-card" data-animate>
+                <div class="stat-number" data-count="85">0</div>
+                <div class="stat-unit">%</div>
+                <p>Keskimääräinen ajansäästö automatisoiduissa prosesseissa</p>
+            </div>
+            <div class="stat-card" data-animate>
+                <div class="stat-number" data-count="40">0</div>
+                <div class="stat-unit">+</div>
+                <p>Onnistunutta projektia suomalaisten PK-yritysten kanssa</p>
+            </div>
+            <div class="stat-card" data-animate>
+                <div class="stat-number" data-count="3">0</div>
+                <div class="stat-unit">x</div>
+                <p>Keskimääräinen ROI ensimmäisen vuoden aikana</p>
+            </div>
+            <div class="stat-card" data-animate>
+                <div class="stat-number" data-count="99">0</div>
+                <div class="stat-unit">.9%</div>
+                <p>Automaatioiden luotettavuus tuotannossa</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="section">
+        <div class="section-header">
+            <span class="section-tag">Asiakkaiden kokemuksia</span>
+            <h2>Mitä asiakkaamme <span class="gradient-text">sanovat.</span></h2>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card" data-animate>
+                <div class="testimonial-stars">★★★★★</div>
+                <p>"Valok automatisoi laskutusprosessimme, joka vei ennen 20 tuntia viikossa. Nyt se hoituu itsekseen ja virheet ovat lähes poistuneet."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">ML</div>
+                    <div>
+                        <strong>Matti Laine</strong>
+                        <span>Toimitusjohtaja, LogiFlow Oy</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card" data-animate>
+                <div class="testimonial-stars">★★★★★</div>
+                <p>"Dedikoitu AI-assistentti on muuttanut tapamme palvella asiakkaita. Vastausajat ovat pudonneet tunneista minuutteihin — ilman lisähenkilöstöä."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">AK</div>
+                    <div>
+                        <strong>Anna Korhonen</strong>
+                        <span>Kehitysjohtaja, NordTech Solutions</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card" data-animate>
+                <div class="testimonial-stars">★★★★★</div>
+                <p>"Projektin läpinäkyvyys oli erinomaista. Joka viikko näimme edistymisen ja pystyimme antamaan palautetta. Lopputulos ylitti odotukset."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">JH</div>
+                    <div>
+                        <strong>Jussi Heikkinen</strong>
+                        <span>COO, DataVista Finland</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TECHNOLOGIES -->
+    <section id="teknologiat" class="section">
+        <div class="section-header">
+            <span class="section-tag">Teknologiat</span>
+            <h2>Rakennettu <span class="gradient-text">parhailla työkaluilla.</span></h2>
+            <p class="section-desc">Hyödynnämme uusimpia ja luotettavimpia teknologioita — ei trendejä trendien vuoksi, vaan teknologiaa joka kestää aikaa.</p>
+        </div>
+        <div class="tech-grid">
+            <div class="tech-item" data-animate>
+                <span class="tech-icon">🐍</span>
+                <span>Python</span>
+            </div>
+            <div class="tech-item" data-animate>
+                <span class="tech-icon">🤖</span>
+                <span>OpenAI / LLM</span>
+            </div>
+            <div class="tech-item" data-animate>
+                <span class="tech-icon">☁️</span>
+                <span>AWS / Azure</span>
+            </div>
+            <div class="tech-item" data-animate>
+                <span class="tech-icon">🐳</span>
+                <span>Docker</span>
+            </div>
+            <div class="tech-item" data-animate>
+                <span class="tech-icon">📊</span>
+                <span>Power BI</span>
+            </div>
+            <div class="tech-item" data-animate>
+                <span class="tech-icon">🗄️</span>
+                <span>PostgreSQL</span>
+            </div>
+            <div class="tech-item" data-animate>
+                <span class="tech-icon">⚡</span>
+                <span>n8n / Zapier</span>
+            </div>
+            <div class="tech-item" data-animate>
+                <span class="tech-icon">🔗</span>
+                <span>REST & API</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="yhteystiedot" class="section cta-section">
+        <div class="cta-glow"></div>
+        <div class="cta-card" data-animate>
+            <h2>Valmiina automatisoimaan?</h2>
+            <p>Kerro meille yrityksestäsi ja haasteistasi — kartoitamme tilanteenne maksutta ja ehdotamme konkreettisia ratkaisuja.</p>
+            <div class="cta-actions">
+                <a href="mailto:info@valok.fi" class="btn btn-primary btn-lg">
+                    info@valok.fi
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+                <a href="tel:+358401234567" class="btn btn-ghost btn-lg">+358 40 123 4567</a>
+            </div>
+            <p class="cta-note">Maksuton alkukartoitus · Ei sitoumuksia · Vastaus 24h sisällä</p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
     <footer>
         <div class="footer-grid">
-            <div class="footer-col">
-                <div class="logo">PULSR.</div>
-                <p style="color: #4b5563; margin-top: 20px;">Helsinki, Finland <br> 2026</p>
+            <div class="footer-col footer-brand">
+                <div class="logo">VALOK<span class="logo-dot">.</span></div>
+                <p>Prosessien automatisointia ja dedikoituja tekoälyratkaisuja suomalaisille PK-yrityksille.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="LinkedIn">in</a>
+                    <a href="#" aria-label="GitHub">gh</a>
+                </div>
             </div>
             <div class="footer-col">
-                <h4>Tuote</h4>
+                <h4>Palvelut</h4>
                 <ul>
-                    <li>Ominaisuudet</li>
-                    <li>Referenssit</li>
-                    <li>Hinnasto</li>
+                    <li><a href="#palvelut">Prosessien automatisointi</a></li>
+                    <li><a href="#palvelut">Dedikoitu tekoäly</a></li>
+                    <li><a href="#palvelut">Data & konsultointi</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Yhtiö</h4>
+                <h4>Yritys</h4>
                 <ul>
-                    <li>Tietoa meistä</li>
-                    <li>Blogi</li>
-                    <li>Urat</li>
+                    <li><a href="#prosessi">Näin toimimme</a></li>
+                    <li><a href="#tulokset">Tulokset</a></li>
+                    <li><a href="#teknologiat">Teknologiat</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Seuraa</h4>
+                <h4>Yhteystiedot</h4>
                 <ul>
-                    <li>X (Twitter)</li>
-                    <li>Instagram</li>
-                    <li>LinkedIn</li>
+                    <li>info@valok.fi</li>
+                    <li>+358 40 123 4567</li>
+                    <li>Helsinki, Finland</li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            &copy; 2026 Pulsr Studio. Kaikki oikeudet pidätetään.
+            &copy; 2026 Valok. Kaikki oikeudet pidätetään.
         </div>
     </footer>
 
+    <script src="main.js"></script>
 </body>
 </html>
