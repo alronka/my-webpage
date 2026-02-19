@@ -20,7 +20,9 @@
     --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -92,6 +94,26 @@ nav.scrolled {
 
 .logo-dot {
     color: var(--accent);
+}
+
+.logo-img {
+    height: 80px;
+    width: auto;
+    margin: -24px -10px -24px -16px;
+    vertical-align: middle;
+    filter: brightness(1.8) contrast(1.1);
+    transition: var(--transition);
+}
+
+.logo:hover .logo-img {
+    filter: brightness(2) contrast(1.2) drop-shadow(0 0 12px var(--accent-glow));
+    transform: scale(1.08);
+}
+
+.logo-img-footer {
+    height: 100px;
+    margin: -28px -12px -28px -20px;
+    filter: brightness(1.6) contrast(1.05);
 }
 
 .nav-links {
@@ -183,8 +205,17 @@ header {
 }
 
 @keyframes pulse-dot {
-    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 var(--accent-glow); }
-    50% { opacity: 0.7; box-shadow: 0 0 0 8px transparent; }
+
+    0%,
+    100% {
+        opacity: 1;
+        box-shadow: 0 0 0 0 var(--accent-glow);
+    }
+
+    50% {
+        opacity: 0.7;
+        box-shadow: 0 0 0 8px transparent;
+    }
 }
 
 h1 {
@@ -393,7 +424,7 @@ h1 {
     margin-bottom: 12px;
 }
 
-.service-card > p {
+.service-card>p {
     color: var(--text-muted);
     font-size: 0.95rem;
     line-height: 1.7;
@@ -584,7 +615,7 @@ h1 {
     letter-spacing: 2px;
 }
 
-.testimonial-card > p {
+.testimonial-card>p {
     color: var(--text-muted);
     font-size: 0.95rem;
     line-height: 1.8;
@@ -690,7 +721,7 @@ h1 {
     margin-bottom: 16px;
 }
 
-.cta-card > p {
+.cta-card>p {
     color: var(--text-muted);
     font-size: 1.05rem;
     line-height: 1.7;
@@ -815,10 +846,21 @@ footer {
     animation: fadeUp 0.8s ease forwards;
 }
 
-.animate-in:nth-child(1) { animation-delay: 0.1s; }
-.animate-in:nth-child(2) { animation-delay: 0.2s; }
-.animate-in:nth-child(3) { animation-delay: 0.3s; }
-.animate-in:nth-child(4) { animation-delay: 0.4s; }
+.animate-in:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.animate-in:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.animate-in:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.animate-in:nth-child(4) {
+    animation-delay: 0.4s;
+}
 
 @keyframes fadeUp {
     to {
