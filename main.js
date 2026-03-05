@@ -202,17 +202,29 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     const acceptBtn = document.getElementById('acceptCookies');
     if (!banner || !acceptBtn) return;
 
+    function activateTracking() {
+        if (typeof gtag === 'function') {
+            gtag('consent', 'update', {
+                'analytics_storage': 'granted'
+            });
+        }
+    }
+
     // Check if user has already accepted
     if (!localStorage.getItem('privacyAccepted')) {
         // Show banner with delay for better UX
         setTimeout(() => {
             banner.classList.add('visible');
         }, 1500);
+    } else {
+        // User has already accepted, activate tracking immediately
+        activateTracking();
     }
 
     acceptBtn.addEventListener('click', () => {
         banner.classList.remove('visible');
         localStorage.setItem('privacyAccepted', 'true');
+        activateTracking();
     });
 })();
 
