@@ -967,3 +967,71 @@ footer {
         align-items: center;
     }
 }
+
+/* ============================
+   PRIVACY BANNER
+   ============================ */
+.cookie-banner {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    right: 24px;
+    max-width: 400px;
+    background: rgba(10, 15, 30, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 24px;
+    z-index: 2000;
+    display: none;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    animation: slideUp 0.5s ease;
+}
+
+.cookie-banner.visible {
+    display: block;
+}
+
+.cookie-banner h5 {
+    font-size: 1rem;
+    margin-bottom: 8px;
+    color: var(--text);
+}
+
+.cookie-banner p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.cookie-btn-group {
+    display: flex;
+    gap: 12px;
+}
+
+.cookie-btn-group .btn {
+    padding: 10px 20px;
+    font-size: 0.85rem;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@media (max-width: 480px) {
+    .cookie-banner {
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        max-width: none;
+    }
+}

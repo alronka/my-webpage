@@ -195,3 +195,24 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+// ---- PRIVACY BANNER LOGIC ----
+(function initPrivacyBanner() {
+    const banner = document.getElementById('cookieBanner');
+    const acceptBtn = document.getElementById('acceptCookies');
+    if (!banner || !acceptBtn) return;
+
+    // Check if user has already accepted
+    if (!localStorage.getItem('privacyAccepted')) {
+        // Show banner with delay for better UX
+        setTimeout(() => {
+            banner.classList.add('visible');
+        }, 1500);
+    }
+
+    acceptBtn.addEventListener('click', () => {
+        banner.classList.remove('visible');
+        localStorage.setItem('privacyAccepted', 'true');
+    });
+})();
+
