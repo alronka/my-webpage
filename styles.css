@@ -686,6 +686,19 @@ h1 {
     font-size: 1.4rem;
 }
 
+.tech-logo {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    filter: brightness(0.9) contrast(1.1);
+    transition: var(--transition);
+}
+
+.tech-item:hover .tech-logo {
+    filter: brightness(1.1) contrast(1.2);
+    transform: scale(1.1);
+}
+
 /* ============================
    CTA SECTION
    ============================ */
