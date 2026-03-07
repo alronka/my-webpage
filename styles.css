@@ -33,11 +33,20 @@ html {
     scroll-padding-top: 80px;
 }
 
+html,
+body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+}
+
 body {
     font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
     background-color: var(--bg);
     color: var(--text);
-    overflow-x: hidden;
     line-height: 1.6;
 }
 
@@ -250,7 +259,8 @@ h1 {
 
 .hero-glow {
     position: absolute;
-    width: 600px;
+    width: 100%;
+    max-width: 600px;
     height: 600px;
     background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
     top: 20%;
@@ -530,7 +540,8 @@ h1 {
 
 .stats-bg-glow {
     position: absolute;
-    width: 800px;
+    width: 100%;
+    max-width: 800px;
     height: 400px;
     background: radial-gradient(ellipse, var(--accent-glow) 0%, transparent 70%);
     top: 50%;
@@ -708,7 +719,8 @@ h1 {
 
 .cta-glow {
     position: absolute;
-    width: 800px;
+    width: 100%;
+    max-width: 800px;
     height: 600px;
     background: radial-gradient(ellipse, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
     top: 50%;
