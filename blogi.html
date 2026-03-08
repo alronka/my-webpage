@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Näkemyksiä & Oppaita — Valok</title>
+    <meta name="description"
+        content="Lue uusimmat näkemykset prosessiautomaatiosta, tekoälystä ja digitaalisesta kehityksestä. Asiantuntijavinkkejä suomalaisille PK-yrityksille.">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="img/aRon_A1.png">
+    <link rel="apple-touch-icon" href="img/aRon_A1.png">
+    <link rel="canonical" href="https://valok.fi/blogi">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://valok.fi/blogi">
+    <meta property="og:title" content="Näkemyksiä & Oppaita — Valok">
+    <meta property="og:description" content="Artikkeleita ja case-studioita automaatiosta ja tekoälystä.">
+
+    <style>
+        .blog-header {
+            padding: 160px 24px 80px;
+            text-align: center;
+            background: radial-gradient(circle at top, var(--accent-glow) 0%, transparent 50%);
+        }
+
+        .blog-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 32px;
+            padding: 0 24px 120px;
+        }
+
+        .blog-card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-8px);
+            background: var(--glass-hover);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 240px;
+            background: linear-gradient(135deg, var(--bg-subtle), var(--accent-glow));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            position: relative;
+        }
+
+        .blog-content {
+            padding: 32px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-meta {
+            font-size: 0.8rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .blog-card h3 {
+            font-size: 1.5rem;
+            line-height: 1.3;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+
+        .blog-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .blog-footer {
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--text-dim);
+        }
+
+        @media (max-width: 480px) {
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="particles"></canvas>
+
+    <!-- NAVIGATION -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo"><img src="img/aRon_A1.png" alt="Valok logo" class="logo-img">VALOK<span
+                    class="logo-dot">.</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html#palvelut">Palvelut</a>
+                <a href="index.html#prosessi">Prosessi</a>
+                <a href="blogi.html">Blogi</a>
+                <a href="index.html#yhteystiedot" class="nav-cta">Ota yhteyttä</a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Avaa valikko">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <header class="blog-header">
+        <span class="section-tag">Blogi & Insights</span>
+        <h1>Näkemyksiä <span class="gradient-text">tulevaisuudesta.</span></h1>
+        <p class="hero-sub">Oppaita ja artikkeleita automaatiosta, tekoälystä ja PK-yritysten digitaalisesta kasvusta.
+        </p>
+    </header>
+
+    <section class="blog-grid">
+        <!-- POST 1 -->
+        <a href="#" class="blog-card" data-animate>
+            <div class="blog-image">
+                <img src="img/robot-bot-icon.svg" alt="LLM" style="width: 80px; opacity: 0.8;">
+            </div>
+            <div class="blog-content">
+                <div class="blog-meta">Tekoäly • 5 min luku</div>
+                <h3>Miten RAG-arkkitehtuuri muuttaa yrityksesi datan asiantuntijaksi?</h3>
+                <p>Tutustu siihen, miten Retrieval-Augmented Generation (RAG) mahdollistaa tekoälyn, joka ymmärtää
+                    yrityksesi omat tiedostot ja prosessit.</p>
+                <div class="blog-footer">
+                    <span>8. Maaliskuuta 2026</span>
+                    <span class="gradient-text">Lue lisää →</span>
+                </div>
+            </div>
+        </a>
+
+        <!-- POST 2 -->
+        <a href="#" class="blog-card" data-animate>
+            <div class="blog-image">
+                <img src="img/n8n.svg" alt="Automaatio" style="width: 80px; opacity: 0.8;">
+            </div>
+            <div class="blog-content">
+                <div class="blog-meta">Automaatio • 4 min luku</div>
+                <h3>5 turhaa rutiinia, jotka PK-yrityksen kannattaa automatisoida heti</h3>
+                <p>Laskutus, raportointi, CRM-päivitykset... Listasimme kriittisimmät prosessit, joiden automatisointi
+                    tuo nopeimman ROI:n.</p>
+                <div class="blog-footer">
+                    <span>5. Maaliskuuta 2026</span>
+                    <span class="gradient-text">Lue lisää →</span>
+                </div>
+            </div>
+        </a>
+
+        <!-- POST 3 -->
+        <a href="#" class="blog-card" data-animate>
+            <div class="blog-image">
+                <img src="img/google-cloud-svgrepo-com.svg" alt="Web" style="width: 80px; opacity: 0.8;">
+            </div>
+            <div class="blog-content">
+                <div class="blog-meta">Web-kehitys • 6 min luku</div>
+                <h3>Miksi staattiset verkkosivut ovat tulleet takaisin ryminällä?</h3>
+                <p>Nopeus, turvallisuus ja SEO-ystävällisyys. Modernit staattiset sivustot ovat PK-yrityksen paras
+                    työkalu digitaaliseen läsnäoloon.</p>
+                <div class="blog-footer">
+                    <span>2. Maaliskuuta 2026</span>
+                    <span class="gradient-text">Lue lisää →</span>
+                </div>
+            </div>
+        </a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <div class="logo"><img src="img/aRon_A1.png" alt="Valok logo"
+                        class="logo-img logo-img-footer">VALOK<span class="logo-dot">.</span></div>
+                <p>Prosessien automatisointia ja dedikoituja tekoälyratkaisuja suomalaisille PK-yrityksille.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Linkit</h4>
+                <ul>
+                    <li><a href="index.html">Etusivu</a></li>
+                    <li><a href="blogi.html">Blogi</a></li>
+                    <li><a href="index.html#palvelut">Palvelut</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ota yhteyttä</h4>
+                <ul>
+                    <li>aleksanteri@valok.fi</li>
+                    <li>Jyväskylä, Finland</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Valok. Kaikki oikeudet pidätetään.
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
