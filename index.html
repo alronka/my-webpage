@@ -311,23 +311,53 @@
         </div>
     </section>
 
-    <!-- CTA -->
-    <section id="yhteystiedot" class="section cta-section">
-        <div class="cta-glow"></div>
-        <div class="cta-card" data-animate>
-            <h2>Valmiina automatisoimaan?</h2>
-            <p>Kerro meille yrityksestäsi ja haasteistasi — kartoitamme tilanteenne maksutta ja ehdotamme konkreettisia
-                ratkaisuja.</p>
-            <div class="cta-actions">
-                <a href="mailto:aleksanteri@valok.fi" class="btn btn-primary btn-lg">
-                    aleksanteri@valok.fi
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7" />
-                    </svg>
-                </a>
-                <a href="#yhteystiedot" class="btn btn-ghost btn-lg">Varaa etätapaaminen</a>
+    <!-- CONTACT SECTION -->
+    <section id="yhteystiedot" class="section contact-section">
+        <div class="section-header">
+            <span class="section-tag">Ota yhteyttä</span>
+            <h2>Aloitetaan projekti<br><span class="gradient-text">yhdessä.</span></h2>
+            <p class="section-desc">Kerro meille tarpeestasi, niin kartoitamme tilanteen maksutta ja ehdotamme parasta ratkaisua.</p>
+        </div>
+
+        <div class="contact-container">
+            <div class="contact-form-card" data-animate>
+                <form action="https://formspree.io/f/aleksanteri@valok.fi" method="POST" id="contact-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="name">Nimi</label>
+                            <input type="text" id="name" name="name" placeholder="Oma nimesi" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Sähköposti</label>
+                            <input type="email" id="email" name="email" placeholder="esimerkki@yritys.fi" required>
+                        </div>
+                        <div class="form-group full-width select-wrapper">
+                            <label for="service">Mitä tarvitset?</label>
+                            <select id="service" name="service">
+                                <option value="automaatio">Prosessien automatisointi</option>
+                                <option value="tekoaly" selected>Dedikoitu tekoälyratkaisu</option>
+                                <option value="konsultointi">Konsultointi & Arkkitehtuuri</option>
+                                <option value="muu">Muu tarve</option>
+                            </select>
+                        </div>
+
+                        <!-- Bot anti-spam (honeypot) -->
+                        <input type="text" name="_gotcha" class="form-gotcha">
+                        
+                        <div class="form-group full-width">
+                            <label for="message">Projektin kuvaus</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Kerro lyhyesti mitä haluat saavuttaa..." required></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg full-width">
+                        Lähetä tarjouspyyntö
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </button>
+                    <div id="form-status" class="form-status"></div>
+                </form>
             </div>
-            <p class="cta-note">Maksuton alkukartoitus · Ei sitoumuksia · Vastaus 24h sisällä</p>
         </div>
     </section>
 
