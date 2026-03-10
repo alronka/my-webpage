@@ -229,7 +229,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 })();
 
 
-/*
+
 // ---- FORMSPREE AJAX SUBMISSION ----
 (function initContactForm() {
     const form = document.getElementById('contact-form');
@@ -256,7 +256,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             });
 
             if (response.ok) {
-                status.textContent = "Kiitos! Tarjouspyynnöt on vastaanotettu. Palaamme asiaan pian.";
+                status.textContent = "Kiitos! Tarjouspyyntö on vastaanotettu. Palaamme asiaan pian.";
                 status.className = "form-status success";
                 form.reset();
             } else {
@@ -287,4 +287,3 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
     form.addEventListener("submit", handleSubmit);
 })();
-*/
