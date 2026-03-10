@@ -1,0 +1,13 @@
+{
+    "forms": {
+        "contact": {
+            "name": "Valok.fi — Tarjouspyynnöt",
+            "actions": [
+                {
+                    "type": "email",
+                    "to": "aleksanteri@valok.fi"
+                }
+            ]
+        }
+    }
+}
