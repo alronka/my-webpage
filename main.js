@@ -229,6 +229,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 })();
 
 
+/*
 // ---- FORMSPREE AJAX SUBMISSION ----
 (function initContactForm() {
     const form = document.getElementById('contact-form');
@@ -286,3 +287,4 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
     form.addEventListener("submit", handleSubmit);
 })();
+*/
