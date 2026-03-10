@@ -1,7 +1,8 @@
 {
+    "project": "2954649020896640627",
     "forms": {
         "contact": {
-            "name": "Valok.fi — Tarjouspyynnöt",
+            "name": "Tarjouspyynnöt",
             "actions": [
                 {
                     "type": "email",

@@ -255,16 +255,20 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             });
 
             if (response.ok) {
-                status.textContent = "Kiitos! Tarjouspyyntösi on vastaanotettu. Palaamme asiaan pian.";
+                status.textContent = "Kiitos! Tarjouspyynnöt on vastaanotettu. Palaamme asiaan pian.";
                 status.className = "form-status success";
                 form.reset();
             } else {
                 const result = await response.json();
-                status.textContent = result.errors ? result.errors.map(error => error.message).join(", ") : "Hups! Lähetyksessä tapahtui virhe. Yritä uudelleen myöhemmin.";
+                if (result.errors) {
+                    status.textContent = result.errors.map(error => error.message).join(", ");
+                } else {
+                    status.textContent = "Hups! Lähetyksessä tapahtui virhe (Koodi: " + response.status + "). Yritä uudelleen.";
+                }
                 status.className = "form-status error";
             }
         } catch (error) {
-            status.textContent = "Hups! Lähetyksessä tapahtui virhe. Tarkista nettiyhteytesi.";
+            status.textContent = "Nettiyhteysvirhe tai palomuuriongelma. Voit lähettää sähköpostia suoraan: aleksanteri@valok.fi";
             status.className = "form-status error";
         } finally {
             submitBtn.disabled = false;
