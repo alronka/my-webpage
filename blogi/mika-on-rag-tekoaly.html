@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mikä on RAG ja miten se hyödyttää PK-yritystä? — Valok</title>
+    <meta name="description"
+        content="Lue mitä Retrieval-Augmented Generation (RAG) tarkoittaa ja miten tekoäly voi hyödyntää yrityksesi omaa dataa, parantaa tiedonhakua ja tuoda uusia asiakkaita.">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="icon" type="image/png" href="../img/aRon_A1.png">
+    <link rel="apple-touch-icon" href="../img/aRon_A1.png">
+    <link rel="canonical" href="https://valok.fi/blogi/mika-on-rag-tekoaly.html">
+    
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://valok.fi/blogi/mika-on-rag-tekoaly.html">
+    <meta property="og:title" content="Mikä on RAG ja miten se hyödyttää PK-yritystä?">
+    <meta property="og:description" content="Tekoäly, joka tuntee yrityksesi omat tiedostot ja prosessit. Lue lisää!">
+    <meta property="og:image" content="https://valok.fi/img/robot-9892216_1920.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://valok.fi/blogi/mika-on-rag-tekoaly.html">
+    <meta name="twitter:title" content="Mikä on RAG ja miten se hyödyttää PK-yritystä?">
+    <meta name="twitter:description" content="Tekoäly, joka tuntee tiedostosi.">
+    <meta name="twitter:image" content="https://valok.fi/img/robot-9892216_1920.png">
+
+    <style>
+        .post-header {
+            padding: 160px 24px 20px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            background: radial-gradient(circle at top, var(--accent-glow) 0%, transparent 70%);
+        }
+
+        .post-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px 100px;
+            line-height: 1.8;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .post-content h2, .post-content h3 {
+            color: var(--text);
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .post-content p {
+            margin-bottom: 24px;
+        }
+
+        .post-content ul {
+            margin-bottom: 24px;
+            padding-left: 20px;
+        }
+
+        .post-content li {
+            margin-bottom: 12px;
+        }
+
+        .cta-box {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 40px;
+            border-radius: var(--radius);
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .post-meta {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dim);
+            text-decoration: none;
+            margin-bottom: 40px;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        .post-image {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .post-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="particles"></canvas>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo"><img src="../img/aRon_A1.png" alt="Valok logo" class="logo-img">VALOK<span
+                     class="logo-dot">.</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="/#palvelut">Palvelut</a>
+                <a href="/#prosessi">Prosessi</a>
+                <a href="../blogi.html">Blogi</a>
+                <a href="/#yhteystiedot" class="nav-cta">Ota yhteyttä</a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Avaa valikko">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <article>
+        <header class="post-header">
+            <a href="../blogi.html" class="back-link">← Takaisin blogiin</a>
+            <span class="post-meta">Tekoäly • Tiedonhaku • Automaatio</span>
+            <h1>Miten RAG-arkkitehtuuri muuttaa yrityksesi <span class="gradient-text">datan asiantuntijaksi?</span></h1>
+            <p style="color: var(--text-dim); margin-top: 20px;">Tekoäly ymmärtää nyt omat tiedostosi ja prosessisi</p>
+        </header>
+
+        <div class="post-image">
+            <img src="../img/robot-9892216_1920.png" alt="RAG tekoäly ja robotti - Valok">
+        </div>
+
+        <main class="post-content">
+            <p>Oletko koskaan kokeillut ChatGPT:tä työssäsi ja huomannut sen antavan liian yleisluontoisia tai jopa täysin keksittyjä vastauksia? Tämä johtuu siitä, että perinteiset <strong>kielimallit (Large Language Models)</strong> on koulutettu julkisella datalla, eivätkä ne tiedä yrityksesi sisäisistä ohjeistuksista, hinnastoista tai tarkasta asiakasdatasta yhtään mitään.</p>
+            
+            <p>Ratkaisu tähän on <strong>RAG (Retrieval-Augmented Generation)</strong>. Se on moderni tekoälyarkkitehtuuri ja prosessi, joka yhdistää ChatGPT:n kaltaisten mallien älykkyyden yrityksesi omaan ja täysin yksityiseen tietokantaan.</p>
+            
+            <h2>Miten RAG toimii käytännössä?</h2>
+            <p>Kuvittele tilanne, jossa yrityksesi uusi työntekijä tai verkkosivuillasi vieraileva potentiaalinen asiakas etsii tietoa monimutkaisesta palvelupaketista. Ilman RAGia edessä on joko hidas manuaalinen <strong>tiedonhaku</strong> sadoista eri PDF-dokumenteista, tai odottaminen, että kiireinen asiantuntija ehtii vastata sähköpostiin.</p>
+            
+            <p>RAG-tekoäly muuttaa tämän:</p>
+            <ul>
+                <li><strong>Haku (Retrieval):</strong> Kun käyttäjä esittää kysymyksen, järjestelmä etsii ensin yrityksesi omista dokumenteista (esim. oppaat, CRM-data, hinnastot) täsmälleen ne kappaleet, jotka liittyvät kysymykseen.</li>
+                <li><strong>Tuottaminen (Generation):</strong> Tekoäly lukee nämä löydetyt faktat ja muotoilee niistä asiayhteyteen sopivan, tarkan ja inhimillisen vastauksen.</li>
+            </ul>
+            
+            <h2>Miksi suomalaisen PK-yrityksen tulisi kiinnostua RAG:ista?</h2>
+            <p>Jos tavoitteenasi on vähentää turhaa rutiinityötä ja palvella asiakkaitasi paremmin, RAG on yksi nopeimmin takaisin maksavista <strong>automaatio</strong> -investoinneista. Yhdistetty <strong>RAG-tekoäly</strong> tuo yrityksellesi kolme merkittävää etua:</p>
+
+            <ol>
+                <li><strong>Luotettavuus ja faktoissa pysyminen (Ei hallusinaatiota):</strong> Tekoäly perustaa vastauksensa tasan siihen dataan, jonka annat sille, eikä se "keksi omiaan". Samalla kun yrityksen data päivittyy, myös tekoälyn tiedot päivittyvät reaaliajassa.</li>
+                <li><strong>Työajan valtava säästö:</strong> Asiantuntijoidesi ei tarvitse enää käyttää tunteja viikossa tiedon etsimiseen siiloista tai usein kysyttyihin kysymyksiin vastaamiseen. Tämä näkyy suoraan viivan alla.</li>
+                <li><strong>Parempi asiakaskokemus 24/7:</strong> RAGin avulla voit upottaa verkkosivuillesi aidosti älykkään asiakaspalvelurobotin, joka konvertoi kävijöitä asiakkaiksi vastaamalla juuri teidän tuotteiden ominaisuuksista, eikä vain yleisesti aiheesta. Älykäs palvelu on suora kilpailuetu.</li>
+            </ol>
+
+            <div style="background: var(--glass); padding: 30px; border-radius: var(--radius); margin: 40px 0; border-left: 4px solid var(--accent);">
+                <strong>Yhteenveto:</strong> RAG ei ole vain "hieno teknologiasana", vaan työkalu, joka muuttaa staattiset mapit, PDF:t ja intranet-sivut proaktiiviseksi asiantuntijaksi. 
+            </div>
+
+            <h2>Ota tekoäly osaksi arkipäivää oikein</h2>
+            <p>RAGin käyttöönotto ei vaadi miljoonabudjettia. PK-yrityksen digitaalinen loikka voidaan toteuttaa ketterästi ottamalla ensin haltuun yksi kriittinen tietolähde ja laajentamalla siitä kokemuksen karttuessa muihin järjestelmiin.</p>
+
+            <div class="cta-box">
+                <h3>Haluatko valjastaa yrityksesi datan töihin?</h3>
+                <p>Keskustellaan miten RAG-tekoäly voitaisiin räätälöidä teidän tiedostojenne päälle. Valok auttaa suomalaisia yrityksiä käytännönläheisillä ja tietoturvallisilla tekoälyratkaisuilla.</p>
+                <a href="/#yhteystiedot" class="btn btn-primary" style="margin-top: 20px;">Varaa ilmainen kartoitus</a>
+            </div>
+        </main>
+    </article>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <div class="logo"><img src="../img/aRon_A1.png" alt="Valok logo" class="logo-img logo-img-footer">VALOK<span class="logo-dot">.</span></div>
+                <p>Prosessien automatisointia ja dedikoituja tekoälyratkaisuja suomalaisille PK-yrityksille.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Linkit</h4>
+                <ul>
+                    <li><a href="/">Etusivu</a></li>
+                    <li><a href="../blogi.html">Blogi</a></li>
+                    <li><a href="/#palvelut">Palvelut</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ota yhteyttä</h4>
+                <ul>
+                    <li>aleksanteri@valok.fi</li>
+                    <li>Jyväskylä, Finland</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Valok. Kaikki oikeudet pidätetään.
+        </div>
+    </footer>
+
+    <script src="../main.js"></script>
+</body>
+
+</html>

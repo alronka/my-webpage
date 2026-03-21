@@ -8,7 +8,7 @@
    </url>
    <url>
       <loc>https://valok.fi/blogi.html</loc>
-      <lastmod>2026-03-17</lastmod>
+      <lastmod>2026-03-21</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
    </url>
@@ -21,6 +21,12 @@
    <url>
       <loc>https://valok.fi/blogi/tekoaly-ja-automaatio-saastavat-aikaa.html</loc>
       <lastmod>2026-03-17</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+   </url>
+   <url>
+      <loc>https://valok.fi/blogi/mika-on-rag-tekoaly.html</loc>
+      <lastmod>2026-03-21</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.7</priority>
    </url>
