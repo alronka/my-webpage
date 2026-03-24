@@ -13,6 +13,12 @@
     <link rel="icon" type="image/png" href="https://valok.fi/img/aRon_A1.png">
     <link rel="apple-touch-icon" href="https://valok.fi/img/aRon_A1.png">
     <link rel="canonical" href="https://valok.fi/">
+    <script>
+        // Redirect users and bots from /index.html to the root /
+        if (window.location.pathname.endsWith('/index.html')) {
+            window.location.replace(window.location.href.replace('/index.html', '/'));
+        }
+    </script>
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
