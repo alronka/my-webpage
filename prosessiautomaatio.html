@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prosessiautomaatio PK-yrityksille — Säästä aikaa ja vähennä virheitä | Valok</title>
+    <meta name="description"
+        content="Prosessiautomaatio on nyt jokaisen PK-yrityksen ulottuvilla. Vähennä inhimillisiä virheitä ja vapauta arvokasta työvoimaa rutiineista tuottavampaan työhön.">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="https://valok.fi/img/aRon_A1.png">
+    <link rel="apple-touch-icon" href="https://valok.fi/img/aRon_A1.png">
+    <link rel="canonical" href="https://valok.fi/prosessiautomaatio">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://valok.fi/prosessiautomaatio">
+    <meta property="og:title" content="Prosessiautomaatio PK-yrityksille — Säästä aikaa ja vähennä virheitä">
+    <meta property="og:description"
+        content="Nykyaikainen prosessiautomaatio on kustannustehokas ratkaisu PK-yritysten arjen tehostamiseen.">
+    <meta property="og:image" content="https://valok.fi/img/aRon_A1.png">
+
+    <!-- Schema.org FAQ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "Onko prosessiautomaatio liian kallista pienelle yritykselle?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ei enää. Modernit no-code ja matalan kynnyksen työkalut mahdollistavat automatisoinnin ilman massiivisia IT-investointeja. Useimmiten ratkaisu maksaa itsensä takaisin säästettynä työaikana jo muutamassa kuukaudessa."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Miten prosessiautomaatio vähentää virheitä?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Automaatio hoitaa rutiininomaiset ja toistuvat siirrot (kuten tietojen kopioinnin järjestelmien välillä) aina virheettömästi ja identtisesti. Näin vähennetään inhimillisiä 'copy-paste' -virheitä ja unohduksia."
+        }
+      }]
+    }
+    </script>
+
+    <style>
+        /* Landing Page Specific Overrides */
+        .lp-hero {
+            padding: 180px 24px 100px;
+            text-align: center;
+            background: radial-gradient(circle at top, var(--accent-glow) 0%, transparent 60%);
+        }
+
+        .lp-section {
+            padding: 100px 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .lp-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .lp-content-card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 40px;
+            border-radius: var(--radius);
+        }
+
+        .lp-image-placeholder {
+            width: 100%;
+            aspect-ratio: 16/10;
+            background: var(--bg-subtle);
+            border: 1px dashed var(--border);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .highlight-text {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .lp-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="particles"></canvas>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo"><img src="img/aRon_A1.png" alt="Valok logo" class="logo-img">VALOK<span
+                    class="logo-dot">.</span></a>
+            <div class="nav-links">
+                <a href="/#yhteystiedot" class="nav-cta">Ota yhteyttä</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="lp-hero">
+        <div class="hero-badge animate-in">Prosessiautomaatio PK-yrityksille</div>
+        <h1 class="animate-in">Tehokkuutta ilman<br><span class="gradient-text">inhimillisiä virheitä.</span></h1>
+        <p class="hero-sub animate-in">Moderni prosessiautomaatio vapauttaa arvokasta työvoimaa rutiineista, parantaa
+            tarkkuutta ja on nyt jokaisen PK-yrityksen ulottuvilla.</p>
+        <div class="hero-actions animate-in">
+            <a href="#yhteystiedot" class="btn btn-primary">Laske hinta-arvio</a>
+            <a href="#miksi" class="btn btn-ghost">Lue lisää</a>
+        </div>
+    </header>
+
+    <section id="miksi" class="lp-section">
+        <div class="lp-grid">
+            <div class="animate-in">
+                <span class="section-tag">Aika & Tarkkuus</span>
+                <h2>Vähemmän käsitöitä,<br><span class="gradient-text">enemmän luovuutta.</span></h2>
+                <p>Monessa PK-yrityksessä kuluu päivittäin tunteja tietojen manuaaliseen siirtoon sähköposteista,
+                    lomakkeista ja eri järjestelmien välillä. Tämä sitoo arvokkaita asiantuntijoita rutiineihin, joissa
+                    inhimilliset virheet ovat lähes väistämättömiä.</p>
+                <ul class="service-features" style="margin-top: 24px;">
+                    <li><strong>Virheet kuriin:</strong> Automaatio ei tee unohduksia tai kirjoitusvirheitä.</li>
+                    <li><strong>Työvoiman optimointi:</strong> Vapauta tiimisi siihen työhön, josta oikeasti laskutatte.
+                    </li>
+                    <li><strong>Skaalautuvuus:</strong> Kone hoitaa 10 tai 1000 tapahtumaa samalla vaivalla.</li>
+                </ul>
+            </div>
+            <div class="animate-in"
+                style="border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
+                <img src="img/20945581.jpg" alt="Prosessiautomaatio tehokkuus"
+                    style="width: 100%; height: auto; display: block;">
+            </div>
+        </div>
+    </section>
+
+    <section class="lp-section" style="background: var(--bg-subtle);">
+        <div class="section-header">
+            <span class="section-tag">Hinta & Kustannukset</span>
+            <h2>Onko PK-yrityksellä <span class="gradient-text">varaa automaatioon?</span></h2>
+            <p class="section-desc">Lyhyt vastaus on: <strong>Kyllä.</strong> Ennen automaatio vaati kalliita omia
+                palvelimia ja kuukausien koodaustyötä. Tänään tilanne on toinen.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card" data-animate>
+                <h3>Matalat aloitusmalli</h3>
+                <p>Nykyaikaiset low-code työkalut (kuten n8n ja Make) mahdollistavat integraatioiden rakentamisen
+                    murto-osalla perinteisistä kustannuksista.</p>
+            </div>
+            <div class="service-card featured" data-animate>
+                <h3>Nopea ROI</h3>
+                <p>Keskimäärin automaatioprojektimme maksavat itsensä takaisin 3-6 kuukaudessa säästettynä työaikana.
+                    Jokainen automatisoitu tunti on puhdasta säästöä.</p>
+            </div>
+            <div class="service-card" data-animate>
+                <h3>Ketterä toteutus</h3>
+                <p>Emme tee kuukausien raskaita projekteja. Valitsemme tärkeimmän pullonkaulan ja automatisoimme sen
+                    viikoissa — näet tulokset välittömästi.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="lp-section">
+        <div class="lp-grid">
+            <div class="animate-in"
+                style="border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
+                <img src="img/6934498.jpg" alt="PK-yrityksen automaation aloittaminen"
+                    style="width: 100%; height: auto; display: block;">
+            </div>
+            <div data-animate>
+                <span class="section-tag">Miten aloittaa?</span>
+                <h2>Prosessiautomaatio haltuun <span class="gradient-text">kolmella askeleella.</span></h2>
+                <div class="timeline" style="margin-top: 32px;">
+                    <div class="timeline-item">
+                        <div class="timeline-number">01</div>
+                        <div class="timeline-content">
+                            <h3>Kartoitus</h3>
+                            <p>Etsimme yhdessä ne eniten aikaa vievät ja virhealttiit rutiinit.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-number">02</div>
+                        <div class="timeline-content">
+                            <h3>Toteutus</h3>
+                            <p>Rakennamme kevyen prototyypin ja hiomme sen valmiiksi automatisoiduksi prosessiksi.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-number">03</div>
+                        <div class="timeline-content">
+                            <h3>Ylläpito</h3>
+                            <p>Huolehdimme, että tekniikka pelaa myös jatkossa ja järjestelmät keskustelevat keskenään.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section lp-section">
+        <div class="section-header">
+            <span class="section-tag">Usein Kysyttyä</span>
+            <h2>Vastaukset <span class="gradient-text">yleisimpiin huoliin.</span></h2>
+        </div>
+        <div class="faq-container">
+            <div class="faq-item" data-animate>
+                <button class="faq-question">
+                    Miten voin olla varma, ettei automaatio tee virheitä?
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 9l6 6 6-6" />
+                    </svg>
+                </button>
+                <div class="faq-answer">
+                    <p>Automaatio on täsmälleen niin tarkka kuin sille annettu logiikka. Toisin kuin ihminen, kone ei
+                        väsy, kiirehdi tai tee huolimattomuusvirheitä. Testaamme jokaisen prosessin huolellisesti ennen
+                        käyttöönottoa.</p>
+                </div>
+            </div>
+            <div class="faq-item" data-animate>
+                <button class="faq-question">
+                    Tarvitseeko yrityksemme oman IT-asiantuntijan ylläpitoon?
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 9l6 6 6-6" />
+                    </svg>
+                </button>
+                <div class="faq-answer">
+                    <p>Ette tarvitse. Valok hoitaa toteutuksen lisäksi tarvittaessa myös jatkuvan ylläpidon ja
+                        valvonnan. Me olemme teidän kumppaninne, jotta voitte keskittyä omaan liiketoimintaanne.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="yhteystiedot" class="section contact-section">
+        <div class="section-header">
+            <span class="section-tag">Yhteydenotto</span>
+            <h2>Aloita <span class="gradient-text">ilmaisella kartoituksella.</span></h2>
+            <p class="section-desc">Käydään läpi yrityksenne prosessit ja lasketaan, kuinka paljon prosessiautomaatio
+                voisi teillä säästää.</p>
+        </div>
+        <div class="contact-container">
+            <div class="contact-form-card" data-animate>
+                <form action="https://formspree.io/f/xlgpgyjl" method="POST">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="name">Nimi</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Sähköposti</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="message">Mistä prosessista aloitetaan?</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg full-width">Pyydä kartoitus</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <div class="logo"><img src="img/aRon_A1.png" alt="Valok logo"
+                        class="logo-img logo-img-footer">VALOK<span class="logo-dot">.</span></div>
+                <p>Autamme PK-yrityksiä kasvamaan ja tehostumaan prosessiautomaation avulla.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Linkit</h4>
+                <ul>
+                    <li><a href="/">Etusivu</a></li>
+                    <li><a href="blogi.html">Blogi</a></li>
+                    <li><a href="/#palvelut">Palvelut</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Valok. Kaikki oikeudet pidätetään.
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
