@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAG: Miten teet tekoälystä yrityksesi viisaimman asiantuntijan ilman hallusinointia — Valok</title>
+    <meta name="description"
+        content="Unohda hallusinoivat chatbotit. Dedikoitu tekoäly ja RAG-tekniikka kytkevät kielimallin yrityksesi omaan dataan turvallisesti. Lue, miten yrityksen sisäinen kielimalli toimii.">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="icon" type="image/png" href="https://valok.fi/img/aRon_A1.webp">
+    <link rel="apple-touch-icon" href="https://valok.fi/img/aRon_A1.webp">
+    <link rel="canonical" href="https://valok.fi/blogi/rag-viisain-asiantuntija.html">
+    
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://valok.fi/blogi/rag-viisain-asiantuntija.html">
+    <meta property="og:title" content="RAG: Miten teet tekoälystä yrityksesi viisaimman asiantuntijan ilman hallusinointia">
+    <meta property="og:description" content="Tekoäly, joka tuntee yrityksesi omat tiedostot ja prosessit ilman hallusinointia.">
+    <meta property="og:image" content="https://valok.fi/img/rag-blog.webp">
+
+    <style>
+        .post-header {
+            padding: 160px 24px 20px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            background: radial-gradient(circle at top, var(--accent-glow) 0%, transparent 70%);
+        }
+
+        .post-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px 100px;
+            line-height: 1.8;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .post-content h2, .post-content h3 {
+            color: var(--text);
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .post-content p {
+            margin-bottom: 24px;
+        }
+
+        .post-content ul, .post-content ol {
+            margin-bottom: 24px;
+            padding-left: 20px;
+        }
+
+        .post-content li {
+            margin-bottom: 12px;
+        }
+
+        .post-meta {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dim);
+            text-decoration: none;
+            margin-bottom: 40px;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        .post-image {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .post-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Code block styling */
+        pre {
+            background: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+            margin: 30px 0;
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+        }
+
+        code {
+            color: #e6edf3;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Syntax Highlighting */
+        .token.comment { color: #8b949e; font-style: italic; }
+        .token.keyword { color: #ff7b72; }
+        .token.string { color: #a5d6ff; }
+        .token.function { color: #d2a8ff; }
+        .token.operator { color: #ff7b72; }
+        .token.variable { color: #ffa657; }
+
+        .code-lang {
+            display: block;
+            color: #7d8590;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        /* TOC styling */
+        .toc-box {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+        }
+
+        .toc-box h4 {
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        .toc-box ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .toc-box a {
+            color: #58a6ff;
+            text-decoration: none;
+            display: block;
+            padding: 4px 0;
+            transition: var(--transition);
+        }
+
+        .toc-box a:hover {
+            color: var(--accent);
+            padding-left: 4px;
+        }
+
+        /* Content links */
+        .post-content a {
+            color: #58a6ff;
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 4px;
+            transition: var(--transition);
+        }
+
+        .post-content a:hover {
+            color: var(--accent);
+            text-decoration-thickness: 2px;
+        }
+
+        /* Contact Section Override for Blog */
+        .contact-section {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 60px 40px;
+            border-radius: var(--radius);
+            margin-top: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="particles"></canvas>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo"><img src="../img/aRon_A1.webp" alt="Valok logo" class="logo-img">VALOK<span
+                     class="logo-dot">.</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="/#palvelut">Palvelut</a>
+                <a href="/#prosessi">Prosessi</a>
+                <a href="../blogi.html">Blogi</a>
+                <a href="/#yhteystiedot" class="nav-cta">Ota yhteyttä</a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Avaa valikko">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <article>
+        <header class="post-header">
+            <a href="../blogi.html" class="back-link">← Takaisin blogiin</a>
+            <span class="post-meta">Huhtikuu 2026 • Tekoäly • RAG</span>
+            <h1>RAG: Miten teet tekoälystä yrityksesi <span class="gradient-text">viisaimman asiantuntijan</span> ilman hallusinointia</h1>
+        </header>
+
+        <div class="post-image">
+            <img src="../img/rag-blog.webp" alt="RAG ja tekoäly - Valok">
+        </div>
+
+        <main class="post-content">
+            <div class="toc-box">
+                <h4>Sisällysluettelo</h4>
+                <ul>
+                    <li><a href="#mika-rag">1. Mikä ihmeen RAG?</a></li>
+                    <li><a href="#miksi-ei-pelkka-chatgpt">2. Miksi pelkkä ChatGPT ei riitä?</a></li>
+                    <li><a href="#miten-se-toimii">3. Miten RAG toimii käytännössä?</a></li>
+                    <li><a href="#hyodyt">4. RAG:n hyödyt yritykselle</a></li>
+                    <li><a href="#linkit">5. Yhteenveto ja linkit syventävään tietoon</a></li>
+                </ul>
+            </div>
+
+            <p>Unohda hallusinoivat chatbotit. Dedikoitu tekoäly ja RAG-tekniikka kytkevät kielimallin yrityksesi omaan dataan turvallisesti. Lue, miten yrityksen sisäinen kielimalli toimii.</p>
+
+            <h2 id="mika-rag">1. Mikä ihmeen RAG?</h2>
+            <p>RAG (Retrieval-Augmented Generation) on tekniikka, jolla luodaan yrityksen sisäinen kielimalli ilman, että koko tekoälyä täytyy kouluttaa alusta asti uudelleen. Sen sijaan, että tekoäly luottaisi vain siihen, mitä se on oppinut koulutusvaiheessa (joka voi olla vanhaa tietoa), se etsii ensin vastauksen yrityksesi omista tiedostoista ja muotoilee vastauksen niiden perusteella.</p>
+            <p>Se on kuin antaisit kielimallille luettavaksi lehden, josta vastaus löytyy. Virheiden määrä laskee ja vastausten tarkkuus nousee huomattavasti, kun käytössä on täysin dedikoitu tekoäly, joka keskittyy vain sinun organisaatiosi tietoon.</p>
+
+            <h2 id="miksi-ei-pelkka-chatgpt">2. Miksi pelkkä ChatGPT ei riitä?</h2>
+            <p>Perinteiset julkiset kielimallit ovat loistavia puhumaan, mutta yrityskäytössä niillä on kaksi isoa ongelmaa:</p>
+            <ul>
+                <li><strong>Hallusinaatiot:</strong> Jos ne eivät tiedä jotain, ne saattavat keksiä vastauksen vakuuttavasti.</li>
+                <li><strong>Vanhentunut tieto:</strong> Mallit on koulutettu tiettyyn päivämäärään asti. Ne eivät tiedä eilisestä asiakasviestistäsi mitään.</li>
+            </ul>
+            <p>RAG muuntaa geneerisen bottisi muotoon, joka on yrityksen sisäinen kielimalli, kytkemällä sen reaaliaikaiseen tietoon.</p>
+
+            <h2 id="miten-se-toimii">3. Miten RAG toimii käytännössä?</h2>
+            <p>Prosessi on periaatteessa yksinkertainen:</p>
+            <ol>
+                <li><strong>Haku (Retrieval):</strong> Kun kysyt jotain, järjestelmä etsii relevanteimmat kohdat yrityksesi datasta (PDF-tiedostot, tietokannat, viestit).</li>
+                <li><strong>Rikastaminen (Augmentation):</strong> Kysymys ja löytynyt tieto paketoidaan yhteen.</li>
+                <li><strong>Tuottaminen (Generation):</strong> Kielimalli (esim. GPT-4 tai Claude) lukee paketin ja kirjoittaa vastauksen vain annetun tiedon pohjalta.</li>
+            </ol>
+            <p>Tämä prosessi varmistaa, että kyseessä on nimenomaan dedikoitu tekoäly, joka ei arvaile vaan raportoi.</p>
+
+            <h2 id="hyodyt">4. RAG:n hyödyt yritykselle</h2>
+            <ul>
+                <li><strong>Tietoturva:</strong> Data pysyy omassa hallinnassasi, eikä sitä käytetä yleisten mallien kouluttamiseen. Tämä on jokaisen yrityksen sisäisen kielimallin perusedellytys.</li>
+                <li><strong>Luotettavuus:</strong> Tekoäly voi antaa lähdeviitteet: "Tämä tieto löytyy uuden työntekijän oppaasta sivulta 12."</li>
+                <li><strong>Kustannustehokkuus:</strong> Sinun ei tarvitse kouluttaa omaa kallista tekoälymallia alusta asti – dedikoitu tekoäly hyödyntää olemassa olevia malleja älykkäämmin.</li>
+            </ul>
+
+            <h3>Tekninen bonus: Yksinkertainen koodiesimerkki (Python/Pseudo)</h3>
+            <p>Tässä on hahmotelma siitä, miltä RAG-logiikka näyttää kooditasolla:</p>
+            
+            <pre><span class="code-lang">Python</span><code><span class="token comment"># Simple pseudocode for a RAG workflow</span>
+<span class="token comment"># 1. User asks a question</span>
+<span class="token variable">user_query</span> <span class="token operator">=</span> <span class="token string">"Mikä on yrityksemme lounasetu?"</span>
+
+<span class="token comment"># 2. Search for relevant context from internal database (Vector DB)</span>
+<span class="token comment"># This acts as the memory for your dedicated AI</span>
+<span class="token variable">context</span> <span class="token operator">=</span> <span class="token variable">database</span>.<span class="token function">search_relevant_documents</span>(<span class="token variable">user_query</span>)
+
+<span class="token comment"># 3. Combine query and context for the LLM</span>
+<span class="token comment"># We force the internal language model to stay within given boundaries</span>
+<span class="token variable">prompt</span> <span class="token operator">=</span> f<span class="token string">"Answer the following question using ONLY this context: {context}. Question: {user_query}"</span>
+
+<span class="token comment"># 4. Get the final accurate response</span>
+<span class="token variable">response</span> <span class="token operator">=</span> <span class="token variable">llm</span>.<span class="token function">generate_response</span>(<span class="token variable">prompt</span>)
+<span class="token keyword">print</span>(<span class="token variable">response</span>)</code></pre>
+
+            <h2 id="linkit">5. Yhteenveto ja linkit syventävään tietoon</h2>
+            <p>RAG on silta yleisen tekoälyn ja yrityksesi spesifin tiedon välillä. Se tekee automaatiosta turvallista ja tarkkaa. Kun tavoitteena on yrityksen sisäinen kielimalli, RAG on nopein ja luotettavin tie tavoitteeseen.</p>
+            <p>Lue lisää:</p>
+            <ul>
+                <li><a href="https://www.ibm.com/topics/retrieval-augmented-generation" target="_blank" rel="noopener">IBM: What is Retrieval-Augmented Generation?</a> – Selkeä perusteos aiheesta.</li>
+                <li><a href="https://blogs.nvidia.com/blog/what-is-retrieval-augmented-generation/" target="_blank" rel="noopener">NVIDIA Blog: RAG Explained</a> – Tekninen mutta ymmärrettävä katsaus.</li>
+                <li><a href="https://www.pinecone.io/learn/retrieval-augmented-generation/" target="_blank" rel="noopener">Pinecone: RAG for LLMs</a> – Syväsukellus siihen, miten data tallennetaan hakuja varten.</li>
+            </ul>
+
+            <!-- CONTACT FORM START -->
+            <section id="yhteystiedot" class="section contact-section">
+                <div class="section-header">
+                    <span class="section-tag">Ota yhteyttä</span>
+                    <h2>Haluatko valjastaa yrityksesi <span class="gradient-text">datan töihin?</span></h2>
+                    <p class="section-desc">Keskustellaan miten RAG-tekoäly voitaisiin räätälöidä teidän tiedostojenne päälle. Valok auttaa suomalaisia yrityksiä käytännönläheisillä ja tietoturvallisilla tekoälyratkaisuilla.</p>
+                </div>
+
+                <div class="contact-container">
+                    <div class="contact-form-card" data-animate>
+                        <form action="https://formspree.io/f/xlgpgyjl" method="POST" id="contact-form">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="name">Nimi</label>
+                                    <input type="text" id="name" name="name" placeholder="Oma nimesi" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Sähköposti</label>
+                                    <input type="email" id="email" name="email" placeholder="esimerkki@yritys.fi" required>
+                                </div>
+                                <div class="form-group full-width select-wrapper">
+                                    <label for="service">Mitä tarvitset?</label>
+                                    <select id="service" name="service">
+                                        <option value="automaatio">Prosessien automatisointi</option>
+                                        <option value="tekoaly" selected>Dedikoitu tekoälyratkaisu (RAG)</option>
+                                        <option value="konsultointi">Konsultointi & Arkkitehtuuri</option>
+                                        <option value="muu">Muu tarve</option>
+                                    </select>
+                                </div>
+                                <input type="text" name="_gotcha" class="form-gotcha" style="display:none">
+                                <div class="form-group full-width">
+                                    <label for="message">Projektin kuvaus</label>
+                                    <textarea id="message" name="message" rows="5"
+                                        placeholder="Haluaisin kuulla lisää RAG-ratkaisuista..." required></textarea>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg full-width">
+                                Varaa ilmainen kartoitus
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7" />
+                                </svg>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+            <!-- CONTACT FORM END -->
+        </main>
+    </article>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <div class="logo"><img src="../img/aRon_A1.webp" alt="Valok logo" class="logo-img logo-img-footer">VALOK<span class="logo-dot">.</span></div>
+                <p>Prosessien automatisointia ja dedikoituja tekoälyratkaisuja suomalaisille PK-yrityksille.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Linkit</h4>
+                <ul>
+                    <li><a href="/">Etusivu</a></li>
+                    <li><a href="../blogi.html">Blogi</a></li>
+                    <li><a href="/#palvelut">Palvelut</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ota yhteyttä</h4>
+                <ul>
+                    <li>aleksanteri@valok.fi</li>
+                    <li>Jyväskylä, Finland</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Valok. Kaikki oikeudet pidätetään.
+        </div>
+    </footer>
+
+    <script src="../main.js"></script>
+</body>
+
+</html>
