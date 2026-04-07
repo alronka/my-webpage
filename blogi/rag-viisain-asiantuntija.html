@@ -289,57 +289,55 @@
                 <li><a href="https://blogs.nvidia.com/blog/what-is-retrieval-augmented-generation/" target="_blank" rel="noopener">NVIDIA Blog: RAG Explained</a> – Tekninen mutta ymmärrettävä katsaus.</li>
                 <li><a href="https://www.pinecone.io/learn/retrieval-augmented-generation/" target="_blank" rel="noopener">Pinecone: RAG for LLMs</a> – Syväsukellus siihen, miten data tallennetaan hakuja varten.</li>
             </ul>
-
-            <!-- CONTACT FORM START -->
-            <section id="yhteystiedot" class="section contact-section">
-                <div class="section-header">
-                    <span class="section-tag">Ota yhteyttä</span>
-                    <h2>Haluatko valjastaa yrityksesi <span class="gradient-text">datan töihin?</span></h2>
-                    <p class="section-desc">Keskustellaan miten RAG-tekoäly voitaisiin räätälöidä teidän tiedostojenne päälle. Valok auttaa suomalaisia yrityksiä käytännönläheisillä ja tietoturvallisilla tekoälyratkaisuilla.</p>
-                </div>
-
-                <div class="contact-container">
-                    <div class="contact-form-card" data-animate>
-                        <form action="https://formspree.io/f/xlgpgyjl" method="POST" id="contact-form">
-                            <div class="form-grid">
-                                <div class="form-group">
-                                    <label for="name">Nimi</label>
-                                    <input type="text" id="name" name="name" placeholder="Oma nimesi" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="email">Sähköposti</label>
-                                    <input type="email" id="email" name="email" placeholder="esimerkki@yritys.fi" required>
-                                </div>
-                                <div class="form-group full-width select-wrapper">
-                                    <label for="service">Mitä tarvitset?</label>
-                                    <select id="service" name="service">
-                                        <option value="automaatio">Prosessien automatisointi</option>
-                                        <option value="tekoaly" selected>Dedikoitu tekoälyratkaisu (RAG)</option>
-                                        <option value="konsultointi">Konsultointi & Arkkitehtuuri</option>
-                                        <option value="muu">Muu tarve</option>
-                                    </select>
-                                </div>
-                                <input type="text" name="_gotcha" class="form-gotcha" style="display:none">
-                                <div class="form-group full-width">
-                                    <label for="message">Projektin kuvaus</label>
-                                    <textarea id="message" name="message" rows="5"
-                                        placeholder="Haluaisin kuulla lisää RAG-ratkaisuista..." required></textarea>
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-lg full-width">
-                                Varaa ilmainen kartoitus
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2">
-                                    <path d="M5 12h14M12 5l7 7-7 7" />
-                                </svg>
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </section>
             <!-- CONTACT FORM END -->
         </main>
     </article>
+
+    <!-- CONTACT SECTION (Täysi leveys ja selkeät välit) -->
+    <section id="yhteystiedot" class="section contact-section" style="max-width: 900px; margin: 80px auto; padding: 60px 24px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--glass);">
+        <div class="section-header">
+            <span class="section-tag">Ota yhteyttä</span>
+            <h2>Haluatko valjastaa yrityksesi <span class="gradient-text">datan töihin?</span></h2>
+            <p class="section-desc">Keskustellaan miten RAG-tekoäly voitaisiin räätälöidä teidän tiedostojenne päälle. Valok auttaa suomalaisia yrityksiä käytännönläheisillä ja tietoturvallisilla tekoälyratkaisuilla.</p>
+        </div>
+
+        <div class="contact-container" style="max-width: 100%;">
+            <div class="contact-form-card" data-animate>
+                <form action="https://formspree.io/f/xlgpgyjl" method="POST" id="contact-form">
+                    <div class="form-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+                        <div class="form-group" style="margin-bottom: 20px;">
+                            <label for="name">Nimi</label>
+                            <input type="text" id="name" name="name" placeholder="Oma nimesi" required style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: white; border-radius: 8px;">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 20px;">
+                            <label for="email">Sähköposti</label>
+                            <input type="email" id="email" name="email" placeholder="esimerkki@yritys.fi" required style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: white; border-radius: 8px;">
+                        </div>
+                        <div class="form-group full-width select-wrapper" style="grid-column: 1 / -1; margin-bottom: 20px;">
+                            <label for="service">Mitä tarvitset?</label>
+                            <select id="service" name="service" style="width: 100%; padding: 12px; background: #1a1a1a; border: 1px solid var(--border); color: white; border-radius: 8px;">
+                                <option value="automaatio">Prosessien automatisointi</option>
+                                <option value="tekoaly" selected>Dedikoitu tekoälyratkaisu (RAG)</option>
+                                <option value="konsultointi">Konsultointi & Arkkitehtuuri</option>
+                                <option value="muu">Muu tarve</option>
+                            </select>
+                        </div>
+                        <input type="text" name="_gotcha" class="form-gotcha" style="display:none">
+                        <div class="form-group full-width" style="grid-column: 1 / -1; margin-bottom: 20px;">
+                            <label for="message">Projektin kuvaus</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Haluaisin kuulla lisää RAG-ratkaisuista..." required style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: white; border-radius: 8px;"></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg full-width" style="width: 100%; padding: 16px; font-weight: bold; cursor: pointer;">
+                        Varaa ilmainen kartoitus
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
 
     <footer>
         <div class="footer-grid">
