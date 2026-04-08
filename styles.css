@@ -843,13 +843,13 @@ footer {
 }
 
 .footer-col a {
-    color: var(--text-dim);
+    color: #58a6ff;
     text-decoration: none;
     transition: var(--transition);
 }
 
-.footer-col a:hover {
-    color: var(--text);
+a:hover {
+    color: var(--accent-light);
 }
 
 .footer-bottom {
