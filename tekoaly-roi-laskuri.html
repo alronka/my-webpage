@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tekoäly ROI-laskuri: Laske yrityksesi säästöpotentiaali — Valok</title>
+    <meta name="description"
+        content="Paljonko tekoäly ja automaatio säästäisivät yrityksessäsi? Laske tuottavuushyödyt euroina perustuen BCG:n ja Harvardin tutkimusdataan.">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel=icon type=image/png sizes=32x32 href=img/favicon-32x32.png>
+    <link rel=apple-touch-icon sizes=180x180 href=img/favicon-180x180.png>
+
+    <link rel="canonical" href="https://valok.fi/tekoaly-roi-laskuri.html">
+
+    <style>
+        .calculator-section {
+            padding: 160px 24px 100px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .calc-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @media (max-width: 850px) {
+            .calc-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .calc-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .input-group label {
+            font-weight: 600;
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+
+        .input-group input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 12px 16px;
+            color: var(--text);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .calc-results {
+            background: rgba(var(--accent-rgb), 0.05);
+            border-radius: var(--radius-sm);
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border: 1px dashed var(--accent);
+        }
+
+        .result-item {
+            margin-bottom: 24px;
+        }
+
+        .result-label {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .result-value {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--accent);
+            line-height: 1;
+        }
+
+        .result-sub {
+            font-size: 1.1rem;
+            color: var(--text);
+            margin-top: 5px;
+        }
+
+        .calc-info {
+            margin-top: 40px;
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            line-height: 1.6;
+        }
+
+        .calc-info a {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+
+        .cta-footer {
+            margin-top: 60px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="particles"></canvas>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo"><img srcset="img/aRon_A1-mobile.webp 800w, img/aRon_A1.webp 1600w"
+                    sizes="(max-width: 800px) 100vw, 1600px" src="img/aRon_A1.webp" alt="Valok logo"
+                    class="logo-img">VALOK<span class="logo-dot">.</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="/#palvelut">Palvelut</a>
+                <a href="/#prosessi">Prosessi</a>
+                <a href="blogi.html">Blogi</a>
+                <a href="/#yhteystiedot" class="nav-cta">Ota yhteyttä</a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Avaa valikko">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <section class="calculator-section">
+        <div class="section-header">
+            <span class="section-tag">ROI-Laskuri</span>
+            <h1>Laske tekoälyn <span class="gradient-text">säästöpotentiaali.</span></h1>
+            <p class="section-desc">Syötä yrityksesi luvut ja näe, kuinka monta työtuntia ja euroa tekoäly voisi säästää tiimiltänne vuodessa.</p>
+        </div>
+
+        <div class="calc-container">
+            <div class="calc-inputs">
+                <div class="input-group">
+                    <label for="employees">Tietotyöntekijöiden määrä</label>
+                    <input type="number" id="employees" value="10" min="1" step="1">
+                </div>
+                <div class="input-group">
+                    <label for="hourlyRate">Keskimääräinen tuntikustannus (€/h)</label>
+                    <input type="number" id="hourlyRate" value="45" min="1">
+                </div>
+                <div class="input-group">
+                    <label for="manualHours">Manuaalisiin rutiinitehtäviin käytetty aika (h/vko/hlö)</label>
+                    <input type="number" id="manualHours" value="8" min="0">
+                </div>
+            </div>
+
+            <div class="calc-results">
+                <div class="result-item">
+                    <div class="result-label">Säästöpotentiaali vuodessa</div>
+                    <div id="euroValue" class="result-value">0 €</div>
+                </div>
+                <div class="result-item">
+                    <div class="result-label">Vapautuva aika</div>
+                    <div id="hourValue" class="result-value">0 h</div>
+                    <div class="result-sub">per kuukausi koko tiimiltä</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="calc-info">
+            <p><strong>Laskentaperusteet:</strong> Laskelma perustuu <strong>London School of Economicsin (LSE)</strong> raporttiin (2024), jonka mukaan tekoälyä hyödyntävät työntekijät parantavat tuottavuuttaan keskimäärin <strong>yhden työpäivän verran viikossa</strong>. Tämä vastaa noin 20 % ajansäästöä kokonaistyöajasta. <a href="https://www.lse.ac.uk/news/ai-boosts-productivity-by-the-equivalent-of-one-workday-per-week-new-report-finds" target="_blank">Lue koko LSE:n uutinen tästä.</a></p>
+        </div>
+
+        <div class="cta-footer">
+            <h2>Haluatko realisoida nämä säästöt?</h2>
+            <p>Autamme yritystänne rakentamaan tarvittavat automaatiot ja tekoälyratkaisut.</p>
+            <a href="/#yhteystiedot" class="btn btn-primary" style="margin-top: 24px;">Aloitetaan kartoitus</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <div class="logo"><img srcset="img/aRon_A1-mobile.webp 800w, img/aRon_A1.webp 1600w"
+                        sizes="(max-width: 800px) 100vw, 800px" src="img/aRon_A1.webp" alt="Valok logo"
+                        class="logo-img logo-img-footer">VALOK<span class="logo-dot">.</span></div>
+                <p>Prosessien automatisointia ja dedikoituja tekoälyratkaisuja suomalaisille PK-yrityksille.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Linkit</h4>
+                <ul>
+                    <li><a href="/">Etusivu</a></li>
+                    <li><a href="blogi.html">Blogi</a></li>
+                    <li><a href="/#palvelut">Palvelut</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ota yhteyttä</h4>
+                <ul>
+                    <li>aleksanteri@valok.fi</li>
+                    <li>Jyväskylä, Finland</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+        const employeesInput = document.getElementById('employees');
+        const rateInput = document.getElementById('hourlyRate');
+        const manualInput = document.getElementById('manualHours');
+        const euroOutput = document.getElementById('euroValue');
+        const hourOutput = document.getElementById('hourValue');
+
+        function calculate() {
+            const employees = parseFloat(employeesInput.value) || 0;
+            const rate = parseFloat(rateInput.value) || 0;
+            const manual = parseFloat(manualInput.value) || 0;
+
+            // Calculation: 20% overall efficiency gain (equivalent to 1 day per week based on LSE 2024)
+            const savedHoursPerWeek = (manual * 0.20) * employees;
+            const savedHoursPerMonth = Math.round(savedHoursPerWeek * 4.33);
+            const savingsYear = Math.round(savedHoursPerMonth * 12 * rate);
+
+            euroOutput.textContent = savingsYear.toLocaleString('fi-FI') + ' €';
+            hourOutput.textContent = savedHoursPerMonth.toLocaleString('fi-FI') + ' h';
+        }
+
+        [employeesInput, rateInput, manualInput].forEach(input => {
+            input.addEventListener('input', calculate);
+        });
+
+        // Init
+        calculate();
+    </script>
+</body>
+
+</html>
