@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asiakaspalvelu AI ROI-laskuri — Valok</title>
+    <meta name="description"
+        content="Laske paljonko yrityksesi säästää automatisoimalla asiakaspalvelun rutiinit tekoälyllä. Näe heti säästetyt tunnit ja eurot kuukaudessa.">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel=icon type=image/png sizes=32x32 href=img/favicon-32x32.png>
+    <link rel=apple-touch-icon sizes=180x180 href=img/favicon-180x180.png>
+
+    <link rel="canonical" href="https://valok.fi/asiakaspalvelu-roi-laskuri.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://valok.fi/asiakaspalvelu-roi-laskuri.html">
+    <meta property="og:title" content="Asiakaspalvelu AI ROI-laskuri: Paljonko säästät automatisoinnilla?">
+    <meta property="og:description" content="Laske tekoälyn tuoma säästöpotentiaali asiakaspalvelussasi.">
+    <meta property="og:image" content="https://valok.fi/img/asiakaspalvelu-ai-laskuri-hero.png">
+
+    <!-- Google Consent Mode v2 & Google tags -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('consent', 'default', {
+            'analytics_storage': 'denied',
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied'
+        });
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MZZTLKDN25"></script>
+    <script>
+        gtag('config', 'G-MZZTLKDN25');
+    </script>
+
+    <style>
+        .calc-header {
+            padding: 160px 24px 40px;
+            text-align: center;
+            background: radial-gradient(circle at top, var(--accent-glow) 0%, transparent 70%);
+            min-height: auto !important;
+        }
+
+        .calc-container {
+            max-width: 900px;
+            margin: 0 auto 100px;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        @media (max-width: 768px) {
+            .calc-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .calc-card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 40px;
+            border-radius: var(--radius);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .input-group {
+            margin-bottom: 24px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .input-group input, .input-group select {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 12px 16px;
+            color: var(--text);
+            font-size: 1.1rem;
+            font-family: inherit;
+            transition: var(--transition);
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .input-group select option {
+            background: #0a0f1e; /* Match --bg-subtle */
+            color: white;
+        }
+
+        .results-card {
+            background: linear-gradient(135deg, var(--accent-glow), rgba(99, 102, 241, 0.05));
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            padding: 40px;
+            border-radius: var(--radius);
+            position: sticky;
+            top: 120px;
+        }
+
+        .result-item {
+            margin-bottom: 32px;
+        }
+
+        .result-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .result-value {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--text);
+            line-height: 1;
+        }
+
+        .result-secondary {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-light);
+        }
+
+        .calc-info {
+            grid-column: 1 / -1;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 24px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+        }
+
+        .cta-footer {
+            text-align: center;
+            padding: 80px 24px;
+            background: linear-gradient(to bottom, transparent, var(--bg-subtle));
+            grid-column: 1 / -1;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- NAVIGATION -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <img srcset="img/aRon_A1-mobile.webp 800w, img/aRon_A1.webp 1600w" sizes="(max-width: 800px) 100vw, 800px"
+                    src="img/aRon_A1.webp" alt="Valok logo" class="logo-img">VALOK<span class="logo-dot">.</span>
+            </a>
+            <div class="nav-links">
+                <a href="/">Etusivu</a>
+                <a href="blogi.html">Blogi</a>
+                <a href="/#yhteystiedot" class="nav-cta">Ota yhteyttä</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="calc-header">
+        <span class="section-tag">AI-laskuri</span>
+        <h1>Paljonko tekoäly säästää<br><span class="gradient-text">asiakaspalvelussasi?</span></h1>
+        <p class="hero-sub" style="margin: 0 auto;">Laske chatbot-automaation tuoma säästöpotentiaali minuuteissa.</p>
+    </header>
+
+    <section class="calc-container">
+        <div class="calc-card">
+            <div class="input-group">
+                <label for="tickets">Yhteydenottoja kuukaudessa (kpl)</label>
+                <input type="number" id="tickets" value="1000" min="10" step="50">
+            </div>
+            <div class="input-group">
+                <label for="timePerTicket">Keskimääräinen käsittelyaika (min/yhteydenotto)</label>
+                <input type="number" id="timePerTicket" value="8" min="1" step="1">
+            </div>
+            <div class="input-group">
+                <label for="hourlyCost">Työvoiman tuntikustannus (€/h)</label>
+                <input type="number" id="hourlyCost" value="35" min="15" step="5">
+            </div>
+            <div class="input-group">
+                <label for="deflection">Tekoälyn hoitama osuus (%)</label>
+                <select id="deflection">
+                    <option value="0.5">50 % (Rutiinitiedustelut)</option>
+                    <option value="0.7" selected>70 % (Tutkimusten mukainen optimi)</option>
+                    <option value="0.85">85 % (Edistyneet ratkaisut)</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="results-card">
+            <div class="result-item">
+                <p class="result-label">Vapautuva aika kuukaudessa</p>
+                <p class="result-value" id="hourValue">0 h</p>
+            </div>
+            <div class="result-item">
+                <p class="result-label">Säästöpotentiaali vuodessa</p>
+                <p class="result-value" id="euroValue">0 €</p>
+                <p class="result-secondary" id="monthlyEuro">0 € / kk</p>
+            </div>
+        </div>
+
+        <div class="calc-info">
+            <p><strong>Laskentaperusteet:</strong> Laskelma perustuu vuoden 2024 tutkimukseen <em>"Leveraging AI-Powered chatbots to enhance customer service efficiency"</em>, joka osoittaa tekoälypohjaisten chattibottien kykenevän hoitamaan jopa <strong>70 % rutiininomaisista asiakaskyselyistä</strong>. Tämä vapauttaa asiantuntijoiden aikaa monimutkaisempien ongelmien ratkaisuun ja parantaa yrityksen kokonaistehokkuutta. <a href="https://www.researchgate.net/publication/385230161_Leveraging_AI-Powered_chatbots_to_enhance_customer_service_efficiency_and_future_opportunities_in_automated_support" target="_blank">Lue tutkimus tästä (ResearchGate).</a></p>
+        </div>
+
+        <div class="cta-footer">
+            <h2>Haluatko poistaa turhat rutiinit?</h2>
+            <p>Rakennamme tietoturvallisia tekoäly-chatboteja, jotka tuntevat yrityksesi datan ja palvelevat asiakkaita 24/7.</p>
+            <a href="/#yhteystiedot" class="btn btn-primary" style="margin-top: 24px;">Kysy lisää chatbot-ratkaisuista</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <div class="logo"><img srcset="img/aRon_A1-mobile.webp 800w, img/aRon_A1.webp 1600w"
+                        sizes="(max-width: 800px) 100vw, 800px" src="img/aRon_A1.webp" alt="Valok logo"
+                        class="logo-img logo-img-footer">VALOK<span class="logo-dot">.</span></div>
+                <p>Prosessien automatisointia ja dedikoituja tekoälyratkaisuja suomalaisille PK-yrityksille.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Linkit</h4>
+                <ul>
+                    <li><a href="/">Etusivu</a></li>
+                    <li><a href="blogi.html">Blogi</a></li>
+                    <li><a href="/#palvelut">Palvelut</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ota yhteyttä</h4>
+                <ul>
+                    <li>aleksanteri@valok.fi</li>
+                    <li>Jyväskylä, Finland</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Valok. Kaikki oikeudet pidätetään.
+        </div>
+    </footer>
+
+    <!-- PRIVACY BANNER -->
+    <div id="cookieBanner" class="cookie-banner">
+        <h5>Yksityisyytesi on meille tärkeää</h5>
+        <p>Käytämme sivustolla vain välttämättömiä toimintoja varmistaaksemme parhaan mahdollisen käyttökokemuksen. Emme
+            käytä kolmannen osapuolen markkinointievästeitä.</p>
+        <div class="cookie-btn-group">
+            <button id="acceptCookies" class="btn btn-primary">Ymmärrän</button>
+            <a href="#" class="btn btn-ghost">Lue lisää</a>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+    <script>
+        const ticketsInput = document.getElementById('tickets');
+        const timeInput = document.getElementById('timePerTicket');
+        const costInput = document.getElementById('hourlyCost');
+        const deflectionSelect = document.getElementById('deflection');
+        
+        const hourOutput = document.getElementById('hourValue');
+        const euroOutput = document.getElementById('euroValue');
+        const monthlyEuroOutput = document.getElementById('monthlyEuro');
+
+        function calculate() {
+            const tickets = parseFloat(ticketsInput.value) || 0;
+            const time = parseFloat(timeInput.value) || 0;
+            const cost = parseFloat(costInput.value) || 0;
+            const deflection = parseFloat(deflectionSelect.value) || 0;
+
+            // Calculation
+            const totalHoursPerMonth = (tickets * time) / 60;
+            const savedHoursPerMonth = Math.round(totalHoursPerMonth * deflection);
+            const savedMoneyPerMonth = Math.round(savedHoursPerMonth * cost);
+            const savedMoneyPerYear = savedMoneyPerMonth * 12;
+
+            hourOutput.textContent = savedHoursPerMonth.toLocaleString('fi-FI') + ' h';
+            euroOutput.textContent = savedMoneyPerYear.toLocaleString('fi-FI') + ' €';
+            monthlyEuroOutput.textContent = savedMoneyPerMonth.toLocaleString('fi-FI') + ' € / kk';
+        }
+
+        [ticketsInput, timeInput, costInput, deflectionSelect].forEach(input => {
+            input.addEventListener('input', calculate);
+        });
+
+        // Init
+        calculate();
+    </script>
+</body>
+
+</html>
