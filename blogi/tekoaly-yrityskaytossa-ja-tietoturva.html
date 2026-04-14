@@ -248,13 +248,14 @@
         <header class="post-header">
             <a href="../blogi.html" class="back-link">← Takaisin blogiin</a>
             <span class="post-meta">Tekoäly • Tietoturva • RAG</span>
-            <h1>Tekoäly ilman tietovuotoja: <span class="gradient-text">Näin valjastat kielimallit yrityksesi omalla
-                    datalla</span></h1>
+            <h1>Tekoäly ilman tietovuotoja: <span class="gradient-text">Näin valjastat kielimallit käyttöösi omalla
+                    datallasi</span></h1>
             <p style="color: var(--text-dim); margin-top: 20px;">Huhtikuu 2026</p>
         </header>
 
         <div class="post-image">
-            <img src="../img/tekoaly-tietoturva-hero.png" alt="Graafinen kuvitus tekoälyn tietoturvasta: digitaalinen kilpi suojaa aivoja tietovuodoilta">
+            <img src="../img/tekoaly-tietoturva-hero.png"
+                alt="Graafinen kuvitus tekoälyn tietoturvasta: digitaalinen kilpi suojaa aivoja tietovuodoilta">
         </div>
 
         <main class="post-content">
@@ -296,7 +297,8 @@
             <p>Tutkimuksen mukaan tekoälyä hyödyntävät työntekijät olivat <strong>25 % nopeampia</strong> ja heidän
                 tuotostensa laatu oli peräti <strong>40 % korkeampi</strong> verrattuna kontrolliryhmään. Erityisen
                 suuren loikan tekivät ne työntekijät, joiden lähtötaso oli matalampi. Heidän suoriutumisensa parani jopa
-                <strong>43 %</strong>.</p>
+                <strong>43 %</strong>.
+            </p>
 
             <h2 id="varjo-ai">Suurin este: Tietoturva ja "Varjo-AI"</h2>
             <p>Vaikka hyödyt ovat ilmeiset, riskit ovat todellisia. <a
@@ -308,16 +310,16 @@
 
             <div class="mermaid">
                 flowchart TD
-                    A(Työntekijä) ---|Käsittelee sensitiivistä tietoa| B
-                    B{Varjo-AI käyttö} -->|Kopioi dataa suojaamattomaan työkaluun| C[Julkinen tekoälymalli]
-                    C -->|Data tallentuu pilveen| D[Mallin jatkokoulutus]
-                    D -->|Kriittinen riski| E((TIETOVUOTO))
-    
-                    style A fill:#f9f9f9,stroke:#333,color:#333
-                    style B fill:#fff,stroke:#00d2ff,color:#333
-                    style C fill:#1a1a2e,stroke:#00d2ff,color:#fff
-                    style D fill:#1a1a2e,stroke:#ff8c00,color:#fff
-                    style E fill:#ff4d4d,stroke:#fff,color:#fff,stroke-width:2px
+                A(Työntekijä) ---|Käsittelee sensitiivistä tietoa| B
+                B{Varjo-AI käyttö} -->|Kopioi dataa suojaamattomaan työkaluun| C[Julkinen tekoälymalli]
+                C -->|Data tallentuu pilveen| D[Mallin jatkokoulutus]
+                D -->|Kriittinen riski| E((TIETOVUOTO))
+
+                style A fill:#f9f9f9,stroke:#333,color:#333
+                style B fill:#fff,stroke:#00d2ff,color:#333
+                style C fill:#1a1a2e,stroke:#00d2ff,color:#fff
+                style D fill:#1a1a2e,stroke:#ff8c00,color:#fff
+                style E fill:#ff4d4d,stroke:#fff,color:#fff,stroke-width:2px
             </div>
 
             <h2 id="rag-ratkaisu">Ratkaisu: Tekoäly, joka tuntee juuri sinun yrityksesi (RAG)</h2>
