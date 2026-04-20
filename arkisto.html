@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogiarkisto — Valok</title>
+    <meta name="description"
+        content="Selaa kaikkia kirjoituksiamme tekoälystä, automaatiosta ja digitaalisesta kehityksestä.">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel=icon type=image/png sizes=32x32 href=img/favicon-32x32.png>
+    <link rel=apple-touch-icon sizes=180x180 href=img/favicon-180x180.png>
+    
+    <link rel="canonical" href="https://valok.fi/arkisto.html">
+
+    <style>
+        .blog-header {
+            min-height: auto !important;
+            padding: 130px 24px 40px;
+            text-align: center;
+            background: radial-gradient(circle at top, var(--accent-glow) 0%, transparent 50%);
+        }
+
+        .blog-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            padding: 40px 24px 120px;
+        }
+
+        .blog-card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 180px;
+            background: var(--bg-subtle);
+            position: relative;
+        }
+
+        .blog-content {
+            padding: 24px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-meta {
+            font-size: 0.75rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .blog-card h3 {
+            font-size: 1.25rem;
+            line-height: 1.3;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .blog-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .back-to-blog {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dim);
+            text-decoration: none;
+            margin-bottom: 24px;
+            transition: var(--transition);
+        }
+
+        .back-to-blog:hover {
+            color: var(--accent);
+        }
+
+        @media (max-width: 480px) {
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="particles"></canvas>
+
+    <!-- NAVIGATION -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo"><img srcset="img/aRon_A1-mobile.webp 800w, img/aRon_A1.webp 1600w" sizes="(max-width: 800px) 100vw, 1600px" src="img/aRon_A1.webp" alt="Valok logo" class="logo-img">VALOK<span
+                    class="logo-dot">.</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="/#palvelut">Palvelut</a>
+                <a href="/#prosessi">Prosessi</a>
+                <a href="blogi.html">Blogi</a>
+                <a href="/#yhteystiedot" class="nav-cta">Ota yhteyttä</a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Avaa valikko">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <header class="blog-header">
+        <a href="blogi.html" class="back-to-blog">← Takaisin blogiin</a>
+        <span class="section-tag">Arkisto</span>
+        <h1>Kaikki <span class="gradient-text">artikkelit</span></h1>
+        <p class="hero-sub">Selaa koko historiaamme ja löydä vastauksia automaation ja tekoälyn haasteisiin.</p>
+    </header>
+
+    <section class="blog-grid">
+        <!-- LATEST ONES TOO IN ARCHIVE -->
+        <a href="blogi/prosessiautomaatio-agenttisella-tekoalylla.html" class="blog-card">
+            <div class="blog-content">
+                <div class="blog-meta">Tekoäly & Agentit • 20.4.2026</div>
+                <h3>Agenttinen tekoäly ja prosessiautomaation uusi aikakausi</h3>
+                <p>Miten Agentic Process Automation (APA) muuttaa työnteon vuonna 2026?</p>
+            </div>
+        </a>
+
+        <a href="blogi/tekoaly-yrityskaytossa-ja-tietoturva.html" class="blog-card">
+            <div class="blog-content">
+                <div class="blog-meta">Tekoäly & Tietoturva • 14.4.2026</div>
+                <h3>Tekoäly ilman tietovuotoja: Kielimallit yrityksen omalla datalla</h3>
+                <p>Miten rakennat suojatun AI-ympäristön yrityksellesi.</p>
+            </div>
+        </a>
+
+        <a href="blogi/miten-pk-yritys-paasee-alkuun-tekoalyn-kanssa.html" class="blog-card">
+            <div class="blog-content">
+                <div class="blog-meta">Tekoäly & PK-yritykset • 10.4.2026</div>
+                <h3>Miten PK-yritys pääsee alkuun oman tekoälyn kanssa?</h3>
+                <p>Oma turvallinen AI-ratkaisu budjetilla, joka maksaa itsensä takaisin.</p>
+            </div>
+        </a>
+
+        <a href="blogi/rag-viisain-asiantuntija.html" class="blog-card">
+            <div class="blog-content">
+                <div class="blog-meta">Tekoäly & RAG • 8.4.2026</div>
+                <h3>RAG: Tekoälystä yrityksesi viisain asiantuntija</h3>
+                <p>Miten kytket kielimallin yrityksesi omaan dataan turvallisesti.</p>
+            </div>
+        </a>
+
+        <a href="blogi/miksi-kuluttajille-suunnattu-chatgpt-ei-riita.html" class="blog-card">
+            <div class="blog-content">
+                <div class="blog-meta">Tekoäly & Strategia • 6.4.2026</div>
+                <h3>Miksi kuluttajille suunnattu ChatGPT ei riitä?</h3>
+                <p>Räätälöity kielimalli PK-yritysten käyttöön ja AI-strategia.</p>
+            </div>
+        </a>
+
+        <a href="blogi/automatisoi-rutiinit.html" class="blog-card">
+            <div class="blog-content">
+                <div class="blog-meta">Opas • 2.4.2026</div>
+                <h3>Automatisoi rutiinit: 3 prosessia PK-yrityksille</h3>
+                <p>Mistä automaation hyödyntäminen kannattaa aloittaa?</p>
+            </div>
+        </a>
+
+        <a href="blogi/tekoalyagentit-vs-perinteinen-automaatio.html" class="blog-card">
+            <div class="blog-content">
+                <div class="blog-meta">Tekoäly & Agentit • 31.3.2026</div>
+                <h3>Tekoälyagentit vs. perinteinen automaatio</h3>
+                <p>Milloin valita kumpikin? Opas PK-yrittäjälle teknologiavalintoihin.</p>
+            </div>
+        </a>
+
+        <a href="blogi/tekoaly-ilman-integraatioita-on-kuin-auto-ilman-renkaita.html" class="blog-card">
+            <div class="blog-content">
+                <div class="blog-meta">Integraatiot • 24.3.2026</div>
+                <h3>Tekoäly ilman integraatioita on kuin auto ilman renkaita</h3>
+                <p>Miksi kytkennät muihin järjestelmiin ovat avain tekoälytuloksiin.</p>
+            </div>
+        </a>
+
+        <a href="blogi/mika-on-rag-tekoaly.html" class="blog-card">
+            <div class="blog-content">
+                <div class="blog-meta">Tekoäly & Tiedonhaku • 21.3.2026</div>
+                <h3>Miten RAG-arkkitehtuuri muuttaa yrityksesi datan asiantuntijaksi?</h3>
+                <p>Tutustu Retrieval-Augmented Generation (RAG) perusteisiin.</p>
+            </div>
+        </a>
+
+        <a href="blogi/tekoaly-ja-automaatio-saastavat-aikaa.html" class="blog-card">
+            <div class="blog-content">
+                <div class="blog-meta">Automaatio • 17.3.2026</div>
+                <h3>Miten tekoäly ja automaatio säästävät yrittäjän aikaa?</h3>
+                <p>Kolme käytännön esimerkkiä ajan säästämisestä arjessa.</p>
+            </div>
+        </a>
+
+        <a href="blogi/tekoaly-ja-automaatio.html" class="blog-card">
+            <div class="blog-content">
+                <div class="blog-meta">Tekoäly & Automaatio • 10.3.2026</div>
+                <h3>Tekoäly ja automaatio: PK-yrityksen kilpailuetu 2026</h3>
+                <p>Miten suomalainen PK-yritys hyötyy älykkäästä automaatiosta.</p>
+            </div>
+        </a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <div class="logo"><img srcset="img/aRon_A1-mobile.webp 800w, img/aRon_A1.webp 1600w" sizes="(max-width: 800px) 100vw, 1600px" src="img/aRon_A1.webp" alt="Valok logo"
+                        class="logo-img logo-img-footer">VALOK<span class="logo-dot">.</span></div>
+                <p>Prosessien automatisointia ja dedikoituja tekoälyratkaisuja suomalaisille PK-yrityksille.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Linkit</h4>
+                <ul>
+                    <li><a href="/">Etusivu</a></li>
+                    <li><a href="blogi.html">Blogi</a></li>
+                    <li><a href="/#palvelut">Palvelut</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ota yhteyttä</h4>
+                <ul>
+                    <li>aleksanteri@valok.fi</li>
+                    <li>Jyväskylä, Finland</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Valok. Kaikki oikeudet pidätetään.
+        </div>
+    </footer>
+
+    <div id="cookieBanner" class="cookie-banner">
+        <h5>Yksityisyytesi on meille tärkeää</h5>
+        <p>Käytämme sivustolla vain välttämättömiä toimintoja varmistaaksemme parhaan mahdollisen käyttökokemuksen.</p>
+        <div class="cookie-btn-group">
+            <button id="acceptCookies" class="btn btn-primary">Ymmärrän</button>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

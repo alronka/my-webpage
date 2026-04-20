@@ -40,7 +40,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 32px;
-            padding: 0 24px 120px;
+            padding: 0 24px 80px;
         }
 
         .blog-card {
@@ -112,6 +112,26 @@
             color: var(--text-dim);
         }
 
+        .btn-archive {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 32px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            background: var(--glass);
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .btn-archive:hover {
+            background: var(--glass-hover);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
         @media (max-width: 480px) {
             .blog-grid {
                 grid-template-columns: 1fr;
@@ -176,7 +196,7 @@
         </div>
     </section>
 
-    <div class="section-header" style="margin-bottom: 32px;">
+    <div class="section-header" style="margin-bottom: 48px;">
         <span class="section-tag">Artikkelit</span>
         <h2>Uusimmat <span class="gradient-text">kirjoitukset</span></h2>
     </div>
@@ -245,6 +265,7 @@
                 </div>
             </div>
         </a>
+
         <!-- POST 6 -->
         <a href="blogi/miksi-kuluttajille-suunnattu-chatgpt-ei-riita.html" class="blog-card" data-animate>
             <div class="blog-image">
@@ -260,6 +281,8 @@
                 </div>
             </div>
         </a>
+
+        <!-- POST 5 -->
         <a href="blogi/automatisoi-rutiinit.html" class="blog-card" data-animate>
             <div class="blog-image">
                 <img srcset="img/5300_6_05-mobile.webp 800w, img/5300_6_05.webp 1600w" sizes="(max-width: 800px) 100vw, 1600px" src="img/5300_6_05.webp" alt="Automatisoi rutiinit" style="width: 100%; height: 100%; object-fit: cover;">
@@ -274,87 +297,14 @@
                 </div>
             </div>
         </a>
-
-        <!-- POST 4 -->
-        <a href="blogi/tekoalyagentit-vs-perinteinen-automaatio.html" class="blog-card" data-animate>
-            <div class="blog-image">
-                <img srcset="img/6900_1_04-mobile.webp 800w, img/6900_1_04.webp 1600w" sizes="(max-width: 800px) 100vw, 1600px" src="img/6900_1_04.webp" alt="Tekoälyagentit vs perinteinen automaatio" style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
-            <div class="blog-content">
-                <div class="blog-meta">Tekoäly & Agentit • 5 min luku</div>
-                <h3>Tekoälyagentit vs. perinteinen automaatio: Milloin valita kumpikin?</h3>
-                <p>Opas PK-yrittäjälle: Mitä eroa on tekoälyagenteilla ja perinteisellä automaatiolla, ja miten valita oikea työkalu?</p>
-                <div class="blog-footer">
-                    <span>31. Maaliskuuta 2026</span>
-                    <span class="gradient-text">Lue lisää →</span>
-                </div>
-            </div>
-        </a>
-
-        <!-- POST 3 -->
-        <a href="blogi/tekoaly-ilman-integraatioita-on-kuin-auto-ilman-renkaita.html" class="blog-card" data-animate>
-            <div class="blog-image">
-                <img srcset="img/651-mobile.webp 800w, img/651.webp 1600w" sizes="(max-width: 800px) 100vw, 1600px" src="img/651.webp" alt="AI ja integraatiot" style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
-            <div class="blog-content">
-                <div class="blog-meta">Integraatiot • 6 min luku</div>
-                <h3>Tekoäly ilman integraatioita on kuin auto ilman renkaita</h3>
-                <p>Tekoäly on tehokas moottori, mutta ilman kytkentöjä se ei siirrä yritystäsi paikaltaan. Lue miksi integraatiot ovat avain tuloksiin.</p>
-                <div class="blog-footer">
-                    <span>24. Maaliskuuta 2026</span>
-                    <span class="gradient-text">Lue lisää →</span>
-                </div>
-            </div>
-        </a>
-
-        <!-- POST 2 -->
-        <a href="blogi/mika-on-rag-tekoaly.html" class="blog-card" data-animate>
-            <div class="blog-image">
-                <img srcset="img/robot-9892216_1920-mobile.webp 800w, img/robot-9892216_1920.webp 1600w" sizes="(max-width: 800px) 100vw, 1600px" src="img/robot-9892216_1920.webp" alt="RAG Tekoäly" style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
-            <div class="blog-content">
-                <div class="blog-meta">Tekoäly & Tiedonhaku • 4 min luku</div>
-                <h3>Miten RAG-arkkitehtuuri muuttaa yrityksesi datan asiantuntijaksi?</h3>
-                <p>Tutustu siihen, miten Retrieval-Augmented Generation (RAG) mahdollistaa tekoälyn, joka ymmärtää yrityksesi omat tiedostot ja varmentaa faktoissa pysymisen.</p>
-                <div class="blog-footer">
-                    <span>21. Maaliskuuta 2026</span>
-                    <span class="gradient-text">Lue lisää →</span>
-                </div>
-            </div>
-        </a>
-
-        <!-- POST 1 -->
-        <a href="blogi/tekoaly-ja-automaatio-saastavat-aikaa.html" class="blog-card" data-animate>
-            <div class="blog-image">
-                <img srcset="img/envio-70-mobile.webp 800w, img/envio-70.webp 1600w" sizes="(max-width: 800px) 100vw, 1600px" src="img/envio-70.webp" alt="Aika ja automaatio" style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
-            <div class="blog-content">
-                <div class="blog-meta">Automaatio • 5 min luku</div>
-                <h3>Miten tekoäly ja automaatio säästävät yrittäjän aikaa?</h3>
-                <p>PK-yrityksen arki tehostuu, kun rutiinit siirretään koneen huoleksi. Lue kolme käytännön esimerkkiä ajan säästämisestä.</p>
-                <div class="blog-footer">
-                    <span>17. Maaliskuuta 2026</span>
-                    <span class="gradient-text">Lue lisää →</span>
-                </div>
-            </div>
-        </a>
-
-        <!-- POST 0 -->
-        <a href="blogi/tekoaly-ja-automaatio.html" class="blog-card" data-animate>
-            <div class="blog-image">
-                <img src="img/robot-bot-icon.svg" alt="Tekoäly" style="width: 80px; opacity: 0.8;">
-            </div>
-            <div class="blog-content">
-                <div class="blog-meta">Tekoäly & Automaatio • 6 min luku</div>
-                <h3>Tekoäly ja automaatio: PK-yrityksen kilpailuetu 2026</h3>
-                <p>Miten suomalainen PK-yritys säästää aikaa ja rahaa valjastamalla älykkään automaation prosessiensa tueksi?</p>
-                <div class="blog-footer">
-                    <span>10. Maaliskuuta 2026</span>
-                    <span class="gradient-text">Lue lisää →</span>
-                </div>
-            </div>
-        </a>
     </section>
+
+    <div style="text-align: center; padding: 0 24px 120px;">
+        <a href="arkisto.html" class="btn-archive">
+            <span>Katso loput artikkelit arkistosta</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+    </div>
 
 
     <!-- FOOTER -->
