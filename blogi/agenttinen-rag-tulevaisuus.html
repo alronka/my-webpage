@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenttinen RAG: miksi pelkkä tiedonhaku ei enää riitä vuonna 2026? — Valok</title>
+    <meta name="description"
+        content="Lue miten agenttinen RAG muuttaa yrityksen staattisen tiedon aktiiviseksi ongelmanratkaisuksi. Tutustu tekoälyn seuraavaan askeleeseen.">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel=icon type=image/png sizes=32x32 href=../img/favicon-32x32.png>
+    <link rel=apple-touch-icon sizes=180x180 href=../img/favicon-180x180.png>
+    
+    <link rel="canonical" href="https://valok.fi/blogi/agenttinen-rag-tulevaisuus.html">
+    
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://valok.fi/blogi/agenttinen-rag-tulevaisuus.html">
+    <meta property="og:title" content="Agenttinen RAG: miksi pelkkä tiedonhaku ei enää riitä?">
+    <meta property="og:description" content="Tekoälyagentit ja RAG: tulevaisuuden tietämyksen hallinta.">
+    <meta property="og:image" content="https://valok.fi/img/agenttinen-rag-tekoaly-automaatio.png">
+
+    <style>
+        .post-header {
+            min-height: auto !important;
+            padding: 160px 24px 24px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            background: radial-gradient(circle at top, var(--accent-glow) 0%, transparent 70%);
+        }
+
+        .post-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px 100px;
+            line-height: 1.8;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .post-content h2, .post-content h3 {
+            color: var(--text);
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .post-content p {
+            margin-bottom: 24px;
+        }
+
+        .post-content ul, .post-content ol {
+            margin-bottom: 24px;
+            padding-left: 20px;
+        }
+
+        .post-content li {
+            margin-bottom: 12px;
+        }
+
+        .post-meta {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dim);
+            text-decoration: none;
+            margin-bottom: 40px;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        .post-image {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .post-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .toc-box {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+        }
+
+        .toc-box h4 {
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        .toc-box ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .toc-box a {
+            color: #58a6ff;
+            text-decoration: none;
+            display: block;
+            padding: 4px 0;
+            transition: var(--transition);
+        }
+
+        .toc-box a:hover {
+            color: var(--accent);
+            padding-left: 4px;
+        }
+
+        .highlight-box {
+            background: var(--glass);
+            padding: 30px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+            border-left: 4px solid var(--accent);
+        }
+
+        .reference-list {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            margin-top: 60px;
+        }
+
+        .reference-list ol {
+            padding-left: 20px;
+        }
+
+        .contact-section {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 60px 40px;
+            border-radius: var(--radius);
+            margin-top: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="particles"></canvas>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo"><img srcset="../img/aRon_A1-mobile.webp 800w, ../img/aRon_A1.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/aRon_A1.webp" alt="Valok logo" class="logo-img">VALOK<span
+                     class="logo-dot">.</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="/#palvelut">Palvelut</a>
+                <a href="/#prosessi">Prosessi</a>
+                <a href="../blogi.html">Blogi</a>
+                <a href="/#yhteystiedot" class="nav-cta">Ota yhteyttä</a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Avaa valikko">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <article>
+        <header class="post-header">
+            <a href="../blogi.html" class="back-link">← Takaisin blogiin</a>
+            <span class="post-meta">Huhtikuu 2026 • Agenttinen tekoäly • RAG</span>
+            <h1>Agenttinen RAG: miksi pelkkä tiedonhaku ei enää <span class="gradient-text">riitä vuonna 2026?</span></h1>
+            <p style="color: var(--text-dim); margin-top: 20px;">Kun tekoäly ei enää vain etsi tietoa, vaan ratkaisee ongelmia.</p>
+        </header>
+
+        <div class="post-image">
+            <img src="../img/agenttinen-rag-tekoaly-automaatio.png" alt="Agenttinen RAG tekoäly ja prosessiautomaatio - Valok">
+        </div>
+
+        <main class="post-content">
+            <div class="toc-box">
+                <h4>Sisällysluettelo</h4>
+                <ul>
+                    <li><a href="#perinteinen-vs-agenttinen">1. Kirjastonhoitaja ja tutkija: perinteinen ja agenttinen RAG</a></li>
+                    <li><a href="#ongelmat">2. Miksi perinteinen RAG kompastuu monimutkaisuuteen?</a></li>
+                    <li><a href="#miten-agentti-toimii">3. Miten agenttinen tekoäly muuttaa tiedonhakua?</a></li>
+                    <li><a href="#hyodyt">4. Liiketoimintahyödyt pk-yritykselle</a></li>
+                    <li><a href="#esimerkit">5. Käytännön esimerkkejä</a></li>
+                </ul>
+            </div>
+
+            <p>Vuodet 2024 ja 2025 olivat RAG-arkkitehtuurin (retrieval-augmented generation) kulta-aikaa. Yritykset oppivat kytkemään tekoälyn omiin tiedostoihinsa ja tietokantoihinsa. Nyt, vuonna 2026, huomaamme kuitenkin usein, että pelkkä tiedon löytäminen ei riitä. Tarvitsemme älykkyyttä, joka osaa arvioida löytämäänsä tietoa ja toimia sen pohjalta itsenäisesti.</p>
+
+            <h2 id="perinteinen-vs-agenttinen">1. Kirjastonhoitaja ja tutkija: perinteinen ja agenttinen RAG</h2>
+            <p>Perinteinen RAG muistuttaa tehokasta kirjastonhoitajaa. Jos kysyt siltä yrityksen matkustusohjeesta, se hakee oikean sivun ja lukee sen sinulle. Tämä toimii hyvin yksinkertaisissa kysymyksissä. Jos kysymyksesi on kuitenkin monimutkainen, kuten "miten matkakuluni muuttuvat, jos lennänkin huomenna Berliiniin Tukholman sijaan?", kirjastonhoitaja saattaa antaa vain irrallisia palasia sieltä täältä.</p>
+            
+            <p>Agenttinen RAG taas toimii kuin kokenut tutkija tai assistentti. Se ei tyydy vain hakemaan tietoa, vaan se hakee matkustusohjeet, tarkistaa Berliinin ja Tukholman erot päivärahoissa ja käy läpi yrityksen budjettitilanteen. Lopuksi se päättelee vastauksen ja kysyy tarvittaessa lisätietoja [1].</p>
+
+            <h2 id="ongelmat">2. Miksi perinteinen RAG kompastuu monimutkaisuuteen?</h2>
+            <p>Perinteinen RAG kärsii usein kolmesta perusongelmasta:</p>
+            <ol>
+                <li><strong>Yksittäinen haku:</strong> Järjestelmä tekee vain yhden haun. Jos haku ei heti tuota oikeaa tulosta, vastaus jää puutteelliseksi.</li>
+                <li><strong>Kontekstin puute:</strong> Se ei ymmärrä, että vastaus vaatii usein tiedon yhdistämistä eri lähteistä, kuten sopimuksesta, hinnastosta ja sähköpostiviestistä.</li>
+                <li><strong>Laadunvarmistuksen puute:</strong> Se ei tarkista omaa vastaustaan kriittisesti löydettyä tietoa vasten.</li>
+            </ol>
+
+            <div class="highlight-box">
+                Agenttiset työnkulut voivat parantaa tekoälyn antamien vastausten tarkkuutta huomattavasti haastavissa liiketoiminnan skenaarioissa, sillä ne mahdollistavat asioiden tarkistamisen ja korjaamisen lennosta [2].
+            </div>
+
+            <h2 id="miten-agentti-toimii">3. Miten agenttinen tekoäly muuttaa tiedonhakua?</h2>
+            <p>Agenttisessa RAG-järjestelmässä tekoälylle annetaan työkaluja ja päättelykykyä. Se toimii syklissä, jossa se pohtii mitä sen täytyy tietää, toimii hakemalla tietoa ja arvioi saamaansa tulosta [3].</p>
+            <p>Tämä prosessi jatkuu, kunnes agentti on varma vastauksestaan. Se voi myös käyttää ulkoisia työkaluja, kuten CRM-järjestelmiä tai ERP-dataa, rikastamaan haettua tietoa. Tämä tekee tekoälystä proaktiivisen toimijan staattisen vastaajan sijaan.</p>
+
+            <h2 id="hyodyt">4. Liiketoimintahyödyt pk-yritykselle</h2>
+            <p>Miksi pk-yrityksen kannattaisi harkita siirtymistä agenttiseen tekoälyyn?</p>
+            <ul>
+                <li><strong>Parempi luotettavuus:</strong> Vähemmän virheitä tarkoittaa vähemmän manuaalista tarkistustyötä asiantuntijoille.</li>
+                <li><strong>Monimutkaisten prosessien haltuunotto:</strong> Voit automatisoida kokonaisia päättelyketjuja, kuten tarjouspyyntöjen analysointia tai reklamaatioiden käsittelyä.</li>
+                <li><strong>Skaalautuvuus:</strong> Agentti voi toimia ensimmäisenä asiantuntijana, joka valmistelee asiat niin pitkälle, että ihmisen tarvitsee vain kuitata lopputulos.</li>
+            </ul>
+
+            <h2 id="esimerkit">5. Käytännön esimerkkejä</h2>
+            <h3>Asiakaspalvelu, joka ratkaisee ongelmia</h3>
+            <p>Kun asiakas kysyy miksi hänen laskunsa on muuttunut, agenttinen RAG ei vain lue hinnastoa. Se vertaa asiakkaan viimeisintä laskua sopimukseen, tarkistaa mahdolliset lisäpalvelutiedot ja selittää eron selkeästi. Se hoitaa asian loppuun asti sen sijaan, että se vain ohjaisi asiakkaan eteenpäin.</p>
+
+            <h3>Sisäinen asiantuntija-avustaja</h3>
+            <p>Myyntipäällikkö voi pyytää koontia asiakastilanteesta ennen tapaamista. Agentti käy läpi muistiot, sähköpostit ja tuotannon tilanteen, ja antaa tiivistelmän hetkessä. Se osaa poimia olennaiset asiat eri järjestelmistä ja muodostaa niistä järkevän kokonaisuuden [4].</p>
+
+            <div class="reference-list">
+                <h4>Lähdeviitteet:</h4>
+                <ol>
+                    <li><a href="https://medium.com/@jagadeesan.ganesh/agentic-rag-with-langchain-revolutionizing-ai-with-dynamic-decision-making-ff1dee6df4ca" target="_blank" rel="noopener">Agentic RAG with LangChain: Revolutionizing AI with Dynamic Decision-Making</a> (2024). Katsaus tekoälyagenttien ja tiedonhaun yhdistämiseen.</li>
+                    <li><a href="https://www.gartner.com/en/documents/5850847" target="_blank" rel="noopener">Gartner: Top Strategic Technology Trends for 2025: Agentic AI</a>. Raportti agenttisen tekoälyn roolista yritysten digitalisaatiossa.</li>
+                    <li><a href="https://platform.openai.com/docs/assistants/overview" target="_blank" rel="noopener">OpenAI: Assistants API and Agentic Workflows</a> (2025). Dokumentaatio agenttien päättelyketjujen rakentamisesta.</li>
+                    <li><a href="https://www.microsoft.com/en-us/research/publication/autogen-enabling-next-gen-llm-applications-via-multi-agent-conversation-framework/" target="_blank" rel="noopener">Microsoft Research: AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation Framework</a> (2024). Tutkimus moniagenttijärjestelmien hyödyistä.</li>
+                </ol>
+            </div>
+
+            <div class="contact-section">
+                <div class="section-header" style="text-align: center; margin-bottom: 40px;">
+                    <span class="section-tag">Tulevaisuus on täällä</span>
+                    <h2>Onko yrityksesi valmis agenttiseen muutokseen?</h2>
+                    <p>Valok toteuttaa moderneja, agenttisia tekoälyratkaisuja, jotka eivät vain vastaa, vaan tekevät töitä. Rakennetaan teille tekoäly, joka ymmärtää yrityksesi datan syvällisemmin kuin koskaan.</p>
+                </div>
+
+                <div class="contact-container" style="max-width: 100%;">
+                    <div class="contact-form-card">
+                        <form action="https://formspree.io/f/xlgpgyjl" method="POST" id="contact-form">
+                            <div class="form-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="name">Nimi</label>
+                                    <input type="text" id="name" name="name" placeholder="Oma nimesi" required style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: white; border-radius: 8px;">
+                                </div>
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="email">Sähköposti</label>
+                                    <input type="email" id="email" name="email" placeholder="esimerkki@yritys.fi" required style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: white; border-radius: 8px;">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg full-width" style="width: 100%; padding: 16px; font-weight: bold; cursor: pointer; margin-top: 20px;">
+                                Varaa ilmainen tekoäly-konsultaatio
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </article>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <div class="logo"><img srcset="../img/aRon_A1-mobile.webp 800w, ../img/aRon_A1.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/aRon_A1.webp" alt="Valok logo" class="logo-img logo-img-footer">VALOK<span class="logo-dot">.</span></div>
+                <p>Prosessien automatisointia ja dedikoituja tekoälyratkaisuja suomalaisille PK-yrityksille.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Linkit</h4>
+                <ul>
+                    <li><a href="/">Etusivu</a></li>
+                    <li><a href="../blogi.html">Blogi</a></li>
+                    <li><a href="/#palvelut">Palvelut</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ota yhteyttä</h4>
+                <ul>
+                    <li>aleksanteri@valok.fi</li>
+                    <li>Jyväskylä, Finland</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Valok. Kaikki oikeudet pidätetään.
+        </div>
+    </footer>
+
+    <script src="../main.js"></script>
+</body>
+
+</html>
