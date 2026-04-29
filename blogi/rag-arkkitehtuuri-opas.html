@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAG-arkkitehtuuri: Näin rakennat luotettavan tekoälyn — Valok</title>
+    <meta name="description"
+        content="Katsaus Retrieval-Augmented Generation (RAG) -mallin konepellin alle. Opi, miten moderni RAG-arkkitehtuuri rakennetaan vuonna 2026.">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel=icon type=image/png sizes=32x32 href=../img/favicon-32x32.png>
+    <link rel=apple-touch-icon sizes=180x180 href=../img/favicon-180x180.png>
+    
+    <link rel="canonical" href="https://valok.fi/blogi/rag-arkkitehtuuri-opas.html">
+    
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://valok.fi/blogi/rag-arkkitehtuuri-opas.html">
+    <meta property="og:title" content="RAG-arkkitehtuuri: Näin rakennat luotettavan tekoälyn">
+    <meta property="og:description" content="Katsaus Retrieval-Augmented Generation -mallin konepellin alle ja vuoden 2026 standardeihin.">
+    
+    <style>
+        .post-header {
+            min-height: auto !important;
+            padding: 160px 24px 24px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            background: radial-gradient(circle at top, var(--accent-glow) 0%, transparent 70%);
+        }
+
+        .post-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px 100px;
+            line-height: 1.8;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .post-content h2, .post-content h3 {
+            color: var(--text);
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .post-content p {
+            margin-bottom: 24px;
+        }
+
+        .post-content ul, .post-content ol {
+            margin-bottom: 24px;
+            padding-left: 20px;
+        }
+
+        .post-content li {
+            margin-bottom: 12px;
+        }
+
+        .post-meta {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dim);
+            text-decoration: none;
+            margin-bottom: 40px;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        .toc-box {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+        }
+
+        .toc-box h4 {
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        .toc-box ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .toc-box a {
+            color: #58a6ff;
+            text-decoration: none;
+            display: block;
+            padding: 4px 0;
+            transition: var(--transition);
+        }
+
+        .toc-box a:hover {
+            color: var(--accent);
+            padding-left: 4px;
+        }
+
+        .highlight-box {
+            background: var(--glass);
+            padding: 30px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+            border-left: 4px solid var(--accent);
+        }
+
+        .reference-list {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            margin-top: 60px;
+        }
+
+        .reference-list ol {
+            padding-left: 20px;
+        }
+
+        .mermaid {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            margin: 40px 0;
+            display: flex;
+            justify-content: center;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="particles"></canvas>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo"><img srcset="../img/aRon_A1-mobile.webp 800w, ../img/aRon_A1.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/aRon_A1.webp" alt="Valok logo" class="logo-img">VALOK<span
+                     class="logo-dot">.</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="/#palvelut">Palvelut</a>
+                <a href="/#prosessi">Prosessi</a>
+                <a href="../blogi.html">Blogi</a>
+                <a href="/#yhteystiedot" class="nav-cta">Ota yhteyttä</a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Avaa valikko">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <article>
+        <header class="post-header">
+            <a href="../blogi.html" class="back-link">← Takaisin blogiin</a>
+            <span class="post-meta">Toukokuu 2026 • Tekoälyarkkitehtuuri • RAG</span>
+            <h1>RAG-arkkitehtuuri: Näin rakennat luotettavan tekoälyn <span class="gradient-text">yrityksellesi</span></h1>
+            <p style="color: var(--text-dim); margin-top: 20px;">Katsaus Retrieval-Augmented Generation -mallin konepellin alle.</p>
+        </header>
+
+        <main class="post-content">
+            <div class="toc-box">
+                <h4>Sisällysluettelo</h4>
+                <ul>
+                    <li><a href="#mita-se-tarkoittaa">1. Mitä RAG-arkkitehtuuri oikeasti tarkoittaa?</a></li>
+                    <li><a href="#perusrakenne">2. RAG-järjestelmän perusrakenne (Naïve RAG)</a></li>
+                    <li><a href="#modulaarinen">3. Modulaarinen RAG: Vuoden 2026 standardi</a></li>
+                    <li><a href="#yhteenveto">4. Yhteenveto</a></li>
+                </ul>
+            </div>
+
+            <p>Tekoälyn tuominen osaksi yrityksen arkea on ottanut suuren harppauksen eteenpäin. Pelkät yleisluontoiset kielimallit (kuten ChatGPT) tekevät toisinaan virheitä ja keksivät asioita omiaan. Ratkaisu tähän on <strong>RAG (Retrieval-Augmented Generation)</strong>, joka yhdistää kielimallin luovuuden ja yrityksen oman datan tarkkuuden.</p>
+
+            <p>Mutta miten tällainen järjestelmä oikeasti toimii konepellin alla? Katsotaanpa, miten moderni RAG-arkkitehtuuri on yleensä rakennettu ja miten se on kehittynyt viimeisten vuosien aikana.</p>
+
+            <h2 id="mita-se-tarkoittaa">1. Mitä RAG-arkkitehtuuri oikeasti tarkoittaa?</h2>
+            <p>RAG-arkkitehtuuri tarkoittaa järjestelmää, jossa kielimallin (LLM) kykyä tuottaa tekstiä ohjataan antamalla sille faktapohjaista tietoa ulkoisesta tietokannasta. Sen sijaan, että tekoäly yrittäisi arvata vastauksen, se hakee ensin oikean tiedon ja muotoilee vastauksen vasta sen jälkeen.</p>
+
+            <div class="highlight-box">
+                <p><strong>Yksinkertaistettuna:</strong> Kuvittele, että tekoäly on opiskelija tentissä. Ilman RAGia se joutuu luottamaan pelkkään ulkomuistiinsa. RAGin kanssa se saa viedä tenttiin mukanaan yrityksesi koko dokumentaation ja etsiä sieltä oikean tiedon ennen vastaamista.</p>
+            </div>
+
+            <h2 id="perusrakenne">2. RAG-järjestelmän perusrakenne</h2>
+            <p>Tekoälytutkijat kutsuvat RAGin perinteistä muotoa nimellä "Naïve RAG". Se muodostaa yhä perustan lähes kaikille tiedonhakujärjestelmille. Alla on havainnollistava ylätason arkkitehtuurikuva siitä, miten prosessi etenee käyttäjän kysymyksestä lopulliseen vastaukseen.</p>
+
+            <div class="mermaid">
+                flowchart TD
+                    subgraph Käyttäjä
+                        A[👤 Käyttäjän kysymys]
+                        G[💬 Luotettava vastaus]
+                    end
+
+                    subgraph RAG-järjestelmä
+                        B(🔍 Vektorihaku / Retriever)
+                        C{⚖️ Reranker & Suodatus}
+                        E[🧩 Promptin rakennus]
+                        F[🧠 Kielimalli / LLM]
+                    end
+
+                    subgraph Tietovaranto
+                        D[(Yrityksen Vektori-DB)]
+                    end
+
+                    A --> B
+                    B -->|Hakukysely| D
+                    D -.->|Raakatulokset| C
+                    C -->|Olennaisin tieto| E
+                    A -->|Kysymys| E
+                    E -->|Konteksti + Kysymys| F
+                    F --> G
+                    
+                    classDef default fill:#0a0f1e,stroke:#06b6d4,stroke-width:1px,color:#f1f5f9;
+                    classDef database fill:#06b6d4,stroke:#030712,color:#030712;
+                    class D database;
+                    style RAG-järjestelmä fill:transparent,stroke:#22d3ee,stroke-dasharray: 5 5
+                    style Käyttäjä fill:transparent,stroke:#94a3b8,stroke-dasharray: 5 5
+                    style Tietovaranto fill:transparent,stroke:#94a3b8,stroke-dasharray: 5 5
+            </div>
+
+            <p>Prosessi etenee tyypillisesti kolmessa vaiheessa:</p>
+            <ol>
+                <li><strong>Haku (Retrieval):</strong> Järjestelmä muuttaa käyttäjän kysymyksen matemaattiseksi vektoriksi ja etsii tietokannasta lähimpänä olevat dokumentit.</li>
+                <li><strong>Suodatus ja järjestely (Reranking):</strong> Nykyaikaisissa järjestelmissä hakutulokset arvioidaan vielä toiseen kertaan (Reranker-mallilla), jotta vain kaikista olennaisin tieto päätyy lopulliseen vastaukseen.</li>
+                <li><strong>Generointi (Generation):</strong> Kielimallille annetaan käyttäjän kysymys ja löydetty tieto. Sen ainoaksi tehtäväksi jää muotoilla selkeä ja ymmärrettävä vastaus annettujen faktojen pohjalta.</li>
+            </ol>
+
+            <h2 id="modulaarinen">3. Modulaarinen RAG: Vuoden 2026 standardi</h2>
+            <p>Vuosien 2024 ja 2025 aikana RAG-tutkimuksessa huomattiin, että yksinkertainen putki ei aina riitä. Syntyi <strong>Modulaarinen RAG</strong>, joka on nykyinen alan standardi.</p>
+
+            <p>Modulaarisessa arkkitehtuurissa järjestelmä on jaettu pienempiin osiin, joita voidaan vaihtaa ja optimoida erikseen. Siihen kuuluu olennaisesti myös ennakoiva haku ja itsereflektio (Self-Reflective RAG). Jos tekoäly huomaa, ettei löydetty tieto vastaa käyttäjän kysymykseen, se osaa itsenäisesti muotoilla kysymyksen uudelleen ja tehdä uuden haun tietokantaan.</p>
+
+            <p>Tämä modulaarisuus on tehnyt RAG-järjestelmistä huomattavasti aiempaa kestävämpiä (robust) ja luotettavampia yrityskäytössä.</p>
+
+            <h2 id="yhteenveto">4. Yhteenveto</h2>
+            <p>RAG-arkkitehtuuri on ratkaissut monia tekoälyn alkuvuosien ongelmista. Se tuo hallittavuutta ja faktoihin pohjautuvaa tarkkuutta automaatioon. Kun RAG on rakennettu oikein modulaariseksi kokonaisuudeksi, se palvelee yritystä luotettavana ja skaalautuvana työntekijänä, jolla on aina yrityksen koko tietopääoma sormenpäissään.</p>
+
+            <div class="contact-section" style="margin-top: 60px;">
+                <h3 style="margin-top: 0;">Haluatko rakentaa yrityksellesi oman RAG-ratkaisun?</h3>
+                <p>Valok suunnittelee ja toteuttaa tietoturvalliset tekoälyratkaisut, jotka kytkeytyvät suoraan yrityksesi omiin tietovarantoihin.</p>
+                <a href="/#yhteystiedot" class="btn btn-primary">Ota yhteyttä asiantuntijoihimme</a>
+            </div>
+
+            <div class="reference-list">
+                <p><strong>Lähteet ja tutkimuskirjallisuus:</strong></p>
+                <ol>
+                    <li>Gupta, S., Ranjan, R., & Singh, S. N. (2024). <a href="https://www.researchgate.net/publication/385009890_A_Comprehensive_Survey_of_Retrieval-Augmented_Generation_RAG_Evolution_Current_Landscape_and_Future_Directions" target="_blank" style="color: inherit;">A Comprehensive Survey of Retrieval-Augmented Generation (RAG): Evolution, Current Landscape and Future Directions.</a> ResearchGate.</li>
+                    <li>Sharma, C. (2025). <a href="https://www.researchgate.net/publication/392335133_Retrieval-Augmented_Generation_A_Comprehensive_Survey_of_Architectures_Enhancements_and_Robustness_Frontiers" target="_blank" style="color: inherit;">Retrieval-Augmented Generation: A Comprehensive Survey of Architectures, Enhancements, and Robustness Frontiers.</a> ResearchGate.</li>
+                </ol>
+            </div>
+        </main>
+    </article>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <div class="logo">VALOK<span class="logo-dot">.</span></div>
+                <p>Älykkäät automaatiot ja ohjelmistoratkaisut huomisen liiketoiminnalle.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Linkit</h4>
+                <ul>
+                    <li><a href="/">Etusivu</a></li>
+                    <li><a href="../blogi.html">Blogi</a></li>
+                    <li><a href="/#palvelut">Palvelut</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Yhteystiedot</h4>
+                <ul>
+                    <li>aleksanteri@valok.fi</li>
+                    <li>Jyväskylä, Suomi</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Valok. Kaikki oikeudet pidätetään.
+        </div>
+    </footer>
+
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ 
+            startOnLoad: true, 
+            theme: 'dark',
+            fontFamily: 'Plus Jakarta Sans',
+        });
+    </script>
+</body>
+</html>
