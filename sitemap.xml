@@ -8,8 +8,14 @@
    </url>
    <url>
       <loc>https://valok.fi/blogi.html</loc>
-      <lastmod>2026-05-20</lastmod>
+      <lastmod>2026-05-26</lastmod>
       <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+   </url>
+   <url>
+      <loc>https://valok.fi/blogi/tekoalyautomaatio-pk-yritykset.html</loc>
+      <lastmod>2026-05-26</lastmod>
+      <changefreq>monthly</changefreq>
       <priority>0.8</priority>
    </url>
    <url>
