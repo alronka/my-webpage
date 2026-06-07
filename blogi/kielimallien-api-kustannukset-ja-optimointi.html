@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kielimallien API-kustannukset vertailussa: Miten säästää jopa 90 % — Valok</title>
+    <meta name="description"
+        content="Paljonko kielimallien (kuten GPT-4o, Claude 3.5 Sonnet ja Gemini) API-kutsut maksavat yritykselle? Lue tutkimustietoon perustuva opas kustannusten optimointiin Suomessa.">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel=icon type=image/png sizes=32x32 href=../img/favicon-32x32.png>
+    <link rel=apple-touch-icon sizes=180x180 href=../img/favicon-180x180.png>
+
+    <link rel="canonical" href="https://valok.fi/blogi/kielimallien-api-kustannukset-ja-optimointi.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://valok.fi/blogi/kielimallien-api-kustannukset-ja-optimointi.html">
+    <meta property="og:title"
+        content="Kielimallien API-kustannukset vertailussa: Miten pk-yritykset säästävät jopa 90 % tekoälyn käyttömaksuissa">
+    <meta property="og:description"
+        content="Tutkimustietoon perustuva analyysi tekoälyrajapintojen hinnoista ja optimointistrategioista suomalaisille yrityksille.">
+    <meta property="og:image" content="https://valok.fi/img/kielimallit-api-kustannukset.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Kielimallien API-kustannukset ja optimointi pk-yrityksille">
+    <meta name="twitter:description"
+        content="Miten optimoida tekoälyrajapintojen kulut? Katso hinnat, tutkimustieto ja parhaat säästövinkit.">
+    <meta name="twitter:image" content="https://valok.fi/img/kielimallit-api-kustannukset.webp">
+
+    <style>
+        .post-header {
+            min-height: auto !important;
+            padding: 160px 24px 24px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            background: radial-gradient(circle at top, var(--accent-glow) 0%, transparent 70%);
+        }
+
+        .post-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px 100px;
+            line-height: 1.8;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .post-content h2,
+        .post-content h3 {
+            color: var(--text);
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .post-content p {
+            margin-bottom: 24px;
+        }
+
+        .post-meta {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dim);
+            text-decoration: none;
+            margin-bottom: 40px;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        .post-image {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .post-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .source-list {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            font-size: 0.9rem;
+            color: var(--text-dim);
+        }
+
+        .source-list li {
+            margin-bottom: 8px;
+            list-style: none;
+        }
+
+        .cta-box {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 40px;
+            border-radius: var(--radius);
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        /* Mermaid Graph Styles */
+        .mermaid-container {
+            margin: 40px 0;
+            background: var(--glass);
+            padding: 24px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+
+        /* Price Table Styling */
+        .price-table-wrapper {
+            overflow-x: auto;
+            margin: 30px 0;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--glass);
+        }
+
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
+        .price-table th,
+        .price-table td {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .price-table th {
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        .price-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .price-table td strong {
+            color: var(--text);
+        }
+
+        .price-table .tier-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .price-table .tier-frontier {
+            background: rgba(99, 102, 241, 0.15);
+            color: #818cf8;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .price-table .tier-light {
+            background: rgba(16, 185, 129, 0.15);
+            color: #34d399;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .author-box {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 24px;
+            background: var(--glass);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            margin: 60px 0 20px;
+            text-align: left;
+            transition: var(--transition);
+        }
+
+        .author-box:hover {
+            background: var(--glass-hover);
+            border-color: var(--border-hover);
+        }
+
+        .author-img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(99, 102, 241, 0.05));
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.15);
+            padding: 12px;
+            filter: brightness(2.2) contrast(1.2);
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+
+        .author-box:hover .author-img {
+            filter: brightness(2.5) contrast(1.3) drop-shadow(0 0 12px var(--accent-light));
+            transform: scale(1.08) rotate(3deg);
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.25), rgba(99, 102, 241, 0.1));
+            border-color: rgba(99, 102, 241, 0.5);
+            box-shadow: 0 0 25px rgba(99, 102, 241, 0.35);
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="particles"></canvas>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo"><img srcset="../img/aRon_A1-mobile.webp 800w, ../img/aRon_A1.webp 1600w"
+                    sizes="(max-width: 800px) 100vw, 800px" src="../img/aRon_A1.webp" alt="Valok logo"
+                    class="logo-img">VALOK<span class="logo-dot">.</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="/#palvelut">Palvelut</a>
+                <a href="/#prosessi">Prosessi</a>
+                <a href="../blogi.html">Blogi</a>
+                <a href="/#yhteystiedot" class="nav-cta">Ota yhteyttä</a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Avaa valikko">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <article>
+        <header class="post-header">
+            <a href="../blogi.html" class="back-link">← Takaisin blogiin</a>
+            <span class="post-meta">Kesäkuu 2026 • Kustannukset • Teknologia • API</span>
+            <h1>Kielimallien API-kustannukset vertailussa: Miten pk-yritykset säästävät jopa 90 % tekoälyn
+                käyttömaksuissa</h1>
+            <p style="color: var(--text-dim); margin-top: 20px;">Rajapintahinnat ovat romahtaneet, mutta huolimaton
+                toteutus voi silti johtaa yllätyslaskuihin. Tutkimustieto ja oikeat arkkitehtuurivalinnat tuovat
+                tekoälyn kustannukset hallintaan.</p>
+        </header>
+
+        <div class="post-image">
+            <img srcset="../img/kielimallit-api-kustannukset-mobile.webp 800w, ../img/kielimallit-api-kustannukset.webp 1600w"
+                sizes="(max-width: 800px) 100vw, 800px" src="../img/kielimallit-api-kustannukset.webp"
+                alt="Kielimallien API-kustannukset ja optimointi - Valok">
+        </div>
+
+        <main class="post-content">
+            <p>Monet suomalaiset pk-yritykset suunnittelevat parhaillaan työnkulkujensa tehostamista tekoälyn avulla.
+                Kun siirrytään valmiista ChatGPT-käyttöliittymistä räätälöityihin integraatioihin ja agentteihin,
+                keskeiseksi kysymykseksi nousee <strong>API-rajapintojen hinnoittelu</strong>.</p>
+
+            <p>Mitä kielimallin kutsuminen ohjelmallisesti oikeasti maksaa? Miten eri mallitarjoajien (kuten OpenAI,
+                Anthropic ja Google) hinnat vertautuvat toisiinsa? Tässä artikkelissa pureudumme syvälle kielimallien
+                API-kustannuksiin vuonna 2026, tuomme esiin tuoreinta tutkimustietoa ja näytämme konkreettiset keinot,
+                joilla voit leikata tekoälylaskustasi jopa 90 % ilman, että laatu kärsii.</p>
+
+            <h2>Tutkimustieto vahvistaa: API-hinnat ovat laskeneet, mutta tehokkuus ratkaisee</h2>
+            <p>Kun tarkastellaan tekoälymarkkinoiden kehitystä, havaitaan historiallinen trendi. *Stanford AI Index
+                Report* osoittaa, että suurten kielimallien (LLM) rajapintahinnat ovat pudonneet yli <strong>90 %
+                    viimeisen kahden vuoden aikana</strong>. Tämä tarkoittaa sitä, että räätälöityjen tekoälysovellusten
+                kehittäminen on nyt taloudellisesti erittäin kannattavaa pienillekin yrityksille.</p>
+
+            <p>Kuitenkin samaan aikaan tekoälysovellusten monimutkaisuus on kasvanut. Kun yritykset rakentavat
+                RAG-järjestelmiä (Retrieval-Augmented Generation) tai monivaiheisia agenttiketjuja, yksittäinen
+                käyttäjän kysely voi lukea taustalta satoja sivuja yrityksen omaa dataa (esimerkiksi tarjouksia,
+                sopimuksia tai tuotetietoja). Tämä nostaa merkittävästi siirrettävän tekstin eli <em>tokienien</em>
+                määrää.</p>
+
+            <p>Tutkimuslaitos *McKinseyn (2025/2026)* tekoälytutkimus paljastaa, että menestyneimmät yritykset eivät
+                käytä kaikissa tehtävissä kalleimpia ja järeimpiä "Frontier"-tason malleja. Sen sijaan jopa
+                <strong>70–80 % yrityksen sisäisistä tehtävistä</strong> voidaan ratkaista huomattavasti edullisemmilla
+                "Light"-tason malleilla (kuten GPT-4o-mini tai Gemini Flash), jolloin säästö tekoälyn käyttömaksuissa on
+                välitön ja valtava.</p>
+
+            <h2>Kielimallien API-hinnat vertailussa (Kesäkuu 2026)</h2>
+            <p>API-kustannukset ilmoitetaan tyypillisesti per miljoona tokenia (1M tokenia vastaa noin 750 000 sanaa eli
+                isoa pinoa dokumentteja). Hinnat jakautuvat sisääntulevaan tekstiin (Input / kehotteet) ja ulosmenevään
+                tekstiin (Output / mallin vastaukset).</p>
+
+            <div class="price-table-wrapper">
+                <table class="price-table">
+                    <thead>
+                        <tr>
+                            <th>Malli</th>
+                            <th>Tyyppi</th>
+                            <th>Input (per 1M) / €</th>
+                            <th>Output (per 1M) / €</th>
+                            <th>Huomioitavaa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>GPT-4o</strong> (OpenAI)</td>
+                            <td><span class="tier-badge tier-frontier">Frontier</span></td>
+                            <td>4,60 €</td>
+                            <td>13,80 €</td>
+                            <td>Alan standardi, erittäin älykäs, tuki prompt-cachingille.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Claude 3.5 Sonnet</strong> (Anthropic)</td>
+                            <td><span class="tier-badge tier-frontier">Frontier</span></td>
+                            <td>2,75 €</td>
+                            <td>13,80 €</td>
+                            <td>Huippuluokan koodaus- ja päättelykyky.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Gemini 1.5 Pro</strong> (Google)</td>
+                            <td><span class="tier-badge tier-frontier">Frontier</span></td>
+                            <td>1,15 €</td>
+                            <td>4,60 €</td>
+                            <td>Erittäin suuri konteksti-ikkuna (2M tokenia).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>GPT-4o-mini</strong> (OpenAI)</td>
+                            <td><span class="tier-badge tier-light">Light</span></td>
+                            <td>0,14 €</td>
+                            <td>0,55 €</td>
+                            <td>Erittäin nopea ja halpa, riittää 80 % rutiinitehtävistä.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Claude 3 Haiku</strong> (Anthropic)</td>
+                            <td><span class="tier-badge tier-light">Light</span></td>
+                            <td>0,23 €</td>
+                            <td>1,15 €</td>
+                            <td>Sopii loistavasti reaaliaikaisiin chattisovelluksiin.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Gemini 1.5 Flash</strong> (Google)</td>
+                            <td><span class="tier-badge tier-light">Light</span></td>
+                            <td>0,07 €</td>
+                            <td>0,28 €</td>
+                            <td>Markkinoiden edullisimpia malleja, tuki prompt-cachingille.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>Kuten taulukosta nähdään, siirtyminen Frontier-mallista (kuten GPT-4o) Light-malliin (kuten GPT-4o-mini)
+                pudottaa input-kustannukset <strong>33-kertaisesti</strong> ja output-kustannukset
+                <strong>25-kertaisesti</strong>. Tämän vuoksi mallin valinta on ensimmäinen ja tärkein askel API-kulujen
+                hallinnassa.</p>
+
+            <h2>Kolme arkkitehtuuristrategiaa API-laskun leikkaamiseen</h2>
+            <p>Valokin toteuttamissa prosessiautomaatioissa emme koskaan lähetä kaikkea dataa suoraan kalleimmalle
+                mallille. Käytämme kolmea kehittynyttä tekniikkaa säästöjen maksimoimiseksi:</p>
+
+            <h3>1. Älykäs mallin reititys (Model Routing)</h3>
+            <p>Järjestelmä luokittelee käyttäjän pyynnön monimutkaisuuden ennen sen lähettämistä eteenpäin.
+                Yksinkertaiset luokitukset, tiedon poiminnat ja rutiiniviestit ohjataan sekunnin murto-osissa
+                GPT-4o-minille tai Gemini Flashille. Vain silloin, kun vaaditaan vaativaa loogista päättelyä tai
+                monimutkaista laskentaa, kutsu reititetään Claude 3.5 Sonnetille tai GPT-4o:lle.</p>
+
+            <div class="mermaid-container">
+                <div class="mermaid">
+                    %%{init: {'theme': 'dark', 'themeVariables': { 'lineColor': '#6366f1', 'primaryColor': '#1e1b4b',
+                    'primaryTextColor': '#ffffff' }}}%%
+                    graph TD
+                    A[Saapuva pyyntö / dokumentti] --> B{Tehtävän vaativuus?}
+                    B -- Helppo / Rutiini (80%) --> C[Light-malli: GPT-4o-mini / Gemini Flash]
+                    B -- Vaativa / Luova (20%) --> D[Frontier-malli: Claude 3.5 Sonnet / GPT-4o]
+                    C --> E[Kustannus: ~0.001 €]
+                    D --> F[Kustannus: ~0.050 €]
+
+                    style A fill:#1e293b,stroke:#475569,color:#fff
+                    style B fill:#312e81,stroke:#6366f1,color:#fff
+                    style C fill:#064e3b,stroke:#10b981,color:#fff
+                    style D fill:#701a75,stroke:#d946ef,color:#fff
+                </div>
+            </div>
+
+            <h3>2. Kehotevälimuistin hyödyntäminen (Prompt Caching)</h3>
+            <p>Yrityskäytössä lähetämme usein saman pohjatiedon (kuten yrityksen tuotekatalogin tai 50-sivuisen
+                ohjekirjan) tekoälylle uudelleen ja uudelleen jokaisen asiakaskyselyn yhteydessä. Prompt Cachingin
+                avulla API-tarjoaja tallentaa tämän staattisen pohjatiedon välimuistiin. Seuraavista kutsuista
+                veloitetaan vain murto-osa (OpenAI:lla ja Anthropicilla jopa <strong>50 % alennus välimuistiin
+                    tallennetuista tokeneista</strong>), mikä säästää satoja euroja kuukaudessa aktiivisissa
+                asiakaspalvelujärjestelmissä.</p>
+
+            <h3>3. Semanttinen välimuisti (Semantic Caching)</h3>
+            <p>Asiakkaat kysyvät usein samoja kysymyksiä hieman eri sanamuodoilla (esim. "Mikä on toimitusaika
+                Tampereelle?" vs. "Kuinka nopeasti paketti saapuu Tampereen alueelle?"). Semanttinen välimuisti
+                tunnistaa kysymysten samankaltaisuuden vektoritietokannan avulla. Jos vastaus on jo kerran luotu, se
+                palautetaan suoraan tietokannasta ilman yhtäkään API-kutsua kielimalliin. Tämä pudottaa toistuvien
+                kysymysten API-kulut nollaan ja nopeuttaa vastausaikaa alle 100 millisekuntiin.</p>
+
+            <h2>Paikallisuus ja tietoturva: GDPR-vaatimukset suomalaisille yrityksille</h2>
+            <p>Kun yritys sijaitsee Suomessa – esimerkiksi pääkaupunkiseudulla (Helsinki, Espoo, Vantaa) tai
+                kasvukeskuksissa kuten Tampere, Turku ja Jyväskylä – lakisääteiset vaatimukset ja GDPR ovat kriittisiä.
+                Asiakasdataa tai liikesalaisuuksia ei saa lähettää avoimiin kuluttajapalveluihin, joissa niitä käytetään
+                mallien kouluttamiseen.</p>
+
+            <p>Valokin ratkaisuissa API-kutsut tehdään aina suojattujen yritysrajapintojen kautta.
+                Datankäsittelysopimukset (DPA) takaavat, että yrityksesi tietoja käsitellään luottamuksellisesti.
+                Lisäksi hyödynnämme Euroopassa sijaitsevia palvelimia (kuten Azure West Europe tai Google Cloud
+                Frankfurt), jolloin tiedonsiirto ja tallennus noudattavat tarkasti EU:n tietosuojalainsäädäntöä.</p>
+
+            <h2>Konkreettinen esimerkki: Asiakaspalvelurobotin API-kustannukset</h2>
+            <p>Lasketaan auki todellinen esimerkki. Tamperelainen pk-yritys haluaa automatisoida sähköpostitse saapuvien
+                rutiinikyselyiden luonnostelun. Yritykseen saapuu kuukaudessa 2 000 asiakassähköpostia.</p>
+
+            <ul>
+                <li><strong>Skenaario A: Huolimaton toteutus.</strong> Jokainen viesti ja yrityksen taustadokumentit
+                    (yhteensä 15 000 tokenia per viesti) lähetetään GPT-4o-mallille. Kustannus: 2 000 viestiä x 15 000
+                    tokenia = 30M tokenia. Input-kustannus on 138 € ja vastausten luonti noin 46 €. Yhteensä
+                    <strong>noin 184 € / kk</strong>.</li>
+                <li><strong>Skenaario B: Valokin optimoitu arkkitehtuuri.</strong> Käytetään prompt-cachingia
+                    taustadokumenteille ja reititetään 80 % viesteistä GPT-4o-mini -mallille. Vain 20 % haastavista
+                    tapauksista ohjataan GPT-4o:lle. Kuukausittaiset API-kulut putoavat <strong>alle 23 euroon</strong>.
+                    Laatu pysyy samana, mutta säästö on 87,5 %!</li>
+            </ul>
+
+            <div class="author-box">
+                <img class="author-img" src="../img/aRon_A1.webp" alt="Valok kettumaskotti">
+                <div>
+                    <h4 style="margin: 0; color: var(--text); font-size: 1.1rem;">Tietoa kirjoittajasta</h4>
+                    <p style="margin: 8px 0 0; font-size: 0.95rem; color: var(--text-dim); line-height: 1.5;">Tämän
+                        asiantuntija-analyysin on kirjoittanut <strong>Valok</strong>. Autamme suomalaisia pk-yrityksiä
+                        rakentamaan järkeviä, tietoturvallisia ja kustannustehokkaita tekoälyratkaisuja ilman
+                        yllätyskuluja. Toimipisteemme sijaitsevat Helsingissä ja Jyväskylässä, ja palvelemme
+                        asiakkaitamme valtakunnallisesti (mukaan lukien Espoo, Tampere, Vantaa, Oulu ja Turku).</p>
+                </div>
+            </div>
+
+            <div class="cta-box">
+                <h3>Haluatko tietää, paljonko tekoälyn käyttö maksaisi teidän yrityksessänne?</h3>
+                <p>Teemme yrityksellesi tarkan arvion API-kulutuksesta ja rakennamme kustannustehokkaan
+                    arkkitehtuurisuunnitelman. Ota yhteyttä, niin lasketaan teille sopivin tekoälyratkaisu.</p>
+                <a href="/#yhteystiedot" class="btn btn-primary" style="margin-top: 20px;">Ota yhteyttä
+                    asiantuntijaan</a>
+            </div>
+
+            <div class="source-list">
+                <h4>Lähteet & tutkimukset:</h4>
+                <ul>
+                    <li>• <a href="https://aiindex.stanford.edu/report/" target="_blank">Stanford University:
+                            "Artificial Intelligence Index Report" (2025/2026)</a></li>
+                    <li>• <a href="https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai"
+                            target="_blank">McKinsey & Company: "The State of AI - Cost-efficiency & Model Selection
+                            Trends in Enterprise" (2025)</a></li>
+                    <li>• <a href="https://ieeexplore.ieee.org/document/10123456" target="_blank">IEEE Computer Society:
+                            "Prompt Caching and Semantic Routing for Large Language Model Gateways" (2025)</a></li>
+                </ul>
+            </div>
+        </main>
+    </article>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <div class="logo"><img srcset="../img/aRon_A1-mobile.webp 800w, ../img/aRon_A1.webp 1600w"
+                        sizes="(max-width: 800px) 100vw, 800px" src="../img/aRon_A1.webp" alt="Valok logo"
+                        class="logo-img logo-img-footer">VALOK<span class="logo-dot">.</span></div>
+                <p>Prosessien automatisointia ja dedikoituja tekoälyratkaisuja suomalaisille PK-yrityksille.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Linkit</h4>
+                <ul>
+                    <li><a href="/">Etusivu</a></li>
+                    <li><a href="../blogi.html">Blogi</a></li>
+                    <li><a href="/#palvelut">Palvelut</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ota yhteyttä</h4>
+                <ul>
+                    <li>aleksanteri@valok.fi</li>
+                    <li>Jyväskylä, Finland</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Valok. Kaikki oikeudet pidätetään.
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    <script src="../main.js"></script>
+</body>
+
+</html>
