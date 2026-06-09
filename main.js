@@ -314,3 +314,84 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         });
     });
 })();
+
+// ---- THEME TOGGLE ----
+(function initThemeToggle() {
+    const navContainer = document.querySelector('.nav-container');
+    const navLinks = document.getElementById('navLinks');
+    const mobileToggle = document.getElementById('mobileToggle');
+    if (!navContainer) return;
+
+    // Create the button
+    const toggleBtn = document.createElement('button');
+    toggleBtn.className = 'theme-toggle';
+    toggleBtn.setAttribute('aria-label', 'Vaihda teemaa');
+    toggleBtn.innerHTML = `
+        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+    `;
+
+    // Insert button at correct position
+    if (window.innerWidth <= 768 && mobileToggle) {
+        navContainer.insertBefore(toggleBtn, mobileToggle);
+    } else {
+        navContainer.appendChild(toggleBtn);
+    }
+
+    // Handle screen resize to move toggle button
+    window.addEventListener('resize', () => {
+        if (window.innerWidth <= 768 && mobileToggle) {
+            if (toggleBtn.nextSibling !== mobileToggle) {
+                navContainer.insertBefore(toggleBtn, mobileToggle);
+            }
+        } else {
+            if (toggleBtn.parentElement === navContainer && toggleBtn.nextSibling !== null) {
+                navContainer.appendChild(toggleBtn);
+            }
+        }
+    });
+
+    // Update logo images based on theme
+    function updateLogos() {
+        const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+        const logoImgs = document.querySelectorAll('.logo-img');
+        logoImgs.forEach(img => {
+            let src = img.getAttribute('src');
+            if (!src) return;
+            
+            const isBlog = src.startsWith('../');
+            const basePath = isBlog ? '../img/' : 'img/';
+            
+            if (isLight) {
+                img.src = basePath + 'valok-black-with-white-outline.webp';
+                img.srcset = basePath + 'valok-black-with-white-outline.webp';
+            } else {
+                img.src = basePath + 'aRon_A1.webp';
+                img.srcset = `${basePath}aRon_A1-mobile.webp 800w, ${basePath}aRon_A1.webp 1600w`;
+            }
+        });
+    }
+
+    // Initialize logos based on stored theme
+    updateLogos();
+
+    // Click handler
+    toggleBtn.addEventListener('click', () => {
+        const theme = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        updateLogos();
+    });
+})();
