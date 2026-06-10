@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prosessiautomaation ROI ja tutkimustieto 2026 — Valok</title>
+    <meta name="description"
+        content="Mitä tutkimukset kertovat prosessiautomaation ja tekoälyn todellisesta ROI:sta PK-yrityksille? McKinseyn ja Deloitten dataa ja käytännön vinkkejä.">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css?v=2">
+    <link rel=icon type=image/png sizes=32x32 href=../img/favicon-32x32.png>
+    <link rel=apple-touch-icon sizes=180x180 href=../img/favicon-180x180.png>
+
+    <link rel="canonical" href="https://valok.fi/blogi/automaatio-tutkimus-roi.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://valok.fi/blogi/automaatio-tutkimus-roi.html">
+    <meta property="og:title" content="Prosessiautomaation ROI ja tutkimustieto: Mitä PK-yrityksen tulee tietää 2026">
+    <meta property="og:description" content="Mitä tutkimukset kertovat prosessiautomaation ja tekoälyn todellisesta ROI:sta PK-yrityksille? McKinseyn ja Deloitten tuore data analysoituna.">
+    <meta property="og:image" content="https://valok.fi/img/automaatio-prosessit-kettu.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://valok.fi/blogi/automaatio-tutkimus-roi.html">
+    <meta name="twitter:title" content="Prosessiautomaation ROI ja tutkimustieto: Mitä PK-yrityksen tulee tietää 2026">
+    <meta name="twitter:description" content="Mitä tutkimukset kertovat prosessiautomaation todellisesta ROI:sta? McKinseyn ja Deloitten tuore data analysoituna.">
+    <meta name="twitter:image" content="https://valok.fi/img/automaatio-prosessit-kettu.webp">
+
+    <!-- Article structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Prosessiautomaation ROI ja tutkimustieto: Mitä PK-yrityksen tulee tietää 2026",
+      "description": "Mitä tutkimukset kertovat prosessiautomaation ja tekoälyn todellisesta ROI:sta PK-yrityksille? McKinseyn ja Deloitten tuoretta tutkimustietoa ja käytännön laskelmia.",
+      "image": "https://valok.fi/img/automaatio-prosessit-kettu.webp",
+      "datePublished": "2026-06-10",
+      "author": {
+        "@type": "Organization",
+        "name": "Valok"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Valok",
+        "url": "https://valok.fi"
+      }
+    }
+    </script>
+
+    <style>
+        .post-header {
+            min-height: auto !important;
+            padding: 160px 24px 40px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            background: radial-gradient(circle at top, var(--accent-glow) 0%, transparent 70%);
+        }
+
+        .post-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px 100px;
+            line-height: 1.8;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .post-content h2, .post-content h3 {
+            color: var(--text);
+            margin-top: 48px;
+            margin-bottom: 20px;
+        }
+
+        .post-content h2 {
+            font-size: 1.6rem;
+        }
+
+        .post-content h3 {
+            font-size: 1.2rem;
+        }
+
+        .post-content p {
+            margin-bottom: 24px;
+        }
+
+        .post-content ul, .post-content ol {
+            margin-bottom: 24px;
+            padding-left: 20px;
+        }
+
+        .post-content li {
+            margin-bottom: 12px;
+        }
+
+        .cta-box {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 40px;
+            border-radius: var(--radius);
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .post-meta {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dim);
+            text-decoration: none;
+            margin-bottom: 40px;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        .post-image {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 48px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .post-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .post-date {
+            display: block;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            margin-top: 12px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(123, 97, 255, 0.08), rgba(0, 212, 255, 0.06));
+            border: 1px solid rgba(123, 97, 255, 0.25);
+            border-left: 4px solid var(--accent);
+            border-radius: var(--radius);
+            padding: 24px 28px;
+            margin: 32px 0;
+        }
+
+        .highlight-box p {
+            margin-bottom: 0;
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .step-list {
+            counter-reset: steps;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .step-list li {
+            counter-increment: steps;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            margin-bottom: 28px;
+            padding: 20px 24px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
+
+        .step-list li:hover {
+            border-color: var(--accent);
+            background: var(--glass-hover);
+        }
+
+        .step-list li::before {
+            content: counter(steps);
+            background: linear-gradient(135deg, var(--accent), #00d4ff);
+            color: #fff;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.95rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .step-content strong {
+            color: var(--text);
+            display: block;
+            margin-bottom: 6px;
+            font-size: 1rem;
+        }
+
+        .related-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 32px 0;
+        }
+
+        .related-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 20px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text-muted);
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+        .related-link:hover {
+            border-color: var(--accent);
+            color: var(--text);
+            transform: translateX(4px);
+        }
+
+        .related-link span:first-child {
+            font-size: 1.2rem;
+        }
+
+        /* Table of Contents */
+        .toc {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--accent);
+            border-radius: var(--radius);
+            padding: 28px 32px;
+            margin: 40px 0;
+        }
+
+        .toc-title {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .toc ol {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            counter-reset: toc-counter;
+        }
+
+        .toc li {
+            counter-increment: toc-counter;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+        }
+
+        .toc li::before {
+            content: counter(toc-counter, decimal-leading-zero);
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--accent);
+            opacity: 0.7;
+            flex-shrink: 0;
+            width: 22px;
+        }
+
+        .toc a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            line-height: 1.4;
+        }
+
+        .toc a:hover {
+            color: var(--accent);
+        }
+
+        /* Sources / References */
+        .sources {
+            margin-top: 56px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+        }
+
+        .sources h2 {
+            font-size: 1.1rem !important;
+            margin-top: 0 !important;
+            margin-bottom: 20px !important;
+            color: var(--text-dim) !important;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 0.85rem !important;
+        }
+
+        .sources ol {
+            padding-left: 20px;
+            margin: 0;
+        }
+
+        .sources li {
+            font-size: 0.88rem;
+            color: var(--text-dim);
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .sources a {
+            color: var(--accent);
+            text-decoration: none;
+            word-break: break-all;
+        }
+
+        .sources a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="particles"></canvas>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo"><img srcset="../img/aRon_A1-mobile.webp 800w, ../img/aRon_A1.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/aRon_A1.webp" alt="Valok logo" class="logo-img">VALOK<span
+                    class="logo-dot">.</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="/#palvelut">Palvelut</a>
+                <a href="/#prosessi">Prosessi</a>
+                <a href="../blogi.html">Blogi</a>
+                <a href="/#yhteystiedot" class="nav-cta">Ota yhteyttä</a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Avaa valikko">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <article>
+        <header class="post-header">
+            <a href="../blogi.html" class="back-link">← Takaisin blogiin</a>
+            <span class="post-meta">Automaatio • Tutkimustieto • ROI • 5 min luku</span>
+            <h1>Prosessiautomaation ROI: <span class="gradient-text">Mitä tutkimusdata kertoo PK-yrityksille?</span></h1>
+            <p style="color: var(--text-dim); margin-top: 24px; font-size: 1.15rem; max-width: 650px; margin-left: auto; margin-right: auto;">
+                Low-code-työkalut ja tekoäly ovat muuttaneet prosessiautomaation ROI-yhtälön. Pureudumme McKinseyn ja Deloitten tutkimuksiin PK-yritysten näkökulmasta.
+            </p>
+            <span class="post-date">10. Kesäkuuta 2026</span>
+        </header>
+
+        <div class="post-image" style="max-width: 800px; margin: 0 auto 48px;">
+            <picture>
+                <source srcset="../img/automaatio-prosessit-kettu-mobile.webp" media="(max-width: 800px)">
+                <img src="../img/automaatio-prosessit-kettu.webp" alt="Prosessiautomaation ROI ja tutkimustieto kettu maskotti">
+            </picture>
+        </div>
+
+        <main class="post-content">
+            <p>Monissa suomalaisissa PK-yrityksissä sana "automaatio" tuo yhä mieleen raskaat, vuosia kestävät toiminnanohjausjärjestelmien (ERP) päivitykset tai kalliit integraatioprojektit. Vuonna 2026 tilanne on kuitenkin täysin toinen: low-code-integraatioalustat (kuten n8n ja Make) sekä rajapintojen kautta toimiva tekoäly mahdollistavat prosessien automatisoinnin murto-osalla entisistä kustannuksista.</p>
+
+            <p>Jotta automaatioinvestoinneissa ei nojattaisi pelkkiin myyntipuheisiin, pureudumme tässä artikkelissa tuoreimpaan globaaliin tutkimusdataan prosessiautomaation ja tekoälyn todellisesta tuottavuusvaikutuksesta.</p>
+
+            <!-- TABLE OF CONTENTS -->
+            <div class="toc" role="navigation" aria-label="Sisällysluettelo">
+                <span class="toc-title">Sisällysluettelo</span>
+                <ol>
+                    <li><a href="#tilastot-2026">Automaation yleistyminen PK-sektorilla 2026</a></li>
+                    <li><a href="#todellinen-roi">Mitä tutkimukset sanovat ROI:sta?</a></li>
+                    <li><a href="#virhe-paalleliimaus">Yleisin sudenkuoppa: "Päälleliimattu" automaatio</a></li>
+                    <li><a href="#agenttiset-tyonkulut">Uusi aalto: Agenttiset työnkulut (Agentic Workflows)</a></li>
+                    <li><a href="#mistako-alkuun">Miten lähteä liikkeelle tulosvastuullisesti?</a></li>
+                    <li><a href="#lahteet">Lähteet ja tutkimusviitteet</a></li>
+                </ol>
+            </div>
+
+            <div class="highlight-box">
+                <p>📈 <strong>Keskeinen havainto:</strong> Vuoteen 2026 tultaessa PK-yritysten automaation ja tekoälyn käyttöaste on noussut 38 prosenttiin (verrattuna 22 % vuonna 2024), ja onnistuneet integraatiot saavuttavat positiivisen ROI:n tyypillisesti jo alle 18 kuukaudessa.<sup><a href="#lahde-1" style="color: var(--accent);">[1]</a></sup></p>
+            </div>
+
+            <h2 id="tilastot-2026">Automaation yleistyminen PK-sektorilla 2026</h2>
+            <p>Tutkimuslaitosten raportit osoittavat selkeää kiihtymistä PK-yritysten digitalisaatiossa. Aiemmin tekoälyä ja automatisoituja työnkulkuja hyödynsivät pääasiassa suuryritykset, joilla oli omat kehitystiimit. Pilvipalveluiden kehityksen ja visuaalisten integraatiotyökalujen ansiosta kynnys on madaltunut merkittävästi.</p>
+            
+            <p>Samaan aikaan markkinoiden kasvu on ollut erittäin vahvaa. Tekoälypohjaisen automaation globaalin markkinan ennustetaan saavuttavan lähes 20 miljardia dollaria vuoden 2026 aikana. Tämä kasvu heijastuu suoraan suomalaistenkin PK-yritysten tarpeeseen tehostaa toimintojaan, kun työvoimakustannukset nousevat ja osaajista on pulaa.</p>
+
+            <h2 id="todellinen-roi">Mitä tutkimukset sanovat ROI:sta?</h2>
+            <p>Deloitten ja McKinseyn keräämä aineisto vahvistaa, että systemaattisesti toteutettu automaatio tuo mukanaan merkittäviä hyötyjä useilla eri osa-alueilla:</p>
+
+            <ul>
+                <li><strong>Aikasäästöt rutiineissa:</strong> McKinsey arvioi, että jopa 45 % tietotyöntekijöiden työtunneista kuluu tehtäviin, jotka voitaisiin automatisoida kokonaan nykyisellä teknologialla ilman suuria järjestelmämuutoksia.<sup><a href="#lahde-2" style="color: var(--accent);">[2]</a></sup></li>
+                <li><strong>Virheiden vähentyminen:</strong> Manuaalinen tietojen siirtäminen järjestelmästä toiseen (esim. sähköposteista laskutukseen tai CRM-järjestelmään) aiheuttaa aina inhimillisiä virheitä. Automaatio poistaa nämä lähes 100-prosenttisesti.</li>
+                <li><strong>Osastokohtainen ROI:</strong> Tutkimusten mukaan korkeimman ja nopeimman ROI:n tarjoavat asiakaspalvelun tiedonreititys (~340 % ROI) sekä taloushallinnon laskuprosessit ja täsmäytykset (~250 % ROI).<sup><a href="#lahde-3" style="color: var(--accent);">[3]</a></sup></li>
+            </ul>
+
+            <h2 id="virhe-paalleliimaus">Yleisin sudenkuoppa: "Päälleliimattu" automaatio</h2>
+            <p>Vaikka ROI-potentiaali on korkea, Deloitte varoittaa raportissaan niin sanotusta "elusiivisen ROI:n paradoksista". Tämä tarkoittaa tilannetta, jossa yritys investoi teknologiaan, mutta ei saavuta toivottuja tuottavuushyötyjä.<sup><a href="#lahde-4" style="color: var(--accent);">[4]</a></sup></p>
+
+            <p>Suurin syy tähän on se, että <strong>automaatio tai tekoäly liimataan sellaisenaan olemassa olevan, tehottoman tai rikkinäisen prosessin päälle.</strong> Jos manuaalinen työnkulku on epäselvä tai huonosti organisoitu, automaatio tekee virheellisestä toiminnasta vain moninkertaisesti nopeampaa. Ennen työnkulkujen teknistä rakentamista prosessia on aina yksinkertaistettava ja turhat välivaiheet karsittava.</p>
+
+            <h2 id="agenttiset-tyonkulut">Uusi aalto: Agenttiset työnkulut (Agentic Workflows)</h2>
+            <p>Vuoden 2026 merkittävin teknologinen suuntaus on siirtyminen yksinkertaisista "jos tapahtuu A, tee B" -säännöistä <strong>agenttisiin työnkulkuihin</strong> (Agentic AI). Nämä ovat järjestelmiä, jotka kykenevät itsenäiseen päätöksentekoon ja pystyvät reagoimaan myös epäselviin tai muuttuviin lähtötietoihin.</p>
+            
+            <p>Esimerkiksi perinteinen automaatio siirtää liidin CRM:ään vain jos kaikki kentät on täytetty oikein. Agenttinen työnkulku osaa itse lukea vapaamuotoisen tarjouspyyntösähköpostin, etsiä puuttuvat taustatiedot yritysrekisteristä, luokitella pyynnön kiireellisyyden ja laatia vastausluonnoksen myyjän tarkistettavaksi.</p>
+
+            <h2 id="mistako-alkuun">Miten lähteä liikkeelle tulosvastuullisesti?</h2>
+            <p>Jotta vältytään kalliilta oppirahoilta, suosittelemme PK-yrityksille seuraavaa käytännön polkua:</p>
+
+            <ol class="step-list">
+                <li>
+                    <div class="step-content">
+                        <strong>Tunnista "pullonkaulat" (Bottlenecks)</strong>
+                        Kartoita ne tehtävät, joita työntekijät tekevät usein ja jotka turhauttavat heitä eniten. Yleensä nämä liittyvät datan kopiointiin järjestelmästä toiseen.
+                    </div>
+                </li>
+                <li>
+                    <div class="step-content">
+                        <strong>Laske potentiaalinen säästö etukäteen</strong>
+                        Jos työntekijä käyttää viikossa 4 tuntia manuaaliseen raportointiin ja hänen kokonaiskustannuksensa yritykselle on 45 €/tunti, säästetään pelkästään tässä 180 € viikossa (yli 9 000 € vuodessa). Tällä budjetilla automaation toteutus maksaa itsensä takaisin kuukausissa.
+                    </div>
+                </li>
+                <li>
+                    <div class="step-content">
+                        <strong>Aloita pienestä (Proof of Concept)</strong>
+                        Älä yritä automatisoida koko yrityksen toimintaa kerralla. Valitse yksi selkeä työnkulku – kuten vaikkapa yhteydenottolomakkeiden automaattinen rikastaminen ja reititys myynnille – ja varmista sen toimivuus ennen seuraavaa askelta.
+                    </div>
+                </li>
+            </ol>
+
+            <!-- Sources -->
+            <section class="sources">
+                <h2 id="lahteet">Lähteet ja tutkimusviitteet</h2>
+                <ol>
+                    <li id="lahde-1">
+                        Verizon Business (2025). <em>State of Small Business Survey: Increased Adoption of AI among Small Businesses.</em>
+                        <a href="https://www.verizon.com/about/news/verizon-business-state-of-small-business-survey-ai" target="_blank" rel="noopener noreferrer">verizon.com →</a>
+                    </li>
+                    <li id="lahde-2">
+                        McKinsey Global Institute (2017/2023). <em>The economic potential of generative AI and automation.</em>
+                        <a href="https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/the-economic-potential-of-generative-ai-the-next-productivity-frontier" target="_blank" rel="noopener noreferrer">mckinsey.com →</a>
+                    </li>
+                    <li id="lahde-3">
+                        Capsule CRM (2025). <em>Small Business AI Survey: Time-savings and ROI in SMB Operations.</em>
+                        <a href="https://capsulecrm.com/blog/small-business-ai-adoption-statistics/" target="_blank" rel="noopener noreferrer">capsulecrm.com →</a>
+                    </li>
+                    <li id="lahde-4">
+                        Deloitte Insights (2025/2026). <em>Avoiding the Paradox of Elusive Returns in AI Initiatives.</em>
+                        <a href="https://www.deloitte.com" target="_blank" rel="noopener noreferrer">deloitte.com →</a>
+                    </li>
+                </ol>
+            </section>
+
+            <!-- Internal links -->
+            <h2>Lue myös</h2>
+            <div class="related-links">
+                <a href="tekoalyn-hinta-ja-roi.html" class="related-link">
+                    <span>💰</span>
+                    <span>Tekoälyn hinta ja ROI: Mitä tekoälyprojektit maksavat PK-yritykselle?</span>
+                    <span style="margin-left: auto; color: var(--accent);">→</span>
+                </a>
+                <a href="prosessien-automatisointi-pk-yritykselle.html" class="related-link">
+                    <span>🔄</span>
+                    <span>Prosessien automatisointi PK-yritykselle: Konkreettiset askeleet 2026</span>
+                    <span style="margin-left: auto; color: var(--accent);">→</span>
+                </a>
+                <a href="automatisoi-rutiinit.html" class="related-link">
+                    <span>⚡</span>
+                    <span>Automatisoi rutiinit: 3 prosessia, joista jokaisen PK-yrityksen kannattaa aloittaa</span>
+                    <span style="margin-left: auto; color: var(--accent);">→</span>
+                </a>
+            </div>
+
+            <div class="cta-box">
+                <h3>Haluatko rakentaa mitattavaa tuottavuutta yritykseesi?</h3>
+                <p>Me Valokilla emme tee IT-projekteja IT-projektien vuoksi. Kartoitamme yrityksesi nykytilan maksutta ja rakennamme automaatiot, joiden ROI on todennettavissa.</p>
+                <a href="/#yhteystiedot" class="btn btn-primary" style="margin-top: 20px;">Ota yhteyttä kartoitusta varten</a>
+            </div>
+        </main>
+    </article>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <div class="logo"><img srcset="../img/aRon_A1-mobile.webp 800w, ../img/aRon_A1.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/aRon_A1.webp" alt="Valok logo" class="logo-img logo-img-footer">VALOK<span class="logo-dot">.</span></div>
+                <p>Prosessien automatisointia ja dedikoituja tekoälyratkaisuja suomalaisille PK-yrityksille.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Linkit</h4>
+                <ul>
+                    <li><a href="/">Etusivu</a></li>
+                    <li><a href="../blogi.html">Blogi</a></li>
+                    <li><a href="/#palvelut">Palvelut</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ota yhteyttä</h4>
+                <ul>
+                    <li>aleksanteri@valok.fi</li>
+                    <li>Jyväskylä, Finland</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Valok. Kaikki oikeudet pidätetään.
+        </div>
+    </footer>
+
+    <!-- PRIVACY BANNER -->
+    <div id="cookieBanner" class="cookie-banner">
+        <h5>Yksityisyytesi on meille tärkeää</h5>
+        <p>Käytämme sivustolla vain välttämättömiä toimintoja varmistaaksemme parhaan mahdollisen käyttökokemuksen. Emme
+            käytä kolmannen osapuolen markkinointievästeitä.</p>
+        <div class="cookie-btn-group">
+            <button id="acceptCookies" class="btn btn-primary">Ymmärrän</button>
+            <a href="#" class="btn btn-ghost">Lue lisää</a>
+        </div>
+    </div>
+
+    <script src="../main.js"></script>
+</body>
+
+</html>
