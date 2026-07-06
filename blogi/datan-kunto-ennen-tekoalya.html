@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data hajallaan? Näin tekoäly voi silti onnistua yrityksessäsi — Valok</title>
+    <meta name="description"
+        content="Hajallaan oleva data ei ole este tekoälylle, vaan lähtökohta. Lue miten Valok kartoittaa, jäsentää ja yhdistää yrityksesi datan, esimerkiksi vektoritietokannan avulla, ilman että kaiken pitää olla valmiiksi siistiä.">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel=icon type=image/png sizes=32x32 href=../img/favicon-32x32.png>
+    <link rel=apple-touch-icon sizes=180x180 href=../img/favicon-180x180.png>
+
+    <link rel="canonical" href="https://valok.fi/blogi/datan-kunto-ennen-tekoalya.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://valok.fi/blogi/datan-kunto-ennen-tekoalya.html">
+    <meta property="og:title" content="Data hajallaan? Näin tekoäly voi silti onnistua yrityksessäsi">
+    <meta property="og:description" content="Hajallaan oleva data ei ole este tekoälylle. Lue miten Valok kartoittaa ja yhdistää yrityksesi datan käyttökelpoiseksi.">
+    <meta property="og:image" content="https://valok.fi/img/datan-kunto-ennen-tekoalya.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Data hajallaan? Näin tekoäly voi silti onnistua yrityksessäsi">
+    <meta name="twitter:description" content="Hajallaan oleva data ei ole este tekoälylle. Lue miten Valok kartoittaa ja yhdistää yrityksesi datan käyttökelpoiseksi.">
+    <meta name="twitter:image" content="https://valok.fi/img/datan-kunto-ennen-tekoalya.webp">
+
+    <style>
+        .post-header {
+            min-height: auto !important;
+            padding: 160px 24px 24px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            background: radial-gradient(circle at top, var(--accent-glow) 0%, transparent 70%);
+        }
+
+        .post-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px 100px;
+            line-height: 1.8;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .post-content h2, .post-content h3 {
+            color: var(--text);
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .post-content p {
+            margin-bottom: 24px;
+        }
+
+        .post-content ul, .post-content ol {
+            margin-bottom: 24px;
+            padding-left: 20px;
+        }
+
+        .post-content li {
+            margin-bottom: 12px;
+        }
+
+        .post-meta {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dim);
+            text-decoration: none;
+            margin-bottom: 40px;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        .post-image {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .post-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .toc-box {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+        }
+
+        .toc-box h4 {
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        .toc-box ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .toc-box a {
+            color: #58a6ff;
+            text-decoration: none;
+            display: block;
+            padding: 4px 0;
+            transition: var(--transition);
+        }
+
+        .toc-box a:hover {
+            color: var(--accent);
+            padding-left: 4px;
+        }
+
+        .highlight-box {
+            background: var(--glass);
+            padding: 30px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+            border-left: 4px solid var(--accent);
+        }
+
+        .reference-list {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            margin-top: 60px;
+        }
+
+        .reference-list ol {
+            padding-left: 20px;
+        }
+
+        .contact-section {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 60px 40px;
+            border-radius: var(--radius);
+            margin-top: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="particles"></canvas>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo"><img srcset="../img/aRon_A1-mobile.webp 800w, ../img/aRon_A1.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/aRon_A1.webp" alt="Valok logo" class="logo-img">VALOK<span
+                     class="logo-dot">.</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="/#palvelut">Palvelut</a>
+                <a href="/#prosessi">Prosessi</a>
+                <a href="../blogi.html">Blogi</a>
+                <a href="/#yhteystiedot" class="nav-cta">Ota yhteyttä</a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Avaa valikko">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <article>
+        <header class="post-header">
+            <a href="../blogi.html" class="back-link">← Takaisin blogiin</a>
+            <span class="post-meta">Heinäkuu 2026 • Data • Tekoäly</span>
+            <h1>Data hajallaan? Näin tekoäly voi <span class="gradient-text">silti onnistua</span> yrityksessäsi</h1>
+            <p style="color: var(--text-dim); margin-top: 20px;">"Meidän data ei ole vielä valmis tekoälylle" on yleisin syy lykätä tekoälyprojektia. Hyvä uutinen: sitä ei tarvitse olla.</p>
+        </header>
+
+        <div class="post-image">
+            <img src="../img/datan-kunto-ennen-tekoalya.webp" alt="Hajallaan oleva data ja tekoäly PK-yritykselle - Valok">
+        </div>
+
+        <main class="post-content">
+            <div class="toc-box">
+                <h4>Sisällysluettelo</h4>
+                <ul>
+                    <li><a href="#yleisin-este">1. Yleisin syy lykätä tekoälyä on myös yleisin väärinkäsitys</a></li>
+                    <li><a href="#mita-hajallaan">2. Mitä "hajallaan oleva data" oikeasti tarkoittaa?</a></li>
+                    <li><a href="#kartoitus">3. Ensimmäinen askel: kartoitus, ei siivous</a></li>
+                    <li><a href="#vektoritietokanta">4. Vektoritietokanta: työkalu, joka sietää sekasotkua</a></li>
+                    <li><a href="#askeleittain">5. Miten Valok rakentaa tämän askel askeleelta</a></li>
+                    <li><a href="#lopuksi">6. Sinun ei tarvitse odottaa täydellistä dataa</a></li>
+                </ul>
+            </div>
+
+            <p>Lähes jokaisessa keskustelussa, jonka käymme yritysten kanssa tekoälystä, kuulemme saman lauseen: "Meidän pitäisi ensin saada data kuntoon." Se sanotaan usein pahoitellen, ikään kuin kyse olisi esteestä, joka pitää raivata pois ennen kuin mitään muuta voi tehdä.</p>
+
+            <p>Totuus on toinen. Hajallaan oleva data ei ole este tekoälyn käyttöönotolle, vaan täysin normaali lähtökohta, josta lähes kaikki yritykset aloittavat. Kysymys ei ole siitä, onko datasi täydellistä, vaan siitä, miten se saadaan tekoälyn ulottuville juuri sellaisena kuin se on.</p>
+
+            <h2 id="yleisin-este">1. Yleisin syy lykätä tekoälyä on myös yleisin väärinkäsitys</h2>
+            <p>Ajatus siitä, että data pitäisi ensin siivota, järjestää ja yhtenäistää yhteen paikkaan, juontaa juurensa vanhasta maailmasta: perinteisistä tietovarastoista ja raportointijärjestelmistä, joissa jokainen kenttä piti olla tarkasti määritelty ja jokainen rivi virheettömässä muodossa.</p>
+
+            <p>Moderni tekoäly ei toimi näin. Kielimallit ja niiden ympärille rakennetut järjestelmät on suunniteltu käsittelemään juuri sitä, mitä oikeat yritykset oikeasti omistavat: sekalaisia Word- ja PDF-dokumentteja, sähköposteja, Excel-taulukoita, muistiinpanoja ja tietoa useassa eri järjestelmässä. Tekoälyn vahvuus on nimenomaan kyky ymmärtää epäjärjestelmällistä, luonnollisella kielellä kirjoitettua tietoa [1].</p>
+
+            <div class="highlight-box">
+                Et tarvitse täydellistä dataa käynnistääksesi tekoälyprojektin. Tarvitset kartoituksen siitä, mitä sinulla on ja missä se sijaitsee. Loput hoituu oikealla arkkitehtuurilla.
+            </div>
+
+            <h2 id="mita-hajallaan">2. Mitä "hajallaan oleva data" oikeasti tarkoittaa?</h2>
+            <p>Kun puhumme hajallaan olevasta datasta, tarkoitamme useimmiten jotain tästä listasta:</p>
+            <ul>
+                <li>Tietoa on useassa eri järjestelmässä: CRM:ssä, sähköpostissa, verkkolevyllä, pilvipalveluissa ja työntekijöiden omilla koneilla.</li>
+                <li>Dokumentit ovat eri muodoissa: PDF-tiedostoja, Word-dokumentteja, Excel-taulukoita, kuvia ja skannattuja papereita.</li>
+                <li>Tieto on osittain päällekkäistä tai ristiriitaista, koska sitä on päivitetty eri paikoissa eri aikaan.</li>
+                <li>Iso osa arvokkaasta tiedosta on vain työntekijöiden päässä, ei kirjoitettuna mihinkään.</li>
+            </ul>
+            <p>Jokainen näistä kuulostaa ongelmalta, joka pitäisi ratkaista ennen tekoälyä. Käytännössä ne ovat kuitenkin juuri niitä asioita, joita hyvin suunniteltu tekoälyarkkitehtuuri on olemassa ratkaisemassa.</p>
+
+            <h2 id="kartoitus">3. Ensimmäinen askel: kartoitus, ei siivous</h2>
+            <p>Kun aloitamme yrityksen kanssa, emme aloita datan siivoamisesta. Aloitamme kartoituksesta: mitä tietoa yrityksellä on, missä se sijaitsee, kuka sitä käyttää ja mikä siitä on aidosti arvokasta juuri sen tehtävän kannalta, jota ollaan ratkaisemassa.</p>
+
+            <p>Tämä on tärkeä ero. Koko yrityksen datan siivoaminen kerralla on projekti, joka voi kestää vuosia eikä koskaan oikeastaan valmistu. Sen sijaan kartoitetaan se osajoukko dataa, joka liittyy ensimmäiseen konkreettiseen käyttötapaukseen, esimerkiksi asiakaspalveluun tai tarjousten laadintaan, ja lähdetään liikkeelle siitä.</p>
+
+            <p>Näin tekoälyprojekti ei jää odottamaan täydellistä dataa. Se etenee rinnakkain sen kanssa, että data paranee ajan myötä.</p>
+
+            <h2 id="vektoritietokanta">4. Vektoritietokanta: työkalu, joka sietää sekasotkua</h2>
+            <p>Yksi tärkeimmistä teknisistä ratkaisuista hajanaisen datan hyödyntämiseen on vektoritietokanta. Se kuulostaa monimutkaiselta, mutta idea on yksinkertainen: sen sijaan että tietoa yritettäisiin pakottaa tarkkoihin tauluihin ja kenttiin, kuten perinteisessä tietokannassa, vektoritietokanta muuttaa tekstin, kuvat ja dokumentit matemaattiseen muotoon, joka kuvaa niiden <em>merkitystä</em>.</p>
+
+            <p>Tämä tarkoittaa käytännössä sitä, että PDF-tarjous, Word-muistio ja sähköpostiketju voivat kaikki elää samassa järjestelmässä sellaisenaan, ilman että niitä täytyy ensin muokata yhteneväiseen muotoon. Kun tekoälyltä kysytään jotain, se ei etsi täsmällistä sanaa, vaan hakee merkitykseltään lähimmät vastaukset kaikesta käytettävissä olevasta datasta [2].</p>
+
+            <ul>
+                <li><strong>Ei vaadi valmista rakennetta:</strong> dokumentit voidaan syöttää lähes sellaisenaan, formaatista riippumatta.</li>
+                <li><strong>Skaalautuu vähitellen:</strong> aloitetaan pienellä joukolla dokumentteja ja lisätään lähteitä sitä mukaa kun niitä tunnistetaan.</li>
+                <li><strong>Yhdistää siiloja:</strong> tieto eri järjestelmistä voidaan tuoda samaan hakukerrokseen ilman, että alkuperäisiä järjestelmiä tarvitsee muuttaa.</li>
+            </ul>
+
+            <p>Vektoritietokanta on usein vain yksi osa kokonaisuutta. Rinnalle rakennetaan tarvittaessa myös perinteisempiä integraatioita täsmällistä tietoa vaativiin tarpeisiin, kuten tilaustietoihin tai laskutukseen. Tärkeintä on, että arkkitehtuuri valitaan datan ja tarpeen mukaan, ei toisin päin.</p>
+
+            <h2 id="askeleittain">5. Miten Valok rakentaa tämän askel askeleelta</h2>
+            <p>Käytännön polku näyttää yleensä tältä:</p>
+            <ol>
+                <li><strong>Kartoitus:</strong> käydään läpi, mitä tietoa on olemassa ja missä, keskittyen ensimmäiseen käyttötapaukseen.</li>
+                <li><strong>Priorisointi:</strong> valitaan se osajoukko dataa, joka tuo suurimman hyödyn pienimmällä vaivalla.</li>
+                <li><strong>Tekninen ratkaisu:</strong> rakennetaan hakukerros, esimerkiksi vektoritietokannan avulla, joka tuo valitun datan tekoälyn ulottuville sellaisenaan.</li>
+                <li><strong>Pilotointi:</strong> testataan ratkaisua oikealla käyttötapauksella ja kerätään palautetta.</li>
+                <li><strong>Laajennus:</strong> lisätään uusia tietolähteitä ja käyttötapauksia sitä mukaa kun ensimmäinen osoittaa arvonsa.</li>
+            </ol>
+            <p>Tämä malli tarkoittaa, että yritys näkee konkreettisen hyödyn jo muutamassa viikossa, ei vasta sen jälkeen, kun koko datainfrastruktuuri on uudistettu. Data paranee matkan varrella, ei ennakkoehtona.</p>
+
+            <h2 id="lopuksi">6. Sinun ei tarvitse odottaa täydellistä dataa</h2>
+            <p>Jos olet lykännyt tekoälyn käyttöönottoa siksi, että yrityksesi data tuntuu sekavalta, olet hyvässa seurassa. Näin on lähes jokaisella yrityksellä, jonka kanssa olemme työskennelleet. Ero ei ole datan lähtötilanteessa, vaan siinä, uskaltaako sen kanssa lähteä liikkeelle.</p>
+
+            <p>Valokin tehtävä on tehdä juuri tämä helpoksi: kartoittaa, mitä sinulla on, rakentaa ratkaisu joka toimii datan ehdoilla, ja edetä askel kerrallaan niin, että hyöty näkyy nopeasti eikä vasta vuosien päästä.</p>
+
+            <div class="reference-list">
+                <h4>Lähdeviitteet:</h4>
+                <ol>
+                    <li><a href="https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/the-state-of-ai" target="_blank" rel="noopener">McKinsey: The State of AI</a> (2025). Katsaus yritysten datavalmiuteen ja tekoälyn käyttöönoton esteisiin.</li>
+                    <li><a href="https://www.pinecone.io/learn/vector-database/" target="_blank" rel="noopener">Pinecone: What is a Vector Database?</a>. Selkeä tekninen kuvaus vektoritietokantojen toiminnasta ja käyttötapauksista.</li>
+                </ol>
+            </div>
+
+            <div class="contact-section">
+                <div class="section-header" style="text-align: center; margin-bottom: 40px;">
+                    <span class="section-tag">Otetaan askel eteenpäin</span>
+                    <h2>Tuntuuko yrityksesi data sekavalta?</h2>
+                    <p>Valok kartoittaa tilanteesi, tunnistaa nopeimman hyödyn tuovan lähtökohdan ja rakentaa ratkaisun, joka toimii datasi ehdoilla, ei toisinpäin.</p>
+                </div>
+
+                <div class="contact-container" style="max-width: 100%;">
+                    <div class="contact-form-card">
+                        <form action="https://formspree.io/f/xlgpgyjl" method="POST" id="contact-form">
+                            <div class="form-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 20px;">
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="name">Nimi</label>
+                                    <input type="text" id="name" name="name" placeholder="Oma nimesi" required style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: white; border-radius: 8px;">
+                                </div>
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="email">Sähköposti</label>
+                                    <input type="email" id="email" name="email" placeholder="esimerkki@yritys.fi" required style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: white; border-radius: 8px;">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg full-width" style="width: 100%; padding: 16px; font-weight: bold; cursor: pointer; margin-top: 20px;">
+                                Varaa ilmainen konsultaatio
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </article>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <div class="logo"><img srcset="../img/aRon_A1-mobile.webp 800w, ../img/aRon_A1.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/aRon_A1.webp" alt="Valok logo" class="logo-img logo-img-footer">VALOK<span class="logo-dot">.</span></div>
+                <p>Prosessien automatisointia ja dedikoituja tekoälyratkaisuja suomalaisille PK-yrityksille.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Linkit</h4>
+                <ul>
+                    <li><a href="/">Etusivu</a></li>
+                    <li><a href="../blogi.html">Blogi</a></li>
+                    <li><a href="/#palvelut">Palvelut</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ota yhteyttä</h4>
+                <ul>
+                    <li>aleksanteri@valok.fi</li>
+                    <li>Jyväskylä, Finland</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Valok. Kaikki oikeudet pidätetään.
+        </div>
+    </footer>
+
+    <script src="../main.js"></script>
+</body>
+
+</html>
