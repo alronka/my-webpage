@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miksi tekoälyprojektit epäonnistuvat? 4 syytä ja miten vältät ne — Valok</title>
+    <meta name="description"
+        content="Suurin osa tekoälypiloteista ei koskaan saavuta tuotantoa asti. Lue neljä yleisintä syytä miksi tekoälyprojektit kaatuvat PK-yrityksissä, ja miten Valok rakentaa projektit, jotka oikeasti jäävät käyttöön.">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel=icon type=image/png sizes=32x32 href=../img/favicon-32x32.png>
+    <link rel=apple-touch-icon sizes=180x180 href=../img/favicon-180x180.png>
+
+    <link rel="canonical" href="https://valok.fi/blogi/miksi-tekoalyprojektit-epaonnistuvat.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://valok.fi/blogi/miksi-tekoalyprojektit-epaonnistuvat.html">
+    <meta property="og:title" content="Miksi tekoälyprojektit epäonnistuvat? 4 syytä ja miten vältät ne">
+    <meta property="og:description" content="Suurin osa tekoälypiloteista ei koskaan saavuta tuotantoa asti. Neljä yleisintä syytä ja miten Valok rakentaa projektit, jotka jäävät käyttöön.">
+    <meta property="og:image" content="https://valok.fi/img/miksi-tekoalyprojektit-epaonnistuvat.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Miksi tekoälyprojektit epäonnistuvat? 4 syytä ja miten vältät ne">
+    <meta name="twitter:description" content="Suurin osa tekoälypiloteista ei koskaan saavuta tuotantoa asti. Neljä yleisintä syytä ja miten Valok rakentaa projektit, jotka jäävät käyttöön.">
+    <meta name="twitter:image" content="https://valok.fi/img/miksi-tekoalyprojektit-epaonnistuvat.webp">
+
+    <style>
+        .post-header {
+            min-height: auto !important;
+            padding: 160px 24px 24px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            background: radial-gradient(circle at top, var(--accent-glow) 0%, transparent 70%);
+        }
+
+        .post-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px 100px;
+            line-height: 1.8;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .post-content h2, .post-content h3 {
+            color: var(--text);
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .post-content p {
+            margin-bottom: 24px;
+        }
+
+        .post-content ul, .post-content ol {
+            margin-bottom: 24px;
+            padding-left: 20px;
+        }
+
+        .post-content li {
+            margin-bottom: 12px;
+        }
+
+        .post-meta {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dim);
+            text-decoration: none;
+            margin-bottom: 40px;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        .post-image {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .post-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .toc-box {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+        }
+
+        .toc-box h4 {
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        .toc-box ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .toc-box a {
+            color: #58a6ff;
+            text-decoration: none;
+            display: block;
+            padding: 4px 0;
+            transition: var(--transition);
+        }
+
+        .toc-box a:hover {
+            color: var(--accent);
+            padding-left: 4px;
+        }
+
+        .highlight-box {
+            background: var(--glass);
+            padding: 30px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+            border-left: 4px solid var(--accent);
+        }
+
+        .reference-list {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            margin-top: 60px;
+        }
+
+        .reference-list ol {
+            padding-left: 20px;
+        }
+
+        .contact-section {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 60px 40px;
+            border-radius: var(--radius);
+            margin-top: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="particles"></canvas>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo"><img srcset="../img/aRon_A1-mobile.webp 800w, ../img/aRon_A1.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/aRon_A1.webp" alt="Valok logo" class="logo-img">VALOK<span
+                     class="logo-dot">.</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="/#palvelut">Palvelut</a>
+                <a href="/#prosessi">Prosessi</a>
+                <a href="../blogi.html">Blogi</a>
+                <a href="/#yhteystiedot" class="nav-cta">Ota yhteyttä</a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Avaa valikko">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <article>
+        <header class="post-header">
+            <a href="../blogi.html" class="back-link">← Takaisin blogiin</a>
+            <span class="post-meta">Heinäkuu 2026 • Tekoäly • Strategia</span>
+            <h1>Miksi tekoälyprojektit <span class="gradient-text">epäonnistuvat</span>? 4 syytä ja miten vältät ne</h1>
+            <p style="color: var(--text-dim); margin-top: 20px;">Suurin osa tekoälypiloteista ei koskaan saavuta tuotantoa. Syy ei useimmiten ole tekniikka, vaan se, miten projekti käynnistettiin.</p>
+        </header>
+
+        <div class="post-image">
+            <img src="../img/miksi-tekoalyprojektit-epaonnistuvat.webp" alt="Tekoälyprojekti joka jää pilottiasteelle PK-yrityksessä - Valok">
+        </div>
+
+        <main class="post-content">
+            <div class="toc-box">
+                <h4>Sisällysluettelo</h4>
+                <ul>
+                    <li><a href="#tilastot">1. Tilastot jotka pysäyttävät: mitä tutkimukset kertovat</a></li>
+                    <li><a href="#syy-1">2. Syy #1: Pilotti ei koskaan yhdisty todelliseen työhön</a></li>
+                    <li><a href="#syy-2">3. Syy #2: Väärä käyttötapaus valitaan heti alussa</a></li>
+                    <li><a href="#syy-3">4. Syy #3: Kukaan ei omista projektia</a></li>
+                    <li><a href="#syy-4">5. Syy #4: Data ja integraatiot unohdetaan suunnitelmasta</a></li>
+                    <li><a href="#valok-tapa">6. Miten Valok rakentaa projektit, jotka eivät jää pilottiasteelle</a></li>
+                </ul>
+            </div>
+
+            <p>Tekoälyn ympärillä käydään kahta yhtä aikaa totta olevaa keskustelua. Toisessa kerrotaan, kuinka tekoäly mullistaa liiketoiminnan ja tuo mittavia säästöjä. Toisessa taas myönnetään hiljaa, että suurin osa käynnistetyistä tekoälyhankkeista ei koskaan johda mihinkään pysyvään. Molemmat ovat totta yhtä aikaa, koska ongelma ei ole tekoälyssä itsessään, vaan siinä, miten projektit rakennetaan.</p>
+
+            <p>Tässä artikkelissa käymme läpi neljä yleisintä syytä, joiden vuoksi näemme tekoälyprojektien kaatuvan suomalaisissa PK-yrityksissä, ja mitä niille voi tehdä.</p>
+
+            <h2 id="tilastot">1. Tilastot jotka pysäyttävät: mitä tutkimukset kertovat</h2>
+            <p>Gartner arvioi, että yli 40 % agenttisista tekoälyhankkeista perutaan vuoden 2027 loppuun mennessä, muun muassa nousevien kustannusten, epäselvän liiketoimintahyödyn ja riittämättömän riskienhallinnan vuoksi.<sup><a href="#lahde-1" style="color: var(--accent);">[1]</a></sup> Samaan aikaan McKinseyn tutkimukset osoittavat, että vain pieni osa yrityksistä on onnistunut skaalaamaan tekoälyn kokeiluista mitattavaan liiketoiminta-arvoon.<sup><a href="#lahde-2" style="color: var(--accent);">[2]</a></sup></p>
+
+            <p>Näiden lukujen takana ei ole huono teknologia. GPT-tason kielimallit ja niiden ympärille rakennetut järjestelmät toimivat teknisesti hyvin. Ongelma syntyy lähes aina samassa kohdassa: pilotin ja tuotantokäytön välissä.</p>
+
+            <div class="highlight-box">
+                Tekoälyprojekti ei epäonnistu siksi, että malli on huono. Se epäonnistuu, koska sitä ei koskaan rakennettu osaksi oikeaa työtä, oikealle omistajalle, oikealla datalla.
+            </div>
+
+            <h2 id="syy-1">2. Syy #1: Pilotti ei koskaan yhdisty todelliseen työhön</h2>
+            <p>Yleisin kaava on tuttu: joku tiimissä testaa tekoälytyökalua erillisessä ympäristössä, tulokset näyttävät lupaavilta demoissa, mutta työkalu jää sivupöydälle. Kukaan ei vaihda sitä osaksi päivittäistä työnkulkua, koska se vaatisi muutoksia totuttuihin tapoihin, järjestelmiin tai vastuisiin.</p>
+
+            <p>Pilotti, joka elää irrallaan oikeasta prosessista, ei koskaan pääse todistamaan arvoaan tuotannon mittakaavassa. Se jää ikuisesti "kokeiluksi", eikä kukaan tee päätöstä sen lopettamisesta tai laajentamisesta, kunnes se hiljalleen unohtuu.</p>
+
+            <h2 id="syy-2">3. Syy #2: Väärä käyttötapaus valitaan heti alussa</h2>
+            <p>Moni yritys aloittaa tekoälyprojektinsa siitä, mikä on teknisesti näyttävintä, ei siitä, mikä tuo eniten hyötyä nopeimmin. Tuloksena on usein kunnianhimoinen, monimutkainen hanke, joka yrittää ratkaista liian monta ongelmaa kerralla.</p>
+
+            <ul>
+                <li><strong>Liian laaja käyttötapaus:</strong> "automatisoidaan koko asiakaspalvelu" sen sijaan että aloitettaisiin yhdestä toistuvasta tikettityypistä.</li>
+                <li><strong>Liian epäselvä mittari:</strong> ei ole sovittu etukäteen, miltä onnistuminen näyttää numeroina.</li>
+                <li><strong>Liian matala hyöty suhteessa vaivaan:</strong> ratkaistaan ongelma, joka ei aidosti säästä aikaa tai rahaa.</li>
+            </ul>
+
+            <p>Onnistuneimmat hankkeet, joita olemme nähneet, alkavat päinvastoin: yhdestä kapeasta, hyvin rajatusta työnkulusta, jossa hyöty on helppo mitata jo muutaman viikon sisällä.</p>
+
+            <h2 id="syy-3">4. Syy #3: Kukaan ei omista projektia</h2>
+            <p>Tekoälyprojekti, jolla ei ole selkeää omistajaa yrityksen sisällä, ajautuu helposti kenenkään vastuulle. IT saattaa vastata teknisestä toteutuksesta, mutta ei tunne liiketoimintaprosessia. Liiketoiminta taas odottaa valmista ratkaisua, muttei osallistu sen muokkaamiseen.</p>
+
+            <p>Ilman omistajaa, joka seuraa käyttöä, kerää palautetta ja tekee päätöksiä jatkosta, projekti ei koskaan pääse siitä vaiheesta, jossa se vaatisi hienosäätöä toimiakseen oikeasti hyvin. Se jää versioon 1.0, joka ei koskaan kehity käyttökelpoiseksi.</p>
+
+            <h2 id="syy-4">5. Syy #4: Data ja integraatiot unohdetaan suunnitelmasta</h2>
+            <p>Moni hanke suunnitellaan siitä näkökulmasta, mitä kielimalli osaa tehdä, ei siitä, mistä se saa tarvitsemansa tiedon ja miten sen tuottama tulos päätyy takaisin oikeaan järjestelmään. Kun tämä osuus jätetään myöhemmäksi, projekti törmää seinään heti, kun sitä yritetään laajentaa demosta oikeaan käyttöön.</p>
+
+            <p>Tähän liittyy usein myös oletus, että data pitäisi ensin saada täydellisen siistiksi. Se ei pidä paikkaansa, mutta datan sijainti, saatavuus ja integraatiot muihin järjestelmiin, kuten CRM:ään tai laskutukseen, pitää suunnitella osana projektia alusta lähtien, ei jälkikäteen lisättynä yksityiskohtana.</p>
+
+            <h2 id="valok-tapa">6. Miten Valok rakentaa projektit, jotka eivät jää pilottiasteelle</h2>
+            <p>Näemme nämä neljä syytä toistuvasti, ja siksi rakennamme projektit alusta asti niin, että ne pystyvät välttämään ne:</p>
+            <ol>
+                <li><strong>Yksi kapea käyttötapaus kerrallaan:</strong> valitaan rajattu, toistuva työnkulku, jonka hyöty on mitattavissa nopeasti.</li>
+                <li><strong>Selkeä omistaja alusta lähtien:</strong> sovitaan kuka yrityksen puolelta seuraa käyttöä ja tekee jatkopäätökset.</li>
+                <li><strong>Integraatio suunnitellaan mukaan alusta:</strong> ratkaisu rakennetaan osaksi oikeaa työnkulkua, ei erilliseksi kokeiluksi.</li>
+                <li><strong>Mittarit sovitaan etukäteen:</strong> tiedetään jo ennen aloitusta, miltä onnistuminen näyttää, jotta jatkopäätös voidaan tehdä datalla, ei mutu-tuntumalla.</li>
+                <li><strong>Laajennus vasta todistetun hyödyn jälkeen:</strong> uusia käyttötapauksia lisätään sitä mukaa kun ensimmäinen on osoittanut arvonsa käytännössä.</li>
+            </ol>
+
+            <p>Tämä malli tarkoittaa hitaampaa alkua kuin yhden ison, kaiken kattavan hankkeen käynnistäminen kerralla. Se on kuitenkin ainoa tapa, jolla olemme nähneet tekoälyprojektien oikeasti jäävän elämään pilottivaiheen jälkeen.</p>
+
+            <div class="reference-list">
+                <h4>Lähdeviitteet:</h4>
+                <ol>
+                    <li id="lahde-1">Gartner (2025). <em>Gartner Predicts Over 40% of Agentic AI Projects Will Be Cancelled by End of 2027.</em>
+                        <a href="https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-cancelled-by-end-of-2027" target="_blank" rel="noopener noreferrer">gartner.com →</a>
+                    </li>
+                    <li id="lahde-2">McKinsey &amp; Company. <em>The State of AI.</em>
+                        <a href="https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/the-state-of-ai" target="_blank" rel="noopener noreferrer">mckinsey.com →</a>
+                    </li>
+                </ol>
+            </div>
+
+            <div class="contact-section">
+                <div class="section-header" style="text-align: center; margin-bottom: 40px;">
+                    <span class="section-tag">Vältetään sudenkuopat yhdessä</span>
+                    <h2>Haluatko tekoälyprojektin, joka ei jää pilotiksi?</h2>
+                    <p>Valok auttaa valitsemaan oikean ensimmäisen käyttötapauksen, rakentamaan sen osaksi oikeaa työnkulkua ja mittaamaan tuloksen, jotta hanke oikeasti jää elämään.</p>
+                </div>
+
+                <div class="contact-container" style="max-width: 100%;">
+                    <div class="contact-form-card">
+                        <form action="https://formspree.io/f/xlgpgyjl" method="POST" id="contact-form">
+                            <div class="form-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 20px;">
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="name">Nimi</label>
+                                    <input type="text" id="name" name="name" placeholder="Oma nimesi" required style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: white; border-radius: 8px;">
+                                </div>
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="email">Sähköposti</label>
+                                    <input type="email" id="email" name="email" placeholder="esimerkki@yritys.fi" required style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: white; border-radius: 8px;">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg full-width" style="width: 100%; padding: 16px; font-weight: bold; cursor: pointer; margin-top: 20px;">
+                                Varaa ilmainen konsultaatio
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </article>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <div class="logo"><img srcset="../img/aRon_A1-mobile.webp 800w, ../img/aRon_A1.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/aRon_A1.webp" alt="Valok logo" class="logo-img logo-img-footer">VALOK<span class="logo-dot">.</span></div>
+                <p>Prosessien automatisointia ja dedikoituja tekoälyratkaisuja suomalaisille PK-yrityksille.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Linkit</h4>
+                <ul>
+                    <li><a href="/">Etusivu</a></li>
+                    <li><a href="../blogi.html">Blogi</a></li>
+                    <li><a href="/#palvelut">Palvelut</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ota yhteyttä</h4>
+                <ul>
+                    <li>aleksanteri@valok.fi</li>
+                    <li>Jyväskylä, Finland</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Valok. Kaikki oikeudet pidätetään.
+        </div>
+    </footer>
+
+    <script src="../main.js"></script>
+</body>
+
+</html>
