@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPA vs. API-pohjainen automaatio: Miksi näppäimistöbotit hajoavat ja mikä kestää — Valok</title>
+    <meta name="description"
+        content="RPA-botti, joka klikkailee käyttöliittymää ihmisen puolesta, rikkoutuu heti kun järjestelmä päivittyy. Lue miksi API- ja agenttipohjainen automaatio kestää muutoksia paremmin, ja milloin RPA silti kannattaa.">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel=icon type=image/png sizes=32x32 href=../img/favicon-32x32.png>
+    <link rel=apple-touch-icon sizes=180x180 href=../img/favicon-180x180.png>
+
+    <link rel="canonical" href="https://valok.fi/blogi/rpa-vs-api-pohjainen-automaatio.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://valok.fi/blogi/rpa-vs-api-pohjainen-automaatio.html">
+    <meta property="og:title" content="RPA vs. API-pohjainen automaatio: Miksi näppäimistöbotit hajoavat ja mikä kestää">
+    <meta property="og:description" content="RPA-botti rikkoutuu heti kun käyttöliittymä päivittyy. Lue miksi API- ja agenttipohjainen automaatio kestää muutoksia paremmin.">
+    <meta property="og:image" content="https://valok.fi/img/rpa-vs-api-pohjainen-automaatio.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="RPA vs. API-pohjainen automaatio: Miksi näppäimistöbotit hajoavat ja mikä kestää">
+    <meta name="twitter:description" content="RPA-botti rikkoutuu heti kun käyttöliittymä päivittyy. Lue miksi API- ja agenttipohjainen automaatio kestää muutoksia paremmin.">
+    <meta name="twitter:image" content="https://valok.fi/img/rpa-vs-api-pohjainen-automaatio.webp">
+
+    <style>
+        .post-header {
+            min-height: auto !important;
+            padding: 160px 24px 24px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            background: radial-gradient(circle at top, var(--accent-glow) 0%, transparent 70%);
+        }
+
+        .post-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px 100px;
+            line-height: 1.8;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .post-content h2, .post-content h3 {
+            color: var(--text);
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .post-content p {
+            margin-bottom: 24px;
+        }
+
+        .post-content ul, .post-content ol {
+            margin-bottom: 24px;
+            padding-left: 20px;
+        }
+
+        .post-content li {
+            margin-bottom: 12px;
+        }
+
+        .post-meta {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dim);
+            text-decoration: none;
+            margin-bottom: 40px;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        .post-image {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .post-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .toc-box {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+        }
+
+        .toc-box h4 {
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        .toc-box ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .toc-box a {
+            color: #58a6ff;
+            text-decoration: none;
+            display: block;
+            padding: 4px 0;
+            transition: var(--transition);
+        }
+
+        .toc-box a:hover {
+            color: var(--accent);
+            padding-left: 4px;
+        }
+
+        .highlight-box {
+            background: var(--glass);
+            padding: 30px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+            border-left: 4px solid var(--accent);
+        }
+
+        .reference-list {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            margin-top: 60px;
+        }
+
+        .reference-list ol {
+            padding-left: 20px;
+        }
+
+        .contact-section {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 60px 40px;
+            border-radius: var(--radius);
+            margin-top: 80px;
+        }
+
+        .compare-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 32px 0;
+        }
+
+        @media (max-width: 600px) {
+            .compare-grid { grid-template-columns: 1fr; }
+        }
+
+        .compare-card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+        }
+
+        .compare-card h3 {
+            margin-top: 0 !important;
+            margin-bottom: 16px !important;
+            font-size: 1rem !important;
+            color: var(--accent) !important;
+        }
+
+        .compare-card ul {
+            padding-left: 16px;
+            margin: 0;
+        }
+
+        .compare-card li { margin-bottom: 8px; font-size: 0.95rem; }
+    </style>
+</head>
+
+<body>
+    <canvas id="particles"></canvas>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo"><img srcset="../img/aRon_A1-mobile.webp 800w, ../img/aRon_A1.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/aRon_A1.webp" alt="Valok logo" class="logo-img">VALOK<span
+                     class="logo-dot">.</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="/#palvelut">Palvelut</a>
+                <a href="/#prosessi">Prosessi</a>
+                <a href="../blogi.html">Blogi</a>
+                <a href="/#yhteystiedot" class="nav-cta">Ota yhteyttä</a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Avaa valikko">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <article>
+        <header class="post-header">
+            <a href="../blogi.html" class="back-link">← Takaisin blogiin</a>
+            <span class="post-meta">Automaatio • RPA • Integraatiot</span>
+            <h1>RPA vs. API-pohjainen automaatio: Miksi <span class="gradient-text">näppäimistöbotit hajoavat</span> ja mikä kestää</h1>
+            <p style="color: var(--text-dim); margin-top: 20px;">Moni yritys on rakentanut automaationsa botilla, joka klikkailee käyttöliittymää ihmisen puolesta. Se toimii, kunnes joku päivittää käyttöliittymän, ja silloin koko automaatio pysähtyy yhdessä yössä.</p>
+        </header>
+
+        <div class="post-image">
+            <img src="../img/rpa-vs-api-pohjainen-automaatio.webp" alt="RPA-automaatio vs API-pohjainen automaatio PK-yritykselle - Valok">
+        </div>
+
+        <main class="post-content">
+            <div class="toc-box">
+                <h4>Sisällysluettelo</h4>
+                <ul>
+                    <li><a href="#mita-rpa-on">1. Mitä RPA on ja miksi siitä tuli niin suosittu?</a></li>
+                    <li><a href="#miksi-hauras">2. Miksi RPA-botti hajoaa niin herkästi?</a></li>
+                    <li><a href="#api-pohjainen">3. Mitä API-pohjainen automaatio tekee toisin?</a></li>
+                    <li><a href="#vertailu">4. RPA ja API-pohjainen automaatio rinnakkain</a></li>
+                    <li><a href="#milloin-rpa">5. Milloin RPA silti on oikea valinta?</a></li>
+                    <li><a href="#lopuksi">6. Miten Valok lähestyy tätä valintaa</a></li>
+                </ul>
+            </div>
+
+            <p>Kun yritys lähtee automatisoimaan ensimmäistä prosessiaan, RPA (Robotic Process Automation) tuntuu usein houkuttelevimmalta ratkaisulta. Sen lupaus on yksinkertainen: nauhoita, miten ihminen tekee työn hiirellä ja näppäimistöllä, ja anna botin toistaa sama liike. Ei koodia, ei integraatioprojektia, tulos näkyy heti.</p>
+
+            <p>Ongelma ilmenee myöhemmin. Moni RPA-projekti toimii hienosti ensimmäiset kuukaudet, ja alkaa sitten rikkoutua yllättävän usein, juuri silloin kun mikään ei tunnu muuttuneen prosessissa itsessään.</p>
+
+            <h2 id="mita-rpa-on">1. Mitä RPA on ja miksi siitä tuli niin suosittu?</h2>
+            <p>RPA tarkoittaa ohjelmistorobottia, joka käyttää sovellusta samalla tavalla kuin ihminen: se avaa ikkunan, klikkaa oikeita painikkeita, kirjoittaa kenttiin ja lukee ruudulta tietoa. Botti ei kommunikoi järjestelmän kanssa minkään virallisen rajapinnan kautta, vaan simuloi käyttöliittymän käyttöä pikselitasolla tai käyttöliittymäelementtien tunnisteiden kautta.</p>
+
+            <p>Tämä teki RPA:sta erittäin suositun 2010-luvulla, koska se ei vaatinut pääsyä järjestelmän lähdekoodiin tai rajapintoihin. Yritys pystyi automatisoimaan vanhankin, jo vuosikymmeniä käytössä olleen järjestelmän prosessin ilman että kukaan koski itse järjestelmään. <a href="tekoaly-ilman-integraatioita-on-kuin-auto-ilman-renkaita.html">Integraatioiden puute on perinteisesti ollut suurin este automaatiolle</a>, ja RPA tarjosi tähän oikoreitin.</p>
+
+            <div class="highlight-box">
+                RPA ei koskaan puhu suoraan järjestelmän kanssa. Se matkii ihmistä käyttöliittymän pinnalla, mikä tekee siitä nopean ottaa käyttöön, mutta hauraan ylläpitää.
+            </div>
+
+            <h2 id="miksi-hauras">2. Miksi RPA-botti hajoaa niin herkästi?</h2>
+            <p>Koska botti on sidottu käyttöliittymän ulkoasuun, eikä prosessin todelliseen logiikkaan, hyvin pieni muutos riittää rikkomaan sen:</p>
+            <ul>
+                <li><strong>Ohjelmistopäivitys siirtää painikkeen paikkaa.</strong> Botti klikkaa vanhaa koordinaattia tai etsii elementtiä, jota ei enää ole samassa muodossa.</li>
+                <li><strong>Käyttöliittymän kieli tai teksti muuttuu.</strong> Jos botti etsii tekstiä "Tallenna" ja se vaihtuu muotoon "Tallenna tiedot", tunnistus voi epäonnistua.</li>
+                <li><strong>Selain tai käyttöjärjestelmä päivittyy.</strong> Pienikin renderöintiero voi siirtää elementtejä pikseleitä, jotka riittävät rikkomaan tarkkuutta vaativan botin.</li>
+                <li><strong>Verkkoyhteyden hetkellinen hidastuminen.</strong> Botti, joka on ajastettu klikkaamaan tietyn ajan kuluttua sivun avaamisesta, epäonnistuu jos sivu latautuu tavallista hitaammin.</li>
+            </ul>
+            <p>Jokainen näistä voi tapahtua ilman että kukaan yrityksessä tekee mitään väärin. Ohjelmistotalot päivittävät käyttöliittymiään jatkuvasti, eikä kukaan yleensä ilmoita siitä erikseen RPA-bottien ylläpitäjille.</p>
+
+            <h2 id="api-pohjainen">3. Mitä API-pohjainen automaatio tekee toisin?</h2>
+            <p>API-pohjainen automaatio ei koske käyttöliittymään lainkaan. Se puhuu suoraan järjestelmän tarjoaman rajapinnan (API, Application Programming Interface) kautta, samalla tavalla kuin järjestelmän omat sovellukset kommunikoivat keskenään. Rajapinta on virallinen, dokumentoitu sopimus siitä miten tietoa voi hakea ja muokata, ja ohjelmistotalot pyrkivät pitämään sen yhteensopivana vaikka käyttöliittymä muuttuisi täysin.</p>
+
+            <p>Tämän vuoksi API-pohjainen automaatio kestää huomattavasti paremmin muutoksia: käyttöliittymän ulkoasu voi vaihtua kokonaan uusiksi, mutta jos rajapinta pysyy samana, automaatio jatkaa toimintaansa huomaamatta mitään. <a href="api-integraatiot-liiketoimintaprosessit.html">Kunnolla toteutetut API-integraatiot</a> myös toimivat huomattavasti nopeammin kuin käyttöliittymän kautta simuloitu klikkailu, koska data siirtyy suoraan järjestelmien välillä ilman ruudun piirtämistä tai odottamista.</p>
+
+            <p>Moderneissa toteutuksissa tähän yhdistetään usein tekoälyagentti, joka päättää itsenäisesti mitä rajapintakutsuja tehdä ja missä järjestyksessä, sen sijaan että jokainen askel olisi etukäteen kovakoodattu. Tämä tekee automaatiosta joustavamman poikkeustilanteissa, joissa perinteinen sääntöpohjainen botti jäisi jumiin.</p>
+
+            <h2 id="vertailu">4. RPA ja API-pohjainen automaatio rinnakkain</h2>
+            <div class="compare-grid">
+                <div class="compare-card">
+                    <h3>RPA (käyttöliittymäbotti)</h3>
+                    <ul>
+                        <li>Ei vaadi pääsyä rajapintaan</li>
+                        <li>Nopea ottaa käyttöön ensimmäisenä päivänä</li>
+                        <li>Hauras: hajoaa käyttöliittymän muuttuessa</li>
+                        <li>Hidas, koska simuloi ihmisen klikkauksia</li>
+                        <li>Vaatii jatkuvaa valvontaa ja korjauksia</li>
+                    </ul>
+                </div>
+                <div class="compare-card">
+                    <h3>API-pohjainen automaatio</h3>
+                    <ul>
+                        <li>Vaatii rajapinnan tai sen rakentamisen</li>
+                        <li>Alkuun hieman enemmän suunnittelutyötä</li>
+                        <li>Kestävä: toimii vaikka käyttöliittymä muuttuu</li>
+                        <li>Nopea, koska data siirtyy suoraan</li>
+                        <li>Vähemmän ylläpitoa pitkällä aikavälillä</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h2 id="milloin-rpa">5. Milloin RPA silti on oikea valinta?</h2>
+            <p>RPA ei ole huono teknologia, se on väärässä paikassa käytettynä huono ratkaisu. On tilanteita, joissa se on edelleen perusteltu valinta:</p>
+            <ul>
+                <li><strong>Järjestelmässä ei yksinkertaisesti ole rajapintaa</strong>, eikä sen rakentaminen ole taloudellisesti järkevää suhteessa prosessin arvoon.</li>
+                <li><strong>Prosessi on kertaluontoinen tai lyhytaikainen</strong>, esimerkiksi tietojen siirto vanhasta järjestelmästä uuteen käyttöönoton yhteydessä.</li>
+                <li><strong>Nopea kokeilu ennen isompaa investointia.</strong> RPA voi toimia väliaikaisena ratkaisuna, jolla todistetaan prosessin automatisoinnin hyöty ennen kuin rakennetaan kestävämpi API-pohjainen versio.</li>
+            </ul>
+            <p>Tärkeintä on tietää etukäteen, kumman ratkaisun rakentaa, ja miksi. Moni pettymys syntyy siitä, että RPA otetaan käyttöön pysyvänä ratkaisuna kriittiseen, päivittäin toistuvaan prosessiin, jonka pitäisi kestää vuosia ilman jatkuvaa korjaamista.</p>
+
+            <h2 id="lopuksi">6. Miten Valok lähestyy tätä valintaa</h2>
+            <p>Kun suunnittelemme automaatiota asiakkaalle, kysymys ei ole "RPA vai API", vaan mikä ratkaisu vastaa juuri kyseisen prosessin elinkaarta ja kriittisyyttä. Kartoitamme, onko kohdejärjestelmässä käytettävissä oleva rajapinta, kuinka usein prosessi toistuu ja kuinka kallista sen rikkoutuminen olisi liiketoiminnalle. Näiden perusteella valitaan arkkitehtuuri, joka kestää, eikä sitä jota on nopein esitellä demossa.</p>
+
+            <p>Jos yritykselläsi on jo käytössä RPA-botteja, jotka rikkoutuvat toistuvasti, kannattaa arvioida, onko aika siirtyä kestävämpään, API-pohjaiseen ratkaisuun ennen kuin ylläpitokulut ylittävät alkuperäisen säästön.</p>
+
+            <div class="reference-list">
+                <h4>Lähdeviitteet:</h4>
+                <ol>
+                    <li><a href="https://www.gartner.com/en/information-technology/topics/robotic-process-automation-rpa" target="_blank" rel="noopener">Gartner: Robotic Process Automation (RPA)</a>. Katsauksia RPA:n käyttöönoton haasteisiin ja ylläpitokuormaan yrityksissä.</li>
+                    <li><a href="https://www.forrester.com/blogs/category/robotic-process-automation-rpa/" target="_blank" rel="noopener">Forrester: Robotic Process Automation</a>. Tutkimuksia RPA:n ja modernin, API-pohjaisen automaation vertailusta.</li>
+                </ol>
+            </div>
+
+            <div class="contact-section">
+                <div class="section-header" style="text-align: center; margin-bottom: 40px;">
+                    <span class="section-tag">Otetaan askel eteenpäin</span>
+                    <h2>Rikkoutuuko automaationne aina uudestaan?</h2>
+                    <p>Valok arvioi nykyisen automaationne kestävyyden ja rakentaa ratkaisun, joka toimii myös silloin kun järjestelmät päivittyvät ympärillä.</p>
+                </div>
+
+                <div class="contact-container" style="max-width: 100%;">
+                    <div class="contact-form-card">
+                        <form action="https://formspree.io/f/xlgpgyjl" method="POST" id="contact-form">
+                            <div class="form-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 20px;">
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="name">Nimi</label>
+                                    <input type="text" id="name" name="name" placeholder="Oma nimesi" required style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: white; border-radius: 8px;">
+                                </div>
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="email">Sähköposti</label>
+                                    <input type="email" id="email" name="email" placeholder="esimerkki@yritys.fi" required style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: white; border-radius: 8px;">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg full-width" style="width: 100%; padding: 16px; font-weight: bold; cursor: pointer; margin-top: 20px;">
+                                Varaa ilmainen konsultaatio
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </article>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <div class="logo"><img srcset="../img/aRon_A1-mobile.webp 800w, ../img/aRon_A1.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/aRon_A1.webp" alt="Valok logo" class="logo-img logo-img-footer">VALOK<span class="logo-dot">.</span></div>
+                <p>Prosessien automatisointia ja dedikoituja tekoälyratkaisuja suomalaisille PK-yrityksille.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Linkit</h4>
+                <ul>
+                    <li><a href="/">Etusivu</a></li>
+                    <li><a href="../blogi.html">Blogi</a></li>
+                    <li><a href="/#palvelut">Palvelut</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ota yhteyttä</h4>
+                <ul>
+                    <li>aleksanteri@valok.fi</li>
+                    <li>Jyväskylä, Finland</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Valok. Kaikki oikeudet pidätetään.
+        </div>
+    </footer>
+
+    <script src="../main.js"></script>
+</body>
+
+</html>
