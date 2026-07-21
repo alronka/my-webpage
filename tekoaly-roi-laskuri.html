@@ -2,6 +2,11 @@
 <html lang="fi">
 
 <head>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tekoäly ROI-laskuri: Laske yrityksesi säästöpotentiaali — Valok</title>
@@ -60,7 +65,7 @@
         }
 
         .input-group input {
-            background: rgba(255, 255, 255, 0.05);
+            background: var(--bg-subtle);
             border: 1px solid var(--border);
             border-radius: var(--radius-sm);
             padding: 12px 16px;
@@ -73,7 +78,7 @@
         .input-group input:focus {
             outline: none;
             border-color: var(--accent);
-            background: rgba(255, 255, 255, 0.08);
+            background: var(--glass-hover);
         }
 
         .calc-results {
@@ -139,7 +144,9 @@
         <div class="nav-container">
             <a href="/" class="logo"><img srcset="img/aRon_A1-mobile.webp 800w, img/aRon_A1.webp 1600w"
                     sizes="(max-width: 800px) 100vw, 1600px" src="img/aRon_A1.webp" alt="Valok logo"
-                    class="logo-img">VALOK<span class="logo-dot">.</span></a>
+                    class="logo-img logo-img-dark"><img srcset="img/valok-black-with-white-outline-mobile.webp 800w, img/valok-black-with-white-outline.webp 1600w"
+                    sizes="(max-width: 800px) 100vw, 1600px" src="img/valok-black-with-white-outline.webp" alt="Valok logo"
+                    class="logo-img logo-img-light">VALOK<span class="logo-dot">.</span></a>
             <div class="nav-links" id="navLinks">
                 <a href="/#palvelut">Palvelut</a>
                 <a href="/#prosessi">Prosessi</a>
@@ -204,7 +211,9 @@
             <div class="footer-col footer-brand">
                 <div class="logo"><img srcset="img/aRon_A1-mobile.webp 800w, img/aRon_A1.webp 1600w"
                         sizes="(max-width: 800px) 100vw, 800px" src="img/aRon_A1.webp" alt="Valok logo"
-                        class="logo-img logo-img-footer">VALOK<span class="logo-dot">.</span></div>
+                        class="logo-img logo-img-dark logo-img-footer"><img srcset="img/valok-black-with-white-outline-mobile.webp 800w, img/valok-black-with-white-outline.webp 1600w"
+                        sizes="(max-width: 800px) 100vw, 800px" src="img/valok-black-with-white-outline.webp" alt="Valok logo"
+                        class="logo-img logo-img-light logo-img-footer">VALOK<span class="logo-dot">.</span></div>
                 <p>Prosessien automatisointia ja dedikoituja tekoälyratkaisuja suomalaisille PK-yrityksille.</p>
             </div>
             <div class="footer-col">

@@ -6,6 +6,7 @@
     --bg: #030712;
     --bg-subtle: #0a0f1e;
     --accent: #6366f1;
+    --accent-rgb: 99, 102, 241;
     --accent-light: #818cf8;
     --accent-glow: rgba(99, 102, 241, 0.15);
     --glass: rgba(255, 255, 255, 0.03);
@@ -18,6 +19,33 @@
     --radius: 20px;
     --radius-sm: 12px;
     --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --nav-bg: rgba(3, 7, 18, 0.7);
+    --nav-bg-scrolled: rgba(3, 7, 18, 0.92);
+    --nav-bg-mobile: rgba(3, 7, 18, 0.97);
+    --cookie-bg: rgba(10, 15, 30, 0.95);
+    --particles-opacity: 0.4;
+}
+
+[data-theme="light"] {
+    --bg: #f8fafc;
+    --bg-subtle: #f1f5f9;
+    --accent: #6366f1;
+    --accent-rgb: 99, 102, 241;
+    --accent-light: #4f46e5;
+    --accent-glow: rgba(99, 102, 241, 0.1);
+    --glass: rgba(255, 255, 255, 0.7);
+    --glass-hover: rgba(255, 255, 255, 0.9);
+    --border: rgba(15, 23, 42, 0.08);
+    --border-hover: rgba(15, 23, 42, 0.15);
+    --text: #0f172a;
+    --text-muted: #475569;
+    --text-dim: #94a3b8;
+    --nav-bg: rgba(248, 250, 252, 0.8);
+    --nav-bg-scrolled: rgba(248, 250, 252, 0.95);
+    --nav-bg-mobile: rgba(248, 250, 252, 0.98);
+    --cookie-bg: rgba(255, 255, 255, 0.95);
+    --particles-opacity: 0.18;
 }
 
 *,
@@ -72,7 +100,7 @@ a:hover {
     height: 100%;
     pointer-events: none;
     z-index: 0;
-    opacity: 0.4;
+    opacity: var(--particles-opacity, 0.4);
 }
 
 /* ============================
@@ -85,14 +113,63 @@ nav {
     z-index: 1000;
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    background: rgba(3, 7, 18, 0.7);
+    background: var(--nav-bg);
     border-bottom: 1px solid var(--border);
     transition: var(--transition);
 }
 
 nav.scrolled {
-    background: rgba(3, 7, 18, 0.92);
+    background: var(--nav-bg-scrolled);
     border-bottom-color: var(--border-hover);
+}
+
+.theme-toggle {
+    background: var(--glass);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text);
+    transition: var(--transition);
+    padding: 0;
+    margin-left: 16px;
+    z-index: 1001;
+}
+
+.theme-toggle:hover {
+    background: var(--glass-hover);
+    border-color: var(--accent);
+    color: var(--accent-light);
+    transform: scale(1.05);
+}
+
+.theme-toggle svg {
+    stroke: currentColor;
+    transition: transform 0.5s ease;
+}
+
+.theme-toggle:hover svg {
+    transform: rotate(30deg);
+}
+
+.theme-toggle .sun-icon {
+    display: block;
+}
+
+.theme-toggle .moon-icon {
+    display: none;
+}
+
+[data-theme="light"] .theme-toggle .sun-icon {
+    display: none;
+}
+
+[data-theme="light"] .theme-toggle .moon-icon {
+    display: block;
 }
 
 .nav-container {
@@ -136,6 +213,24 @@ nav.scrolled {
     filter: brightness(1.6) contrast(1.05);
 }
 
+.logo-img-light {
+    display: none;
+}
+
+[data-theme="light"] .logo-img-dark {
+    display: none;
+}
+
+[data-theme="light"] .logo-img-light {
+    display: inline-block;
+    filter: none;
+}
+
+[data-theme="light"] .logo:hover .logo-img-light {
+    filter: drop-shadow(0 0 12px var(--accent-glow));
+    transform: scale(1.08);
+}
+
 .nav-links {
     display: flex;
     align-items: center;
@@ -155,6 +250,10 @@ nav.scrolled {
 .nav-links a:hover {
     color: var(--text);
     background: var(--glass-hover);
+}
+
+[data-theme="light"] .nav-links a:hover {
+    background: rgba(15, 23, 42, 0.06);
 }
 
 .nav-cta {
@@ -952,7 +1051,7 @@ a:hover {
         top: 100%;
         left: 0;
         right: 0;
-        background: rgba(3, 7, 18, 0.97);
+        background: var(--nav-bg-mobile);
         backdrop-filter: blur(20px);
         flex-direction: column;
         padding: 16px 24px;
@@ -961,6 +1060,11 @@ a:hover {
 
     .nav-links.active {
         display: flex;
+    }
+
+    .theme-toggle {
+        margin-left: auto;
+        margin-right: 8px;
     }
 
     .mobile-toggle {
@@ -1075,7 +1179,7 @@ a:hover {
 .form-group input,
 .form-group select,
 .form-group textarea {
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--bg-subtle);
     border: 1px solid var(--border);
     border-radius: var(--radius-sm);
     padding: 14px 18px;
@@ -1092,13 +1196,13 @@ a:hover {
 .form-group textarea:focus {
     outline: none;
     border-color: var(--accent);
-    background: rgba(255, 255, 255, 0.06);
+    background: var(--glass-hover);
     box-shadow: 0 0 0 4px var(--accent-glow);
 }
 
 /* Fix for Select dropdown options visibility */
 .form-group select option {
-    background-color: #0f172a; /* Solid dark background for consistency */
+    background-color: var(--bg-subtle);
     color: var(--text);
     padding: 10px;
 }
@@ -1180,7 +1284,7 @@ a:hover {
     left: 24px;
     right: 24px;
     max-width: 400px;
-    background: rgba(10, 15, 30, 0.95);
+    background: var(--cookie-bg);
     backdrop-filter: blur(20px);
     border: 1px solid var(--border);
     border-radius: var(--radius-sm);
