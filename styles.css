@@ -198,37 +198,17 @@ nav.scrolled {
     width: auto;
     margin: -24px -10px -24px -16px;
     vertical-align: middle;
-    filter: brightness(1.8) contrast(1.1);
     transition: var(--transition);
 }
 
 .logo:hover .logo-img {
-    filter: brightness(2) contrast(1.2) drop-shadow(0 0 12px var(--accent-glow));
+    filter: drop-shadow(0 0 12px var(--accent-glow));
     transform: scale(1.08);
 }
 
 .logo-img-footer {
     height: 100px;
     margin: -28px -12px -28px -20px;
-    filter: brightness(1.6) contrast(1.05);
-}
-
-.logo-img-light {
-    display: none;
-}
-
-[data-theme="light"] .logo-img-dark {
-    display: none;
-}
-
-[data-theme="light"] .logo-img-light {
-    display: inline-block;
-    filter: none;
-}
-
-[data-theme="light"] .logo:hover .logo-img-light {
-    filter: drop-shadow(0 0 12px var(--accent-glow));
-    transform: scale(1.08);
 }
 
 .nav-links {
