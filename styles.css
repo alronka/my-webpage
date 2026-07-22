@@ -72,7 +72,7 @@ body {
 }
 
 body {
-    font-family: 'Roboto', -apple-system, sans-serif;
+    font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
     background-color: var(--bg);
     color: var(--text);
     line-height: 1.6;
@@ -191,6 +191,8 @@ nav.scrolled {
 }
 
 .logo {
+    display: inline-flex;
+    align-items: center;
     font-weight: 800;
     font-size: 1.3rem;
     letter-spacing: -0.5px;
@@ -452,6 +454,10 @@ h1 {
 
     .tech-marquee-track {
         gap: 40px;
+    }
+
+    header {
+        padding-bottom: 160px;
     }
 }
 
