@@ -399,10 +399,12 @@ h1 {
 .tech-marquee-label {
     display: block;
     text-align: center;
-    font-size: 0.875rem;
+    font-family: 'Space Grotesk', -apple-system, sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
     letter-spacing: 0.01em;
-    color: var(--text-muted);
-    opacity: 0.6;
+    color: var(--text);
+    opacity: 0.85;
     margin-bottom: 16px;
 }
 
