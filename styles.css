@@ -72,10 +72,19 @@ body {
 }
 
 body {
-    font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+    font-family: 'Roboto', -apple-system, sans-serif;
     background-color: var(--bg);
     color: var(--text);
     line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Space Grotesk', -apple-system, sans-serif;
 }
 
 a {
@@ -370,6 +379,80 @@ h1 {
     transform: translateX(-50%);
     pointer-events: none;
     z-index: -1;
+}
+
+.tech-marquee {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    overflow: hidden;
+    z-index: -1;
+    padding: 28px 0 32px;
+    -webkit-mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+    mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+}
+
+.tech-marquee-label {
+    display: block;
+    text-align: center;
+    font-size: 0.875rem;
+    letter-spacing: 0.01em;
+    color: var(--text-muted);
+    opacity: 0.6;
+    margin-bottom: 16px;
+}
+
+.tech-marquee-track {
+    display: flex;
+    align-items: center;
+    gap: 72px;
+    width: max-content;
+    animation-name: tech-marquee-scroll;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-duration: 30s;
+}
+
+.tech-marquee-track:hover {
+    animation-play-state: paused;
+}
+
+.tech-marquee-icon {
+    height: 32px;
+    width: auto;
+    opacity: 0.5;
+    filter: invert(1);
+    transition: opacity 0.2s ease;
+}
+
+.tech-marquee-icon:hover {
+    opacity: 0.9;
+}
+
+[data-theme="light"] .tech-marquee-icon {
+    filter: none;
+}
+
+@keyframes tech-marquee-scroll {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+@media (max-width: 640px) {
+    .tech-marquee-icon {
+        height: 22px;
+    }
+
+    .tech-marquee-track {
+        gap: 40px;
+    }
 }
 
 /* ============================

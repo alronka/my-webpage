@@ -349,3 +349,37 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 })();
+
+// ---- HERO TECH LOGO MARQUEE (jatkuva loop riippumatta logojen määrästä) ----
+(function initTechMarquee() {
+    const track = document.querySelector('.tech-marquee-track');
+    if (!track) return;
+
+    const baseIcons = Array.from(track.children);
+    if (!baseIcons.length) return;
+
+    const cloneSet = (icons) => icons.map((icon) => {
+        const clone = icon.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        if (clone.tagName === 'IMG') clone.alt = '';
+        return clone;
+    });
+
+    // Repeat the base logo set until the row is comfortably wider than the
+    // viewport, so the loop keeps flowing even with just a couple of logos.
+    const minWidth = Math.max(window.innerWidth, 1200) * 1.5;
+    let guard = 0;
+    while (track.scrollWidth < minWidth && guard < 20) {
+        cloneSet(baseIcons).forEach((clone) => track.appendChild(clone));
+        guard++;
+    }
+
+    // Duplicate the whole accumulated set once more so the first and second
+    // halves are identical: translateX(-50%) then loops with no visible seam.
+    cloneSet(Array.from(track.children)).forEach((clone) => track.appendChild(clone));
+
+    // Constant scroll speed regardless of how many logos end up in the row.
+    const pxPerSecond = 55;
+    const halfWidth = track.scrollWidth / 2;
+    track.style.animationDuration = `${(halfWidth / pxPerSecond).toFixed(1)}s`;
+})();
