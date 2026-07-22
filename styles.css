@@ -211,6 +211,18 @@ nav.scrolled {
     margin: -28px -12px -28px -20px;
 }
 
+.logo-img-light {
+    display: none;
+}
+
+[data-theme="light"] .logo-img-dark {
+    display: none;
+}
+
+[data-theme="light"] .logo-img-light {
+    display: inline-block;
+}
+
 .nav-links {
     display: flex;
     align-items: center;
@@ -1025,6 +1037,16 @@ a:hover {
 }
 
 @media (max-width: 768px) {
+    .logo-img {
+        height: 44px;
+        margin: -13px -6px -13px -9px;
+    }
+
+    .logo-img-footer {
+        height: 56px;
+        margin: -16px -7px -16px -11px;
+    }
+
     .nav-links {
         display: none;
         position: absolute;
