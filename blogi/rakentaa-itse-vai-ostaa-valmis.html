@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rakenna itse vai osta valmis? Milloin räätälöity tekoälyratkaisu kannattaa PK-yritykselle — Valok</title>
+    <meta name="description"
+        content="Valmis SaaS-työkalu on nopea aloittaa, mutta ei aina taivu yrityksen todellisiin tarpeisiin. Lue miten PK-yritys tekee järkevän päätöksen räätälöidyn ratkaisun ja valmiin työkalun välillä.">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel=icon type=image/png sizes=32x32 href=../img/favicon-32x32.png>
+    <link rel=apple-touch-icon sizes=180x180 href=../img/favicon-180x180.png>
+
+    <link rel="canonical" href="https://valok.fi/blogi/rakentaa-itse-vai-ostaa-valmis.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://valok.fi/blogi/rakentaa-itse-vai-ostaa-valmis.html">
+    <meta property="og:title" content="Rakenna itse vai osta valmis? Milloin räätälöity tekoälyratkaisu kannattaa PK-yritykselle">
+    <meta property="og:description" content="Valmis SaaS-työkalu on nopea, mutta ei aina taivu tarpeisiin. Lue miten PK-yritys tekee järkevän build vs. buy -päätöksen.">
+    <meta property="og:image" content="https://valok.fi/img/rakentaa-itse-vai-ostaa-valmis.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Rakenna itse vai osta valmis? Milloin räätälöity tekoälyratkaisu kannattaa PK-yritykselle">
+    <meta name="twitter:description" content="Valmis SaaS-työkalu on nopea, mutta ei aina taivu tarpeisiin. Lue miten PK-yritys tekee järkevän build vs. buy -päätöksen.">
+    <meta name="twitter:image" content="https://valok.fi/img/rakentaa-itse-vai-ostaa-valmis.webp">
+
+    <style>
+        .post-header {
+            min-height: auto !important;
+            padding: 160px 24px 24px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            background: radial-gradient(circle at top, var(--accent-glow) 0%, transparent 70%);
+        }
+
+        .post-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px 100px;
+            line-height: 1.8;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .post-content h2, .post-content h3 {
+            color: var(--text);
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .post-content p {
+            margin-bottom: 24px;
+        }
+
+        .post-content ul, .post-content ol {
+            margin-bottom: 24px;
+            padding-left: 20px;
+        }
+
+        .post-content li {
+            margin-bottom: 12px;
+        }
+
+        .post-meta {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dim);
+            text-decoration: none;
+            margin-bottom: 40px;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        .post-image {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .post-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .toc-box {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+        }
+
+        .toc-box h4 {
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        .toc-box ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .toc-box a {
+            color: #58a6ff;
+            text-decoration: none;
+            display: block;
+            padding: 4px 0;
+            transition: var(--transition);
+        }
+
+        .toc-box a:hover {
+            color: var(--accent);
+            padding-left: 4px;
+        }
+
+        .highlight-box {
+            background: var(--glass);
+            padding: 30px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+            border-left: 4px solid var(--accent);
+        }
+
+        .reference-list {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            margin-top: 60px;
+        }
+
+        .reference-list ol {
+            padding-left: 20px;
+        }
+
+        .contact-section {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 60px 40px;
+            border-radius: var(--radius);
+            margin-top: 80px;
+        }
+
+        .compare-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 32px 0;
+        }
+
+        @media (max-width: 600px) {
+            .compare-grid { grid-template-columns: 1fr; }
+        }
+
+        .compare-card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+        }
+
+        .compare-card h3 {
+            margin-top: 0 !important;
+            margin-bottom: 16px !important;
+            font-size: 1rem !important;
+            color: var(--accent) !important;
+        }
+
+        .compare-card ul {
+            padding-left: 16px;
+            margin: 0;
+        }
+
+        .compare-card li { margin-bottom: 8px; font-size: 0.95rem; }
+    </style>
+</head>
+
+<body>
+    <canvas id="particles"></canvas>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light">VALOK<span
+                     class="logo-dot">.</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="/#palvelut">Palvelut</a>
+                <a href="/#prosessi">Prosessi</a>
+                <a href="../blogi.html">Blogi</a>
+                <a href="/#yhteystiedot" class="nav-cta">Ota yhteyttä</a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Avaa valikko">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <article>
+        <header class="post-header">
+            <a href="../blogi.html" class="back-link">← Takaisin blogiin</a>
+            <span class="post-meta">Tekoäly • Strategia • Päätöksenteko</span>
+            <h1>Rakenna itse vai osta valmis? Milloin <span class="gradient-text">räätälöity tekoälyratkaisu kannattaa</span> PK-yritykselle</h1>
+            <p style="color: var(--text-dim); margin-top: 20px;">Valmis SaaS-työkalu on käytössä samana päivänä, räätälöity ratkaisu vasta viikkojen päästä. Silti moni yritys päätyy myöhemmin toivomaan, että olisi valinnut toisin. Lue miten teet valinnan järkevästi.</p>
+        </header>
+
+        <div class="post-image">
+            <img src="../img/rakentaa-itse-vai-ostaa-valmis.webp" alt="Rakenna itse vai osta valmis tekoälyratkaisu PK-yritykselle - Valok">
+        </div>
+
+        <main class="post-content">
+            <div class="toc-box">
+                <h4>Sisällysluettelo</h4>
+                <ul>
+                    <li><a href="#miksi-kysymys">1. Miksi tämä kysymys tulee vastaan lähes aina</a></li>
+                    <li><a href="#valmis-tyokalu">2. Mitä valmis SaaS-työkalu tarjoaa, ja mistä se joustaa</a></li>
+                    <li><a href="#raataloity-ratkaisu">3. Mitä räätälöity ratkaisu tarjoaa, ja mitä se vaatii</a></li>
+                    <li><a href="#vertailu">4. Valmis työkalu ja räätälöity ratkaisu rinnakkain</a></li>
+                    <li><a href="#piilokustannukset">5. Piilokustannukset, joita harvoin lasketaan etukäteen</a></li>
+                    <li><a href="#miten-valita">6. Miten Valok auttaa tässä päätöksessä</a></li>
+                </ul>
+            </div>
+
+            <p>Kun yritys harkitsee tekoälyn tai automaation käyttöönottoa, eteen tulee lähes aina sama risteys: otetaanko käyttöön valmis työkalu, joka toimii heti, vai rakennetaanko ratkaisu, joka on suunniteltu juuri tähän prosessiin? Kumpikin polku voi olla oikea, mutta väärä valinta huomataan usein vasta kuukausien päästä, kun rajoitteet tai kustannukset alkavat näkyä.</p>
+
+            <p>Tämä ei ole pelkkä tekninen kysymys, vaan liiketoimintapäätös siitä, mihin yritys haluaa sitoutua: nopeuteen ja yksinkertaisuuteen, vai joustavuuteen ja omistajuuteen.</p>
+
+            <h2 id="miksi-kysymys">1. Miksi tämä kysymys tulee vastaan lähes aina</h2>
+            <p>Markkinoilla on tarjolla valmiita tekoälytyökaluja lähes jokaiseen käyttötarkoitukseen: asiakaspalveluun, sisällöntuotantoon, raportointiin. Ne ovat houkuttelevia, koska käyttöönotto voi tapahtua samana päivänä ja hinta on selkeä kuukausimaksu. Silti moni yritys huomaa jossain vaiheessa, että valmis työkalu tekee 80 % siitä mitä tarvitaan, mutta juuri se puuttuva 20 % on se, mikä olisi tuonut todellisen kilpailuedun.</p>
+
+            <div class="highlight-box">
+                Valmis työkalu ratkaisee yleisen ongelman yleisellä tavalla. Räätälöity ratkaisu ratkaisee sinun ongelmasi sinun tavallasi. Kumpaakaan ei kannata valita automaattisesti, vaan sen perusteella, kumpi tilanne yritykselläsi on.
+            </div>
+
+            <h2 id="valmis-tyokalu">2. Mitä valmis SaaS-työkalu tarjoaa, ja mistä se joustaa</h2>
+            <p>Valmiin työkalun suurin etu on nopeus: käyttöönotto voi kestää tunteja tai päiviä, ei viikkoja. Hinta on ennustettava kuukausimaksu, eikä yritys tarvitse omaa teknistä osaamista ylläpitoon, koska toimittaja huolehtii siitä.</p>
+
+            <p>Toisaalta valmis työkalu on suunniteltu palvelemaan tuhansia erilaisia yrityksiä samanaikaisesti, mikä tarkoittaa, että se on rakennettu yleiseksi, ei juuri sinun prosessiisi. Jos yrityksesi työnkulku poikkeaa tyypillisestä, joudut usein taipumaan työkalun logiikkaan, et päinvastoin. <a href="tekoalyn-hinta-ja-roi.html">Tekoälyn todellisesta hinnasta kertovassa artikkelissamme</a> käymme tarkemmin läpi, miten kuukausimaksut kasvavat helposti yllättävän suuriksi käyttäjämäärän tai volyymin kasvaessa.</p>
+
+            <h2 id="raataloity-ratkaisu">3. Mitä räätälöity ratkaisu tarjoaa, ja mitä se vaatii</h2>
+            <p>Räätälöity ratkaisu rakennetaan juuri sen prosessin ehdoilla, joka yrityksessä oikeasti on käytössä, ei toisin päin. Tämä tarkoittaa, että se voi automatisoida asioita, joihin valmis työkalu ei taivu lainkaan, ja integroitua järjestelmiin, joita yleistyökalu ei tue.</p>
+
+            <p>Hintana on pidempi käyttöönottoaika ja suurempi alkuinvestointi. Räätälöity ratkaisu vaatii myös selkeän määrittelyn: mitä prosessia automatisoidaan, mitä järjestelmiä se koskettaa, ja kuka vastaa ylläpidosta jatkossa. <a href="tekoalyagentit-kaytannon-opas.html">Tekoälyagenttien käytännön oppaassamme</a> käymme läpi, mitä ensimmäisen agenttiprojektin määrittely käytännössä vaatii.</p>
+
+            <h2 id="vertailu">4. Valmis työkalu ja räätälöity ratkaisu rinnakkain</h2>
+            <div class="compare-grid">
+                <div class="compare-card">
+                    <h3>Valmis SaaS-työkalu</h3>
+                    <ul>
+                        <li>Käyttöönotto tunneissa tai päivissä</li>
+                        <li>Ennustettava kuukausihinta</li>
+                        <li>Ei vaadi omaa teknistä ylläpitoa</li>
+                        <li>Rajoittuu työkalun omaan logiikkaan</li>
+                        <li>Kustannus kasvaa volyymin mukana</li>
+                    </ul>
+                </div>
+                <div class="compare-card">
+                    <h3>Räätälöity ratkaisu</h3>
+                    <ul>
+                        <li>Käyttöönotto viikkoja tai kuukausia</li>
+                        <li>Suurempi alkuinvestointi</li>
+                        <li>Rakennettu juuri omaan prosessiin</li>
+                        <li>Integroituu vapaasti järjestelmiin</li>
+                        <li>Omistat ratkaisun ja sen kehityksen</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h2 id="piilokustannukset">5. Piilokustannukset, joita harvoin lasketaan etukäteen</h2>
+            <p>Kumpaankin suuntaan liittyy kustannuksia, jotka jäävät helposti huomaamatta alkuvaiheessa:</p>
+            <ul>
+                <li><strong>Valmis työkalu:</strong> useiden erillisten työkalujen kuukausimaksut kasaantuvat, ja tiedon siirtäminen työkalusta toiseen jää usein manuaaliseksi työksi, jota kukaan ei ole laskenut mukaan säästöön.</li>
+                <li><strong>Valmis työkalu:</strong> jos toimittaja lopettaa palvelun tai nostaa hintaa merkittävästi, yrityksellä ei ole vaihtoehtoa kuin sopeutua, koska ratkaisu ei ole oma.</li>
+                <li><strong>Räätälöity ratkaisu:</strong> ylläpito ja jatkokehitys vaativat joko oman osaamisen tai jatkuvan kumppanuuden, mikä pitää huomioida budjetissa käyttöönoton jälkeenkin, ei vain kertaprojektina.</li>
+                <li><strong>Räätälöity ratkaisu:</strong> jos määrittely tehdään huolimattomasti, lopputulos voi ratkaista väärän ongelman tarkasti, mikä on kalliimpi virhe kuin väärän valmiin työkalun kokeilu.</li>
+            </ul>
+
+            <h2 id="miten-valita">6. Miten Valok auttaa tässä päätöksessä</h2>
+            <p>Kun asiakas tulee meille kysymyksen kanssa "pitäisikö tämä rakentaa vai ostaa valmiina", emme lähde oletuksesta että vastaus on aina "rakennetaan", vaikka se on meidän liiketoimintamme. Kartoitamme ensin, kuinka erikoislaatuinen prosessi on, kuinka paljon se toistuu, ja kuinka paljon arvoa juuri siihen räätälöinti tuottaisi verrattuna valmiin työkalun rajoitteisiin.</p>
+
+            <p>Joskus suositus on selkeästi valmis työkalu, koska prosessi on tavanomainen eikä räätälöinti toisi lisäarvoa. Toisinaan taas juuri se erikoisuus, joka tekee yrityksestäsi kilpailukykyisen, on syy miksi valmis työkalu ei koskaan tule riittämään.</p>
+
+            <div class="reference-list">
+                <h4>Lähdeviitteet:</h4>
+                <ol>
+                    <li><a href="https://www.gartner.com/en/information-technology/topics/build-vs-buy" target="_blank" rel="noopener">Gartner: Build vs. Buy Decision Framework</a>. Analyysejä siitä, miten yritykset arvioivat räätälöidyn ja valmiin ratkaisun välistä valintaa.</li>
+                    <li><a href="https://www.forrester.com/blogs/category/software-development/" target="_blank" rel="noopener">Forrester: Software Development Insights</a>. Tutkimuksia ohjelmistoinvestointien pitkän aikavälin kustannuksista ja riskeistä.</li>
+                </ol>
+            </div>
+
+            <div class="contact-section">
+                <div class="section-header" style="text-align: center; margin-bottom: 40px;">
+                    <span class="section-tag">Otetaan askel eteenpäin</span>
+                    <h2>Etkö ole varma, kannattaako rakentaa vai ostaa?</h2>
+                    <p>Valok kartoittaa tilanteenne puolueettomasti ja suosittelee ratkaisua, joka sopii teidän prosessiinne, ei sitä joka on meille helpoin myydä.</p>
+                </div>
+
+                <div class="contact-container" style="max-width: 100%;">
+                    <div class="contact-form-card">
+                        <form action="https://formspree.io/f/xlgpgyjl" method="POST" id="contact-form">
+                            <div class="form-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 20px;">
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="name">Nimi</label>
+                                    <input type="text" id="name" name="name" placeholder="Oma nimesi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                </div>
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="email">Sähköposti</label>
+                                    <input type="email" id="email" name="email" placeholder="esimerkki@yritys.fi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg full-width" style="width: 100%; padding: 16px; font-weight: bold; cursor: pointer; margin-top: 20px;">
+                                Varaa ilmainen konsultaatio
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </article>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer">VALOK<span class="logo-dot">.</span></div>
+                <p>Prosessien automatisointia ja dedikoituja tekoälyratkaisuja suomalaisille PK-yrityksille.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Linkit</h4>
+                <ul>
+                    <li><a href="/">Etusivu</a></li>
+                    <li><a href="../blogi.html">Blogi</a></li>
+                    <li><a href="/#palvelut">Palvelut</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ota yhteyttä</h4>
+                <ul>
+                    <li>aleksanteri@valok.fi</li>
+                    <li>Jyväskylä, Finland</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Valok. Kaikki oikeudet pidätetään.
+        </div>
+    </footer>
+
+    <script src="../main.js"></script>
+</body>
+
+</html>
