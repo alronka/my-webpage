@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tekoälyn rajoittaminen: Miten annat agentille juuri oikeat valtuudet — Valok</title>
+    <meta name="description"
+        content="'Anna tekoälylle vapaat kädet' on houkutteleva mutta vaarallinen lähtökohta. Lue miten Valok rajaa tekoälyagentin valtuudet datan, toimintojen ja päätöksenteon tasolla, niin että se on hyödyllinen mutta ei riski.">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel=icon type=image/png sizes=32x32 href=../img/favicon-32x32.png>
+    <link rel=apple-touch-icon sizes=180x180 href=../img/favicon-180x180.png>
+
+    <link rel="canonical" href="https://valok.fi/blogi/tekoalyn-rajoittaminen.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://valok.fi/blogi/tekoalyn-rajoittaminen.html">
+    <meta property="og:title" content="Tekoälyn rajoittaminen: Miten annat agentille juuri oikeat valtuudet">
+    <meta property="og:description" content="'Vapaat kädet' on vaarallinen lähtökohta tekoälyagentille. Lue miten Valok rajaa valtuudet datan, toimintojen ja päätöksenteon tasolla.">
+    <meta property="og:image" content="https://valok.fi/img/tekoalyn-rajoittaminen.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tekoälyn rajoittaminen: Miten annat agentille juuri oikeat valtuudet">
+    <meta name="twitter:description" content="'Vapaat kädet' on vaarallinen lähtökohta tekoälyagentille. Lue miten Valok rajaa valtuudet datan, toimintojen ja päätöksenteon tasolla.">
+    <meta name="twitter:image" content="https://valok.fi/img/tekoalyn-rajoittaminen.webp">
+
+    <style>
+        .post-header {
+            min-height: auto !important;
+            padding: 160px 24px 24px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            background: radial-gradient(circle at top, var(--accent-glow) 0%, transparent 70%);
+        }
+
+        .post-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px 100px;
+            line-height: 1.8;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .post-content h2, .post-content h3 {
+            color: var(--text);
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .post-content p {
+            margin-bottom: 24px;
+        }
+
+        .post-content ul, .post-content ol {
+            margin-bottom: 24px;
+            padding-left: 20px;
+        }
+
+        .post-content li {
+            margin-bottom: 12px;
+        }
+
+        .post-meta {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dim);
+            text-decoration: none;
+            margin-bottom: 40px;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        .post-image {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .post-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .toc-box {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+        }
+
+        .toc-box h4 {
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        .toc-box ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .toc-box a {
+            color: #58a6ff;
+            text-decoration: none;
+            display: block;
+            padding: 4px 0;
+            transition: var(--transition);
+        }
+
+        .toc-box a:hover {
+            color: var(--accent);
+            padding-left: 4px;
+        }
+
+        .highlight-box {
+            background: var(--glass);
+            padding: 30px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+            border-left: 4px solid var(--accent);
+        }
+
+        .reference-list {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            margin-top: 60px;
+        }
+
+        .reference-list ol {
+            padding-left: 20px;
+        }
+
+        .contact-section {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 60px 40px;
+            border-radius: var(--radius);
+            margin-top: 80px;
+        }
+
+        .level-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .level-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+        }
+
+        .level-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: #fff;
+            font-weight: 900;
+            font-size: 0.9rem;
+        }
+
+        .level-text strong { display: block; color: var(--text); margin-bottom: 6px; }
+        .level-text p { margin: 0; font-size: 0.95rem; }
+    </style>
+</head>
+
+<body>
+    <canvas id="particles"></canvas>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light">VALOK<span
+                     class="logo-dot">.</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="/#palvelut">Palvelut</a>
+                <a href="/#prosessi">Prosessi</a>
+                <a href="../blogi.html">Blogi</a>
+                <a href="/#yhteystiedot" class="nav-cta">Ota yhteyttä</a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Avaa valikko">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <article>
+        <header class="post-header">
+            <a href="../blogi.html" class="back-link">← Takaisin blogiin</a>
+            <span class="post-meta">Tekoälyagentit • Tietoturva • Hallinta</span>
+            <h1>Tekoälyn rajoittaminen: Miten annat agentille <span class="gradient-text">juuri oikeat valtuudet</span></h1>
+            <p style="color: var(--text-dim); margin-top: 20px;">"Anna tekoälylle vapaat kädet, niin se hoitaa homman" kuulostaa tehokkaalta, kunnes agentti tekee jotain, mitä kukaan ei ehtinyt kieltää. Lue miten rajat suunnitellaan etukäteen, ei vahingon jälkeen.</p>
+        </header>
+
+        <div class="post-image">
+            <img src="../img/tekoalyn-rajoittaminen.webp" alt="Tekoälyn rajoittaminen ja agentin valtuuksien hallinta PK-yritykselle - Valok">
+        </div>
+
+        <main class="post-content">
+            <div class="toc-box">
+                <h4>Sisällysluettelo</h4>
+                <ul>
+                    <li><a href="#vapaat-kadet">1. Miksi "vapaat kädet" on houkutteleva mutta vaarallinen lähtökohta</a></li>
+                    <li><a href="#kolme-tasoa">2. Kolme tasoa, joilla rajoittaminen tapahtuu</a></li>
+                    <li><a href="#ihminen-silmukassa">3. Ihminen silmukassa: milloin agentti tarvitsee hyväksynnän</a></li>
+                    <li><a href="#sandbox">4. Sandbox ja testiympäristö ennen tuotantoa</a></li>
+                    <li><a href="#liian-tiukka">5. Liian tiukka rajoitus on myös riski</a></li>
+                    <li><a href="#miten-valok">6. Miten Valok rakentaa rajoitukset osaksi agenttiprojektia</a></li>
+                </ul>
+            </div>
+
+            <p>Kun yritys ottaa käyttöön ensimmäisen tekoälyagenttinsa, keskustelu keskittyy usein siihen, mitä agentti osaa tehdä. Vähemmälle huomiolle jää yhtä tärkeä kysymys: mitä agentin pitäisi saada tehdä, ja mitä ei missään tapauksessa. Tämä ero unohtuu helposti, koska rajoittaminen tuntuu jarruttavan sitä hyötyä, jonka takia agentti ylipäätään hankittiin.</p>
+
+            <p>Todellisuudessa hyvin suunnitellut rajat eivät hidasta agenttia, ne tekevät siitä turvallisen ottaa käyttöön kriittisissä prosesseissa, joihin kukaan ei muuten uskaltaisi antaa automaation koskea.</p>
+
+            <h2 id="vapaat-kadet">1. Miksi "vapaat kädet" on houkutteleva mutta vaarallinen lähtökohta</h2>
+            <p>Mitä enemmän agentille annetaan valtaa ilman rajoja, sitä nopeammin se pystyy toimimaan, ainakin teoriassa. Käytännössä rajaton agentti on kuin uusi työntekijä, jolle annetaan pääkäyttäjän tunnukset kaikkiin järjestelmiin ensimmäisenä työpäivänä ilman perehdytystä: se ei tarkoita tehokkuutta, se tarkoittaa riskiä, joka realisoituu ennemmin tai myöhemmin.</p>
+
+            <p>Yleisimmät seuraukset rajoittamattomasta agentista eivät ole dramaattisia hakkerointitarinoita, vaan arkisempia: agentti lähettää sähköpostin väärälle vastaanottajalle, tekee tilauksen väärällä summalla, tai muokkaa tietoa järjestelmässä johon sen ei olisi pitänyt koskea lainkaan. <a href="sisainen-tekoaly-ja-tietoturva.html">Yrityksen sisäinen tekoäly ja tietoturva -artikkelissamme</a> käsittelimme samaa teemaa datan näkökulmasta: agentti ei tarvitse pääsyä kaikkeen dataan toimiakseen hyvin, se tarvitsee pääsyn juuri siihen dataan jota tehtävä vaatii.</p>
+
+            <div class="highlight-box">
+                Hyvä nyrkkisääntö: agentille annetaan aina vähimmän oikeuden periaate (principle of least privilege), sama periaate jota käytetään ihmiskäyttäjienkin oikeuksien hallinnassa. Agentti saa juuri sen pääsyn ja ne toiminnot, joita sen tehtävä vaatii, ei enempää varmuuden vuoksi.
+            </div>
+
+            <h2 id="kolme-tasoa">2. Kolme tasoa, joilla rajoittaminen tapahtuu</h2>
+            <p>Käytännössä tekoälyagentin rajaaminen tapahtuu kolmella toisiaan täydentävällä tasolla:</p>
+            <ul>
+                <li><strong>Datataso.</strong> Mihin tietoihin agentilla on ylipäätään pääsy? Asiakaspalveluagentti ei tarvitse pääsyä palkkatietoihin, ja laskutusagentti ei tarvitse pääsyä koko asiakasrekisteriin.</li>
+                <li><strong>Toimintataso.</strong> Mitä toimintoja agentti saa suorittaa itsenäisesti? Tietojen lukeminen ja ehdotuksen kirjoittaminen on eri asia kuin rahan siirtäminen tai tilin poistaminen.</li>
+                <li><strong>Päätöksentekotaso.</strong> Missä kohdissa agentti tekee päätöksen itse, ja missä kohdissa se vain valmistelee päätöksen ihmisen hyväksyttäväksi? Tämä on usein tärkein taso, koska se erottaa avustavan agentin täysin itsenäisestä agentista.</li>
+            </ul>
+            <p>Näiden kolmen tason erottaminen toisistaan on tärkeää, koska ne vaativat eri ratkaisuja: datatasoa rajataan käyttöoikeuksilla ja rajapinnoilla, toimintatasoa rajataan sillä mitä työkaluja agentille ylipäätään annetaan käyttöön, ja päätöksentekotasoa rajataan sillä, missä kohtaa prosessia vaaditaan ihmisen hyväksyntä.</p>
+
+            <h2 id="ihminen-silmukassa">3. Ihminen silmukassa: milloin agentti tarvitsee hyväksynnän</h2>
+            <p>"Ihminen silmukassa" (human in the loop) tarkoittaa, että agentti pysähtyy ja pyytää vahvistuksen ennen tiettyjä toimintoja, sen sijaan että se toimisi täysin itsenäisesti. Tämä ei tarkoita, että agentti muuttuu hyödyttömäksi hitaaksi ehdotuskoneeksi, vaan että hyväksyntä vaaditaan juuri niissä kohdissa, joissa virheen hinta on korkea.</p>
+
+            <ul>
+                <li><strong>Automaattinen ilman hyväksyntää:</strong> tiedon haku, yhteenvedon kirjoittaminen, sisäinen luonnos, rutiiniluokittelu.</li>
+                <li><strong>Vaatii ihmisen hyväksynnän:</strong> rahaliikenne, sopimusten lähettäminen ulkopuolelle, tietojen poistaminen, asiakkaalle näkyvä viestintä ensimmäistä kertaa käyttöönoton jälkeen.</li>
+            </ul>
+
+            <p>Raja näiden välillä ei ole kiveen hakattu, vaan se siirtyy ajan myötä: kun agentti on osoittanut luotettavuutensa tietyssä tehtävässä pitkän ajan kuluessa, hyväksyntävaatimusta voidaan keventää. <a href="tekoalyagenttien-roi-mittarit.html">ROI-mittareita käsittelevässä artikkelissamme</a> käsittelimme virhemäärän seurantaa juuri tätä varten: se data, joka kertyy hyväksyntäkierroksista, on samalla se data joka kertoo milloin rajoja voi turvallisesti löysätä.</p>
+
+            <h2 id="sandbox">4. Sandbox ja testiympäristö ennen tuotantoa</h2>
+            <p>Ennen kuin agentti pääsee koskemaan oikeaan dataan tai oikeisiin asiakkaisiin, se kannattaa ajaa testiympäristössä, jossa sen toiminta on identtistä tuotantoympäristön kanssa, mutta seuraukset eivät ole todellisia. Tämä paljastaa yllättävän usein tilanteita, joita alkuperäisessä määrittelyssä ei osattu ennakoida, esimerkiksi miten agentti reagoi puutteelliseen tai ristiriitaiseen tietoon.</p>
+
+            <p><a href="tekoalyagentit-kaytannon-opas.html">Tekoälyagenttien käytännön oppaassamme</a> suosittelemme aloittamaan pienestä, rajatusta tehtävästä ennen laajempaa käyttöönottoa, juuri tästä syystä: sandbox-vaihe on paljon halvempi paikka löytää ongelma kuin tuotantoympäristö, jossa virheellä on jo oikeita seurauksia.</p>
+
+            <h2 id="liian-tiukka">5. Liian tiukka rajoitus on myös riski</h2>
+            <p>Rajoittamisessa on myös vastakkainen riski, jota harvemmin puhutaan ääneen: jos agentti joutuu pyytämään hyväksynnän joka ikiseen pieneen toimintoon, kukaan ei ehdi hyväksyä niitä ajoissa, ja koko automaation hyöty katoaa jonoon jumittuneisiin pyyntöihin. Tällöin yritys on teknisesti "turvallinen", mutta ei saa mitään hyötyä investoinnistaan.</p>
+
+            <p>Tasapaino löytyy siitä, että rajat asetetaan riskin, ei mukavuuden mukaan. Matalan riskin toiminnot automatisoidaan täysin, korkean riskin toiminnot vaativat hyväksynnän, ja rajaa tarkistetaan säännöllisesti sitä mukaa kun agentin luotettavuudesta kertyy näyttöä.</p>
+
+            <h2 id="miten-valok">6. Miten Valok rakentaa rajoitukset osaksi agenttiprojektia</h2>
+            <p>Kun suunnittelemme agenttia asiakkaalle, valtuuksien kartoitus tehdään aina ennen teknistä toteutusta, ei sen jälkeen lisättynä ominaisuutena. Käymme läpi jokaisen toiminnon, johon agentti tarvitsee pääsyn, ja luokittelemme sen riskitason mukaan: mikä automatisoidaan suoraan, mikä vaatii hyväksynnän, ja mihin agentilla ei ole pääsyä lainkaan.</p>
+
+            <p>Tämä kartoitus dokumentoidaan osaksi projektia, jotta rajat eivät jää vain yhden henkilön muistin varaan, ja niitä voidaan tarkistaa ja säätää sitä mukaa kun agentti on ollut käytössä ja sen luotettavuudesta on kertynyt näyttöä. Jos haluat arvioida, kuinka paljon tekoälyagentti voisi säästää juuri teidän prosessissanne, kun rajat on suunniteltu oikein, <a href="../tekoaly-roi-laskuri.html">kokeile tekoäly ROI-laskuriamme</a>.</p>
+
+            <div class="reference-list">
+                <h4>Lähdeviitteet:</h4>
+                <ol>
+                    <li><a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">NIST AI Risk Management Framework</a>. Ohjeistusta tekoälyjärjestelmien riskien tunnistamiseen ja hallintaan.</li>
+                    <li><a href="https://www.gartner.com/en/articles/ai-agents" target="_blank" rel="noopener">Gartner: AI Agents</a>. Analyysejä tekoälyagenttien hallinnasta ja valtuuksien rajaamisesta yrityskäytössä.</li>
+                </ol>
+            </div>
+
+            <div class="contact-section">
+                <div class="section-header" style="text-align: center; margin-bottom: 40px;">
+                    <span class="section-tag">Otetaan askel eteenpäin</span>
+                    <h2>Tiedätkö, mitä valtuuksia teidän agenttinne oikeasti tarvitsee?</h2>
+                    <p>Valok kartoittaa agentin datan, toimintojen ja päätöksenteon rajat ennen käyttöönottoa, jotta automaatio on hyödyllinen ilman ylimääräistä riskiä.</p>
+                </div>
+
+                <div class="contact-container" style="max-width: 100%;">
+                    <div class="contact-form-card">
+                        <form action="https://formspree.io/f/xlgpgyjl" method="POST" id="contact-form">
+                            <div class="form-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 20px;">
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="name">Nimi</label>
+                                    <input type="text" id="name" name="name" placeholder="Oma nimesi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                </div>
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="email">Sähköposti</label>
+                                    <input type="email" id="email" name="email" placeholder="esimerkki@yritys.fi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg full-width" style="width: 100%; padding: 16px; font-weight: bold; cursor: pointer; margin-top: 20px;">
+                                Varaa ilmainen konsultaatio
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </article>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer">VALOK<span class="logo-dot">.</span></div>
+                <p>Prosessien automatisointia ja dedikoituja tekoälyratkaisuja suomalaisille PK-yrityksille.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Linkit</h4>
+                <ul>
+                    <li><a href="/">Etusivu</a></li>
+                    <li><a href="../blogi.html">Blogi</a></li>
+                    <li><a href="/#palvelut">Palvelut</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ota yhteyttä</h4>
+                <ul>
+                    <li>aleksanteri@valok.fi</li>
+                    <li>Jyväskylä, Finland</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Valok. Kaikki oikeudet pidätetään.
+        </div>
+    </footer>
+
+    <script src="../main.js"></script>
+</body>
+
+</html>
