@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tekoälykuvien ja -tekstien merkintä: EU:n uusi läpinäkyvyysvelvoite yrityksille — Valok</title>
+    <meta name="description"
+        content="EU:n tekoälyasetuksen läpinäkyvyysvelvoite (artikla 50) astui voimaan 2.8.2026. Lue selkeästi, milloin tekoälyllä tuotettu kuva tai teksti pitää merkitä, ja milloin ei.">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel=icon type=image/png sizes=32x32 href=../img/favicon-32x32.png>
+    <link rel=apple-touch-icon sizes=180x180 href=../img/favicon-180x180.png>
+
+    <link rel="canonical" href="https://valok.fi/blogi/tekoalykuvien-merkinta-eu-tekoalyasetus.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://valok.fi/blogi/tekoalykuvien-merkinta-eu-tekoalyasetus.html">
+    <meta property="og:title" content="Tekoälykuvien ja -tekstien merkintä: EU:n uusi läpinäkyvyysvelvoite yrityksille">
+    <meta property="og:description" content="EU:n tekoälyasetuksen läpinäkyvyysvelvoite astui voimaan 2.8.2026. Lue milloin tekoälyllä tuotettu kuva tai teksti pitää merkitä, ja milloin ei.">
+    <meta property="og:image" content="https://valok.fi/img/tekoalykuvien-merkinta-eu-tekoalyasetus.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tekoälykuvien ja -tekstien merkintä: EU:n uusi läpinäkyvyysvelvoite yrityksille">
+    <meta name="twitter:description" content="EU:n tekoälyasetuksen läpinäkyvyysvelvoite astui voimaan 2.8.2026. Lue milloin tekoälyllä tuotettu kuva tai teksti pitää merkitä, ja milloin ei.">
+    <meta name="twitter:image" content="https://valok.fi/img/tekoalykuvien-merkinta-eu-tekoalyasetus.webp">
+
+    <style>
+        .post-header {
+            min-height: auto !important;
+            padding: 160px 24px 24px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            background: radial-gradient(circle at top, var(--accent-glow) 0%, transparent 70%);
+        }
+
+        .post-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px 100px;
+            line-height: 1.8;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .post-content h2, .post-content h3 {
+            color: var(--text);
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .post-content p {
+            margin-bottom: 24px;
+        }
+
+        .post-content ul, .post-content ol {
+            margin-bottom: 24px;
+            padding-left: 20px;
+        }
+
+        .post-content li {
+            margin-bottom: 12px;
+        }
+
+        .post-meta {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dim);
+            text-decoration: none;
+            margin-bottom: 40px;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        .post-image {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .post-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .toc-box {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+        }
+
+        .toc-box h4 {
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        .toc-box ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .toc-box a {
+            color: #58a6ff;
+            text-decoration: none;
+            display: block;
+            padding: 4px 0;
+            transition: var(--transition);
+        }
+
+        .toc-box a:hover {
+            color: var(--accent);
+            padding-left: 4px;
+        }
+
+        .highlight-box {
+            background: var(--glass);
+            padding: 30px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+            border-left: 4px solid var(--accent);
+        }
+
+        .label-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 24px 0 32px;
+        }
+
+        .label-tag {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            padding: 10px 20px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--text);
+        }
+
+        .label-tag span {
+            color: var(--text-dim);
+            font-weight: 400;
+            font-size: 0.85rem;
+            display: block;
+            margin-top: 2px;
+        }
+
+        .reference-list {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            margin-top: 60px;
+        }
+
+        .reference-list ol {
+            padding-left: 20px;
+        }
+
+        .contact-section {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 60px 40px;
+            border-radius: var(--radius);
+            margin-top: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="particles"></canvas>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light">VALOK<span
+                     class="logo-dot">.</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="/#palvelut">Palvelut</a>
+                <a href="/#prosessi">Prosessi</a>
+                <a href="../blogi.html">Blogi</a>
+                <a href="/#yhteystiedot" class="nav-cta">Ota yhteyttä</a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Avaa valikko">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <article>
+        <header class="post-header">
+            <a href="../blogi.html" class="back-link">← Takaisin blogiin</a>
+            <span class="post-meta">Regulaatio • Tekoäly • Markkinointi</span>
+            <h1>Tekoälykuvien ja -tekstien merkintä: <span class="gradient-text">EU:n uusi läpinäkyvyysvelvoite</span></h1>
+            <p style="color: var(--text-dim); margin-top: 20px;">2.8.2026 astui voimaan sääntö, joka koskee lähes jokaista yritystä, joka on koskaan käyttänyt tekoälyä markkinointikuvan tai -tekstin tekemiseen. Tässä mitä se käytännössä tarkoittaa.</p>
+        </header>
+
+        <div class="post-image">
+            <img src="../img/tekoalykuvien-merkinta-eu-tekoalyasetus.webp" alt="Tekoälyllä tuotettujen kuvien ja tekstien merkintävelvoite EU:n tekoälyasetuksen mukaan - Valok">
+        </div>
+
+        <main class="post-content">
+            <div class="toc-box">
+                <h4>Sisällysluettelo</h4>
+                <ul>
+                    <li><a href="#mika-muuttui">1. Mikä muuttui 2.8.2026</a></li>
+                    <li><a href="#nelja-tilannetta">2. Neljä tilannetta, joissa läpinäkyvyysvelvoite koskee sinua</a></li>
+                    <li><a href="#kolme-merkintaa">3. Kolme merkintää: AI, AI Modified, AI Generated</a></li>
+                    <li><a href="#milloin-ei">4. Milloin kuvaa EI tarvitse merkitä</a></li>
+                    <li><a href="#kaytannossa">5. Miten merkintä tehdään käytännössä</a></li>
+                    <li><a href="#tekstipoikkeus">6. Teksteillä on oma poikkeuksensa, jota kuvilla ei ole</a></li>
+                    <li><a href="#vastuu">7. Kuka vastaa, jos sisällöntuotanto on ulkoistettu</a></li>
+                </ul>
+            </div>
+
+            <p>Kesäkuussa kirjoitimme <a href="eu-tekoalylaki-pk-yritys-2026.html">yleisoppaan EU:n tekoälyasetuksesta PK-yritykselle</a>, jossa käsittelimme riskiluokkia ja sitä, milloin tekoäly asettaa yritykselle merkittäviä velvoitteita. Yksi kohta siinä oppaassa ansaitsee nyt oman, tarkemman käsittelyn: läpinäkyvyysvelvoite, joka koskee nimenomaan tekoälyllä tuotettua sisältöä, kuvia, tekstiä, ääntä ja videota.</p>
+
+            <p>Tämä velvoite (asetuksen artikla 50) astui voimaan 2. elokuuta 2026. Se ei ole enää tulevaisuutta, se on tätä päivää, ja se koskee käytännössä jokaista yritystä, joka on tuottanut markkinointikuvia, tuotekuvia tai muuta materiaalia tekoälyn avulla.</p>
+
+            <h2 id="mika-muuttui">1. Mikä muuttui 2.8.2026</h2>
+            <p>Läpinäkyvyysvelvoite edellyttää, että tekoälyllä tuotettu tai muokattu sisältö on merkittävä siten, että ihminen voi tunnistaa sen tekoälyn tekemäksi. Työkaluille, jotka olivat markkinoilla jo ennen 2.8.2026, on annettu siirtymäaika koneluettavan metadatan käyttöönotolle 2. joulukuuta 2026 asti. Ihmiselle näkyvä, selkeä merkintä on kuitenkin vaadittu jo nyt.</p>
+
+            <div class="highlight-box">
+                Tärkeintä ymmärtää heti alkuun: velvoite ei koske kaikkea tekoälyllä tuotettua sisältöä samalla tavalla. Se riippuu siitä, mitä sisältö esittää ja missä yhteydessä sitä käytetään. Kohdat 2 ja 4 alla käyvät läpi, mihin raja käytännössä asettuu.
+            </div>
+
+            <h2 id="nelja-tilannetta">2. Neljä tilannetta, joissa läpinäkyvyysvelvoite koskee sinua</h2>
+            <p>Asetus jakaa läpinäkyvyysvelvoitteen neljään erilliseen tilanteeseen, ja PK-yrityksen kannattaa käydä ne läpi yksitellen oman toiminnan osalta:</p>
+
+            <ul>
+                <li><strong>Tekoäly keskustelee suoraan käyttäjän kanssa.</strong> Chatbotit ja tekoälyavustajat: käyttäjälle pitää olla selvää, että hän on tekemisissä tekoälyn kanssa, ei ihmisen. Tämä on useimmille tuttu jo yleisoppaastamme.</li>
+                <li><strong>Tekoäly tuottaa synteettistä sisältöä</strong> — kuvia, videota, ääntä tai tekstiä. Tässä vastuu koneluettavasta merkinnästä on ensisijaisesti työkalun tarjoajalla (esim. kuvageneraattorin valmistajalla), mutta julkaisevalla yrityksellä on vastuu ihmiselle näkyvästä merkinnästä.</li>
+                <li><strong>Tekoäly tunnistaa tunteita tai biometrisiä tietoja.</strong> Esimerkiksi asiakaspalvelujärjestelmä, joka analysoi äänensävyä tai kasvonilmeitä: asianomaiselle henkilölle pitää kertoa tästä.</li>
+                <li><strong>Tekoäly tuottaa deepfake-sisältöä tai julkista etua koskevaa materiaalia.</strong> Tässä vastuu on selkeästi julkaisevalla yrityksellä, ei työkalun valmistajalla.</li>
+            </ul>
+
+            <p>Suurimmalle osalle PK-yrityksistä relevantteja ovat kohdat kaksi ja neljä: markkinointikuvat, tuotekuvat ja some-sisältö, jota tuotetaan kuvageneraattoreilla.</p>
+
+            <h2 id="kolme-merkintaa">3. Kolme merkintää: AI, AI Modified, AI Generated</h2>
+            <p>Käytännön merkintä jakautuu kolmeen tasoon sen mukaan, kuinka paljon tekoäly on osallistunut sisällön tekoon:</p>
+
+            <div class="label-row">
+                <div class="label-tag">AI<span>Tekoäly on tuottanut osan sisällöstä, esim. kuvatekstin</span></div>
+                <div class="label-tag">AI Modified<span>Tekoäly on muokannut olemassa olevaa sisältöä tai osaa siitä</span></div>
+                <div class="label-tag">AI Generated<span>Tekoäly on tuottanut koko sisällön kokonaan</span></div>
+            </div>
+
+            <p>Tyypillinen esimerkki: jos otat oikean tuotekuvan ja pyydät tekoälyä vaihtamaan taustan, kyseessä on "AI Modified". Jos koko kuva on generoitu tyhjästä promptilla, kyseessä on "AI Generated".</p>
+
+            <h2 id="milloin-ei">4. Milloin kuvaa EI tarvitse merkitä</h2>
+            <p>Tämä on kohta, joka helpottaa monen PK-yrityksen tilannetta huomattavasti: merkintävelvoite koskee vain kuvia, jotka täyttävät kaikki kolme deepfake-määritelmän ehtoa samanaikaisesti:</p>
+
+            <ol>
+                <li>Kuva muistuttaa jotain oikeasti olemassa olevaa (henkilö, paikka, tapahtuma)</li>
+                <li>Kohde on aito tai uskottavasti aito</li>
+                <li>Kuva näyttää katsojalle aidolta</li>
+            </ol>
+
+            <p>Käytännössä tämä tarkoittaa, että selkeästi tyylitelty tuotekuva, kuvituskuva tai esimerkiksi <a href="../index.html">brändin maskotti</a> ei vaadi täyttä deepfake-merkintää, koska kukaan ei erehdy pitämään sarjakuvamaista kettuhahmoa aitona valokuvana. Sama koskee muutenkin selkeästi taiteellista, satiirista tai fiktiivistä sisältöä, näille riittää kevyempi maininta.</p>
+
+            <div class="highlight-box">
+                Sen sijaan realistinen, valokuvamainen kuva yrityksen toimitiloista, henkilöstöstä tai tapahtumasta, jota ei todellisuudessa ole kuvattu, vaatii selkeän merkinnän. Tässä nyrkkisääntönä toimii kysymys: voisiko joku aidosti luulla tätä valokuvaksi todellisesta tilanteesta?
+            </div>
+
+            <h2 id="kaytannossa">5. Miten merkintä tehdään käytännössä</h2>
+            <p>Asetus edellyttää, että merkintä on "selkeä, helposti havaittava ja ymmärrettävä". Pelkkä koneluettava metadata ei riitä täyttämään yrityksen velvollisuutta, merkinnän pitää olla ihmisen havaittavissa. Käytännössä tämä tarkoittaa jotain seuraavista:
+
+            </p>
+            <ul>
+                <li>Näkyvä teksti tai vesileima kuvan päällä tai vierellä</li>
+                <li>Selkeä maininta kuvatekstissä tai julkaisun tekstissä</li>
+                <li>Somejulkaisuissa: maininta itse julkaisutekstissä, ei pelkässä alt-tekstissä, koska alt-teksti ei ole kaikille käyttäjille näkyvä</li>
+            </ul>
+
+            <p>Tämä on hyvä ottaa huomioon jo sisällöntuotannon suunnitteluvaiheessa: jos yrityksesi käyttää säännöllisesti tekoälyä esimerkiksi <a href="tekoaly-sahkopostien-automaatio.html">markkinointiviestinnän automaatiossa</a>, merkintäkäytäntö kannattaa vakioida osaksi julkaisuprosessia, ei päättää tapauskohtaisesti kiireessä.</p>
+
+            <h2 id="tekstipoikkeus">6. Teksteillä on oma poikkeuksensa, jota kuvilla ei ole</h2>
+            <p>Artikla 50 kohtelee tekstiä eri tavalla kuin kuvaa, ääntä tai videota. Jos tekoälyllä tuotettu tai muokattu teksti on käynyt läpi <strong>ihmisen tekemän toimituksellisen tarkistuksen</strong>, ja luonnollinen tai oikeushenkilö kantaa siitä toimituksellisen vastuun, merkintävelvoitetta ei sovelleta, vaikka teksti olisi tekoälyn avustuksella tehty. Tätä poikkeusta ei ole olemassa kuville, äänelle tai videolle: niissä deepfake-kriteerit (kohta 4) ratkaisevat aina, riippumatta siitä, onko ihminen tarkistanut lopputuloksen.</p>
+
+            <p>Käytännössä tämä tarkoittaa, että esimerkiksi yrityksen blogi, jossa tekoälyä käytetään tekstin laatimisen apuna mutta jokainen postaus luetaan, muokataan ja hyväksytään ennen julkaisua ihmisen toimesta, ei tarvitse erillistä "tehty tekoälyllä" -merkintää tekstiin. Poikkeus kuitenkin edellyttää, että tarkistus on aidosti tapahtunut, ei pelkkä muodollinen hyväksyntä ilman todellista sisällön läpikäyntiä.</p>
+
+            <h2 id="vastuu">7. Kuka vastaa, jos sisällöntuotanto on ulkoistettu</h2>
+            <p>Vastuu merkinnästä on julkaisevalla yrityksellä, ei sisällöntuottajalla tai markkinointitoimistolla, ellei toisin ole sovittu. Jos yrityksesi ulkoistaa kuva- tai tekstisisällön tuotannon, tähän kannattaa nyt kiinnittää huomiota: sopimuksissa ja toimeksiannoissa on hyvä olla selkeä kirjaus siitä, käytetäänkö tekoälyä, ja kenen vastuulla merkintä on.</p>
+
+            <p>Käytännön tarkistuslista, jonka voi käydä läpi tänään:</p>
+            <ul>
+                <li>Kartoita, missä yrityksesi käyttää tekoälyä kuvien, tekstien, äänen tai videon tuottamiseen</li>
+                <li>Tunnista, mikä sisältö voisi täyttää deepfake-määritelmän kriteerit (aito, uskottava, aidolta näyttävä)</li>
+                <li>Sovi sisäisesti tai kumppanin kanssa, kuka merkinnästä vastaa ja millä kanavalla se tehdään</li>
+                <li>Tarkista voimassa olevat sopimukset sisällöntuottajien ja työkalutoimittajien kanssa</li>
+                <li>Kirjaa selkeä ohje henkilöstölle ja kumppaneille, jotta merkintä ei jää yksittäisen tekijän muistin varaan</li>
+            </ul>
+
+            <div class="reference-list">
+                <h4>Lähdeviitteet:</h4>
+                <ol>
+                    <li><a href="https://artificialintelligenceact.eu/small-businesses-guide-to-the-ai-act/" target="_blank" rel="noopener">AI Act EU: Small Business Guide to the AI Act</a>. Yleiskatsaus EU AI Actin pk-yrityksille suunnattuihin tukitoimiin.</li>
+                    <li><a href="https://wtfdesign.fi/ajankohtaista/eun-tekoalyasetus-ja-tekoalykuvien-merkinta-pikaohje-yrityksille" target="_blank" rel="noopener">WTF Design: EU:n tekoälyasetus ja tekoälykuvien merkintä — pikaohje yrityksille</a>. Käytännön ohjeistusta artikla 50:n läpinäkyvyysvelvoitteesta ja deepfake-määritelmästä.</li>
+                </ol>
+            </div>
+
+            <div class="contact-section">
+                <div class="section-header" style="text-align: center; margin-bottom: 40px;">
+                    <span class="section-tag">Otetaan askel eteenpäin</span>
+                    <h2>Onko yrityksesi tekoälysisältö merkitty oikein?</h2>
+                    <p>Valok auttaa PK-yrityksiä kartoittamaan, missä tekoälyä käytetään sisällöntuotannossa ja miten merkintä hoidetaan kuntoon ilman turhaa byrokratiaa.</p>
+                </div>
+
+                <div class="contact-container" style="max-width: 100%;">
+                    <div class="contact-form-card">
+                        <form action="https://formspree.io/f/xlgpgyjl" method="POST" id="contact-form">
+                            <div class="form-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 20px;">
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="name">Nimi</label>
+                                    <input type="text" id="name" name="name" placeholder="Oma nimesi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                </div>
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="email">Sähköposti</label>
+                                    <input type="email" id="email" name="email" placeholder="esimerkki@yritys.fi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg full-width" style="width: 100%; padding: 16px; font-weight: bold; cursor: pointer; margin-top: 20px;">
+                                Varaa ilmainen konsultaatio
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </article>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer">VALOK<span class="logo-dot">.</span></div>
+                <p>Prosessien automatisointia ja dedikoituja tekoälyratkaisuja suomalaisille PK-yrityksille.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Linkit</h4>
+                <ul>
+                    <li><a href="/">Etusivu</a></li>
+                    <li><a href="../blogi.html">Blogi</a></li>
+                    <li><a href="/#palvelut">Palvelut</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ota yhteyttä</h4>
+                <ul>
+                    <li>aleksanteri@valok.fi</li>
+                    <li>Jyväskylä, Finland</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Valok. Kaikki oikeudet pidätetään.
+        </div>
+    </footer>
+
+    <script src="../main.js"></script>
+</body>
+
+</html>
