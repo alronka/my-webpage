@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#030712">
+    <title>Meistä — Valok</title>
+    <meta name="description"
+        content="Valokin takana on Aleksanteri Rönkä, jonka tausta on turvallisuuskriittisen infrastruktuurin järjestelmäsuunnittelusta. Tutustu tarinaan ja periaatteisiin.">
+    <link rel="canonical" href="https://valok.fi/meista.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://api.fontshare.com">
+    <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon-180x180.png">
+
+    <style>
+        /* Meistä-sivu käyttää samaa Calistoga+Satoshi-parivaljakkoa ja mint-aksenttia kuin
+           etusivu (ainoa toinen sivu jolla tämä fonttipari on käytössä) — tarkoituksella,
+           jotta sivu erottuu blogitekstien system-fontista mutta pysyy silti tunnistettavana
+           Valokin sivuna, ei omana irrallisena tyylinään. Ks. keskustelu 2026-08. */
+        h1, h2, h3 {
+            font-family: 'Calistoga', serif;
+            font-weight: 400;
+        }
+
+        body {
+            font-family: 'Satoshi', var(--font-sans);
+        }
+
+        .meista-main {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 40px;
+            box-sizing: border-box;
+        }
+
+        /* ===== HERO: ylisuuri otsikko, "Exaggerated Minimalism" -henkinen ===== */
+        .meista-hero {
+            padding-top: 180px;
+            padding-bottom: 100px;
+        }
+
+        .meista-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 32px;
+        }
+
+        .meista-kicker::before {
+            content: '';
+            width: 28px;
+            height: 2px;
+            background: var(--accent);
+        }
+
+        .meista-hero h1 {
+            font-size: clamp(2.75rem, 7vw, 5.5rem);
+            line-height: 1.05;
+            letter-spacing: -0.01em;
+            max-width: 16ch;
+            margin-bottom: 40px;
+        }
+
+        .meista-hero-intro {
+            font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+            color: var(--text-muted);
+            max-width: 640px;
+            line-height: 1.6;
+        }
+
+        /* ===== FOUNDER: epäsymmetrinen editorial-asettelu ===== */
+        .founder-section {
+            padding: 60px 0 120px;
+            display: grid;
+            grid-template-columns: minmax(200px, 240px) 1fr;
+            gap: 56px;
+            align-items: start;
+        }
+
+        .founder-portrait {
+            position: sticky;
+            top: 140px;
+        }
+
+        .founder-portrait img {
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+        }
+
+        .founder-portrait-name {
+            display: block;
+            margin-top: 20px;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--text);
+        }
+
+        .founder-portrait-role {
+            display: block;
+            margin-top: 4px;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .founder-portrait-role a {
+            color: var(--text-muted);
+            text-decoration: none;
+            border-bottom: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .founder-portrait-role a:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .founder-copy p {
+            font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+            line-height: 1.75;
+            color: var(--text);
+            margin-bottom: 28px;
+            max-width: 62ch;
+        }
+
+        .founder-copy p:first-of-type::first-letter {
+            float: left;
+            font-family: 'Calistoga', serif;
+            font-size: 4.4rem;
+            line-height: 0.82;
+            padding-right: 12px;
+            padding-top: 6px;
+            color: var(--accent);
+        }
+
+        /* ===== VISIO: iso lainaus-tyylinen paneeli ===== */
+        .vision-section {
+            padding: 40px 0 120px;
+        }
+
+        .vision-panel {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: clamp(40px, 6vw, 72px);
+            position: relative;
+        }
+
+        .vision-mark {
+            font-family: 'Calistoga', serif;
+            font-size: 4.5rem;
+            line-height: 1;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .vision-panel p {
+            font-size: clamp(1.3rem, 2.2vw, 1.9rem);
+            line-height: 1.4;
+            font-family: 'Calistoga', serif;
+            font-weight: 400;
+            max-width: 22ch;
+            color: var(--text);
+        }
+
+        .vision-panel .vision-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 32px;
+            font-family: 'Satoshi', var(--font-sans);
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .vision-panel .vision-link svg {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.25s ease;
+        }
+
+        .vision-panel .vision-link:hover svg {
+            transform: translateX(4px);
+        }
+
+        /* ===== PERIAATTEET: numeroidut kortit ===== */
+        .principles-section {
+            padding: 40px 0 120px;
+        }
+
+        .principles-header {
+            margin-bottom: 56px;
+            max-width: 640px;
+        }
+
+        .principles-header h2 {
+            font-size: clamp(1.9rem, 3.2vw, 2.6rem);
+            font-weight: 400;
+            margin-bottom: 16px;
+        }
+
+        .principles-header p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+        .principle-card {
+            background: var(--bg);
+            padding: 40px;
+        }
+
+        .principle-number {
+            font-family: 'Calistoga', serif;
+            font-size: 2.6rem;
+            color: var(--accent);
+            line-height: 1;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .principle-card h3 {
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+
+        .principle-card p {
+            font-size: 0.98rem;
+            line-height: 1.65;
+            color: var(--text-muted);
+        }
+
+        /* ===== CTA ===== */
+        .meista-cta {
+            padding: 20px 0 140px;
+            text-align: left;
+        }
+
+        .meista-cta-panel {
+            border-top: 1px solid var(--border);
+            padding-top: 56px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 32px;
+        }
+
+        .meista-cta h2 {
+            font-size: clamp(1.9rem, 3.5vw, 3rem);
+            font-weight: 400;
+            max-width: 14ch;
+            margin-bottom: 12px;
+        }
+
+        .meista-cta p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            max-width: 46ch;
+        }
+
+        @media (max-width: 900px) {
+            .founder-section {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .founder-portrait {
+                position: static;
+                max-width: 220px;
+            }
+
+            .principles-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .meista-main {
+                padding: 0 20px;
+            }
+
+            .meista-hero {
+                padding-top: 140px;
+            }
+        }
+    </style>
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="profile">
+    <meta property="og:url" content="https://valok.fi/meista.html">
+    <meta property="og:title" content="Meistä — Valok">
+    <meta property="og:description"
+        content="Valokin takana on Aleksanteri Rönkä, jonka tausta on turvallisuuskriittisen infrastruktuurin järjestelmäsuunnittelusta.">
+    <meta property="og:image" content="https://valok.fi/img/valok-aleksanteri.webp">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://valok.fi/meista.html">
+    <meta property="twitter:title" content="Meistä — Valok">
+    <meta property="twitter:description"
+        content="Valokin takana on Aleksanteri Rönkä, jonka tausta on turvallisuuskriittisen infrastruktuurin järjestelmäsuunnittelusta.">
+    <meta property="twitter:image" content="https://valok.fi/img/valok-aleksanteri.webp">
+
+    <!-- Schema.org: AboutPage + Person -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        "url": "https://valok.fi/meista.html",
+        "name": "Meistä — Valok",
+        "mainEntity": {
+            "@type": "Person",
+            "name": "Aleksanteri Rönkä",
+            "jobTitle": "Perustaja",
+            "email": "aleksanteri@valok.fi",
+            "image": "https://valok.fi/img/valok-aleksanteri.webp",
+            "url": "https://valok.fi/meista.html",
+            "worksFor": {
+                "@type": "Organization",
+                "name": "Valok",
+                "url": "https://valok.fi/"
+            }
+        }
+    }
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MZZTLKDN25"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('consent', 'default', {
+            'analytics_storage': 'denied'
+        });
+        gtag('config', 'G-MZZTLKDN25');
+    </script>
+</head>
+
+<body>
+
+    <canvas id="particles"></canvas>
+
+    <!-- NAVIGATION -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo"><img srcset="img/valok-white-with-black-outline-mobile.webp 800w, img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 1600px" src="img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark" width="4206" height="4206"><img srcset="img/valok-black-with-white-outline-mobile.webp 800w, img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 1600px" src="img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light" width="4206" height="4206">VALOK<span class="logo-dot">.</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="/#ratkaisu">Ratkaisu</a>
+                <a href="/#prosessi">Prosessi</a>
+                <a href="meista.html" aria-current="page">Meistä</a>
+                <a href="blogi.html">Blogi</a>
+                <a href="/#yhteystiedot" class="nav-cta">Ota yhteyttä</a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Avaa valikko">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="meista-main">
+
+        <!-- HERO -->
+        <section class="meista-hero">
+            <span class="meista-kicker">Meistä</span>
+            <h1>Hallittu tekoäly, ei hypeä.</h1>
+            <p class="meista-hero-intro">Valok on saanut alkunsa yhdestä ajatuksesta: automaatiota ja tekoälyä kannattaa rohkaista käyttämään, kunhan mukana on sama turvallisuusnäkökulma kuin missä tahansa kriittisessä järjestelmässä. Ei jarrutusta, vaan tietoa siitä mitä ollaan rakentamassa. Tänään viestisi lukee ja siihen vastaa Aleksanteri itse.</p>
+        </section>
+
+        <!-- FOUNDER -->
+        <section class="founder-section" data-animate>
+            <div class="founder-portrait">
+                <img src="img/valok-aleksanteri.webp" alt="Aleksanteri Rönkä" width="600" height="600" loading="lazy">
+                <span class="founder-portrait-name">Aleksanteri Rönkä</span>
+                <span class="founder-portrait-role">Perustaja, Valok<br><a href="mailto:aleksanteri@valok.fi">aleksanteri@valok.fi</a></span>
+            </div>
+            <div class="founder-copy">
+                <p>Olen 33-vuotias jyväskyläläinen yrittäjä. Ennen Valokia työskentelin lähes kymmenen vuotta turvallisuuskriittisellä alalla, kriittisen infrastruktuurin parissa järjestelmäsuunnittelijana. Se tarkoitti työtä, jossa virheellä on oikeasti väliä: järjestelmä joko toimii luotettavasti, tai sillä on seurauksia. Tietoturva ja erilaiset viitekehykset, kuten riskienhallinnan ja vaatimustenmukaisuuden mallit, tulivat tutuiksi arjen kautta, ei kurssilta.</p>
+                <p>Perustin Valokin, koska näin saman ilmiön toistuvan yhä useammassa PK-yrityksessä: tekoälyä ja automaatiota otetaan käyttöön nopeasti ja innolla, mutta turvallisuusnäkökulma jää usein kokonaan pohtimatta. En halua olla se, joka jarruttaa käyttöönottoa. Haluan olla se, joka tuo mukaan saman turvallisuusajattelun jota olen tottunut soveltamaan kriittisissä järjestelmissä, jotta uskallat ottaa automaation ja tekoälyn käyttöön rohkeasti ja tietäen mitä olet ottamassa käyttöön.</p>
+            </div>
+        </section>
+
+        <!-- VISIO -->
+        <section class="vision-section" data-animate>
+            <div class="vision-panel">
+                <span class="vision-mark" aria-hidden="true">”</span>
+                <p>Turvallisuus ei ole jarru. Se on syy edetä rohkeasti.</p>
+                <a href="blogi/tekoalyn-rajoittaminen.html" class="vision-link">
+                    Lue miten rajaan tekoälyn valtuudet
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+            </div>
+        </section>
+
+        <!-- PERIAATTEET -->
+        <section class="principles-section">
+            <div class="principles-header" data-animate>
+                <h2>Näin toimimme</h2>
+                <p>Nämä neljä periaatetta ohjaavat jokaista automaatiota ja tekoälyratkaisua, jonka Valok rakentaa.</p>
+            </div>
+            <div class="principles-grid">
+                <div class="principle-card" data-animate>
+                    <span class="principle-number">01</span>
+                    <h3>Ei mustia laatikoita</h3>
+                    <p>Jokainen automaatio ja agentti rakennetaan niin, että ymmärrät mitä se tekee ja miksi.</p>
+                </div>
+                <div class="principle-card" data-animate>
+                    <span class="principle-number">02</span>
+                    <h3>Valtuudet ensin, ei vasta jälkikäteen</h3>
+                    <p>Tekoälylle annetaan tarkasti rajatut oikeudet datan, toimintojen ja päätöksenteon tasolla, ei vapaita käsiä.</p>
+                </div>
+                <div class="principle-card" data-animate>
+                    <span class="principle-number">03</span>
+                    <h3>Sinun infrastruktuurisi, sinun datasi</h3>
+                    <p>Ratkaisut rakennetaan asiakkaan omalle alustalle, ei lukittuna kolmannen osapuolen SaaS-tiliin.</p>
+                </div>
+                <div class="principle-card" data-animate>
+                    <span class="principle-number">04</span>
+                    <h3>Suora yhteys tekijään</h3>
+                    <p>Et jää tukiketjun tai asiakkuuspäällikön taakse, kysymykset kulkevat suoraan sinne missä työ tehdään.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="meista-cta" data-animate>
+            <div class="meista-cta-panel">
+                <div>
+                    <h2>Jutellaan</h2>
+                    <p>Jos mietit mistä automaatiossa tai tekoälyn käyttöönotossa kannattaisi aloittaa, laita viestiä. Vastaan itse.</p>
+                </div>
+                <a href="/#yhteystiedot" class="btn btn-primary">Ota yhteyttä →</a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <div class="logo"><img srcset="img/valok-white-with-black-outline-mobile.webp 800w, img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 1600px" src="img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer" width="4206" height="4206" loading="lazy"><img srcset="img/valok-black-with-white-outline-mobile.webp 800w, img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 1600px" src="img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer" width="4206" height="4206" loading="lazy">VALOK<span class="logo-dot">.</span></div>
+                <p>Prosessien automatisointia ja dedikoituja tekoälyratkaisuja suomalaisille PK-yrityksille.</p>
+                <div class="footer-social">
+                    <a href="https://linkedin.com/company/valok" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Palvelut</h4>
+                <ul>
+                    <li><a href="/#ratkaisu">Prosessien automatisointi</a></li>
+                    <li><a href="prosessiautomaatio.html">Prosessiautomaatio: lue lisää</a></li>
+                    <li><a href="/#ratkaisu">Dedikoitu tekoäly</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Yritys</h4>
+                <ul>
+                    <li><a href="meista.html">Meistä</a></li>
+                    <li><a href="blogi.html">Blogi</a></li>
+                    <li><a href="tietosuoja.html">Tietosuoja</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Yhteystiedot</h4>
+                <ul>
+                    <li>aleksanteri@valok.fi</li>
+                    <li><a href="https://linkedin.com/company/valok" target="_blank" rel="noopener">Ota yhteyttä LinkedInissä</a></li>
+                    <li>Jyväskylä, Finland</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Valok. Kaikki oikeudet pidätetään. · <a href="#" id="cookieSettingsLink">Evästeasetukset</a>
+        </div>
+    </footer>
+
+    <!-- PRIVACY BANNER -->
+    <div id="cookieBanner" class="cookie-banner">
+        <h5>Yksityisyytesi on meille tärkeää</h5>
+        <p>Käytämme sivustolla vain välttämättömiä toimintoja varmistaaksemme parhaan mahdollisen käyttökokemuksen. Emme
+            käytä kolmannen osapuolen markkinointievästeitä ilman suostumustasi.</p>
+        <div class="cookie-btn-group">
+            <button id="acceptCookies" class="btn btn-primary">Hyväksy kaikki</button>
+            <button id="rejectCookies" class="btn btn-ghost">Hylkää</button>
+            <a href="tietosuoja.html" class="btn btn-ghost">Lue lisää</a>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

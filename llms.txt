@@ -23,4 +23,5 @@ Valok (Y-tunnus 3490027-7) auttaa pienten ja keskisuurten yritysten johtoa ja IT
 
 ## Muut sivut
 
+- [Meistä](https://valok.fi/meista.html): Perustaja Aleksanteri Röngän tausta turvallisuuskriittisestä infrastruktuurista ja Valokin toimintaperiaatteet.
 - [Tietosuojaseloste](https://valok.fi/tietosuoja.html): Rekisterinpitäjän tiedot, tietojen käyttötarkoitukset ja rekisteröidyn oikeudet.
