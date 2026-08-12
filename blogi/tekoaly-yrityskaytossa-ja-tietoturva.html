@@ -9,9 +9,12 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#030712">
     <title>Tekoäly ilman tietovuotoja: Opas yrityksen turvalliseen tekoälyyn — Valok</title>
     <meta name="description"
         content="Kuinka hyödynnät tekoälyä tietoturvallisesti yrityksesi omilla tiedoilla? Lue opas sisäisen ja turvallisen tekoäly-ympäristön rakentamiseen.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="../styles.css">
@@ -212,11 +215,12 @@
             font-family: inherit;
         }
 
-        .form-group input:focus,
-        .form-group textarea:focus {
+        .form-group input:focus-visible,
+        .form-group textarea:focus-visible {
             outline: none;
             border-color: var(--accent);
-            background: rgba(255, 255, 255, 0.08);
+            background: var(--glass-hover);
+            box-shadow: 0 0 0 4px var(--accent-glow);
         }
 
         .info-card {
@@ -234,7 +238,7 @@
 
     <nav id="navbar">
         <div class="nav-container">
-            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light">VALOK<span class="logo-dot">.</span></a>
+            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark" width="4206" height="4206"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light" width="4206" height="4206">VALOK<span class="logo-dot">.</span></a>
             <div class="nav-links" id="navLinks">
                 <a href="/#palvelut">Palvelut</a>
                 <a href="/#prosessi">Prosessi</a>
@@ -258,7 +262,7 @@
 
         <div class="post-image">
             <img src="../img/tekoaly-tietoturva-hero.png"
-                alt="Graafinen kuvitus tekoälyn tietoturvasta: digitaalinen kilpi suojaa aivoja tietovuodoilta">
+                alt="Graafinen kuvitus tekoälyn tietoturvasta: digitaalinen kilpi suojaa aivoja tietovuodoilta" width="1024" height="1024">
         </div>
 
         <main class="post-content">
@@ -267,7 +271,7 @@
                 <ul>
                     <li><a href="#ristiriita">Ristiriita: Tehokkuus vs. Tietoturva</a></li>
                     <li><a href="#tutkimus">Tutkimus: Tekoäly on valtava kilpailuetu</a></li>
-                    <li><a href="#varjo-ai">Suurin este: Tietoturva ja "Varjo-AI"</a></li>
+                    <li><a href="#varjo-ai">Suurin este: Tietoturva ja “Varjo-AI”</a></li>
                     <li><a href="#rag-ratkaisu">Ratkaisu: Tekoäly, joka tuntee yrityksesi (RAG)</a></li>
                     <li><a href="#toteutus">Kolme polkua turvalliseen toteutukseen</a></li>
                     <li><a href="#aloitus">Miten aloittaa?</a></li>
@@ -292,10 +296,10 @@
 
             <div class="mermaid">
                 pie title AI ja työn tuottavuus
-                "Nopeampi suoritus" : 25
-                "Parempi laatu" : 40
-                "Lisääntynyt tuottavuus" : 12
-                "Muu vaikutus" : 23
+                “Nopeampi suoritus” : 25
+                “Parempi laatu” : 40
+                “Lisääntynyt tuottavuus” : 12
+                “Muu vaikutus” : 23
             </div>
 
             <p>Tutkimuksen mukaan tekoälyä hyödyntävät työntekijät olivat <strong>25 % nopeampia</strong> ja heidän
@@ -308,12 +312,12 @@
                 <strong>Haluatko laskea oman potentiaalisi?</strong> Kokeile uutta <a href="../tekoaly-roi-laskuri.html">Tekoäly ROI-laskuriamme</a> ja näe, paljonko tiiminne voisi säästää aikaa kuukaudessa.
             </div>
 
-            <h2 id="varjo-ai">Suurin este: Tietoturva ja "Varjo-AI"</h2>
+            <h2 id="varjo-ai">Suurin este: Tietoturva ja “Varjo-AI”</h2>
             <p>Vaikka hyödyt ovat ilmeiset, riskit ovat todellisia. <a
                     href="https://www.cyberhaven.com/blog/2024-ai-security-report-shadow-ai-is-everywhere"
                     target="_blank">Cyberhaven Labs</a> raportoi vuonna 2024, että yritysten tekoälytyökaluihin
                 syöttämästä datasta peräti <strong>27,4 % on luokiteltu sensitiiviseksi</strong>. Tämä tarkoittaa, että
-                ilman virallista ratkaisua työntekijät käyttävät "Varjo-AI:ta", eli omia, suojaamattomia tunnuksiaan
+                ilman virallista ratkaisua työntekijät käyttävät “Varjo-AI:ta”, eli omia, suojaamattomia tunnuksiaan
                 yrityksen datan prosessointiin.</p>
 
             <div class="mermaid">
@@ -337,7 +341,7 @@
             <p>Käytännössä se tarkoittaa tekoälyä, joka käyttää vastauksissaan vain yrityksesi omaa, suojattua
                 tietopankkia.</p>
 
-            <p>Sen sijaan, että tekoälyä yritettäisiin opettaa uudelleen, sille annetaan "lukuoikeus" yrityksen omiin
+            <p>Sen sijaan, että tekoälyä yritettäisiin opettaa uudelleen, sille annetaan “lukuoikeus” yrityksen omiin
                 tiedostoihin (PDF, Wiki, sisäiset ohjeet). Kun kysyt tekoälyltä jotain, se etsii ensin vastauksen omista
                 dokumenteistasi ja muodostaa vastauksen sen perusteella. Olemme avanneet tätä <a
                     href="mika-on-rag-tekoaly.html">RAG-arkkitehtuurin toimintaa</a> aiemmin tarkemmin, ja se onkin
@@ -392,14 +396,14 @@
                 <h3>Kaipaatko apua tekoälyn hyödyntämisessä?</h3>
                 <p>Jätä meille viesti alle, niin katsotaan yhdessä, miten voisimme tehostaa yrityksenne prosesseja
                     turvallisesti ja kustannustehokkaasti.</p>
-                <form class="contact-form" action="https://formspree.io/f/xlgpgyjl" method="POST">
+                <form class="contact-form" action="https://formspree.io/f/xlgpgyjl" method="POST" id="contact-form">
                     <div class="form-group">
                         <label for="name">Nimi *</label>
-                        <input type="text" id="name" name="name" required>
+                        <input type="text" id="name" name="name" autocomplete="name" required>
                     </div>
                     <div class="form-group">
                         <label for="email">Sähköposti *</label>
-                        <input type="email" id="email" name="email" required>
+                        <input type="email" id="email" name="email" autocomplete="email" inputmode="email" spellcheck="false" required>
                     </div>
                     <div class="form-group">
                         <label for="message">Viesti</label>
@@ -408,6 +412,7 @@
                     <!-- Bot anti-spam (honeypot) -->
                     <input type="text" name="_gotcha" class="form-gotcha" style="display:none">
                     <button type="submit" class="btn btn-primary" style="width: 100%;">Lähetä viesti</button>
+                    <div id="form-status" class="form-status" aria-live="polite"></div>
                 </form>
             </div>
 
@@ -422,7 +427,7 @@
     <footer>
         <div class="footer-grid">
             <div class="footer-col footer-brand">
-                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer">VALOK<span class="logo-dot">.</span></div>
+                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer" width="4206" height="4206" loading="lazy"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer" width="4206" height="4206" loading="lazy">VALOK<span class="logo-dot">.</span></div>
                 <p>Prosessien automatisointia ja dedikoituja tekoälyratkaisuja suomalaisille PK-yrityksille.</p>
             </div>
             <div class="footer-col">

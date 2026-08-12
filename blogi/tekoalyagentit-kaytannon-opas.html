@@ -9,9 +9,12 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#030712">
     <title>Tekoälyagentit käytännössä: Mitä ne osaavat ja miten valitset ensimmäisen agenttiprojektin? — Valok</title>
     <meta name="description"
         content="Tekoälyagentti ei ole chatbot. Lue selkeä opas siitä, miten agentit oikeasti toimivat, mihin tehtäviin ne sopivat ja miten PK-yritys valitsee turvallisen ensimmäisen agenttiprojektin vuonna 2026.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="../styles.css">
@@ -175,7 +178,7 @@
 
     <nav id="navbar">
         <div class="nav-container">
-            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light">VALOK<span
+            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark" width="4206" height="4206"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light" width="4206" height="4206">VALOK<span
                      class="logo-dot">.</span></a>
             <div class="nav-links" id="navLinks">
                 <a href="/#palvelut">Palvelut</a>
@@ -198,7 +201,7 @@
         </header>
 
         <div class="post-image">
-            <img src="../img/tekoalyagentit-kaytannon-opas.webp" alt="Tekoälyagentit käytännössä PK-yritykselle - Valok">
+            <img src="../img/tekoalyagentit-kaytannon-opas.webp" alt="Tekoälyagentit käytännössä PK-yritykselle - Valok" width="1024" height="1024">
         </div>
 
         <main class="post-content">
@@ -214,7 +217,7 @@
                 </ul>
             </div>
 
-            <p>"Tekoälyagentti" on vuoden 2026 käytetyimpiä ja väärinymmärretyimpiä termejä. Moni yritys on jo kokeillut tekoälyä chatbotin muodossa, mutta agentti on jotain muuta: se ei vain vastaa kysymyksiin, vaan tekee asioita puolestasi. Se hakee tietoa, tekee päätöksiä ja suorittaa monivaiheisia tehtäviä ilman, että joku ohjaa sitä jokaisen askeleen kohdalla.</p>
+            <p>“Tekoälyagentti” on vuoden 2026 käytetyimpiä ja väärinymmärretyimpiä termejä. Moni yritys on jo kokeillut tekoälyä chatbotin muodossa, mutta agentti on jotain muuta: se ei vain vastaa kysymyksiin, vaan tekee asioita puolestasi. Se hakee tietoa, tekee päätöksiä ja suorittaa monivaiheisia tehtäviä ilman, että joku ohjaa sitä jokaisen askeleen kohdalla.</p>
 
             <p>Tässä oppaassa käymme läpi selkokielellä, mitä agentti käytännössä osaa, mihin tehtäviin se todella sopii ja, mikä tärkeintä, miten valitset yrityksellesi ensimmäisen agenttiprojektin niin, että se onnistuu.</p>
 
@@ -230,7 +233,7 @@
             <h2 id="miten-toimii">2. Miten agentti toimii käytännössä?</h2>
             <p>Agentin toiminta perustuu kiertokulkuun, jota kutsutaan usein havainnoi-päättele-toimi-sykliksi. Käytännössä tämä tarkoittaa neljää vaihetta:</p>
             <ol>
-                <li><strong>Tavoitteen tulkinta:</strong> agentti saa tehtävän, esimerkiksi "käsittele tämä saapunut lasku ja kirjaa se järjestelmään oikein".</li>
+                <li><strong>Tavoitteen tulkinta:</strong> agentti saa tehtävän, esimerkiksi “käsittele tämä saapunut lasku ja kirjaa se järjestelmään oikein”.</li>
                 <li><strong>Suunnittelu:</strong> se jakaa tehtävän pienempiin välivaiheisiin, esimerkiksi datan lukemiseen, tietojen tarkistukseen ja oikean tilin valintaan.</li>
                 <li><strong>Toiminta työkalujen avulla:</strong> se käyttää sille annettuja työkaluja, kuten tietokantahakuja tai API-kutsuja, suorittaakseen välivaiheet.</li>
                 <li><strong>Tarkistus ja korjaus:</strong> se arvioi, meneekö suunnitelma oikeaan suuntaan, ja korjaa kurssia tarvittaessa ennen lopputuloksen palauttamista.</li>
@@ -269,7 +272,7 @@
             <p>Agentin autonomia on samaan aikaan sen suurin hyöty ja suurin riski. Kolme asiaa kannattaa varmistaa ennen käyttöönottoa:</p>
 
             <h3>Määrittele autonomian aste tehtävän mukaan</h3>
-            <p>Kaikkien agenttien ei tarvitse toimia täysin itsenäisesti. Monessa tehtävässä oikea malli on "agentti valmistelee, ihminen hyväksyy": esimerkiksi laskun tiliöinti tehdään automaattisesti, mutta maksu lähtee vasta ihmisen hyväksynnällä.</p>
+            <p>Kaikkien agenttien ei tarvitse toimia täysin itsenäisesti. Monessa tehtävässä oikea malli on “agentti valmistelee, ihminen hyväksyy”: esimerkiksi laskun tiliöinti tehdään automaattisesti, mutta maksu lähtee vasta ihmisen hyväksynnällä.</p>
 
             <h3>Rajaa työkalupääsy tarkasti</h3>
             <p>Agentille kannattaa antaa pääsy vain niihin järjestelmiin ja toimintoihin, joita tehtävä oikeasti vaatii. Mitä laajempi pääsy, sitä suurempi vahinkopotentiaali virhetilanteessa.</p>
@@ -310,16 +313,17 @@
                             <div class="form-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 20px;">
                                 <div class="form-group" style="margin-bottom: 20px;">
                                     <label for="name">Nimi</label>
-                                    <input type="text" id="name" name="name" placeholder="Oma nimesi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                    <input type="text" id="name" name="name" autocomplete="name" placeholder="Oma nimesi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
                                 </div>
                                 <div class="form-group" style="margin-bottom: 20px;">
                                     <label for="email">Sähköposti</label>
-                                    <input type="email" id="email" name="email" placeholder="esimerkki@yritys.fi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                    <input type="email" id="email" name="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="esimerkki@yritys.fi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary btn-lg full-width" style="width: 100%; padding: 16px; font-weight: bold; cursor: pointer; margin-top: 20px;">
                                 Varaa ilmainen konsultaatio
                             </button>
+                            <div id="form-status" class="form-status" aria-live="polite"></div>
                         </form>
                     </div>
                 </div>
@@ -330,7 +334,7 @@
     <footer>
         <div class="footer-grid">
             <div class="footer-col footer-brand">
-                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer">VALOK<span class="logo-dot">.</span></div>
+                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer" width="4206" height="4206" loading="lazy"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer" width="4206" height="4206" loading="lazy">VALOK<span class="logo-dot">.</span></div>
                 <p>Prosessien automatisointia ja dedikoituja tekoälyratkaisuja suomalaisille PK-yrityksille.</p>
             </div>
             <div class="footer-col">

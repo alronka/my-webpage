@@ -9,9 +9,12 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#030712">
     <title>Tekoäly ilman integraatioita on kuin auto ilman renkaita — Valok</title>
     <meta name="description"
         content="Tekoäly on tehokas moottori, mutta ilman integraatioita se ei liikuta yritystäsi minnekään. Lue, miksi datavirtojen yhdistäminen on avain todelliseen tehokkuuteen.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="../styles.css">
@@ -127,7 +130,7 @@
 
     <nav id="navbar">
         <div class="nav-container">
-            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light">VALOK<span
+            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark" width="4206" height="4206"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light" width="4206" height="4206">VALOK<span
                     class="logo-dot">.</span></a>
             <div class="nav-links" id="navLinks">
                 <a href="/#palvelut">Palvelut</a>
@@ -135,6 +138,9 @@
                 <a href="../blogi.html">Blogi</a>
                 <a href="/#yhteystiedot" class="nav-cta">Ota yhteyttä</a>
             </div>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Avaa valikko">
+            <span></span><span></span><span></span>
+        </button>
         </div>
     </nav>
 
@@ -146,7 +152,7 @@
         </header>
 
         <div class="post-featured-image">
-            <img srcset="../img/651-mobile.webp 800w, ../img/651.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/651.webp" alt="Tekoäly ja integraatiot auto-analogia">
+            <img srcset="../img/651-mobile.webp 800w, ../img/651.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/651.webp" alt="Tekoäly ja integraatiot auto-analogia" width="1920" height="1920">
         </div>
 
         <main class="post-content">
@@ -160,7 +166,7 @@
             <p>Oikea taika tapahtuu integraatioilla. Ne ovat ne renkaat, jotka siirtävät tekoälymoottorin voiman tiehen ja saavat yrityksesi liikkumaan eteenpäin. Kun tekoäly kytketään yrityksesi todellisiin datavirtoihin – sähköposteihin, kalentereihin, ERP-järjestelmiin ja tietokantoihin – se lakkaa olemasta erillinen sivuikkuna ja muuttuu osaksi yrityksesi hermostoa.</p>
 
             <h3>Mitä kytketty tekoäly tekee käytännössä?</h3>
-            <p>Kun tekoäly "näkee" yrityksesi tiedon integraatioiden kautta, se voi alkaa suorittaa tehtäviä puolestasi:</p>
+            <p>Kun tekoäly “näkee” yrityksesi tiedon integraatioiden kautta, se voi alkaa suorittaa tehtäviä puolestasi:</p>
             <ul>
                 <li><strong>Automaattinen tiedonhallinta:</strong> Asiakkaan sähköpostitse lähettämä tilaus analysoidaan ja viedään automaattisesti CRM-järjestelmään ilman yhtäkään Copy-Paste -liikettä.</li>
                 <li><strong>Älykäs reagointi:</strong> Tekoäly voi luokitella saapuvat tukipyynnöt, hakea niihin vastaukset yrityksesi tietopankista ja valmistella vastausluonnoksen valmiiksi.</li>
@@ -183,7 +189,7 @@
     <footer>
         <div class="footer-grid">
             <div class="footer-col footer-brand">
-                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer">VALOK<span class="logo-dot">.</span></div>
+                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer" width="4206" height="4206" loading="lazy"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer" width="4206" height="4206" loading="lazy">VALOK<span class="logo-dot">.</span></div>
                 <p>Prosessien automatisointia ja dedikoituja tekoälyratkaisuja suomalaisille PK-yrityksille.</p>
             </div>
             <div class="footer-col">

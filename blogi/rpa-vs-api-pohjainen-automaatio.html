@@ -9,9 +9,12 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#030712">
     <title>RPA vs. API-pohjainen automaatio: Miksi näppäimistöbotit hajoavat ja mikä kestää — Valok</title>
     <meta name="description"
         content="RPA-botti, joka klikkailee käyttöliittymää ihmisen puolesta, rikkoutuu heti kun järjestelmä päivittyy. Lue miksi API- ja agenttipohjainen automaatio kestää muutoksia paremmin, ja milloin RPA silti kannattaa.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="../styles.css">
@@ -207,7 +210,7 @@
 
     <nav id="navbar">
         <div class="nav-container">
-            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light">VALOK<span
+            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark" width="4206" height="4206"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light" width="4206" height="4206">VALOK<span
                      class="logo-dot">.</span></a>
             <div class="nav-links" id="navLinks">
                 <a href="/#palvelut">Palvelut</a>
@@ -230,7 +233,7 @@
         </header>
 
         <div class="post-image">
-            <img src="../img/rpa-vs-api-pohjainen-automaatio.webp" alt="RPA-automaatio vs API-pohjainen automaatio PK-yritykselle - Valok">
+            <img src="../img/rpa-vs-api-pohjainen-automaatio.webp" alt="RPA-automaatio vs API-pohjainen automaatio PK-yritykselle - Valok" width="1024" height="1024">
         </div>
 
         <main class="post-content">
@@ -263,7 +266,7 @@
             <p>Koska botti on sidottu käyttöliittymän ulkoasuun, eikä prosessin todelliseen logiikkaan, hyvin pieni muutos riittää rikkomaan sen:</p>
             <ul>
                 <li><strong>Ohjelmistopäivitys siirtää painikkeen paikkaa.</strong> Botti klikkaa vanhaa koordinaattia tai etsii elementtiä, jota ei enää ole samassa muodossa.</li>
-                <li><strong>Käyttöliittymän kieli tai teksti muuttuu.</strong> Jos botti etsii tekstiä "Tallenna" ja se vaihtuu muotoon "Tallenna tiedot", tunnistus voi epäonnistua.</li>
+                <li><strong>Käyttöliittymän kieli tai teksti muuttuu.</strong> Jos botti etsii tekstiä “Tallenna” ja se vaihtuu muotoon “Tallenna tiedot”, tunnistus voi epäonnistua.</li>
                 <li><strong>Selain tai käyttöjärjestelmä päivittyy.</strong> Pienikin renderöintiero voi siirtää elementtejä pikseleitä, jotka riittävät rikkomaan tarkkuutta vaativan botin.</li>
                 <li><strong>Verkkoyhteyden hetkellinen hidastuminen.</strong> Botti, joka on ajastettu klikkaamaan tietyn ajan kuluttua sivun avaamisesta, epäonnistuu jos sivu latautuu tavallista hitaammin.</li>
             </ul>
@@ -310,7 +313,7 @@
             <p>Tärkeintä on tietää etukäteen, kumman ratkaisun rakentaa, ja miksi. Moni pettymys syntyy siitä, että RPA otetaan käyttöön pysyvänä ratkaisuna kriittiseen, päivittäin toistuvaan prosessiin, jonka pitäisi kestää vuosia ilman jatkuvaa korjaamista.</p>
 
             <h2 id="lopuksi">6. Miten Valok lähestyy tätä valintaa</h2>
-            <p>Kun suunnittelemme automaatiota asiakkaalle, kysymys ei ole "RPA vai API", vaan mikä ratkaisu vastaa juuri kyseisen prosessin elinkaarta ja kriittisyyttä. Kartoitamme, onko kohdejärjestelmässä käytettävissä oleva rajapinta, kuinka usein prosessi toistuu ja kuinka kallista sen rikkoutuminen olisi liiketoiminnalle. Näiden perusteella valitaan arkkitehtuuri, joka kestää, eikä sitä jota on nopein esitellä demossa.</p>
+            <p>Kun suunnittelemme automaatiota asiakkaalle, kysymys ei ole “RPA vai API”, vaan mikä ratkaisu vastaa juuri kyseisen prosessin elinkaarta ja kriittisyyttä. Kartoitamme, onko kohdejärjestelmässä käytettävissä oleva rajapinta, kuinka usein prosessi toistuu ja kuinka kallista sen rikkoutuminen olisi liiketoiminnalle. Näiden perusteella valitaan arkkitehtuuri, joka kestää, eikä sitä jota on nopein esitellä demossa.</p>
 
             <p>Jos yritykselläsi on jo käytössä RPA-botteja, jotka rikkoutuvat toistuvasti, kannattaa arvioida, onko aika siirtyä kestävämpään, API-pohjaiseen ratkaisuun ennen kuin ylläpitokulut ylittävät alkuperäisen säästön.</p>
 
@@ -335,16 +338,17 @@
                             <div class="form-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 20px;">
                                 <div class="form-group" style="margin-bottom: 20px;">
                                     <label for="name">Nimi</label>
-                                    <input type="text" id="name" name="name" placeholder="Oma nimesi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                    <input type="text" id="name" name="name" autocomplete="name" placeholder="Oma nimesi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
                                 </div>
                                 <div class="form-group" style="margin-bottom: 20px;">
                                     <label for="email">Sähköposti</label>
-                                    <input type="email" id="email" name="email" placeholder="esimerkki@yritys.fi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                    <input type="email" id="email" name="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="esimerkki@yritys.fi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary btn-lg full-width" style="width: 100%; padding: 16px; font-weight: bold; cursor: pointer; margin-top: 20px;">
                                 Varaa ilmainen konsultaatio
                             </button>
+                            <div id="form-status" class="form-status" aria-live="polite"></div>
                         </form>
                     </div>
                 </div>
@@ -355,7 +359,7 @@
     <footer>
         <div class="footer-grid">
             <div class="footer-col footer-brand">
-                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer">VALOK<span class="logo-dot">.</span></div>
+                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer" width="4206" height="4206" loading="lazy"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer" width="4206" height="4206" loading="lazy">VALOK<span class="logo-dot">.</span></div>
                 <p>Prosessien automatisointia ja dedikoituja tekoälyratkaisuja suomalaisille PK-yrityksille.</p>
             </div>
             <div class="footer-col">

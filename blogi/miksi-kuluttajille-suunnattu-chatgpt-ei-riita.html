@@ -9,9 +9,12 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#030712">
     <title>Miksi kuluttajille suunnattu ChatGPT ei riitä? — Valok</title>
     <meta name="description"
         content="AI-strategia on lukuisten suomalaisten organisaatioiden keskiössä vuonna 2026. Lue blogistamme, miten tekoäly kannattaa ottaa hallitusti käyttöön.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="../styles.css">
@@ -194,11 +197,12 @@
             font-family: inherit;
         }
         
-        .form-group input:focus,
-        .form-group textarea:focus {
+        .form-group input:focus-visible,
+        .form-group textarea:focus-visible {
             outline: none;
             border-color: var(--accent);
-            background: rgba(255, 255, 255, 0.08);
+            background: var(--glass-hover);
+            box-shadow: 0 0 0 4px var(--accent-glow);
         }
     </style>
 </head>
@@ -208,7 +212,7 @@
 
     <nav id="navbar">
         <div class="nav-container">
-            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light">VALOK<span
+            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark" width="4206" height="4206"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light" width="4206" height="4206">VALOK<span
                      class="logo-dot">.</span></a>
             <div class="nav-links" id="navLinks">
                 <a href="/#palvelut">Palvelut</a>
@@ -231,7 +235,7 @@
         </header>
 
         <div class="post-image">
-            <img srcset="../img/768-mobile.webp 800w, ../img/768.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/768.webp" alt="Miksi kuluttajille suunnattu ChatGPT ei riitä?">
+            <img srcset="../img/768-mobile.webp 800w, ../img/768.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/768.webp" alt="Miksi kuluttajille suunnattu ChatGPT ei riitä?" width="1920" height="1440">
         </div>
 
         <main class="post-content">
@@ -252,7 +256,7 @@
             <p>Eurostatin tilastojen mukaan EU:n alueella pienistä yrityksistä jo lähes viidennes hyödynsi AI-teknologiaa vuonna 2025 kun vielä vuonna 2024 vastaava osuus oli n. 11% (<a href="https://ec.europa.eu/eurostat/en/web/products-statistical-reports/w/ks-01-26-009" target="_blank">Lähde: Eurostat</a>).</p>
 
             <div class="data-image">
-                <img srcset="../img/small_and_medium_sized_businesses_ai_eu-mobile.webp 800w, ../img/small_and_medium_sized_businesses_ai_eu.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/small_and_medium_sized_businesses_ai_eu.webp" alt="Pk-yritysten tekoälyn käyttö EU:ssa graafi">
+                <img srcset="../img/small_and_medium_sized_businesses_ai_eu-mobile.webp 800w, ../img/small_and_medium_sized_businesses_ai_eu.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/small_and_medium_sized_businesses_ai_eu.webp" alt="Pk-yritysten tekoälyn käyttö EU:ssa graafi" width="2688" height="1598" loading="lazy">
             </div>
 
             <p>Suuri osa suomalaisistakin yrityksistä tavoittelee tekoälyteknologioiden käyttöönottoa, mutta eivät oikein tiedä, miten se tapahtuu vaarantamatta yrityksen kriittisiä liikesalaisuuksia, tai investoimalla miljoonia euroja käyttöönottoprosessiin ja konsultaatioon.</p>
@@ -272,14 +276,14 @@
             <div class="cta-box">
                 <h3>Kaipaatko apua tekoälyn hyödyntämisessä?</h3>
                 <p>Jätä meille viesti alle, niin katsotaan yhdessä, miten voisimme tehostaa yrityksenne prosesseja turvallisesti ja kustannustehokkaasti.</p>
-                <form class="contact-form" action="https://formspree.io/f/xlgpgyjl" method="POST">
+                <form class="contact-form" action="https://formspree.io/f/xlgpgyjl" method="POST" id="contact-form">
                     <div class="form-group">
                         <label for="name">Nimi *</label>
-                        <input type="text" id="name" name="name" required>
+                        <input type="text" id="name" name="name" autocomplete="name" required>
                     </div>
                     <div class="form-group">
                         <label for="email">Sähköposti *</label>
-                        <input type="email" id="email" name="email" required>
+                        <input type="email" id="email" name="email" autocomplete="email" inputmode="email" spellcheck="false" required>
                     </div>
                     <div class="form-group">
                         <label for="message">Viesti</label>
@@ -288,6 +292,7 @@
                     <!-- Bot anti-spam (honeypot) -->
                     <input type="text" name="_gotcha" class="form-gotcha" style="display:none">
                     <button type="submit" class="btn btn-primary" style="width: 100%;">Lähetä viesti</button>
+                    <div id="form-status" class="form-status" aria-live="polite"></div>
                 </form>
             </div>
         </main>
@@ -296,7 +301,7 @@
     <footer>
         <div class="footer-grid">
             <div class="footer-col footer-brand">
-                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer">VALOK<span class="logo-dot">.</span></div>
+                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer" width="4206" height="4206" loading="lazy"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer" width="4206" height="4206" loading="lazy">VALOK<span class="logo-dot">.</span></div>
                 <p>Prosessien automatisointia ja dedikoituja tekoälyratkaisuja suomalaisille PK-yrityksille.</p>
             </div>
             <div class="footer-col">

@@ -9,9 +9,12 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#030712">
     <title>IT-tiimin manuaaliset rutiinit: piilokustannus, jota kukaan ei laske — Valok</title>
     <meta name="description"
         content="IT-tiimit menettävät tutkitusti jopa kolmasosan työajastaan manuaalisiin rutiineihin. Lue mitkä prosessit kannattaa automatisoida perinteisellä automaatiolla ja missä kohtaa tekoälyagentti tuo oikeasti lisäarvoa.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="../styles.css">
@@ -175,7 +178,7 @@
 
     <nav id="navbar">
         <div class="nav-container">
-            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light">VALOK<span
+            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark" width="4206" height="4206"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light" width="4206" height="4206">VALOK<span
                      class="logo-dot">.</span></a>
             <div class="nav-links" id="navLinks">
                 <a href="/#palvelut">Palvelut</a>
@@ -198,7 +201,7 @@
         </header>
 
         <div class="post-image">
-            <img src="../img/it-tiimin-manuaaliset-rutiinit.webp" alt="IT-tiimin manuaaliset rutiinit ja niiden automatisointi - Valok">
+            <img src="../img/it-tiimin-manuaaliset-rutiinit.webp" alt="IT-tiimin manuaaliset rutiinit ja niiden automatisointi - Valok" width="960" height="1105">
         </div>
 
         <main class="post-content">
@@ -272,16 +275,17 @@
                             <div class="form-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 20px;">
                                 <div class="form-group" style="margin-bottom: 20px;">
                                     <label for="name">Nimi</label>
-                                    <input type="text" id="name" name="name" placeholder="Oma nimesi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                    <input type="text" id="name" name="name" autocomplete="name" placeholder="Oma nimesi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
                                 </div>
                                 <div class="form-group" style="margin-bottom: 20px;">
                                     <label for="email">Sähköposti</label>
-                                    <input type="email" id="email" name="email" placeholder="esimerkki@yritys.fi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                    <input type="email" id="email" name="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="esimerkki@yritys.fi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary btn-lg full-width" style="width: 100%; padding: 16px; font-weight: bold; cursor: pointer; margin-top: 20px;">
                                 Varaa ilmainen konsultaatio
                             </button>
+                            <div id="form-status" class="form-status" aria-live="polite"></div>
                         </form>
                     </div>
                 </div>
@@ -292,7 +296,7 @@
     <footer>
         <div class="footer-grid">
             <div class="footer-col footer-brand">
-                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer">VALOK<span class="logo-dot">.</span></div>
+                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer" width="4206" height="4206" loading="lazy"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer" width="4206" height="4206" loading="lazy">VALOK<span class="logo-dot">.</span></div>
                 <p>Prosessien automatisointia ja dedikoituja tekoälyratkaisuja suomalaisille PK-yrityksille.</p>
             </div>
             <div class="footer-col">
@@ -301,6 +305,7 @@
                     <li><a href="/">Etusivu</a></li>
                     <li><a href="../blogi.html">Blogi</a></li>
                     <li><a href="/#palvelut">Palvelut</a></li>
+                    <li><a href="../tietosuoja.html">Tietosuoja</a></li>
                 </ul>
             </div>
             <div class="footer-col">
@@ -312,9 +317,20 @@
             </div>
         </div>
         <div class="footer-bottom">
-            &copy; 2026 Valok. Kaikki oikeudet pidätetään.
+            &copy; 2026 Valok. Kaikki oikeudet pidätetään. · <a href="#" id="cookieSettingsLink">Evästeasetukset</a>
         </div>
     </footer>
+
+        <div id="cookieBanner" class="cookie-banner">
+        <h5>Yksityisyytesi on meille tärkeää</h5>
+        <p>Käytämme sivustolla vain välttämättömiä toimintoja varmistaaksemme parhaan mahdollisen käyttökokemuksen. Emme
+            käytä kolmannen osapuolen markkinointievästeitä ilman suostumustasi.</p>
+        <div class="cookie-btn-group">
+            <button id="acceptCookies" class="btn btn-primary">Hyväksy kaikki</button>
+            <button id="rejectCookies" class="btn btn-ghost">Hylkää</button>
+            <a href="../tietosuoja.html" class="btn btn-ghost">Lue lisää</a>
+        </div>
+    </div>
 
     <script src="../main.js"></script>
 </body>

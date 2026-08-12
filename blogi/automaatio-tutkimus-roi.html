@@ -9,9 +9,12 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#030712">
     <title>Prosessiautomaation ROI ja tutkimustieto 2026 — Valok</title>
     <meta name="description"
         content="Mitä tutkimukset kertovat prosessiautomaation ja tekoälyn todellisesta ROI:sta PK-yrityksille? McKinseyn ja Deloitten dataa ja käytännön vinkkejä.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="../styles.css?v=2">
@@ -348,7 +351,7 @@
 
     <nav id="navbar">
         <div class="nav-container">
-            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light">VALOK<span
+            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark" width="4206" height="4206"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light" width="4206" height="4206">VALOK<span
                     class="logo-dot">.</span></a>
             <div class="nav-links" id="navLinks">
                 <a href="/#palvelut">Palvelut</a>
@@ -376,12 +379,12 @@
         <div class="post-image" style="max-width: 800px; margin: 0 auto 48px;">
             <picture>
                 <source srcset="../img/automaatio-prosessit-kettu-mobile.webp" media="(max-width: 800px)">
-                <img src="../img/automaatio-prosessit-kettu.webp" alt="Prosessiautomaation ROI ja tutkimustieto kettu maskotti">
+                <img src="../img/automaatio-prosessit-kettu.webp" alt="Prosessiautomaation ROI ja tutkimustieto kettu maskotti" width="1024" height="1024">
             </picture>
         </div>
 
         <main class="post-content">
-            <p>Monissa suomalaisissa PK-yrityksissä sana "automaatio" tuo yhä mieleen raskaat, vuosia kestävät toiminnanohjausjärjestelmien (ERP) päivitykset tai kalliit integraatioprojektit. Vuonna 2026 tilanne on kuitenkin täysin toinen: low-code-integraatioalustat (kuten n8n ja Make) sekä rajapintojen kautta toimiva tekoäly mahdollistavat prosessien automatisoinnin murto-osalla entisistä kustannuksista.</p>
+            <p>Monissa suomalaisissa PK-yrityksissä sana “automaatio” tuo yhä mieleen raskaat, vuosia kestävät toiminnanohjausjärjestelmien (ERP) päivitykset tai kalliit integraatioprojektit. Vuonna 2026 tilanne on kuitenkin täysin toinen: low-code-integraatioalustat (kuten n8n ja Make) sekä rajapintojen kautta toimiva tekoäly mahdollistavat prosessien automatisoinnin murto-osalla entisistä kustannuksista.</p>
 
             <p>Jotta automaatioinvestoinneissa ei nojattaisi pelkkiin myyntipuheisiin, pureudumme tässä artikkelissa tuoreimpaan globaaliin tutkimusdataan prosessiautomaation ja tekoälyn todellisesta tuottavuusvaikutuksesta.</p>
 
@@ -391,7 +394,7 @@
                 <ol>
                     <li><a href="#tilastot-2026">Automaation yleistyminen PK-sektorilla 2026</a></li>
                     <li><a href="#todellinen-roi">Mitä tutkimukset sanovat ROI:sta?</a></li>
-                    <li><a href="#virhe-paalleliimaus">Yleisin sudenkuoppa: "Päälleliimattu" automaatio</a></li>
+                    <li><a href="#virhe-paalleliimaus">Yleisin sudenkuoppa: “Päälleliimattu” automaatio</a></li>
                     <li><a href="#agenttiset-tyonkulut">Uusi aalto: Agenttiset työnkulut (Agentic Workflows)</a></li>
                     <li><a href="#mistako-alkuun">Miten lähteä liikkeelle tulosvastuullisesti?</a></li>
                     <li><a href="#lahteet">Lähteet ja tutkimusviitteet</a></li>
@@ -416,13 +419,13 @@
                 <li><strong>Osastokohtainen ROI:</strong> Tutkimusten mukaan korkeimman ja nopeimman ROI:n tarjoavat asiakaspalvelun tiedonreititys (~340 % ROI) sekä taloushallinnon laskuprosessit ja täsmäytykset (~250 % ROI).<sup><a href="#lahde-3" style="color: var(--accent);">[3]</a></sup></li>
             </ul>
 
-            <h2 id="virhe-paalleliimaus">Yleisin sudenkuoppa: "Päälleliimattu" automaatio</h2>
-            <p>Vaikka ROI-potentiaali on korkea, Deloitte varoittaa raportissaan niin sanotusta "elusiivisen ROI:n paradoksista". Tämä tarkoittaa tilannetta, jossa yritys investoi teknologiaan, mutta ei saavuta toivottuja tuottavuushyötyjä.<sup><a href="#lahde-4" style="color: var(--accent);">[4]</a></sup></p>
+            <h2 id="virhe-paalleliimaus">Yleisin sudenkuoppa: “Päälleliimattu” automaatio</h2>
+            <p>Vaikka ROI-potentiaali on korkea, Deloitte varoittaa raportissaan niin sanotusta “elusiivisen ROI:n paradoksista”. Tämä tarkoittaa tilannetta, jossa yritys investoi teknologiaan, mutta ei saavuta toivottuja tuottavuushyötyjä.<sup><a href="#lahde-4" style="color: var(--accent);">[4]</a></sup></p>
 
             <p>Suurin syy tähän on se, että <strong>automaatio tai tekoäly liimataan sellaisenaan olemassa olevan, tehottoman tai rikkinäisen prosessin päälle.</strong> Jos manuaalinen työnkulku on epäselvä tai huonosti organisoitu, automaatio tekee virheellisestä toiminnasta vain moninkertaisesti nopeampaa. Ennen työnkulkujen teknistä rakentamista prosessia on aina yksinkertaistettava ja turhat välivaiheet karsittava.</p>
 
             <h2 id="agenttiset-tyonkulut">Uusi aalto: Agenttiset työnkulut (Agentic Workflows)</h2>
-            <p>Vuoden 2026 merkittävin teknologinen suuntaus on siirtyminen yksinkertaisista "jos tapahtuu A, tee B" -säännöistä <strong>agenttisiin työnkulkuihin</strong> (Agentic AI). Nämä ovat järjestelmiä, jotka kykenevät itsenäiseen päätöksentekoon ja pystyvät reagoimaan myös epäselviin tai muuttuviin lähtötietoihin.</p>
+            <p>Vuoden 2026 merkittävin teknologinen suuntaus on siirtyminen yksinkertaisista “jos tapahtuu A, tee B” -säännöistä <strong>agenttisiin työnkulkuihin</strong> (Agentic AI). Nämä ovat järjestelmiä, jotka kykenevät itsenäiseen päätöksentekoon ja pystyvät reagoimaan myös epäselviin tai muuttuviin lähtötietoihin.</p>
             
             <p>Esimerkiksi perinteinen automaatio siirtää liidin CRM:ään vain jos kaikki kentät on täytetty oikein. Agenttinen työnkulku osaa itse lukea vapaamuotoisen tarjouspyyntösähköpostin, etsiä puuttuvat taustatiedot yritysrekisteristä, luokitella pyynnön kiireellisyyden ja laatia vastausluonnoksen myyjän tarkistettavaksi.</p>
 
@@ -432,7 +435,7 @@
             <ol class="step-list">
                 <li>
                     <div class="step-content">
-                        <strong>Tunnista "pullonkaulat" (Bottlenecks)</strong>
+                        <strong>Tunnista “pullonkaulat” (Bottlenecks)</strong>
                         Kartoita ne tehtävät, joita työntekijät tekevät usein ja jotka turhauttavat heitä eniten. Yleensä nämä liittyvät datan kopiointiin järjestelmästä toiseen.
                     </div>
                 </li>
@@ -501,7 +504,7 @@
     <footer>
         <div class="footer-grid">
             <div class="footer-col footer-brand">
-                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer">VALOK<span class="logo-dot">.</span></div>
+                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer" width="4206" height="4206" loading="lazy"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer" width="4206" height="4206" loading="lazy">VALOK<span class="logo-dot">.</span></div>
                 <p>Prosessien automatisointia ja dedikoituja tekoälyratkaisuja suomalaisille PK-yrityksille.</p>
             </div>
             <div class="footer-col">

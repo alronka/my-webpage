@@ -9,9 +9,12 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#030712">
     <title>Yrityksen sisäinen tekoäly ja tietoturva: Estä Shadow AI ja tietovuodot – Valok</title>
     <meta name="description"
         content="Yli 75 % työntekijöistä käyttää tekoälyä salaa työssään. Lue miten tietoturvallinen yrityksen sisäinen tekoäly suojaa yrityksesi liikesalaisuudet 2026.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="../styles.css">
@@ -159,7 +162,7 @@
 
     <nav id="navbar">
         <div class="nav-container">
-            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light">VALOK<span
+            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark" width="4206" height="4206"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light" width="4206" height="4206">VALOK<span
                      class="logo-dot">.</span></a>
             <div class="nav-links" id="navLinks">
                 <a href="/#palvelut">Palvelut</a>
@@ -182,11 +185,11 @@
         </header>
 
         <div class="post-image">
-            <img src="../img/sisainen-tekoaly-tietoturva.png" alt="Yrityksen sisäinen tekoäly ja tietoturva - Valok">
+            <img src="../img/sisainen-tekoaly-tietoturva.png" alt="Yrityksen sisäinen tekoäly ja tietoturva - Valok" width="1024" height="1024">
         </div>
 
         <main class="post-content">
-            <p>Monissa suomalaisissa yrityksissä johto uskoo, että tekoälyä ei meillä käytetä, koska "sille ei ole annettu lupaa". Tämä on kuitenkin vaarallinen harha.</p>
+            <p>Monissa suomalaisissa yrityksissä johto uskoo, että tekoälyä ei meillä käytetä, koska “sille ei ole annettu lupaa”. Tämä on kuitenkin vaarallinen harha.</p>
 
             <p>Todellisuudessa työntekijät hyödyntävät tekoälyä tehostaakseen työtään – usein salaa johdolta ja IT-osastolta. Tätä ilmiötä kutsutaan nimellä <strong>Shadow AI</strong> (varjotekoäly). Kun työntekijä syöttää asiakasraportteja, koodinpätkiä tai yrityksen strategiapapereita ilmaisiin kuluttajatyökaluihin (kuten ChatGPT:n perusversioon), tiedot voivat päätyä suoraan kielimallien koulutusmateriaaliksi. Se tarkoittaa käytännössä tieto- ja liikesalaisuusvuotoa.</p>
 
@@ -206,13 +209,13 @@
             <div class="mermaid-container">
                 <div class="mermaid">
                     graph TD
-                        subgraph K1 ["Kuluttajatyökalu - Turvaton"]
-                            A["Syötetty data"] -->|Avoin verkko| B["Malli tallentaa ja oppii"]
-                            B -->|Riski| C["Datan vuotaminen kilpailijoille"]
+                        subgraph K1 [“Kuluttajatyökalu - Turvaton”]
+                            A[“Syötetty data”] -->|Avoin verkko| B[“Malli tallentaa ja oppii”]
+                            B -->|Riski| C[“Datan vuotaminen kilpailijoille”]
                         end
-                        subgraph S1 ["Sisäinen Tekoäly - Valok"]
-                            D["Syötetty data"] -->|Suojattu API tai n8n| E["Eristetty hiekkalaatikko"]
-                            E -->|GDPR-tuki| F["Data poistetaan istunnon jälkeen"]
+                        subgraph S1 [“Sisäinen Tekoäly - Valok”]
+                            D[“Syötetty data”] -->|Suojattu API tai n8n| E[“Eristetty hiekkalaatikko”]
+                            E -->|GDPR-tuki| F[“Data poistetaan istunnon jälkeen”]
                         end
                         
                         style C fill:#1a1a2e,stroke:#ff4d4d,color:#FFFFFF
@@ -251,9 +254,9 @@
 
                 <h4>Lähteet:</h4>
                 <ul>
-                    <li>• <a href="https://www.microsoft.com/en-us/worklab/work-trend-index/ai-at-work-is-here-now-comes-the-hard-part" target="_blank">Microsoft & LinkedIn: "Work Trend Index: AI at Work Is Here. Now Comes the Hard Part" (2024)</a></li>
-                    <li>• <a href="https://www.pwc.com/us/en/tech-effect/ai-analytics/managing-generative-ai-risks.html" target="_blank">PwC: "Managing the risks of generative AI" (2024/2025)</a></li>
-                    <li>• <a href="https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai" target="_blank">European Commission: "EU Artificial Intelligence Act"</a></li>
+                    <li>• <a href="https://www.microsoft.com/en-us/worklab/work-trend-index/ai-at-work-is-here-now-comes-the-hard-part" target="_blank">Microsoft & LinkedIn: “Work Trend Index: AI at Work Is Here. Now Comes the Hard Part” (2024)</a></li>
+                    <li>• <a href="https://www.pwc.com/us/en/tech-effect/ai-analytics/managing-generative-ai-risks.html" target="_blank">PwC: “Managing the risks of generative AI” (2024/2025)</a></li>
+                    <li>• <a href="https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai" target="_blank">European Commission: “EU Artificial Intelligence Act”</a></li>
                 </ul>
             </div>
         </main>
@@ -262,7 +265,7 @@
     <footer>
         <div class="footer-grid">
             <div class="footer-col footer-brand">
-                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer">VALOK<span class="logo-dot">.</span></div>
+                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer" width="4206" height="4206" loading="lazy"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer" width="4206" height="4206" loading="lazy">VALOK<span class="logo-dot">.</span></div>
                 <p>Prosessien automatisointia ja dedikoituja tekoälyratkaisuja suomalaisille PK-yrityksille.</p>
             </div>
             <div class="footer-col">

@@ -9,9 +9,12 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#030712">
     <title>Kielimallien API-kustannukset vertailussa: Miten säästää jopa 90 % — Valok</title>
     <meta name="description"
         content="Paljonko kielimallien (kuten GPT-4o, Claude 3.5 Sonnet ja Gemini) API-kutsut maksavat yritykselle? Lue tutkimustietoon perustuva opas kustannusten optimointiin Suomessa.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="../styles.css">
@@ -241,7 +244,7 @@
 
     <nav id="navbar">
         <div class="nav-container">
-            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light">VALOK<span class="logo-dot">.</span></a>
+            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark" width="4206" height="4206"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light" width="4206" height="4206">VALOK<span class="logo-dot">.</span></a>
             <div class="nav-links" id="navLinks">
                 <a href="/#palvelut">Palvelut</a>
                 <a href="/#prosessi">Prosessi</a>
@@ -268,7 +271,7 @@
         <div class="post-image">
             <img srcset="../img/kielimallit-api-kustannukset-mobile.webp 800w, ../img/kielimallit-api-kustannukset.webp 1600w"
                 sizes="(max-width: 800px) 100vw, 800px" src="../img/kielimallit-api-kustannukset.webp"
-                alt="Kielimallien API-kustannukset ja optimointi - Valok">
+                alt="Kielimallien API-kustannukset ja optimointi - Valok" width="1024" height="1024">
         </div>
 
         <main class="post-content">
@@ -294,9 +297,9 @@
                 määrää.</p>
 
             <p>Tutkimuslaitos *McKinseyn (2025/2026)* tekoälytutkimus paljastaa, että menestyneimmät yritykset eivät
-                käytä kaikissa tehtävissä kalleimpia ja järeimpiä "Frontier"-tason malleja. Sen sijaan jopa
+                käytä kaikissa tehtävissä kalleimpia ja järeimpiä “Frontier”-tason malleja. Sen sijaan jopa
                 <strong>70–80 % yrityksen sisäisistä tehtävistä</strong> voidaan ratkaista huomattavasti edullisemmilla
-                "Light"-tason malleilla (kuten GPT-4o-mini tai Gemini Flash), jolloin säästö tekoälyn käyttömaksuissa on
+                “Light”-tason malleilla (kuten GPT-4o-mini tai Gemini Flash), jolloin säästö tekoälyn käyttömaksuissa on
                 välitön ja valtava.</p>
 
             <h2>Kielimallien API-hinnat vertailussa (Kesäkuu 2026)</h2>
@@ -379,8 +382,8 @@
 
             <div class="mermaid-container">
                 <div class="mermaid">
-                    %%{init: {'theme': 'dark', 'themeVariables': { 'lineColor': '#6366f1', 'primaryColor': '#1e1b4b',
-                    'primaryTextColor': '#ffffff' }}}%%
+                    %%{init: {‘theme’: ‘dark’, ‘themeVariables’: { ‘lineColor’: ‘#6366f1’, ‘primaryColor’: ‘#1e1b4b’,
+                    ‘primaryTextColor’: ‘#ffffff’ }}}%%
                     graph TD
                     A[Saapuva pyyntö / dokumentti] --> B{Tehtävän vaativuus?}
                     B -- Helppo / Rutiini (80%) --> C[Light-malli: GPT-4o-mini / Gemini Flash]
@@ -404,8 +407,8 @@
                 asiakaspalvelujärjestelmissä.</p>
 
             <h3>3. Semanttinen välimuisti (Semantic Caching)</h3>
-            <p>Asiakkaat kysyvät usein samoja kysymyksiä hieman eri sanamuodoilla (esim. "Mikä on toimitusaika
-                Tampereelle?" vs. "Kuinka nopeasti paketti saapuu Tampereen alueelle?"). Semanttinen välimuisti
+            <p>Asiakkaat kysyvät usein samoja kysymyksiä hieman eri sanamuodoilla (esim. “Mikä on toimitusaika
+                Tampereelle?” vs. “Kuinka nopeasti paketti saapuu Tampereen alueelle?”). Semanttinen välimuisti
                 tunnistaa kysymysten samankaltaisuuden vektoritietokannan avulla. Jos vastaus on jo kerran luotu, se
                 palautetaan suoraan tietokannasta ilman yhtäkään API-kutsua kielimalliin. Tämä pudottaa toistuvien
                 kysymysten API-kulut nollaan ja nopeuttaa vastausaikaa alle 100 millisekuntiin.</p>
@@ -437,7 +440,7 @@
             </ul>
 
             <div class="author-box">
-                <img class="author-img" src="../img/aRon_A1.webp" alt="Valok kettumaskotti">
+                <img class="author-img" src="../img/aRon_A1.webp" alt="Valok kettumaskotti" width="4167" height="4167" loading="lazy">
                 <div>
                     <h4 style="margin: 0; color: var(--text); font-size: 1.1rem;">Tietoa kirjoittajasta</h4>
                     <p style="margin: 8px 0 0; font-size: 0.95rem; color: var(--text-dim); line-height: 1.5;">Tämän
@@ -460,12 +463,12 @@
                 <h4>Lähteet & tutkimukset:</h4>
                 <ul>
                     <li>• <a href="https://aiindex.stanford.edu/report/" target="_blank">Stanford University:
-                            "Artificial Intelligence Index Report" (2025/2026)</a></li>
+                            “Artificial Intelligence Index Report” (2025/2026)</a></li>
                     <li>• <a href="https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai"
-                            target="_blank">McKinsey & Company: "The State of AI - Cost-efficiency & Model Selection
-                            Trends in Enterprise" (2025)</a></li>
+                            target="_blank">McKinsey & Company: “The State of AI - Cost-efficiency & Model Selection
+                            Trends in Enterprise” (2025)</a></li>
                     <li>• <a href="https://ieeexplore.ieee.org/document/10123456" target="_blank">IEEE Computer Society:
-                            "Prompt Caching and Semantic Routing for Large Language Model Gateways" (2025)</a></li>
+                            “Prompt Caching and Semantic Routing for Large Language Model Gateways” (2025)</a></li>
                 </ul>
             </div>
         </main>
@@ -474,7 +477,7 @@
     <footer>
         <div class="footer-grid">
             <div class="footer-col footer-brand">
-                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer">VALOK<span class="logo-dot">.</span></div>
+                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer" width="4206" height="4206" loading="lazy"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer" width="4206" height="4206" loading="lazy">VALOK<span class="logo-dot">.</span></div>
                 <p>Prosessien automatisointia ja dedikoituja tekoälyratkaisuja suomalaisille PK-yrityksille.</p>
             </div>
             <div class="footer-col">

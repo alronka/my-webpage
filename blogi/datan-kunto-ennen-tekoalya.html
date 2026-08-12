@@ -9,9 +9,12 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#030712">
     <title>Data hajallaan? Näin tekoäly voi silti onnistua yrityksessäsi — Valok</title>
     <meta name="description"
         content="Hajallaan oleva data ei ole este tekoälylle, vaan lähtökohta. Lue miten Valok kartoittaa, jäsentää ja yhdistää yrityksesi datan, esimerkiksi vektoritietokannan avulla, ilman että kaiken pitää olla valmiiksi siistiä.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="../styles.css">
@@ -175,7 +178,7 @@
 
     <nav id="navbar">
         <div class="nav-container">
-            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light">VALOK<span
+            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark" width="4206" height="4206"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light" width="4206" height="4206">VALOK<span
                      class="logo-dot">.</span></a>
             <div class="nav-links" id="navLinks">
                 <a href="/#palvelut">Palvelut</a>
@@ -194,11 +197,11 @@
             <a href="../blogi.html" class="back-link">← Takaisin blogiin</a>
             <span class="post-meta">Heinäkuu 2026 • Data • Tekoäly</span>
             <h1>Data hajallaan? Näin tekoäly voi <span class="gradient-text">silti onnistua</span> yrityksessäsi</h1>
-            <p style="color: var(--text-dim); margin-top: 20px;">"Meidän data ei ole vielä valmis tekoälylle" on yleisin syy lykätä tekoälyprojektia. Hyvä uutinen: sitä ei tarvitse olla.</p>
+            <p style="color: var(--text-dim); margin-top: 20px;">“Meidän data ei ole vielä valmis tekoälylle” on yleisin syy lykätä tekoälyprojektia. Hyvä uutinen: sitä ei tarvitse olla.</p>
         </header>
 
         <div class="post-image">
-            <img src="../img/datan-kunto-ennen-tekoalya.webp" alt="Hajallaan oleva data ja tekoäly PK-yritykselle - Valok">
+            <img src="../img/datan-kunto-ennen-tekoalya.webp" alt="Hajallaan oleva data ja tekoäly PK-yritykselle - Valok" width="1024" height="1024">
         </div>
 
         <main class="post-content">
@@ -206,7 +209,7 @@
                 <h4>Sisällysluettelo</h4>
                 <ul>
                     <li><a href="#yleisin-este">1. Yleisin syy lykätä tekoälyä on myös yleisin väärinkäsitys</a></li>
-                    <li><a href="#mita-hajallaan">2. Mitä "hajallaan oleva data" oikeasti tarkoittaa?</a></li>
+                    <li><a href="#mita-hajallaan">2. Mitä “hajallaan oleva data” oikeasti tarkoittaa?</a></li>
                     <li><a href="#kartoitus">3. Ensimmäinen askel: kartoitus, ei siivous</a></li>
                     <li><a href="#vektoritietokanta">4. Vektoritietokanta: työkalu, joka sietää sekasotkua</a></li>
                     <li><a href="#askeleittain">5. Miten Valok rakentaa tämän askel askeleelta</a></li>
@@ -214,7 +217,7 @@
                 </ul>
             </div>
 
-            <p>Lähes jokaisessa keskustelussa, jonka käymme yritysten kanssa tekoälystä, kuulemme saman lauseen: "Meidän pitäisi ensin saada data kuntoon." Se sanotaan usein pahoitellen, ikään kuin kyse olisi esteestä, joka pitää raivata pois ennen kuin mitään muuta voi tehdä.</p>
+            <p>Lähes jokaisessa keskustelussa, jonka käymme yritysten kanssa tekoälystä, kuulemme saman lauseen: “Meidän pitäisi ensin saada data kuntoon.” Se sanotaan usein pahoitellen, ikään kuin kyse olisi esteestä, joka pitää raivata pois ennen kuin mitään muuta voi tehdä.</p>
 
             <p>Totuus on toinen. Hajallaan oleva data ei ole este tekoälyn käyttöönotolle, vaan täysin normaali lähtökohta, josta lähes kaikki yritykset aloittavat. Kysymys ei ole siitä, onko datasi täydellistä, vaan siitä, miten se saadaan tekoälyn ulottuville juuri sellaisena kuin se on.</p>
 
@@ -227,7 +230,7 @@
                 Et tarvitse täydellistä dataa käynnistääksesi tekoälyprojektin. Tarvitset kartoituksen siitä, mitä sinulla on ja missä se sijaitsee. Loput hoituu oikealla arkkitehtuurilla.
             </div>
 
-            <h2 id="mita-hajallaan">2. Mitä "hajallaan oleva data" oikeasti tarkoittaa?</h2>
+            <h2 id="mita-hajallaan">2. Mitä “hajallaan oleva data” oikeasti tarkoittaa?</h2>
             <p>Kun puhumme hajallaan olevasta datasta, tarkoitamme useimmiten jotain tästä listasta:</p>
             <ul>
                 <li>Tietoa on useassa eri järjestelmässä: CRM:ssä, sähköpostissa, verkkolevyllä, pilvipalveluissa ja työntekijöiden omilla koneilla.</li>
@@ -294,16 +297,17 @@
                             <div class="form-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 20px;">
                                 <div class="form-group" style="margin-bottom: 20px;">
                                     <label for="name">Nimi</label>
-                                    <input type="text" id="name" name="name" placeholder="Oma nimesi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                    <input type="text" id="name" name="name" autocomplete="name" placeholder="Oma nimesi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
                                 </div>
                                 <div class="form-group" style="margin-bottom: 20px;">
                                     <label for="email">Sähköposti</label>
-                                    <input type="email" id="email" name="email" placeholder="esimerkki@yritys.fi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                    <input type="email" id="email" name="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="esimerkki@yritys.fi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary btn-lg full-width" style="width: 100%; padding: 16px; font-weight: bold; cursor: pointer; margin-top: 20px;">
                                 Varaa ilmainen konsultaatio
                             </button>
+                            <div id="form-status" class="form-status" aria-live="polite"></div>
                         </form>
                     </div>
                 </div>
@@ -314,7 +318,7 @@
     <footer>
         <div class="footer-grid">
             <div class="footer-col footer-brand">
-                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer">VALOK<span class="logo-dot">.</span></div>
+                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer" width="4206" height="4206" loading="lazy"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer" width="4206" height="4206" loading="lazy">VALOK<span class="logo-dot">.</span></div>
                 <p>Prosessien automatisointia ja dedikoituja tekoälyratkaisuja suomalaisille PK-yrityksille.</p>
             </div>
             <div class="footer-col">

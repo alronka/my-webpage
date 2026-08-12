@@ -9,9 +9,12 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#030712">
     <title>Tekoälyn rajoittaminen: Miten annat agentille juuri oikeat valtuudet — Valok</title>
     <meta name="description"
         content="'Anna tekoälylle vapaat kädet' on houkutteleva mutta vaarallinen lähtökohta. Lue miten Valok rajaa tekoälyagentin valtuudet datan, toimintojen ja päätöksenteon tasolla, niin että se on hyödyllinen mutta ei riski.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="../styles.css">
@@ -207,7 +210,7 @@
 
     <nav id="navbar">
         <div class="nav-container">
-            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light">VALOK<span
+            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark" width="4206" height="4206"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light" width="4206" height="4206">VALOK<span
                      class="logo-dot">.</span></a>
             <div class="nav-links" id="navLinks">
                 <a href="/#palvelut">Palvelut</a>
@@ -226,18 +229,18 @@
             <a href="../blogi.html" class="back-link">← Takaisin blogiin</a>
             <span class="post-meta">Tekoälyagentit • Tietoturva • Hallinta</span>
             <h1>Tekoälyn rajoittaminen: Miten annat agentille <span class="gradient-text">juuri oikeat valtuudet</span></h1>
-            <p style="color: var(--text-dim); margin-top: 20px;">"Anna tekoälylle vapaat kädet, niin se hoitaa homman" kuulostaa tehokkaalta, kunnes agentti tekee jotain, mitä kukaan ei ehtinyt kieltää. Lue miten rajat suunnitellaan etukäteen, ei vahingon jälkeen.</p>
+            <p style="color: var(--text-dim); margin-top: 20px;">“Anna tekoälylle vapaat kädet, niin se hoitaa homman” kuulostaa tehokkaalta, kunnes agentti tekee jotain, mitä kukaan ei ehtinyt kieltää. Lue miten rajat suunnitellaan etukäteen, ei vahingon jälkeen.</p>
         </header>
 
         <div class="post-image">
-            <img src="../img/tekoalyn-rajoittaminen.webp" alt="Tekoälyn rajoittaminen ja agentin valtuuksien hallinta PK-yritykselle - Valok">
+            <img src="../img/tekoalyn-rajoittaminen.webp" alt="Tekoälyn rajoittaminen ja agentin valtuuksien hallinta PK-yritykselle - Valok" width="960" height="1107">
         </div>
 
         <main class="post-content">
             <div class="toc-box">
                 <h4>Sisällysluettelo</h4>
                 <ul>
-                    <li><a href="#vapaat-kadet">1. Miksi "vapaat kädet" on houkutteleva mutta vaarallinen lähtökohta</a></li>
+                    <li><a href="#vapaat-kadet">1. Miksi “vapaat kädet” on houkutteleva mutta vaarallinen lähtökohta</a></li>
                     <li><a href="#kolme-tasoa">2. Kolme tasoa, joilla rajoittaminen tapahtuu</a></li>
                     <li><a href="#ihminen-silmukassa">3. Ihminen silmukassa: milloin agentti tarvitsee hyväksynnän</a></li>
                     <li><a href="#sandbox">4. Sandbox ja testiympäristö ennen tuotantoa</a></li>
@@ -250,7 +253,7 @@
 
             <p>Todellisuudessa hyvin suunnitellut rajat eivät hidasta agenttia, ne tekevät siitä turvallisen ottaa käyttöön kriittisissä prosesseissa, joihin kukaan ei muuten uskaltaisi antaa automaation koskea.</p>
 
-            <h2 id="vapaat-kadet">1. Miksi "vapaat kädet" on houkutteleva mutta vaarallinen lähtökohta</h2>
+            <h2 id="vapaat-kadet">1. Miksi “vapaat kädet” on houkutteleva mutta vaarallinen lähtökohta</h2>
             <p>Mitä enemmän agentille annetaan valtaa ilman rajoja, sitä nopeammin se pystyy toimimaan, ainakin teoriassa. Käytännössä rajaton agentti on kuin uusi työntekijä, jolle annetaan pääkäyttäjän tunnukset kaikkiin järjestelmiin ensimmäisenä työpäivänä ilman perehdytystä: se ei tarkoita tehokkuutta, se tarkoittaa riskiä, joka realisoituu ennemmin tai myöhemmin.</p>
 
             <p>Yleisimmät seuraukset rajoittamattomasta agentista eivät ole dramaattisia hakkerointitarinoita, vaan arkisempia: agentti lähettää sähköpostin väärälle vastaanottajalle, tekee tilauksen väärällä summalla, tai muokkaa tietoa järjestelmässä johon sen ei olisi pitänyt koskea lainkaan. <a href="sisainen-tekoaly-ja-tietoturva.html">Yrityksen sisäinen tekoäly ja tietoturva -artikkelissamme</a> käsittelimme samaa teemaa datan näkökulmasta: agentti ei tarvitse pääsyä kaikkeen dataan toimiakseen hyvin, se tarvitsee pääsyn juuri siihen dataan jota tehtävä vaatii.</p>
@@ -269,7 +272,7 @@
             <p>Näiden kolmen tason erottaminen toisistaan on tärkeää, koska ne vaativat eri ratkaisuja: datatasoa rajataan käyttöoikeuksilla ja rajapinnoilla, toimintatasoa rajataan sillä mitä työkaluja agentille ylipäätään annetaan käyttöön, ja päätöksentekotasoa rajataan sillä, missä kohtaa prosessia vaaditaan ihmisen hyväksyntä.</p>
 
             <h2 id="ihminen-silmukassa">3. Ihminen silmukassa: milloin agentti tarvitsee hyväksynnän</h2>
-            <p>"Ihminen silmukassa" (human in the loop) tarkoittaa, että agentti pysähtyy ja pyytää vahvistuksen ennen tiettyjä toimintoja, sen sijaan että se toimisi täysin itsenäisesti. Tämä ei tarkoita, että agentti muuttuu hyödyttömäksi hitaaksi ehdotuskoneeksi, vaan että hyväksyntä vaaditaan juuri niissä kohdissa, joissa virheen hinta on korkea.</p>
+            <p>“Ihminen silmukassa” (human in the loop) tarkoittaa, että agentti pysähtyy ja pyytää vahvistuksen ennen tiettyjä toimintoja, sen sijaan että se toimisi täysin itsenäisesti. Tämä ei tarkoita, että agentti muuttuu hyödyttömäksi hitaaksi ehdotuskoneeksi, vaan että hyväksyntä vaaditaan juuri niissä kohdissa, joissa virheen hinta on korkea.</p>
 
             <ul>
                 <li><strong>Automaattinen ilman hyväksyntää:</strong> tiedon haku, yhteenvedon kirjoittaminen, sisäinen luonnos, rutiiniluokittelu.</li>
@@ -284,7 +287,7 @@
             <p><a href="tekoalyagentit-kaytannon-opas.html">Tekoälyagenttien käytännön oppaassamme</a> suosittelemme aloittamaan pienestä, rajatusta tehtävästä ennen laajempaa käyttöönottoa, juuri tästä syystä: sandbox-vaihe on paljon halvempi paikka löytää ongelma kuin tuotantoympäristö, jossa virheellä on jo oikeita seurauksia.</p>
 
             <h2 id="liian-tiukka">5. Liian tiukka rajoitus on myös riski</h2>
-            <p>Rajoittamisessa on myös vastakkainen riski, jota harvemmin puhutaan ääneen: jos agentti joutuu pyytämään hyväksynnän joka ikiseen pieneen toimintoon, kukaan ei ehdi hyväksyä niitä ajoissa, ja koko automaation hyöty katoaa jonoon jumittuneisiin pyyntöihin. Tällöin yritys on teknisesti "turvallinen", mutta ei saa mitään hyötyä investoinnistaan.</p>
+            <p>Rajoittamisessa on myös vastakkainen riski, jota harvemmin puhutaan ääneen: jos agentti joutuu pyytämään hyväksynnän joka ikiseen pieneen toimintoon, kukaan ei ehdi hyväksyä niitä ajoissa, ja koko automaation hyöty katoaa jonoon jumittuneisiin pyyntöihin. Tällöin yritys on teknisesti “turvallinen”, mutta ei saa mitään hyötyä investoinnistaan.</p>
 
             <p>Tasapaino löytyy siitä, että rajat asetetaan riskin, ei mukavuuden mukaan. Matalan riskin toiminnot automatisoidaan täysin, korkean riskin toiminnot vaativat hyväksynnän, ja rajaa tarkistetaan säännöllisesti sitä mukaa kun agentin luotettavuudesta kertyy näyttöä.</p>
 
@@ -314,16 +317,17 @@
                             <div class="form-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 20px;">
                                 <div class="form-group" style="margin-bottom: 20px;">
                                     <label for="name">Nimi</label>
-                                    <input type="text" id="name" name="name" placeholder="Oma nimesi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                    <input type="text" id="name" name="name" autocomplete="name" placeholder="Oma nimesi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
                                 </div>
                                 <div class="form-group" style="margin-bottom: 20px;">
                                     <label for="email">Sähköposti</label>
-                                    <input type="email" id="email" name="email" placeholder="esimerkki@yritys.fi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                    <input type="email" id="email" name="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="esimerkki@yritys.fi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary btn-lg full-width" style="width: 100%; padding: 16px; font-weight: bold; cursor: pointer; margin-top: 20px;">
                                 Varaa ilmainen konsultaatio
                             </button>
+                            <div id="form-status" class="form-status" aria-live="polite"></div>
                         </form>
                     </div>
                 </div>
@@ -334,7 +338,7 @@
     <footer>
         <div class="footer-grid">
             <div class="footer-col footer-brand">
-                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer">VALOK<span class="logo-dot">.</span></div>
+                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer" width="4206" height="4206" loading="lazy"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer" width="4206" height="4206" loading="lazy">VALOK<span class="logo-dot">.</span></div>
                 <p>Prosessien automatisointia ja dedikoituja tekoälyratkaisuja suomalaisille PK-yrityksille.</p>
             </div>
             <div class="footer-col">

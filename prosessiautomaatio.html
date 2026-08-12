@@ -9,9 +9,12 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#030712">
     <title>Prosessiautomaatio PK-yrityksille — Säästä aikaa ja vähennä virheitä | Valok</title>
     <meta name="description"
         content="Prosessiautomaatio on nyt jokaisen PK-yrityksen ulottuvilla. Vähennä inhimillisiä virheitä ja vapauta arvokasta työvoimaa rutiineista tuottavampaan työhön.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
@@ -44,7 +47,7 @@
         "name": "Miten prosessiautomaatio vähentää virheitä?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Automaatio hoitaa rutiininomaiset ja toistuvat siirrot (kuten tietojen kopioinnin järjestelmien välillä) aina virheettömästi ja identtisesti. Näin vähennetään inhimillisiä 'copy-paste' -virheitä ja unohduksia."
+          "text": "Automaatio hoitaa rutiininomaiset ja toistuvat siirrot (kuten tietojen kopioinnin järjestelmien välillä) aina virheettömästi ja identtisesti. Näin vähennetään inhimillisiä ’copy-paste’ -virheitä ja unohduksia."
         }
       }]
     }
@@ -112,7 +115,7 @@
 
     <nav id="navbar">
         <div class="nav-container">
-            <a href="/" class="logo"><img src="img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark"><img src="img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light">VALOK<span
+            <a href="/" class="logo"><img src="img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark" width="4206" height="4206"><img src="img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light" width="4206" height="4206">VALOK<span
                     class="logo-dot">.</span></a>
             <div class="nav-links">
                 <a href="/#yhteystiedot" class="nav-cta">Ota yhteyttä</a>
@@ -149,7 +152,7 @@
             <div class="animate-in"
                 style="border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
                 <img src="img/20945581.jpg" alt="Prosessiautomaatio tehokkuus"
-                    style="width: 100%; height: auto; display: block;">
+                    style="width: 100%; height: auto; display: block;" width="5157" height="3438">
             </div>
         </div>
     </section>
@@ -185,7 +188,7 @@
             <div class="animate-in"
                 style="border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
                 <img src="img/6934498.jpg" alt="PK-yrityksen automaation aloittaminen"
-                    style="width: 100%; height: auto; display: block;">
+                    style="width: 100%; height: auto; display: block;" width="2000" height="2000" loading="lazy">
             </div>
             <div data-animate>
                 <span class="section-tag">Miten aloittaa?</span>
@@ -263,15 +266,15 @@
         </div>
         <div class="contact-container">
             <div class="contact-form-card" data-animate>
-                <form action="https://formspree.io/f/xlgpgyjl" method="POST">
+                <form action="https://formspree.io/f/xlgpgyjl" method="POST" id="contact-form">
                     <div class="form-grid">
                         <div class="form-group">
                             <label for="name">Nimi</label>
-                            <input type="text" id="name" name="name" required>
+                            <input type="text" id="name" name="name" autocomplete="name" required>
                         </div>
                         <div class="form-group">
                             <label for="email">Sähköposti</label>
-                            <input type="email" id="email" name="email" required>
+                            <input type="email" id="email" name="email" autocomplete="email" inputmode="email" spellcheck="false" required>
                         </div>
                         <div class="form-group full-width">
                             <label for="message">Mistä prosessista aloitetaan?</label>
@@ -279,6 +282,7 @@
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary btn-lg full-width">Pyydä kartoitus</button>
+                    <div id="form-status" class="form-status" aria-live="polite"></div>
                 </form>
             </div>
         </div>
@@ -287,7 +291,7 @@
     <footer>
         <div class="footer-grid">
             <div class="footer-col footer-brand">
-                <div class="logo"><img src="img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer"><img src="img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer">VALOK<span class="logo-dot">.</span></div>
+                <div class="logo"><img src="img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer" width="4206" height="4206" loading="lazy"><img src="img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer" width="4206" height="4206" loading="lazy">VALOK<span class="logo-dot">.</span></div>
                 <p>Autamme PK-yrityksiä kasvamaan ja tehostumaan prosessiautomaation avulla.</p>
             </div>
             <div class="footer-col">

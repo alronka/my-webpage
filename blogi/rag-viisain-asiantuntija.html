@@ -9,9 +9,12 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#030712">
     <title>RAG: Miten teet tekoälystä yrityksesi viisaimman asiantuntijan ilman hallusinointia — Valok</title>
     <meta name="description"
         content="Unohda hallusinoivat chatbotit. Dedikoitu tekoäly ja RAG-tekniikka kytkevät kielimallin yrityksesi omaan dataan turvallisesti. Lue, miten yrityksen sisäinen kielimalli toimii.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="../styles.css">
@@ -201,7 +204,7 @@
 
     <nav id="navbar">
         <div class="nav-container">
-            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light">VALOK<span
+            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark" width="4206" height="4206"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light" width="4206" height="4206">VALOK<span
                      class="logo-dot">.</span></a>
             <div class="nav-links" id="navLinks">
                 <a href="/#palvelut">Palvelut</a>
@@ -223,7 +226,7 @@
         </header>
 
         <div class="post-image">
-            <img srcset="../img/rag-blog-mobile.webp 800w, ../img/rag-blog.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/rag-blog.webp" alt="RAG ja tekoäly - Valok">
+            <img srcset="../img/rag-blog-mobile.webp 800w, ../img/rag-blog.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/rag-blog.webp" alt="RAG ja tekoäly - Valok" width="1920" height="1584">
         </div>
 
         <main class="post-content">
@@ -264,7 +267,7 @@
             <h2 id="hyodyt">4. RAG:n hyödyt yritykselle</h2>
             <ul>
                 <li><strong>Tietoturva:</strong> Data pysyy omassa hallinnassasi, eikä sitä käytetä yleisten mallien kouluttamiseen. Tämä on jokaisen yrityksen sisäisen kielimallin perusedellytys.</li>
-                <li><strong>Luotettavuus:</strong> Tekoäly voi antaa lähdeviitteet: "Tämä tieto löytyy uuden työntekijän oppaasta sivulta 12."</li>
+                <li><strong>Luotettavuus:</strong> Tekoäly voi antaa lähdeviitteet: “Tämä tieto löytyy uuden työntekijän oppaasta sivulta 12.”</li>
                 <li><strong>Kustannustehokkuus:</strong> Sinun ei tarvitse kouluttaa omaa kallista tekoälymallia alusta asti – dedikoitu tekoäly hyödyntää olemassa olevia malleja älykkäämmin.</li>
             </ul>
 
@@ -273,7 +276,7 @@
             
             <pre><span class="code-lang">Python</span><code><span class="token comment"># Simple pseudocode for a RAG workflow</span>
 <span class="token comment"># 1. User asks a question</span>
-<span class="token variable">user_query</span> <span class="token operator">=</span> <span class="token string">"Mikä on yrityksemme lounasetu?"</span>
+<span class="token variable">user_query</span> <span class="token operator">=</span> <span class="token string">“Mikä on yrityksemme lounasetu?”</span>
 
 <span class="token comment"># 2. Search for relevant context from internal database (Vector DB)</span>
 <span class="token comment"># This acts as the memory for your dedicated AI</span>
@@ -281,7 +284,7 @@
 
 <span class="token comment"># 3. Combine query and context for the LLM</span>
 <span class="token comment"># We force the internal language model to stay within given boundaries</span>
-<span class="token variable">prompt</span> <span class="token operator">=</span> f<span class="token string">"Answer the following question using ONLY this context: {context}. Question: {user_query}"</span>
+<span class="token variable">prompt</span> <span class="token operator">=</span> f<span class="token string">“Answer the following question using ONLY this context: {context}. Question: {user_query}”</span>
 
 <span class="token comment"># 4. Get the final accurate response</span>
 <span class="token variable">response</span> <span class="token operator">=</span> <span class="token variable">llm</span>.<span class="token function">generate_response</span>(<span class="token variable">prompt</span>)
@@ -313,11 +316,11 @@
                     <div class="form-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
                         <div class="form-group" style="margin-bottom: 20px;">
                             <label for="name">Nimi</label>
-                            <input type="text" id="name" name="name" placeholder="Oma nimesi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                            <input type="text" id="name" name="name" autocomplete="name" placeholder="Oma nimesi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
                         </div>
                         <div class="form-group" style="margin-bottom: 20px;">
                             <label for="email">Sähköposti</label>
-                            <input type="email" id="email" name="email" placeholder="esimerkki@yritys.fi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                            <input type="email" id="email" name="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="esimerkki@yritys.fi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
                         </div>
                         <div class="form-group full-width select-wrapper" style="grid-column: 1 / -1; margin-bottom: 20px;">
                             <label for="service">Mitä tarvitset?</label>
@@ -340,6 +343,7 @@
                             <path d="M5 12h14M12 5l7 7-7 7" />
                         </svg>
                     </button>
+                    <div id="form-status" class="form-status" aria-live="polite"></div>
                 </form>
             </div>
         </div>
@@ -348,7 +352,7 @@
     <footer>
         <div class="footer-grid">
             <div class="footer-col footer-brand">
-                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer">VALOK<span class="logo-dot">.</span></div>
+                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer" width="4206" height="4206" loading="lazy"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer" width="4206" height="4206" loading="lazy">VALOK<span class="logo-dot">.</span></div>
                 <p>Prosessien automatisointia ja dedikoituja tekoälyratkaisuja suomalaisille PK-yrityksille.</p>
             </div>
             <div class="footer-col">

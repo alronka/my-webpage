@@ -9,9 +9,12 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#030712">
     <title>RAG-arkkitehtuuri: Näin rakennat luotettavan tekoälyn — Valok</title>
     <meta name="description"
         content="Katsaus Retrieval-Augmented Generation (RAG) -mallin konepellin alle. Opi, miten moderni RAG-arkkitehtuuri rakennetaan vuonna 2026.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="../styles.css">
@@ -173,7 +176,7 @@
 
     <nav id="navbar">
         <div class="nav-container">
-            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light">VALOK<span
+            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark" width="4206" height="4206"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light" width="4206" height="4206">VALOK<span
                      class="logo-dot">.</span></a>
             <div class="nav-links" id="navLinks">
                 <a href="/#palvelut">Palvelut</a>
@@ -196,7 +199,7 @@
         </header>
 
         <div class="post-image">
-            <img src="../img/rag-arkkitehtuuri-cover.png" alt="RAG-arkkitehtuuri ja tekoälytietokannat - Valok">
+            <img src="../img/rag-arkkitehtuuri-cover.png" alt="RAG-arkkitehtuuri ja tekoälytietokannat - Valok" width="1024" height="1024">
         </div>
 
         <main class="post-content">
@@ -222,7 +225,7 @@
             </div>
 
             <h2 id="perusrakenne">2. RAG-järjestelmän perusrakenne</h2>
-            <p>Tekoälytutkijat kutsuvat RAGin perinteistä muotoa nimellä "Naïve RAG". Se muodostaa yhä perustan lähes kaikille tiedonhakujärjestelmille. Alla on havainnollistava ylätason arkkitehtuurikuva siitä, miten prosessi etenee käyttäjän kysymyksestä lopulliseen vastaukseen.</p>
+            <p>Tekoälytutkijat kutsuvat RAGin perinteistä muotoa nimellä “Naïve RAG”. Se muodostaa yhä perustan lähes kaikille tiedonhakujärjestelmille. Alla on havainnollistava ylätason arkkitehtuurikuva siitä, miten prosessi etenee käyttäjän kysymyksestä lopulliseen vastaukseen.</p>
 
             <div class="mermaid">
                 flowchart TD

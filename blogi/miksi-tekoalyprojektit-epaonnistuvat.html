@@ -9,9 +9,12 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#030712">
     <title>Miksi tekoälyprojektit epäonnistuvat? 4 syytä ja miten vältät ne — Valok</title>
     <meta name="description"
         content="Suurin osa tekoälypiloteista ei koskaan saavuta tuotantoa asti. Lue neljä yleisintä syytä miksi tekoälyprojektit kaatuvat PK-yrityksissä, ja miten Valok rakentaa projektit, jotka oikeasti jäävät käyttöön.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="../styles.css">
@@ -175,7 +178,7 @@
 
     <nav id="navbar">
         <div class="nav-container">
-            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light">VALOK<span
+            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark" width="4206" height="4206"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light" width="4206" height="4206">VALOK<span
                      class="logo-dot">.</span></a>
             <div class="nav-links" id="navLinks">
                 <a href="/#palvelut">Palvelut</a>
@@ -198,7 +201,7 @@
         </header>
 
         <div class="post-image">
-            <img src="../img/miksi-tekoalyprojektit-epaonnistuvat.webp" alt="Tekoälyprojekti joka jää pilottiasteelle PK-yrityksessä - Valok">
+            <img src="../img/miksi-tekoalyprojektit-epaonnistuvat.webp" alt="Tekoälyprojekti joka jää pilottiasteelle PK-yrityksessä - Valok" width="1024" height="1024">
         </div>
 
         <main class="post-content">
@@ -230,13 +233,13 @@
             <h2 id="syy-1">2. Syy #1: Pilotti ei koskaan yhdisty todelliseen työhön</h2>
             <p>Yleisin kaava on tuttu: joku tiimissä testaa tekoälytyökalua erillisessä ympäristössä, tulokset näyttävät lupaavilta demoissa, mutta työkalu jää sivupöydälle. Kukaan ei vaihda sitä osaksi päivittäistä työnkulkua, koska se vaatisi muutoksia totuttuihin tapoihin, järjestelmiin tai vastuisiin.</p>
 
-            <p>Pilotti, joka elää irrallaan oikeasta prosessista, ei koskaan pääse todistamaan arvoaan tuotannon mittakaavassa. Se jää ikuisesti "kokeiluksi", eikä kukaan tee päätöstä sen lopettamisesta tai laajentamisesta, kunnes se hiljalleen unohtuu.</p>
+            <p>Pilotti, joka elää irrallaan oikeasta prosessista, ei koskaan pääse todistamaan arvoaan tuotannon mittakaavassa. Se jää ikuisesti “kokeiluksi”, eikä kukaan tee päätöstä sen lopettamisesta tai laajentamisesta, kunnes se hiljalleen unohtuu.</p>
 
             <h2 id="syy-2">3. Syy #2: Väärä käyttötapaus valitaan heti alussa</h2>
             <p>Moni yritys aloittaa tekoälyprojektinsa siitä, mikä on teknisesti näyttävintä, ei siitä, mikä tuo eniten hyötyä nopeimmin. Tuloksena on usein kunnianhimoinen, monimutkainen hanke, joka yrittää ratkaista liian monta ongelmaa kerralla.</p>
 
             <ul>
-                <li><strong>Liian laaja käyttötapaus:</strong> "automatisoidaan koko asiakaspalvelu" sen sijaan että aloitettaisiin yhdestä toistuvasta tikettityypistä.</li>
+                <li><strong>Liian laaja käyttötapaus:</strong> “automatisoidaan koko asiakaspalvelu” sen sijaan että aloitettaisiin yhdestä toistuvasta tikettityypistä.</li>
                 <li><strong>Liian epäselvä mittari:</strong> ei ole sovittu etukäteen, miltä onnistuminen näyttää numeroina.</li>
                 <li><strong>Liian matala hyöty suhteessa vaivaan:</strong> ratkaistaan ongelma, joka ei aidosti säästä aikaa tai rahaa.</li>
             </ul>
@@ -290,16 +293,17 @@
                             <div class="form-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 20px;">
                                 <div class="form-group" style="margin-bottom: 20px;">
                                     <label for="name">Nimi</label>
-                                    <input type="text" id="name" name="name" placeholder="Oma nimesi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                    <input type="text" id="name" name="name" autocomplete="name" placeholder="Oma nimesi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
                                 </div>
                                 <div class="form-group" style="margin-bottom: 20px;">
                                     <label for="email">Sähköposti</label>
-                                    <input type="email" id="email" name="email" placeholder="esimerkki@yritys.fi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                    <input type="email" id="email" name="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="esimerkki@yritys.fi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary btn-lg full-width" style="width: 100%; padding: 16px; font-weight: bold; cursor: pointer; margin-top: 20px;">
                                 Varaa ilmainen konsultaatio
                             </button>
+                            <div id="form-status" class="form-status" aria-live="polite"></div>
                         </form>
                     </div>
                 </div>
@@ -310,7 +314,7 @@
     <footer>
         <div class="footer-grid">
             <div class="footer-col footer-brand">
-                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer">VALOK<span class="logo-dot">.</span></div>
+                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer" width="4206" height="4206" loading="lazy"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer" width="4206" height="4206" loading="lazy">VALOK<span class="logo-dot">.</span></div>
                 <p>Prosessien automatisointia ja dedikoituja tekoälyratkaisuja suomalaisille PK-yrityksille.</p>
             </div>
             <div class="footer-col">

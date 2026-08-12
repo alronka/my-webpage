@@ -9,9 +9,12 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#030712">
     <title>API-integraatiot liiketoimintaprosessien tehostamiseen — Valok</title>
     <meta name="description"
         content="Opi, miten API-integraatiot yhdistävät yrityksesi järjestelmät — CRM, ERP, laskutus, verkkokauppa — automaattisesti. Säästä aikaa ja poista manuaalinen työ.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="../styles.css">
@@ -223,7 +226,7 @@
 
     <nav id="navbar">
         <div class="nav-container">
-            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light">VALOK<span
+            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark" width="4206" height="4206"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light" width="4206" height="4206">VALOK<span
                      class="logo-dot">.</span></a>
             <div class="nav-links" id="navLinks">
                 <a href="/#palvelut">Palvelut</a>
@@ -247,14 +250,14 @@
         </header>
 
         <div class="post-image">
-            <img src="../img/api-integraatiot-liiketoiminta.webp" alt="API-integraatiot liiketoimintaprosessien tehostamiseen — Valok" loading="lazy">
+            <img src="../img/api-integraatiot-liiketoiminta.webp" alt="API-integraatiot liiketoimintaprosessien tehostamiseen — Valok" loading="lazy" width="1376" height="768">
         </div>
 
         <main class="post-content">
 
             <h2>Mitä API-integraatiot tarkoittavat käytännössä?</h2>
 
-            <p>Termi kuulostaa tekniseltä, mutta idea on yksinkertainen. <strong>API</strong> (Application Programming Interface) on ohjelmistorajapinta — tapa, jolla kaksi järjestelmää voivat "puhua keskenään". <strong>Integraatio</strong> tarkoittaa, että nuo järjestelmät on kytketty yhteen niin, että tieto kulkee niiden välillä automaattisesti.</p>
+            <p>Termi kuulostaa tekniseltä, mutta idea on yksinkertainen. <strong>API</strong> (Application Programming Interface) on ohjelmistorajapinta — tapa, jolla kaksi järjestelmää voivat “puhua keskenään”. <strong>Integraatio</strong> tarkoittaa, että nuo järjestelmät on kytketty yhteen niin, että tieto kulkee niiden välillä automaattisesti.</p>
 
             <p>Käytännön esimerkki: asiakas tekee tilauksen verkkokaupassasi. Ilman integraatiota joku kopioi tilauksen tiedot käsin varastonhallintaan, laskutusjärjestelmään ja CRM:ään — tai pahimmillaan muistaa tehdä sen myöhemmin. API-integraatiolla kaikki tämä tapahtuu sekunneissa, automaattisesti, heti kun tilaus vahvistuu.</p>
 
@@ -281,10 +284,10 @@
             <h2>Kolme yleisintä tapaa toteuttaa API-integraatio</h2>
 
             <h3>1. No-code/low-code -alustat</h3>
-            <p>Make (ent. Integromat), Zapier ja n8n ovat visuaalisia drag-and-drop -työkaluja, joilla yritys voi rakentaa yksinkertaisia integraatioita ilman koodausosaamista. Ne sopivat erinomaisesti suoraviivaisiin datavirtoihin — esimerkiksi "kun uusi tilaus saapuu Shopifyhin, luo lasku Netvisoriin ja lähetä ilmoitus Slackiin". Käyttöönotto on nopea ja hinnoittelu skaalautuu tarpeen mukaan.</p>
+            <p>Make (ent. Integromat), Zapier ja n8n ovat visuaalisia drag-and-drop -työkaluja, joilla yritys voi rakentaa yksinkertaisia integraatioita ilman koodausosaamista. Ne sopivat erinomaisesti suoraviivaisiin datavirtoihin — esimerkiksi “kun uusi tilaus saapuu Shopifyhin, luo lasku Netvisoriin ja lähetä ilmoitus Slackiin”. Käyttöönotto on nopea ja hinnoittelu skaalautuu tarpeen mukaan.</p>
 
             <h3>2. Webhookit</h3>
-            <p>Webhook on mekanismi, jossa järjestelmä lähettää tiedon automaattisesti toiselle heti kun jokin tapahtuma toteutuu — esimerkiksi "maksu vahvistui" tai "asiakastiedot päivittyivät". Webhookit ovat kevyitä ja nopeita, koska ne eivät vaadi jatkuvaa kyselyä: tieto saapuu vain silloin kun jotain tapahtuu. Ne vaativat vastaanottavan pään konfiguroinnin, mutta ovat monessa tilanteessa yksinkertaisin tapa kytkeä kaksi järjestelmää yhteen.</p>
+            <p>Webhook on mekanismi, jossa järjestelmä lähettää tiedon automaattisesti toiselle heti kun jokin tapahtuma toteutuu — esimerkiksi “maksu vahvistui” tai “asiakastiedot päivittyivät”. Webhookit ovat kevyitä ja nopeita, koska ne eivät vaadi jatkuvaa kyselyä: tieto saapuu vain silloin kun jotain tapahtuu. Ne vaativat vastaanottavan pään konfiguroinnin, mutta ovat monessa tilanteessa yksinkertaisin tapa kytkeä kaksi järjestelmää yhteen.</p>
 
             <h3>3. Custom REST API -integraatio</h3>
             <p>Kun valmisratkaisut eivät riitä — esimerkiksi prosessi on monimutkainen, tietoturva on kriittistä tai järjestelmä on räätälöity — kehittäjä rakentaa suoran yhteyden kahden järjestelmän API:n välille. Tämä antaa täyden kontrollin datan käsittelyyn, virheenhallintaan ja suorituskykyyn. Se on paras valinta, kun integraation tulee kestää vuosia ja skaalautua liiketoiminnan kasvaessa.</p>
@@ -345,7 +348,7 @@
     <footer>
         <div class="footer-grid">
             <div class="footer-col footer-brand">
-                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer">VALOK<span class="logo-dot">.</span></div>
+                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer" width="4206" height="4206"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer" width="4206" height="4206" loading="lazy">VALOK<span class="logo-dot">.</span></div>
                 <p>Prosessien automatisointia ja dedikoituja tekoälyratkaisuja suomalaisille PK-yrityksille.</p>
             </div>
             <div class="footer-col">
