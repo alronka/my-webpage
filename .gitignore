@@ -1,1 +1,6 @@
 img/*.bak
+
+# impeccable design-skill state files (kept local only, this repo is public)
+PRODUCT.md
+DESIGN.md
+.impeccable/

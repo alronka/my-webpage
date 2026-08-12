@@ -10,14 +10,783 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#030712">
-    <title>Valok - Prosessien automatisointi & tekoälyratkaisut</title>
+    <title>Valok — Miksi tehdä itse, kun voi automatisoida?</title>
     <meta name="description"
-        content="Valok auttaa suomalaisia PK-yrityksiä automatisoimaan prosessejaan ja rakentamaan dedikoituja tekoälyratkaisuja. Projektipohjaista kehitystä tuloksiin keskittyen.">
+        content="Valok rakentaa suomalaisille PK-yrityksille työnkulkuautomaation ja tekoälyratkaisut omalla infrastruktuurillasi, yksityisyyttä kunnioittaen. Data pysyy omissa käsissäsi.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap"
+    <link rel="preconnect" href="https://api.fontshare.com">
+    <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Aksentti nyt mintunvihreä (ui-ux-pro-max -haun jälkeen 2026-08), koko sivuston
+           --accent (styles.css), ei enää tämän sivun oma. */
+
+        /* Fonttipari vaihdettu Clash Displaystä Calistogaan 2026-08: käyttäjän palaute
+           "otsikon kirjaimet vaikea erottaa toisistaan" — Clash Displayn tiiviit,
+           tyyliteltyt kirjaimet olivat huonosti luettavia isossa koossa. Calistoga on
+           lämmin, rohkea, mutta selkeäpiirteinen serif-otsikkofontti — pysyy erottuvana
+           (ei overused-listalla) mutta jokainen kirjain on tunnistettava. Satoshi pysyy
+           leipätekstinä. Muu sivusto käyttää yhä system-fonttia, ks. keskustelu 2026-08. */
+        h1, h2, h3 {
+            font-family: 'Calistoga', serif;
+            font-weight: 400;
+        }
+
+        .section-header h2 {
+            font-weight: 400;
+            letter-spacing: 0;
+        }
+
+        body {
+            font-family: 'Satoshi', var(--font-sans);
+        }
+
+        /* Ei liukuväritekstiä tällä sivulla, ks. design.md anti-patternit */
+        .accent-text {
+            color: var(--accent);
+        }
+
+        .brand-highlight {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* "Uusi layout" 2026-08: pois keskitetystä hero-pystyladelmasta, kohti Swiss-henkistä
+           epäsymmetristä asettelua — teksti alkaa vasemmasta marginaalista, ei ole keskitetty.
+           Koko sivu käyttää samaa 1280px-container-leveyttä ja -marginaalia johdonmukaisesti. */
+        #hero {
+            padding-top: 180px;
+            padding-bottom: 120px;
+            align-items: flex-start;
+            text-align: left;
+            max-width: 1280px;
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .hero-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            letter-spacing: 0.02em;
+            margin-bottom: 28px;
+        }
+
+        #hero .hero-actions {
+            justify-content: flex-start;
+        }
+
+        #hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.25rem);
+            letter-spacing: 0;
+            line-height: 1.15;
+            max-width: 780px;
+        }
+
+        /* Kettu "murtaa kehyksen" heron alareunassa, dock.cool-vertailun jälkeen 2026-08.
+           Scroll-sidottu: nousee esiin kun hero on näkyvissä, kyyristyy pois kun vieritetään
+           ohi (ks. keskustelu 2026-08 — pelkkä kertaalleen ajettava nousu näytti "leijuvalta"
+           koska kettu vain jäi paikoilleen sivun mukana). Reagoi vierittämiseen molempiin
+           suuntiin: nousee uudelleen jos vieritetään takaisin heroon. */
+        .hero-fox-peek {
+            display: none;
+            position: absolute;
+            right: 4%;
+            bottom: -18px;
+            width: clamp(140px, 14vw, 220px);
+            height: auto;
+            pointer-events: none;
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(70px);
+            transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1), opacity 400ms ease;
+        }
+
+        .hero-fox-peek.is-risen {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (min-width: 1100px) {
+            .hero-fox-peek {
+                display: block;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .hero-fox-peek {
+                transition: opacity 300ms ease;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-glow {
+            display: none;
+        }
+
+        /* Aksentti näkyy vain harvoin ja tarkoituksella: pääpainikkeet + yksi
+           korostettu sana otsikossa. Muualla neutraalit sävyt, ks. keskustelu 2026-08. */
+        .section-tag {
+            color: var(--text-dim);
+        }
+
+        .section-roomy {
+            padding: 160px 24px;
+        }
+
+        @media (max-width: 768px) {
+            .section-roomy {
+                padding: 96px 24px;
+            }
+
+            #hero {
+                padding-top: 140px;
+            }
+        }
+
+        /* SPLIT: ongelma / ratkaisu */
+        .split-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.15fr;
+            gap: 64px;
+            align-items: start;
+            text-align: left;
+        }
+
+        @media (max-width: 860px) {
+            .split-grid {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+        }
+
+        .split-kicker {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--text-dim);
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .split-grid h2 {
+            font-size: clamp(1.5rem, 2.6vw, 1.9rem);
+            font-weight: 400;
+            letter-spacing: 0;
+            line-height: 1.3;
+            margin-bottom: 20px;
+        }
+
+        .split-grid p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            line-height: 1.75;
+        }
+
+        /* Tilastonosto: yksi todellinen, lähteytetty luku "tilaisuus virheelle" -väitteen
+           tueksi (blogipostauksesta it-tiimin-manuaaliset-rutiinit.html, 2026-08). */
+        .stat-callout {
+            margin-top: 28px;
+            padding: 22px 24px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .stat-number {
+            font-family: 'Calistoga', serif;
+            font-size: 2.75rem;
+            line-height: 1;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .stat-callout p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: var(--text);
+            line-height: 1.5;
+        }
+
+        .stat-source {
+            display: block;
+            margin-top: 6px;
+            font-size: 0.75rem;
+            color: var(--text-dim);
+        }
+
+        @media (max-width: 480px) {
+            .stat-callout {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        .diff-list {
+            list-style: none;
+            margin-top: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .diff-list li {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+            font-size: 1rem;
+            color: var(--text);
+            line-height: 1.6;
+            padding: 16px 18px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .diff-list li:hover {
+            transform: scale(1.02);
+            border-color: var(--border-hover);
+            background: var(--glass-hover);
+            box-shadow: 0 8px 24px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .diff-list svg {
+            flex-shrink: 0;
+            margin-top: 3px;
+            color: var(--accent);
+        }
+
+        /* PALVELUT: kompakti 4-kortin ruudukko Ratkaisu-osion lopussa (2026-08) — antaa
+           "Ratkaisu"-navilinkille konkreettista sisältöä (aiemmin vain yleisluontoinen
+           ongelma/ratkaisu-kehystys, ei nimettyjä palveluita). */
+        .services-grid {
+            max-width: 1100px;
+            margin: 64px auto 0;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        @media (max-width: 860px) {
+            .services-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .service-card {
+            padding: 22px 20px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            text-align: left;
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s ease, background 0.25s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--border-hover);
+            background: var(--glass-hover);
+        }
+
+        .service-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: var(--bg-subtle);
+            color: var(--text-muted);
+            margin-bottom: 14px;
+        }
+
+        .service-card h3 {
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
+        .service-card p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* MITEN SE TOIMII: yksi "ikkuna", ei kolme irrallista korttia + liikkuvaa palloa.
+           Tavoite: näyttää oikealta työkalulta, ei abstraktilta AI-kaaviolta. */
+        .flow-window {
+            max-width: 980px;
+            margin: 56px auto 0;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 24px 60px -30px rgba(0, 0, 0, 0.4);
+        }
+
+        [data-theme="light"] .flow-window {
+            box-shadow: 0 24px 60px -35px rgba(15, 23, 42, 0.18);
+        }
+
+        .flow-window-bar {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            padding: 14px 20px;
+            background: var(--bg-subtle);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .flow-window-dot {
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+        }
+
+        .flow-window-dot--red {
+            background: #ff5f57;
+        }
+
+        .flow-window-dot--yellow {
+            background: #febc2e;
+        }
+
+        .flow-window-dot--green {
+            background: #28c840;
+        }
+
+        .flow-window-title {
+            margin-left: 10px;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            letter-spacing: 0.01em;
+        }
+
+        .flow-window-body {
+            display: grid;
+            grid-template-columns: 1fr 1px 1fr 1px 1fr;
+        }
+
+        @media (max-width: 860px) {
+            .flow-window-body {
+                grid-template-columns: 1fr;
+            }
+
+            .flow-step-divider {
+                width: 100%;
+                height: 1px;
+            }
+        }
+
+        .flow-step-divider {
+            background: var(--border);
+        }
+
+        .flow-step {
+            padding: 32px 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            transition: background 0.25s ease;
+        }
+
+        .flow-step:hover {
+            background: var(--glass-hover);
+        }
+
+        .flow-step-num {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: var(--bg-subtle);
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            margin-bottom: 4px;
+        }
+
+        .flow-step h3 {
+            font-size: 1.02rem;
+            font-weight: 700;
+        }
+
+        .flow-step p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .flow-step-bar {
+            height: 3px;
+            border-radius: 2px;
+            background: var(--border);
+            margin-top: auto;
+            padding-top: 18px;
+            overflow: hidden;
+            background-origin: content-box;
+            background-clip: content-box;
+        }
+
+        .flow-step-bar-fill {
+            display: block;
+            height: 100%;
+            width: 100%;
+            border-radius: 2px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: left;
+            will-change: transform;
+        }
+
+        /* Yksi jaettu 7s aikajana: askel1 aktivoituu (t=0) -> askel2 (t=2.3) -> askel3 (t=4.6) -> tauko -> uusi kierros */
+        .flow-step--1 .flow-step-num {
+            animation: flow-step-activate 7s ease-in-out infinite;
+        }
+
+        .flow-step--1 .flow-step-bar-fill {
+            animation: flow-bar-fill 7s ease-in-out infinite;
+        }
+
+        .flow-step--2 .flow-step-num {
+            animation: flow-step-activate 7s ease-in-out infinite;
+            animation-delay: 2.3s;
+        }
+
+        .flow-step--2 .flow-step-bar-fill {
+            animation: flow-bar-fill 7s ease-in-out infinite;
+            animation-delay: 2.3s;
+        }
+
+        .flow-step--3 .flow-step-num {
+            animation: flow-step-activate 7s ease-in-out infinite;
+            animation-delay: 4.6s;
+        }
+
+        .flow-step--3 .flow-step-bar-fill {
+            animation: flow-bar-fill 7s ease-in-out infinite;
+            animation-delay: 4.6s;
+        }
+
+        @keyframes flow-step-activate {
+
+            0%,
+            100% {
+                background: var(--bg-subtle);
+                color: var(--text-muted);
+            }
+
+            4.3% {
+                background: var(--accent);
+                color: var(--accent-text);
+            }
+
+            8.6% {
+                background: var(--bg-subtle);
+                color: var(--text-muted);
+            }
+        }
+
+        @keyframes flow-bar-fill {
+
+            0% {
+                transform: scaleX(0);
+            }
+
+            8.6% {
+                transform: scaleX(1);
+            }
+
+            11%,
+            100% {
+                transform: scaleX(0);
+            }
+        }
+
+        .flow-caption {
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            max-width: 480px;
+            margin: 24px auto 0;
+        }
+
+        /* PROSESSI: kompakti vaakastrippi, ei pystysuuntainen aikajana-korttipino
+           (vanha main-branchin versio oli liian tilaa vievä + indigo-gradient, ks.
+           design-docs/valok-etusivu.md). Eri asia kuin "Miten automaatio toimii":
+           tämä selittää mitä tapahtuu kun asiakas palkkaa Valokin, ei mitä yksi
+           automaatio tekee. */
+        .prosessi-section {
+            padding-top: 96px;
+            padding-bottom: 96px;
+        }
+
+        .prosessi-section .section-header {
+            margin-bottom: 48px;
+        }
+
+        .process-strip {
+            max-width: 1180px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+        }
+
+        .process-step-num {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--bg-subtle);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.78rem;
+            font-weight: 700;
+            margin-bottom: 14px;
+        }
+
+        .process-step h3 {
+            font-size: 1.05rem;
+            margin-bottom: 8px;
+        }
+
+        .process-step p {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 860px) {
+            .process-strip {
+                grid-template-columns: 1fr 1fr;
+                gap: 32px 24px;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .process-strip {
+                grid-template-columns: 1fr;
+                gap: 28px;
+            }
+        }
+
+        /* TEKNOLOGIAT: erillinen osio heron jälkeen (2026-08, korvasi heron sisäisen
+           "Yhdistämme jo mm." -rivin) — inspiraatio jian.se/Stocked AB:n tech-stack-osiosta.
+           Kategorisoitu ryhmiin, staggeröity ilmestyminen per ryhmä (ui-ux-pro-max:
+           Standard Stagger List -tyyppinen ajoitus, 300-450ms, ~50ms/kohde). */
+        .tech-stack-section {
+            padding-top: 96px;
+            padding-bottom: 96px;
+        }
+
+        .tech-stack-section .section-header {
+            margin-bottom: 40px;
+        }
+
+        .tech-category {
+            max-width: 1000px;
+            margin: 0 auto 28px;
+        }
+
+        .tech-category:last-child {
+            margin-bottom: 0;
+        }
+
+        .tech-category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 12px;
+            padding-bottom: 10px;
+            margin-bottom: 14px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .tech-category-label {
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text);
+        }
+
+        .tech-category-tags {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(78px, 1fr));
+            gap: 8px;
+        }
+
+        .tech-tile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            padding: 12px 8px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            opacity: 0;
+            transform: translateY(14px) scale(0.94);
+            transition: border-color 0.25s ease, background 0.25s ease;
+        }
+
+        .tech-category.visible .tech-tile {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            transition: opacity 400ms cubic-bezier(0.16, 1, 0.3, 1), transform 400ms cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, background 0.25s ease;
+        }
+
+        .tech-category.visible .tech-tile:nth-child(1) { transition-delay: 0ms; }
+        .tech-category.visible .tech-tile:nth-child(2) { transition-delay: 50ms; }
+        .tech-category.visible .tech-tile:nth-child(3) { transition-delay: 100ms; }
+        .tech-category.visible .tech-tile:nth-child(4) { transition-delay: 150ms; }
+        .tech-category.visible .tech-tile:nth-child(5) { transition-delay: 200ms; }
+
+        .tech-tile:hover {
+            transform: translateY(-3px) scale(1.04) !important;
+            border-color: var(--border-hover);
+            background: var(--glass-hover);
+        }
+
+        .tech-tile img {
+            height: 22px;
+            width: auto;
+            max-width: 100%;
+            filter: invert(1);
+            opacity: 0.85;
+        }
+
+        [data-theme="light"] .tech-tile img {
+            filter: none;
+        }
+
+        .tech-tile-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 22px;
+        }
+
+        .tech-tile-icon svg {
+            height: 22px;
+            width: auto;
+            max-width: 26px;
+            fill: var(--text);
+            opacity: 0.85;
+        }
+
+        .tech-tile span {
+            font-size: 0.66rem;
+            color: var(--text-dim);
+            text-align: center;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .tech-tile {
+                opacity: 1;
+                transform: none;
+            }
+
+            .tech-category.visible .tech-tile {
+                transition: border-color 0.25s ease, background 0.25s ease;
+                transition-delay: 0ms !important;
+            }
+        }
+
+        /* YHTEYSTIEDOT: epäsymmetrinen 2-palstainen (2026-08, "uusi layout") —
+           ei enää yksi keskitetty pystypalsta, vasemmalla väite+CTA, oikealla lomake. */
+        .contact-grid {
+            max-width: 1180px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 5fr 7fr;
+            gap: 72px;
+            align-items: center;
+            text-align: left;
+        }
+
+        @media (max-width: 860px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 48px;
+                text-align: center;
+            }
+        }
+
+        .cta-simple {
+            max-width: 460px;
+        }
+
+        @media (max-width: 860px) {
+            .cta-simple {
+                max-width: 100%;
+                margin: 0 auto;
+            }
+        }
+
+        .contact-mascot {
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 0 20px;
+            display: block;
+            box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px var(--border);
+        }
+
+        @media (max-width: 860px) {
+            .contact-mascot {
+                margin: 0 auto 20px;
+            }
+        }
+
+        .cta-divider {
+            display: none;
+        }
+
+        .contact-form-card {
+            margin: 0;
+        }
+
+        .form-card-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--text-dim);
+            margin: 0 0 20px;
+        }
+    </style>
     <link rel="icon" type="image/x-icon" href="img/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
     <link rel="apple-touch-icon" sizes="180x180" href="img/favicon-180x180.png">
@@ -33,18 +802,18 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://valok.fi/">
-    <meta property="og:title" content="Valok — Prosessien automatisointi & tekoälyratkaisut">
+    <meta property="og:title" content="Valok — Miksi tehdä itse, kun voi automatisoida?">
     <meta property="og:description"
-        content="Valok auttaa suomalaisia PK-yrityksiä automatisoimaan prosessejaan ja rakentamaan dedikoituja tekoälyratkaisuja Jyväskylästä käsin.">
-    <meta property="og:image" content="https://valok.fi/img/aRon_A1.webp">
+        content="Työnkulkuautomaatio ja tekoälyratkaisut omalla infrastruktuurillasi, yksityisyyttä kunnioittaen. Rakennettu Jyväskylästä käsin.">
+    <meta property="og:image" content="https://valok.fi/img/valok-black-with-white-outline.webp">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://valok.fi/">
-    <meta property="twitter:title" content="Valok — Prosessien automatisointi & tekoälyratkaisut">
+    <meta property="twitter:title" content="Valok — Miksi tehdä itse, kun voi automatisoida?">
     <meta property="twitter:description"
-        content="Räätälöityjä automaatio- ja tekoälyratkaisuja PK-yrityksille. Vapauta aikaa manuaalisesta työstä.">
-    <meta property="twitter:image" content="https://valok.fi/img/aRon_A1.webp">
+        content="Työnkulkuautomaatio ja tekoälyratkaisut omalla infrastruktuurillasi, yksityisyyttä kunnioittaen.">
+    <meta property="twitter:image" content="https://valok.fi/img/valok-black-with-white-outline.webp">
 
     <!-- Schema.org Structured Data -->
     <script type="application/ld+json">
@@ -52,7 +821,7 @@
       "@context": "https://schema.org",
       "@type": "ProfessionalService",
       "name": "Valok",
-      "image": "https://valok.fi/img/aRon_A1.webp",
+      "image": "https://valok.fi/img/valok-black-with-white-outline.webp",
       "@id": "https://valok.fi/",
       "url": "https://valok.fi/",
       "telephone": "",
@@ -85,6 +854,48 @@
     }
     </script>
 
+    <!-- FAQ Schema: pidä täsmälleen samana kuin #faq-osion näkyvä teksti (ks. design-docs/valok-etusivu.md) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Mitä prosessien automatisointi käytännössä tarkoittaa?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Se tarkoittaa rutiinitehtävien siirtämistä älykkäiden työnkulkujen hoidettavaksi. Valok yhdistää eri ohjelmistot, jolloin tieto liikkuu automaattisesti ilman manuaalista työtä. Lue lisää prosessiautomaatio-sivultamme: https://valok.fi/prosessiautomaatio.html"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Mitä tarkoittaa dedikoitu kielimalli tai sisäinen tekoäly?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Dedikoitu kielimalli on yrityksesi omaan dataan kytketty tekoälyratkaisu, joka ei hallusinoi. Käytämme RAG-tekniikkaa, jolloin tekoäly hakee vastaukset yrityksesi omista tiedostoista turvallisesti. Lue tarkempi selitys blogistamme: https://valok.fi/blogi/rag-viisain-asiantuntija.html"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Onko tekoäly tai prosessiautomaatio liian kallista PK-yritykselle?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ei ole. Modernit työkalut mahdollistavat nopean kehityksen ilman raskaita alkuinvestointeja. Automaatio maksaa yleensä itsensä takaisin säästettynä työaikana jo muutamassa kuukaudessa."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Mitä tapahtuu, jos automaatioon tulee virhetilanne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Valok tarjoaa jatkuvan valvonnan ja tuen. Jos rajapinta päivittyy tai koodissa ilmenee jotain yllättävää, saamme siitä automaattisen ilmoituksen ja korjaamme tilanteen välittömästi."
+          }
+        }
+      ]
+    }
+    </script>
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MZZTLKDN25"></script>
     <script>
@@ -96,47 +907,6 @@
             'analytics_storage': 'denied'
         });
         gtag('config', 'G-MZZTLKDN25');
-    </script>
-    <!-- FAQ Schema -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Mitä prosessien automatisointi käytännössä tarkoittaa?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Prosessien automatisointi tarkoittaa yrityksen rutiinitehtävien siirtämistä älykkäiden työnkulkujen hoidettavaksi. Valok yhdistää eri ohjelmistot (kuten CRM:n, sähköpostin ja laskutuksen), jolloin tieto liikkuu automaattisesti ilman manuaalista kopiointia. Lue lisää prosessiautomaatio-sivultamme: https://valok.fi/prosessiautomaatio.html"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Mitä tarkoittaa dedikoitu kielimalli tai sisäinen tekoäly?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Dedikoitu kielimalli on yrityksesi omaan dataan kytketty tekoälyratkaisu, joka ei hallusinoi. Käytämme RAG-tekniikkaa (Retrieval-Augmented Generation), jolloin tekoäly hakee vastaukset yrityksesi omista tiedostoista turvallisesti. Lue tarkempi selitys blogistamme: https://valok.fi/blogi/rag-viisain-asiantuntija.html"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Onko tekoäly tai prosessiautomaatio liian kallista PK-yritykselle?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Ei ole. Modernit työkalut mahdollistavat nopean kehityksen ilman raskaita alkuinvestointeja. Prosessiautomaatio maksaa itsensä yleensä takaisin säästettynä työaikana jo muutamassa kuukaudessa."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Mitä tapahtuu, jos automaatioon tulee virhetilanne?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Valok tarjoaa jatkuvan valvonnan ja tuen. Jos rajapinta päivittyy tai koodissa ilmenee jotain yllättävää, me saamme siitä automaattisen ilmoituksen ja korjaamme tilanteen välittömästi."
-          }
-        }
-      ]
-    }
     </script>
 </head>
 
@@ -150,7 +920,7 @@
         <div class="nav-container">
             <a href="/" class="logo"><img srcset="img/valok-white-with-black-outline-mobile.webp 800w, img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 1600px" src="img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark" width="4206" height="4206"><img srcset="img/valok-black-with-white-outline-mobile.webp 800w, img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 1600px" src="img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light" width="4206" height="4206">VALOK<span class="logo-dot">.</span></a>
             <div class="nav-links" id="navLinks">
-                <a href="#palvelut">Palvelut</a>
+                <a href="#ratkaisu">Ratkaisu</a>
                 <a href="#prosessi">Prosessi</a>
                 <a href="blogi.html">Blogi</a>
                 <a href="#yhteystiedot" class="nav-cta">Ota yhteyttä</a>
@@ -163,242 +933,242 @@
 
     <!-- HERO -->
     <header id="hero">
-        <div class="hero-badge animate-in">
+        <div class="hero-kicker animate-in">
             <span class="badge-dot"></span>
-            Prosessien automatisointi & tekoäly
+            Automaatio ja tekoäly PK-yrityksille
         </div>
-        <h1 class="animate-in">Prosessien automatisointi & <br><span class="gradient-text">tekoälyratkaisut</span>
-            yrityksellesi.</h1>
-        <p class="hero-sub animate-in">Rakennamme suomalaisille PK-yrityksille räätälöityjä automaatio- ja
-            tekoälyratkaisuja, jotka vapauttavat aikaa, vähentävät virheitä ja kiihdyttävät kasvua.</p>
+        <h1 class="animate-in">Miksi tehdä itse, kun voi <span class="accent-text">automatisoida</span>?</h1>
+        <p class="hero-sub animate-in">Me <span class="brand-highlight">Valokilla</span> automatisoimme
+            työnkulkusi ja tekoälyratkaisusi suoraan järjestelmiisi, omalla infrastruktuurillasi. Säästät
+            aikaa ja rahaa, ja data pysyy sinulla, ei ulkopuolisten pilvipalveluissa.</p>
         <div class="hero-actions animate-in">
-            <a href="#yhteystiedot" class="btn btn-primary">Aloitetaan projekti
+            <a href="https://calendar.app.google/go2sDgLdm6r2eKTK7" target="_blank" rel="noopener" class="btn btn-primary">
+                Varaa maksuton kartoitus
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
             </a>
-            <a href="https://calendar.app.google/go2sDgLdm6r2eKTK7" target="_blank" rel="noopener" class="btn btn-ghost">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="3" y="4" width="18" height="18" rx="2" /><path d="M16 2v4M8 2v4M3 10h18" />
-                </svg>
-                Varaa tapaaminen
-            </a>
-            <a href="#palvelut" class="btn btn-ghost">Tutustu palveluihin</a>
+            <a href="#miten-toimii" class="hero-link">Miten automaatio toimii →</a>
         </div>
         <div class="hero-glow"></div>
-        <div class="tech-marquee">
-            <span class="tech-marquee-label">Esimerkkejä integraatioista</span>
-            <div class="tech-marquee-track">
-                <img src="img/tech-openai.webp" alt="OpenAI" class="tech-marquee-icon" width="640" height="635">
-                <img src="img/tech-anthropic.webp" alt="Anthropic" class="tech-marquee-icon" width="640" height="441" loading="lazy">
-                <img src="img/tech-gemini.webp" alt="Google Gemini" class="tech-marquee-icon" width="588" height="588" loading="lazy">
-                <img src="img/tech-hubspot.webp" alt="HubSpot" class="tech-marquee-icon" width="256" height="256" loading="lazy">
-                <img src="img/tech-salesforce.webp" alt="Salesforce" class="tech-marquee-icon" width="728" height="510" loading="lazy">
-                <img src="img/tech-pipedrive.webp" alt="Pipedrive" class="tech-marquee-icon" width="256" height="256" loading="lazy">
-                <img src="img/tech-slack.webp" alt="Slack" class="tech-marquee-icon" width="512" height="512" loading="lazy">
-                <img src="img/tech-stripe.webp" alt="Stripe" class="tech-marquee-icon" width="540" height="225" loading="lazy">
-                <img src="img/tech-shopify.webp" alt="Shopify" class="tech-marquee-icon" width="452" height="512" loading="lazy">
-                <img src="img/tech-finago.webp" alt="Finago (Netvisor)" class="tech-marquee-icon" width="1443" height="537" loading="lazy">
-                <img src="img/tech-jira.webp" alt="Jira" class="tech-marquee-icon" width="512" height="512" loading="lazy">
-                <img src="img/tech-confluence.webp" alt="Confluence" class="tech-marquee-icon" width="512" height="492" loading="lazy">
-                <img src="img/tech-telegram.webp" alt="Telegram" class="tech-marquee-icon" width="471" height="472" loading="lazy">
-            </div>
-        </div>
+        <img class="hero-fox-peek" srcset="img/valok-kettu-hero-peek-mobile.webp 500w, img/valok-kettu-hero-peek.webp 644w" sizes="220px" src="img/valok-kettu-hero-peek.webp" alt="" width="644" height="746" loading="eager" aria-hidden="true">
     </header>
 
-    <!-- SERVICES -->
-    <section id="palvelut" class="section">
-        <div class="section-header">
-            <span class="section-tag">Palvelut</span>
-            <h2>Kaiken mitä tarvitset<br><span class="gradient-text">älykkäämpään liiketoimintaan.</span></h2>
-            <p class="section-desc">Jokainen projekti räätälöidään juuri teidän tarpeisiinne. Ei valmiita tuotteita —
-                vain ratkaisuja, jotka oikeasti toimivat.</p>
+    <!-- ONGELMA / RATKAISU -->
+    <section id="ratkaisu" class="section section-roomy">
+        <div class="split-grid">
+            <div data-animate>
+                <span class="split-kicker">Ongelma</span>
+                <h2>Liidit, laskut, raportit: sama kopiointi viikosta toiseen.</h2>
+                <p>Tutkimusten mukaan tiimit menettävät jopa kolmasosan työajastaan toistuviin, manuaalisiin
+                    tehtäviin: tietojen siirtoon järjestelmästä toiseen, raporttien kokoamiseen ja samojen kysymysten
+                    vastaamiseen uudelleen. Jokainen manuaalinen toisto on myös tilaisuus virheelle.</p>
+                <div class="stat-callout">
+                    <span class="stat-number">40 %</span>
+                    <div>
+                        <p>Organisaatioista on kärsinyt vakavasta käyttökatkosta inhimillisen virheen takia
+                            viimeisen kolmen vuoden aikana.</p>
+                        <span class="stat-source">Lähde: <a href="https://uptimeinstitute.com/about-ui/press-releases/uptime-announces-annual-outage-analysis-report-2025" target="_blank" rel="noopener">Uptime Institute, 2025</a></span>
+                    </div>
+                </div>
+            </div>
+            <div data-animate>
+                <span class="split-kicker">Ratkaisu</span>
+                <h2>Automaatio ei korvaa tiimiäsi, vaan vapauttaa sen.</h2>
+                <p>Rakennamme työnkulut ja tekoälyratkaisut suoraan järjestelmiisi, omalla infrastruktuurillasi.
+                    Ei valmista SaaS-tuotetta, johon sinun pitää sopeutua, vaan ratkaisu joka rakennetaan
+                    sinun tarpeidesi mukaan.</p>
+                <ul class="diff-list">
+                    <li>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5" /></svg>
+                        <span>Oma infrastruktuuri: data ei koskaan poistu hallinnastasi</span>
+                    </li>
+                    <li>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5" /></svg>
+                        <span>Räätälöity juuri sinun järjestelmiisi, ei geneerinen tuote</span>
+                    </li>
+                    <li>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5" /></svg>
+                        <span>Läpinäkyvä hinnoittelu, ei piilokuluja tai per-käyttäjä-lisenssejä</span>
+                    </li>
+                </ul>
+            </div>
         </div>
+
         <div class="services-grid">
             <div class="service-card" data-animate>
-                <div class="service-icon">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)"
-                        stroke-width="1.5">
-                        <path
-                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                    </svg>
-                </div>
-                <h3>Prosessien automatisointi</h3>
-                <p>Tunnistamme toistuvat manuaaliset prosessit ja automatisoimme ne. Raportoinnista tiedonkeruuseen,
-                    laskutuksesta varastonhallintaan — vapautamme tiimisi arvokkaampaan työhön.</p>
-                <ul class="service-features">
-                    <li>Työnkulkujen automatisointi</li>
-                    <li>Tietojen integrointi järjestelmien välillä</li>
-                    <li>Automaattinen raportointi</li>
-                </ul>
-            </div>
-            <div class="service-card featured" data-animate>
-                <div class="featured-badge">Suosituin</div>
-                <div class="service-icon">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)"
-                        stroke-width="1.5">
-                        <circle cx="12" cy="12" r="3" />
-                        <path
-                            d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
-                    </svg>
-                </div>
+                <span class="service-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z" /></svg></span>
                 <h3>Dedikoitu tekoäly</h3>
-                <p>Rakennamme yrityksellenne oman tekoälyratkaisun, joka ymmärtää juuri teidän datanne ja prosessinne.
-                    Chatbotista ennustavaan analytiikkaan — ilman geneerisiä tuotteita.</p>
-                <ul class="service-features">
-                    <li>Räätälöidyt kielimallit (LLM)</li>
-                    <li>Ennustava analytiikka</li>
-                    <li>Älykkäät chatbotit ja assistentit</li>
-                </ul>
+                <p>Yrityksesi omaan dataan kytketty tekoälyratkaisu, joka toimii omalla infrastruktuurillasi.</p>
             </div>
             <div class="service-card" data-animate>
-                <div class="service-icon">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)"
-                        stroke-width="1.5">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                        <polyline points="14 2 14 8 20 8" />
-                        <line x1="16" y1="13" x2="8" y2="13" />
-                        <line x1="16" y1="17" x2="8" y2="17" />
-                    </svg>
-                </div>
-                <h3>Data & konsultointi</h3>
-                <p>Autamme ymmärtämään datanne arvon ja rakentamaan dataputket, jotka ruokkivat päätöksentekoa.
-                    Strategisesta suunnittelusta tekniseen toteutukseen.</p>
-                <ul class="service-features">
-                    <li>Data-arkkitehtuuri ja -putket</li>
-                    <li>Modernit verkkosivut & toteutukset</li>
-                    <li>Teknologiastrategia</li>
-                </ul>
+                <span class="service-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" /></svg></span>
+                <h3>Multi-tenant chatbotit</h3>
+                <p>Skaalautuva chatbot-ratkaisu, joka palvelee useita asiakkaita tai osastoja samasta pohjasta.</p>
+            </div>
+            <div class="service-card" data-animate>
+                <span class="service-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16l-6 7v6l-4 2v-8L4 5z" stroke-linejoin="round" /></svg></span>
+                <h3>Automaatiot</h3>
+                <p>Työnkulkujen automatisointi järjestelmien välillä, ilman manuaalista kopiointia.</p>
+            </div>
+            <div class="service-card" data-animate>
+                <span class="service-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.2 1 2.3h6c0-1.1.4-1.8 1-2.3A7 7 0 0 0 12 2z" /></svg></span>
+                <h3>Konsultointi</h3>
+                <p>Autamme kartoittamaan, mistä automaatio tai tekoäly kannattaa aloittaa juuri sinun
+                    yrityksessäsi.</p>
             </div>
         </div>
     </section>
 
-    <!-- PROCESS / TIMELINE -->
-    <section id="prosessi" class="section">
+    <!-- MITEN SE TOIMII -->
+    <section id="miten-toimii" class="section section-roomy">
+        <div class="section-header">
+            <span class="section-tag">Miten automaatio toimii</span>
+            <h2>Yksi esimerkki tuhansista mahdollisista automaatioista.</h2>
+        </div>
+        <div class="flow-window" data-animate>
+            <div class="flow-window-bar" aria-hidden="true">
+                <span class="flow-window-dot flow-window-dot--red"></span>
+                <span class="flow-window-dot flow-window-dot--yellow"></span>
+                <span class="flow-window-dot flow-window-dot--green"></span>
+                <span class="flow-window-title">automaatio.flow</span>
+            </div>
+            <div class="flow-window-body">
+                <div class="flow-step flow-step--1">
+                    <span class="flow-step-num" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3 7l9 6 9-6" /></svg></span>
+                    <h3>Liidi saapuu</h3>
+                    <p>Verkkolomake, sähköposti tai CRM</p>
+                    <div class="flow-step-bar" aria-hidden="true"><span class="flow-step-bar-fill"></span></div>
+                </div>
+                <div class="flow-step-divider" aria-hidden="true"></div>
+                <div class="flow-step flow-step--2">
+                    <span class="flow-step-num" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 5h16l-6 7v6l-4 2v-8L4 5z" stroke-linejoin="round" /></svg></span>
+                    <h3>Automaatio käsittelee</h3>
+                    <p>Rikastaa, luokittelee ja päättää seuraavan askeleen</p>
+                    <div class="flow-step-bar" aria-hidden="true"><span class="flow-step-bar-fill"></span></div>
+                </div>
+                <div class="flow-step-divider" aria-hidden="true"></div>
+                <div class="flow-step flow-step--3">
+                    <span class="flow-step-num" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9" /><path d="M13.73 21a2 2 0 0 1-3.46 0" /></svg></span>
+                    <h3>Tiimi saa tiedon</h3>
+                    <p>CRM päivittyy, tiimi-ilmoitus lähtee</p>
+                    <div class="flow-step-bar" aria-hidden="true"><span class="flow-step-bar-fill"></span></div>
+                </div>
+            </div>
+        </div>
+        <p class="flow-caption">Sama malli toimii asiakastukeen, laskujen käsittelyyn, tarjousten tekoon ja
+            moneen muuhun toistuvaan työhön.</p>
+    </section>
+
+    <!-- PROSESSI -->
+    <section id="prosessi" class="section prosessi-section">
         <div class="section-header">
             <span class="section-tag">Prosessi</span>
-            <h2>Projektista tuloksiin<br><span class="gradient-text">neljässä vaiheessa.</span></h2>
+            <h2>Projektista tuloksiin <span class="accent-text">neljässä vaiheessa</span>.</h2>
         </div>
-        <div class="timeline">
-            <div class="timeline-item" data-animate>
-                <div class="timeline-number">01</div>
-                <div class="timeline-content">
-                    <h3>Kartoitus</h3>
-                    <p>Analysoimme nykyiset prosessinne, tunnistamme pullonkaulat ja määrittelemme yhdessä
-                        automatisoinnin tavoitteet. Maksuton alkukartoitus.</p>
-                </div>
+        <div class="process-strip">
+            <div class="process-step" data-animate>
+                <span class="process-step-num" aria-hidden="true">01</span>
+                <h3>Kartoitus</h3>
+                <p>Analysoimme nykyiset prosessisi, tunnistamme pullonkaulat ja määrittelemme yhdessä
+                    automatisoinnin tavoitteet. Maksuton alkukartoitus.</p>
             </div>
-            <div class="timeline-item" data-animate>
-                <div class="timeline-number">02</div>
-                <div class="timeline-content">
-                    <h3>Suunnittelu</h3>
-                    <p>Suunnittelemme ratkaisun arkkitehtuurin, valitsemme teknologiat ja luomme aikataulun. Läpinäkyvä
-                        projektisuunnitelma ilman yllätyksiä.</p>
-                </div>
+            <div class="process-step" data-animate>
+                <span class="process-step-num" aria-hidden="true">02</span>
+                <h3>Suunnittelu</h3>
+                <p>Suunnittelemme ratkaisun arkkitehtuurin, valitsemme teknologiat ja luomme aikataulun.
+                    Läpinäkyvä projektisuunnitelma ilman yllätyksiä.</p>
             </div>
-            <div class="timeline-item" data-animate>
-                <div class="timeline-number">03</div>
-                <div class="timeline-content">
-                    <h3>Toteutus</h3>
-                    <p>Rakennamme ratkaisun iteratiivisesti — testaamme joka viikko ja pidämme teidät ajan tasalla.
-                        Ketterä lähestymistapa joka toimii.</p>
-                </div>
+            <div class="process-step" data-animate>
+                <span class="process-step-num" aria-hidden="true">03</span>
+                <h3>Toteutus</h3>
+                <p>Rakennamme ratkaisun iteratiivisesti: testaamme joka viikko ja pidämme sinut ajan tasalla.
+                    Ketterä lähestymistapa joka toimii.</p>
             </div>
-            <div class="timeline-item" data-animate>
-                <div class="timeline-number">04</div>
-                <div class="timeline-content">
-                    <h3>Käyttöönotto & tuki</h3>
-                    <p>Otamme ratkaisun käyttöön, koulutamme tiimin ja varmistamme sujuvan siirtymän. Jatkuva tuki
-                        varmistaa, ettei mikään jää kesken.</p>
-                </div>
+            <div class="process-step" data-animate>
+                <span class="process-step-num" aria-hidden="true">04</span>
+                <h3>Käyttöönotto &amp; tuki</h3>
+                <p>Otamme ratkaisun käyttöön, koulutamme tiimisi ja varmistamme sujuvan siirtymän. Jatkuva tuki
+                    varmistaa, ettei mikään jää kesken.</p>
             </div>
         </div>
     </section>
 
-    <!-- STATS -->
-    <section id="tulokset" class="section stats-section">
-        <div class="stats-bg-glow"></div>
+    <!-- TEKNOLOGIAT -->
+    <section id="teknologiat" class="section section-roomy tech-stack-section">
         <div class="section-header">
-            <span class="section-tag">Tulokset</span>
-            <h2>Lukuja jotka <span class="gradient-text">puhuvat puolestaan.</span></h2>
+            <span class="section-tag">Toteutuskyvykkyys</span>
+            <h2>Syvää osaamista koko tekkistäkissä.</h2>
+            <p class="section-desc">Rakennamme automaation ja tekoälyn juuri sinun järjestelmiisi sopivilla
+                työkaluilla.</p>
         </div>
-        <div class="stats-grid">
-            <div class="stat-card" data-animate>
-                <div class="stat-number" data-count="100">0</div>
-                <div class="stat-unit">%</div>
-                <p>Kotimaista osaamista ja suomenkielistä palvelua</p>
+
+        <div class="tech-category" data-animate>
+            <div class="tech-category-header">
+                <span class="tech-category-label">Automaatio &amp; orkestrointi</span>
+                <span class="tech-category-tags">Työnkulut · Integraatiot</span>
             </div>
-            <div class="stat-card" data-animate>
-                <div class="stat-number" data-count="24">0</div>
-                <div class="stat-unit">/7</div>
-                <p>Automaatiot työskentelevät yrityksesi puolesta</p>
+            <div class="tech-grid">
+                <div class="tech-tile"><span class="tech-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21.4737 5.6842c-1.1772 0-2.1663.8051-2.4468 1.8947h-2.8955c-1.235 0-2.289.893-2.492 2.111l-.1038.623a1.263 1.263 0 0 1-1.246 1.0555H11.289c-.2805-1.0896-1.2696-1.8947-2.4468-1.8947s-2.1663.8051-2.4467 1.8947H4.973c-.2805-1.0896-1.2696-1.8947-2.4468-1.8947C1.1311 9.4737 0 10.6047 0 12s1.131 2.5263 2.5263 2.5263c1.1772 0 2.1663-.8051 2.4468-1.8947h1.4223c.2804 1.0896 1.2696 1.8947 2.4467 1.8947 1.1772 0 2.1663-.8051 2.4468-1.8947h1.0008a1.263 1.263 0 0 1 1.2459 1.0555l.1038.623c.203 1.218 1.257 2.111 2.492 2.111h.3692c.2804 1.0895 1.2696 1.8947 2.4468 1.8947 1.3952 0 2.5263-1.131 2.5263-2.5263s-1.131-2.5263-2.5263-2.5263c-1.1772 0-2.1664.805-2.4468 1.8947h-.3692a1.263 1.263 0 0 1-1.246-1.0555l-.1037-.623A2.52 2.52 0 0 0 13.9607 12a2.52 2.52 0 0 0 .821-1.4794l.1038-.623a1.263 1.263 0 0 1 1.2459-1.0555h2.8955c.2805 1.0896 1.2696 1.8947 2.4468 1.8947 1.3952 0 2.5263-1.131 2.5263-2.5263s-1.131-2.5263-2.5263-2.5263m0 1.2632a1.263 1.263 0 0 1 1.2631 1.2631 1.263 1.263 0 0 1-1.2631 1.2632 1.263 1.263 0 0 1-1.2632-1.2632 1.263 1.263 0 0 1 1.2632-1.2631M2.5263 10.7368A1.263 1.263 0 0 1 3.7895 12a1.263 1.263 0 0 1-1.2632 1.2632A1.263 1.263 0 0 1 1.2632 12a1.263 1.263 0 0 1 1.2631-1.2632m6.3158 0A1.263 1.263 0 0 1 10.1053 12a1.263 1.263 0 0 1-1.2632 1.2632A1.263 1.263 0 0 1 7.579 12a1.263 1.263 0 0 1 1.2632-1.2632m10.1053 3.7895a1.263 1.263 0 0 1 1.2631 1.2632 1.263 1.263 0 0 1-1.2631 1.2631 1.263 1.263 0 0 1-1.2632-1.2631 1.263 1.263 0 0 1 1.2632-1.2632" /></svg></span><span>n8n</span></div>
+                <div class="tech-tile"><span class="tech-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4.157 0A4.151 4.151 0 0 0 0 4.161v15.678A4.151 4.151 0 0 0 4.157 24h15.682A4.152 4.152 0 0 0 24 19.839V4.161A4.152 4.152 0 0 0 19.839 0H4.157Zm10.61 8.761h.03a.577.577 0 0 1 .23.038.585.585 0 0 1 .201.124.63.63 0 0 1 .162.431.612.612 0 0 1-.162.435.58.58 0 0 1-.201.128.58.58 0 0 1-.23.042.529.529 0 0 1-.235-.042.585.585 0 0 1-.332-.328.559.559 0 0 1-.038-.235.613.613 0 0 1 .17-.431.59.59 0 0 1 .405-.162Zm2.853 1.572c.03.004.061.004.095.004.325-.011.646.064.937.219.238.144.431.355.552.609.128.279.189.582.185.888v.193a2 2 0 0 1 0 .219h-2.498c.003.227.075.45.204.642a.78.78 0 0 0 .646.265.714.714 0 0 0 .484-.136.642.642 0 0 0 .23-.318l.915.257a1.398 1.398 0 0 1-.28.537c-.14.159-.321.284-.521.355a2.234 2.234 0 0 1-.836.136 1.923 1.923 0 0 1-1.001-.245 1.618 1.618 0 0 1-.665-.703 2.221 2.221 0 0 1-.227-1.036 1.95 1.95 0 0 1 .48-1.398 1.9 1.9 0 0 1 1.3-.488Zm-9.607.023c.162.004.325.026.48.079.207.065.4.174.563.314.26.302.393.692.366 1.088v2.276H8.53l-.109-.711h-.065c-.064.163-.155.31-.272.439a1.122 1.122 0 0 1-.374.264 1.023 1.023 0 0 1-.453.083 1.334 1.334 0 0 1-.866-.264.965.965 0 0 1-.329-.801.993.993 0 0 1 .076-.431 1.02 1.02 0 0 1 .242-.363 1.478 1.478 0 0 1 1.043-.303h.952v-.181a.696.696 0 0 0-.136-.454.553.553 0 0 0-.438-.154.695.695 0 0 0-.378.086.48.48 0 0 0-.193.254l-.99-.144a1.26 1.26 0 0 1 .257-.563c.14-.174.321-.302.533-.378.261-.091.54-.136.82-.129.053-.003.106-.007.163-.007Zm4.384.007c.174 0 .347.038.506.114.182.083.34.211.458.374.257.423.377.911.351 1.406a2.53 2.53 0 0 1-.355 1.448 1.148 1.148 0 0 1-1.009.517c-.204 0-.401-.045-.582-.136a1.052 1.052 0 0 1-.48-.457 1.298 1.298 0 0 1-.114-.234h-.045l.004 1.784h-1.059v-4.713h.904l.117.805h.057c.068-.208.177-.401.328-.56a1.129 1.129 0 0 1 .843-.344h.076v-.004Zm7.559.084h.903l.113.805h.053a1.37 1.37 0 0 1 .235-.484.813.813 0 0 1 .313-.242.82.82 0 0 1 .39-.076h.234v1.051h-.401a.662.662 0 0 0-.313.008.623.623 0 0 0-.272.155.663.663 0 0 0-.174.26.683.683 0 0 0-.027.314v1.875h-1.054v-3.666Zm-17.515.003h3.262v.896L3.73 13.104l.034.113h1.973l.042.9H2.4v-.9l1.931-1.754-.045-.117H2.441v-.896Zm11.815 0h1.055v3.659h-1.055V10.45Zm3.443.684.019.016a.69.69 0 0 0-.351.045.756.756 0 0 0-.287.204c-.11.155-.174.336-.189.522h1.545c-.034-.526-.257-.787-.74-.787h.003Zm-5.718.163c-.026 0-.057 0-.083.004a.78.78 0 0 0-.31.053.746.746 0 0 0-.257.189 1.016 1.016 0 0 0-.204.695v.064c-.015.257.057.507.204.711a.634.634 0 0 0 .253.196.638.638 0 0 0 .314.061.644.644 0 0 0 .578-.265c.14-.223.204-.48.189-.74a1.216 1.216 0 0 0-.181-.711.677.677 0 0 0-.503-.257Zm-4.509 1.266a.464.464 0 0 0-.268.102.373.373 0 0 0-.114.276c0 .053.008.106.027.155a.375.375 0 0 0 .087.132.576.576 0 0 0 .397.11v.004a.863.863 0 0 0 .563-.182.573.573 0 0 0 .211-.457v-.14h-.903Z" /></svg></span><span>Zapier</span></div>
+                <div class="tech-tile"><span class="tech-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M13.38 3.498c-.27 0-.511.19-.566.465L9.85 18.986a.578.578 0 0 0 .453.678l4.095.826a.58.58 0 0 0 .682-.455l2.963-15.021a.578.578 0 0 0-.453-.678l-4.096-.826a.589.589 0 0 0-.113-.012zm-5.876.098a.576.576 0 0 0-.516.318L.062 17.697a.575.575 0 0 0 .256.774l3.733 1.877a.578.578 0 0 0 .775-.258l6.926-13.781a.577.577 0 0 0-.256-.776L7.762 3.658a.571.571 0 0 0-.258-.062zm11.74.115a.576.576 0 0 0-.576.576v15.426c0 .318.258.578.576.578h4.178a.58.58 0 0 0 .578-.578V4.287a.578.578 0 0 0-.578-.576Z" /></svg></span><span>Make</span></div>
+                <div class="tech-tile"><span class="tech-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M10.617 11.473l4.686 3.695-3.102-7.662zM12 0C5.371 0 0 5.371 0 12s5.371 12 12 12 12-5.371 12-12S18.629 0 12 0zm5.797 17.305c-.011.471-.403.842-.875.83-.236 0-.416-.09-.664-.293l-6.19-5-2.079 5.203H6.191L11.438 5.44c.124-.314.427-.52.764-.506.326-.014.63.189.742.506l4.774 11.494c.045.111.08.234.08.348-.001.009-.001.009-.001.023z" /></svg></span><span>Ansible</span></div>
             </div>
-            <div class="stat-card" data-animate>
-                <div class="stat-number" data-count="0">0</div>
-                <div class="stat-unit">€</div>
-                <p>Alkukartoitus on aina täysin maksuton</p>
+        </div>
+
+        <div class="tech-category" data-animate>
+            <div class="tech-category-header">
+                <span class="tech-category-label">Tekoälymallit</span>
+                <span class="tech-category-tags">LLM · Konenäkö</span>
             </div>
-            <div class="stat-card" data-animate>
-                <div class="stat-number" data-count="1">0</div>
-                <div class="stat-unit">vko</div>
-                <p>Ensimmäiset prototyypit testattavissa nopeasti</p>
+            <div class="tech-grid">
+                <div class="tech-tile"><img src="img/tech-openai.webp" alt="OpenAI" width="640" height="635"><span>OpenAI</span></div>
+                <div class="tech-tile"><img src="img/tech-anthropic.webp" alt="Anthropic" width="640" height="441" loading="lazy"><span>Anthropic</span></div>
+                <div class="tech-tile"><img src="img/tech-gemini.webp" alt="Google Gemini" width="588" height="588" loading="lazy"><span>Gemini</span></div>
+                <div class="tech-tile"><span class="tech-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M17.143 3.429v3.428h-3.429v3.429h-3.428V6.857H6.857V3.43H3.43v13.714H0v3.428h10.286v-3.428H6.857v-3.429h3.429v3.429h3.429v-3.429h3.428v3.429h-3.428v3.428H24v-3.428h-3.43V3.429z" /></svg></span><span>Mistral AI</span></div>
+                <div class="tech-tile"><span class="tech-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M16.361 10.26a.894.894 0 0 0-.558.47l-.072.148.001.207c0 .193.004.217.059.353.076.193.152.312.291.448.24.238.51.3.872.205a.86.86 0 0 0 .517-.436.752.752 0 0 0 .08-.498c-.064-.453-.33-.782-.724-.897a1.06 1.06 0 0 0-.466 0zm-9.203.005c-.305.096-.533.32-.65.639a1.187 1.187 0 0 0-.06.52c.057.309.31.59.598.667.362.095.632.033.872-.205.14-.136.215-.255.291-.448.055-.136.059-.16.059-.353l.001-.207-.072-.148a.894.894 0 0 0-.565-.472 1.02 1.02 0 0 0-.474.007Zm4.184 2c-.131.071-.223.25-.195.383.031.143.157.288.353.407.105.063.112.072.117.136.004.038-.01.146-.029.243-.02.094-.036.194-.036.222.002.074.07.195.143.253.064.052.076.054.255.059.164.005.198.001.264-.03.169-.082.212-.234.15-.525-.052-.243-.042-.28.087-.355.137-.08.281-.219.324-.314a.365.365 0 0 0-.175-.48.394.394 0 0 0-.181-.033c-.126 0-.207.03-.355.124l-.085.053-.053-.032c-.219-.13-.259-.145-.391-.143a.396.396 0 0 0-.193.032zm.39-2.195c-.373.036-.475.05-.654.086-.291.06-.68.195-.951.328-.94.46-1.589 1.226-1.787 2.114-.04.176-.045.234-.045.53 0 .294.005.357.043.524.264 1.16 1.332 2.017 2.714 2.173.3.033 1.596.033 1.896 0 1.11-.125 2.064-.727 2.493-1.571.114-.226.169-.372.22-.602.039-.167.044-.23.044-.523 0-.297-.005-.355-.045-.531-.288-1.29-1.539-2.304-3.072-2.497a6.873 6.873 0 0 0-.855-.031zm.645.937a3.283 3.283 0 0 1 1.44.514c.223.148.537.458.671.662.166.251.26.508.303.82.02.143.01.251-.043.482-.08.345-.332.705-.672.957a3.115 3.115 0 0 1-.689.348c-.382.122-.632.144-1.525.138-.582-.006-.686-.01-.853-.042-.57-.107-1.022-.334-1.35-.68-.264-.28-.385-.535-.45-.946-.03-.192.025-.509.137-.776.136-.326.488-.73.836-.963.403-.269.934-.46 1.422-.512.187-.02.586-.02.773-.002zm-5.503-11a1.653 1.653 0 0 0-.683.298C5.617.74 5.173 1.666 4.985 2.819c-.07.436-.119 1.04-.119 1.503 0 .544.064 1.24.155 1.721.02.107.031.202.023.208a8.12 8.12 0 0 1-.187.152 5.324 5.324 0 0 0-.949 1.02 5.49 5.49 0 0 0-.94 2.339 6.625 6.625 0 0 0-.023 1.357c.091.78.325 1.438.727 2.04l.13.195-.037.064c-.269.452-.498 1.105-.605 1.732-.084.496-.095.629-.095 1.294 0 .67.009.803.088 1.266.095.555.288 1.143.503 1.534.071.128.243.393.264.407.007.003-.014.067-.046.141a7.405 7.405 0 0 0-.548 1.873c-.062.417-.071.552-.071.991 0 .56.031.832.148 1.279L3.42 24h1.478l-.05-.091c-.297-.552-.325-1.575-.068-2.597.117-.472.25-.819.498-1.296l.148-.29v-.177c0-.165-.003-.184-.057-.293a.915.915 0 0 0-.194-.25 1.74 1.74 0 0 1-.385-.543c-.424-.92-.506-2.286-.208-3.451.124-.486.329-.918.544-1.154a.787.787 0 0 0 .223-.531c0-.195-.07-.355-.224-.522a3.136 3.136 0 0 1-.817-1.729c-.14-.96.114-2.005.69-2.834.563-.814 1.353-1.336 2.237-1.475.199-.033.57-.028.776.01.226.04.367.028.512-.041.179-.085.268-.19.374-.431.093-.215.165-.333.36-.576.234-.29.46-.489.822-.729.413-.27.884-.467 1.352-.561.17-.035.25-.04.569-.04.319 0 .398.005.569.04a4.07 4.07 0 0 1 1.914.997c.117.109.398.457.488.602.034.057.095.177.132.267.105.241.195.346.374.43.14.068.286.082.503.045.343-.058.607-.053.943.016 1.144.23 2.14 1.173 2.581 2.437.385 1.108.276 2.267-.296 3.153-.097.15-.193.27-.333.419-.301.322-.301.722-.001 1.053.493.539.801 1.866.708 3.036-.062.772-.26 1.463-.533 1.854a2.096 2.096 0 0 1-.224.258.916.916 0 0 0-.194.25c-.054.109-.057.128-.057.293v.178l.148.29c.248.476.38.823.498 1.295.253 1.008.231 2.01-.059 2.581a.845.845 0 0 0-.044.098c0 .006.329.009.732.009h.73l.02-.074.036-.134c.019-.076.057-.3.088-.516.029-.217.029-1.016 0-1.258-.11-.875-.295-1.57-.597-2.226-.032-.074-.053-.138-.046-.141.008-.005.057-.074.108-.152.376-.569.607-1.284.724-2.228.031-.26.031-1.378 0-1.628-.083-.645-.182-1.082-.348-1.525a6.083 6.083 0 0 0-.329-.7l-.038-.064.131-.194c.402-.604.636-1.262.727-2.04a6.625 6.625 0 0 0-.024-1.358 5.512 5.512 0 0 0-.939-2.339 5.325 5.325 0 0 0-.95-1.02 8.097 8.097 0 0 1-.186-.152.692.692 0 0 1 .023-.208c.208-1.087.201-2.443-.017-3.503-.19-.924-.535-1.658-.98-2.082-.354-.338-.716-.482-1.15-.455-.996.059-1.8 1.205-2.116 3.01a6.805 6.805 0 0 0-.097.726c0 .036-.007.066-.015.066a.96.96 0 0 1-.149-.078A4.857 4.857 0 0 0 12 3.03c-.832 0-1.687.243-2.456.698a.958.958 0 0 1-.148.078c-.008 0-.015-.03-.015-.066a6.71 6.71 0 0 0-.097-.725C8.997 1.392 8.337.319 7.46.048a2.096 2.096 0 0 0-.585-.041Zm.293 1.402c.248.197.523.759.682 1.388.03.113.06.244.069.292.007.047.026.152.041.233.067.365.098.76.102 1.24l.002.475-.12.175-.118.178h-.278c-.324 0-.646.041-.954.124l-.238.06c-.033.007-.038-.003-.057-.144a8.438 8.438 0 0 1 .016-2.323c.124-.788.413-1.501.696-1.711.067-.05.079-.049.157.013zm9.825-.012c.17.126.358.46.498.888.28.854.36 2.028.212 3.145-.019.14-.024.151-.057.144l-.238-.06a3.693 3.693 0 0 0-.954-.124h-.278l-.119-.178-.119-.175.002-.474c.004-.669.066-1.19.214-1.772.157-.623.434-1.185.68-1.382.078-.062.09-.063.159-.012z" /></svg></span><span>Ollama</span></div>
+            </div>
+        </div>
+
+        <div class="tech-category" data-animate>
+            <div class="tech-category-header">
+                <span class="tech-category-label">RAG &amp; vektorihaku</span>
+                <span class="tech-category-tags">Agentit · Muisti</span>
+            </div>
+            <div class="tech-grid">
+                <div class="tech-tile"><span class="tech-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M13.796 0a6.93 6.93 0 0 0-4.91 2.019L5.451 5.455l3.273 3.27 3.432-3.432a2.284 2.284 0 0 1 3.277 0 2.28 2.28 0 0 1 0 3.275L12 12.001l3.273 3.273 3.433-3.435c2.692-2.692 2.692-7.127 0-9.82A6.92 6.92 0 0 0 13.796 0m-5.07 8.728-3.433 3.434c-2.692 2.693-2.692 7.126 0 9.819A6.92 6.92 0 0 0 10.203 24a6.93 6.93 0 0 0 4.911-2.02l3.432-3.432-3.271-3.272-3.433 3.433a2.284 2.284 0 0 1-3.277 0 2.28 2.28 0 0 1 0-3.276L12 12z" /></svg></span><span>LangChain</span></div>
+                <div class="tech-tile"><span class="tech-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 19H10A5 5 0 115 14ZM19 14A5 5 0 1114 19H19ZM10 5A5 5 0 105 10V5ZM19 5V10A5 5 0 1014 5Z" /></svg></span><span>LangGraph</span></div>
+                <div class="tech-tile"><span class="tech-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 16.5 3.897-2.25v-4.5L12 7.5 8.103 9.75v4.5zM1.607 18 12 24l3.897-2.25v-4.5L12 19.5l-6.495-3.75v-7.5L12 4.5l6.495 3.75v15L22.393 21V6L12 0 1.607 6Z" /></svg></span><span>Qdrant</span></div>
+                <div class="tech-tile"><span class="tech-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M11.9 1.036c-.015-.986-1.26-1.41-1.874-.637L.764 12.05C-.33 13.427.65 15.455 2.409 15.455h9.579l.113 7.51c.014.985 1.259 1.408 1.873.636l9.262-11.653c1.093-1.375.113-3.403-1.645-3.403h-9.642z" /></svg></span><span>Supabase</span></div>
+            </div>
+        </div>
+
+        <div class="tech-category" data-animate>
+            <div class="tech-category-header">
+                <span class="tech-category-label">Tekninen perusta</span>
+                <span class="tech-category-tags">Data · Käyttöliittymät · Käyttöönotto</span>
+            </div>
+            <div class="tech-grid">
+                <div class="tech-tile"><span class="tech-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14.25.18l.9.2.73.26.59.3.45.32.34.34.25.34.16.33.1.3.04.26.02.2-.01.13V8.5l-.05.63-.13.55-.21.46-.26.38-.3.31-.33.25-.35.19-.35.14-.33.1-.3.07-.26.04-.21.02H8.77l-.69.05-.59.14-.5.22-.41.27-.33.32-.27.35-.2.36-.15.37-.1.35-.07.32-.04.27-.02.21v3.06H3.17l-.21-.03-.28-.07-.32-.12-.35-.18-.36-.26-.36-.36-.35-.46-.32-.59-.28-.73-.21-.88-.14-1.05-.05-1.23.06-1.22.16-1.04.24-.87.32-.71.36-.57.4-.44.42-.33.42-.24.4-.16.36-.1.32-.05.24-.01h.16l.06.01h8.16v-.83H6.18l-.01-2.75-.02-.37.05-.34.11-.31.17-.28.25-.26.31-.23.38-.2.44-.18.51-.15.58-.12.64-.1.71-.06.77-.04.84-.02 1.27.05zm-6.3 1.98l-.23.33-.08.41.08.41.23.34.33.22.41.09.41-.09.33-.22.23-.34.08-.41-.08-.41-.23-.33-.33-.22-.41-.09-.41.09zm13.09 3.95l.28.06.32.12.35.18.36.27.36.35.35.47.32.59.28.73.21.88.14 1.04.05 1.23-.06 1.23-.16 1.04-.24.86-.32.71-.36.57-.4.45-.42.33-.42.24-.4.16-.36.09-.32.05-.24.02-.16-.01h-8.22v.82h5.84l.01 2.76.02.36-.05.34-.11.31-.17.29-.25.25-.31.24-.38.2-.44.17-.51.15-.58.13-.64.09-.71.07-.77.04-.84.01-1.27-.04-1.07-.14-.9-.2-.73-.25-.59-.3-.45-.33-.34-.34-.25-.34-.16-.33-.1-.3-.04-.25-.02-.2.01-.13v-5.34l.05-.64.13-.54.21-.46.26-.38.3-.32.33-.24.35-.2.35-.14.33-.1.3-.06.26-.04.21-.02.13-.01h5.84l.69-.05.59-.14.5-.21.41-.28.33-.32.27-.35.2-.36.15-.36.1-.35.07-.32.04-.28.02-.21V6.07h2.09l.14.01zm-6.47 14.25l-.23.33-.08.41.08.41.23.33.33.23.41.08.41-.08.33-.23.23-.33.08-.41-.08-.41-.23-.33-.33-.23-.41-.08-.41.08z" /></svg></span><span>Python</span></div>
+                <div class="tech-tile"><span class="tech-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.646.915-.84 1.515-.66.39.12.75.42.976.9 1.034-.676 1.034-.676 1.755-1.125-.27-.42-.404-.601-.586-.78-.63-.705-1.469-1.065-2.834-1.034l-.705.089c-.676.165-1.32.525-1.71 1.005-1.14 1.291-.811 3.541.569 4.471 1.365 1.02 3.361 1.244 3.616 2.205.24 1.17-.87 1.545-1.966 1.41-.811-.18-1.26-.586-1.755-1.336l-1.83 1.051c.21.48.45.689.81 1.109 1.74 1.756 6.09 1.666 6.871-1.004.029-.09.24-.705.074-1.65l.046.067zm-8.983-7.245h-2.248c0 1.938-.009 3.864-.009 5.805 0 1.232.063 2.363-.138 2.711-.33.689-1.18.601-1.566.48-.396-.196-.597-.466-.83-.855-.063-.105-.11-.196-.127-.196l-1.825 1.125c.305.63.75 1.172 1.324 1.517.855.51 2.004.675 3.207.405.783-.226 1.458-.691 1.811-1.411.51-.93.402-2.07.397-3.346.012-2.054 0-4.109 0-6.179l.004-.056z" /></svg></span><span>JavaScript</span></div>
+                <div class="tech-tile"><span class="tech-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14.23 12.004a2.236 2.236 0 0 1-2.235 2.236 2.236 2.236 0 0 1-2.236-2.236 2.236 2.236 0 0 1 2.235-2.236 2.236 2.236 0 0 1 2.236 2.236zm2.648-10.69c-1.346 0-3.107.96-4.888 2.622-1.78-1.653-3.542-2.602-4.887-2.602-.41 0-.783.093-1.106.278-1.375.793-1.683 3.264-.973 6.365C1.98 8.917 0 10.42 0 12.004c0 1.59 1.99 3.097 5.043 4.03-.704 3.113-.39 5.588.988 6.38.32.187.69.275 1.102.275 1.345 0 3.107-.96 4.888-2.624 1.78 1.654 3.542 2.603 4.887 2.603.41 0 .783-.09 1.106-.275 1.374-.792 1.683-3.263.973-6.365C22.02 15.096 24 13.59 24 12.004c0-1.59-1.99-3.097-5.043-4.032.704-3.11.39-5.587-.988-6.38-.318-.184-.688-.277-1.092-.278zm-.005 1.09v.006c.225 0 .406.044.558.127.666.382.955 1.835.73 3.704-.054.46-.142.945-.25 1.44-.96-.236-2.006-.417-3.107-.534-.66-.905-1.345-1.727-2.035-2.447 1.592-1.48 3.087-2.292 4.105-2.295zm-9.77.02c1.012 0 2.514.808 4.11 2.28-.686.72-1.37 1.537-2.02 2.442-1.107.117-2.154.298-3.113.538-.112-.49-.195-.964-.254-1.42-.23-1.868.054-3.32.714-3.707.19-.09.4-.127.563-.132zm4.882 3.05c.455.468.91.992 1.36 1.564-.44-.02-.89-.034-1.345-.034-.46 0-.915.01-1.36.034.44-.572.895-1.096 1.345-1.565zM12 8.1c.74 0 1.477.034 2.202.093.406.582.802 1.203 1.183 1.86.372.64.71 1.29 1.018 1.946-.308.655-.646 1.31-1.013 1.95-.38.66-.773 1.288-1.18 1.87-.728.063-1.466.098-2.21.098-.74 0-1.477-.035-2.202-.093-.406-.582-.802-1.204-1.183-1.86-.372-.64-.71-1.29-1.018-1.946.303-.657.646-1.313 1.013-1.954.38-.66.773-1.286 1.18-1.868.728-.064 1.466-.098 2.21-.098zm-3.635.254c-.24.377-.48.763-.704 1.16-.225.39-.435.782-.635 1.174-.265-.656-.49-1.31-.676-1.947.64-.15 1.315-.283 2.015-.386zm7.26 0c.695.103 1.365.23 2.006.387-.18.632-.405 1.282-.66 1.933-.2-.39-.41-.783-.64-1.174-.225-.392-.465-.774-.705-1.146zm3.063.675c.484.15.944.317 1.375.498 1.732.74 2.852 1.708 2.852 2.476-.005.768-1.125 1.74-2.857 2.475-.42.18-.88.342-1.355.493-.28-.958-.646-1.956-1.1-2.98.45-1.017.81-2.01 1.085-2.964zm-13.395.004c.278.96.645 1.957 1.1 2.98-.45 1.017-.812 2.01-1.086 2.964-.484-.15-.944-.318-1.37-.5-1.732-.737-2.852-1.706-2.852-2.474 0-.768 1.12-1.742 2.852-2.476.42-.18.88-.342 1.356-.494zm11.678 4.28c.265.657.49 1.312.676 1.948-.64.157-1.316.29-2.016.39.24-.375.48-.762.705-1.158.225-.39.435-.788.636-1.18zm-9.945.02c.2.392.41.783.64 1.175.23.39.465.772.705 1.143-.695-.102-1.365-.23-2.006-.386.18-.63.406-1.282.66-1.933zM17.92 16.32c.112.493.2.968.254 1.423.23 1.868-.054 3.32-.714 3.708-.147.09-.338.128-.563.128-1.012 0-2.514-.807-4.11-2.28.686-.72 1.37-1.536 2.02-2.44 1.107-.118 2.154-.3 3.113-.54zm-11.83.01c.96.234 2.006.415 3.107.532.66.905 1.345 1.727 2.035 2.446-1.595 1.483-3.092 2.295-4.11 2.295-.22-.005-.406-.05-.553-.132-.666-.38-.955-1.834-.73-3.703.054-.46.142-.944.25-1.438zm4.56.64c.44.02.89.034 1.345.034.46 0 .915-.01 1.36-.034-.44.572-.895 1.095-1.345 1.565-.455-.47-.91-.993-1.36-1.565z" /></svg></span><span>React</span></div>
+                <div class="tech-tile"><span class="tech-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18.665 21.978C16.758 23.255 14.465 24 12 24 5.377 24 0 18.623 0 12S5.377 0 12 0s12 5.377 12 12c0 3.583-1.574 6.801-4.067 9.001L9.219 7.2H7.2v9.596h1.615V9.251l9.85 12.727Zm-3.332-8.533 1.6 2.061V7.2h-1.6v6.245Z" /></svg></span><span>Next.js</span></div>
+                <div class="tech-tile"><span class="tech-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M23.5594 14.7228a.5269.5269 0 0 0-.0563-.1191c-.139-.2632-.4768-.3418-1.0074-.2321-1.6533.3411-2.2935.1312-2.5256-.0191 1.342-2.0482 2.445-4.522 3.0411-6.8297.2714-1.0507.7982-3.5237.1222-4.7316a1.5641 1.5641 0 0 0-.1509-.235C21.6931.9086 19.8007.0248 17.5099.0005c-1.4947-.0158-2.7705.3461-3.1161.4794a9.449 9.449 0 0 0-.5159-.0816 8.044 8.044 0 0 0-1.3114-.1278c-1.1822-.0184-2.2038.2642-3.0498.8406-.8573-.3211-4.7888-1.645-7.2219.0788C.9359 2.1526.3086 3.8733.4302 6.3043c.0409.818.5069 3.334 1.2423 5.7436.4598 1.5065.9387 2.7019 1.4334 3.582.553.9942 1.1259 1.5933 1.7143 1.7895.4474.1491 1.1327.1441 1.8581-.7279.8012-.9635 1.5903-1.8258 1.9446-2.2069.4351.2355.9064.3625 1.39.3772a.0569.0569 0 0 0 .0004.0041 11.0312 11.0312 0 0 0-.2472.3054c-.3389.4302-.4094.5197-1.5002.7443-.3102.064-1.1344.2339-1.1464.8115-.0025.1224.0329.2309.0919.3268.2269.4231.9216.6097 1.015.6331 1.3345.3335 2.5044.092 3.3714-.6787-.017 2.231.0775 4.4174.3454 5.0874.2212.5529.7618 1.9045 2.4692 1.9043.2505 0 .5263-.0291.8296-.0941 1.7819-.3821 2.5557-1.1696 2.855-2.9059.1503-.8707.4016-2.8753.5388-4.1012.0169-.0703.0357-.1207.057-.1362.0007-.0005.0697-.0471.4272.0307a.3673.3673 0 0 0 .0443.0068l.2539.0223.0149.001c.8468.0384 1.9114-.1426 2.5312-.4308.6438-.2988 1.8057-1.0323 1.5951-1.6698zM2.371 11.8765c-.7435-2.4358-1.1779-4.8851-1.2123-5.5719-.1086-2.1714.4171-3.6829 1.5623-4.4927 1.8367-1.2986 4.8398-.5408 6.108-.13-.0032.0032-.0066.0061-.0098.0094-2.0238 2.044-1.9758 5.536-1.9708 5.7495-.0002.0823.0066.1989.0162.3593.0348.5873.0996 1.6804-.0735 2.9184-.1609 1.1504.1937 2.2764.9728 3.0892.0806.0841.1648.1631.2518.2374-.3468.3714-1.1004 1.1926-1.9025 2.1576-.5677.6825-.9597.5517-1.0886.5087-.3919-.1307-.813-.5871-1.2381-1.3223-.4796-.839-.9635-2.0317-1.4155-3.5126zm6.0072 5.0871c-.1711-.0428-.3271-.1132-.4322-.1772.0889-.0394.2374-.0902.4833-.1409 1.2833-.2641 1.4815-.4506 1.9143-1.0002.0992-.126.2116-.2687.3673-.4426a.3549.3549 0 0 0 .0737-.1298c.1708-.1513.2724-.1099.4369-.0417.156.0646.3078.26.3695.4752.0291.1016.0619.2945-.0452.4444-.9043 1.2658-2.2216 1.2494-3.1676 1.0128zm2.094-3.988-.0525.141c-.133.3566-.2567.6881-.3334 1.003-.6674-.0021-1.3168-.2872-1.8105-.8024-.6279-.6551-.9131-1.5664-.7825-2.5004.1828-1.3079.1153-2.4468.079-3.0586-.005-.0857-.0095-.1607-.0122-.2199.2957-.2621 1.6659-.9962 2.6429-.7724.4459.1022.7176.4057.8305.928.5846 2.7038.0774 3.8307-.3302 4.7363-.084.1866-.1633.3629-.2311.5454zm7.3637 4.5725c-.0169.1768-.0358.376-.0618.5959l-.146.4383a.3547.3547 0 0 0-.0182.1077c-.0059.4747-.054.6489-.115.8693-.0634.2292-.1353.4891-.1794 1.0575-.11 1.4143-.8782 2.2267-2.4172 2.5565-1.5155.3251-1.7843-.4968-2.0212-1.2217a6.5824 6.5824 0 0 0-.0769-.2266c-.2154-.5858-.1911-1.4119-.1574-2.5551.0165-.5612-.0249-1.9013-.3302-2.6462.0044-.2932.0106-.5909.019-.8918a.3529.3529 0 0 0-.0153-.1126 1.4927 1.4927 0 0 0-.0439-.208c-.1226-.4283-.4213-.7866-.7797-.9351-.1424-.059-.4038-.1672-.7178-.0869.067-.276.1831-.5875.309-.9249l.0529-.142c.0595-.16.134-.3257.213-.5012.4265-.9476 1.0106-2.2453.3766-5.1772-.2374-1.0981-1.0304-1.6343-2.2324-1.5098-.7207.0746-1.3799.3654-1.7088.5321a5.6716 5.6716 0 0 0-.1958.1041c.0918-1.1064.4386-3.1741 1.7357-4.4823a4.0306 4.0306 0 0 1 .3033-.276.3532.3532 0 0 0 .1447-.0644c.7524-.5706 1.6945-.8506 2.802-.8325.4091.0067.8017.0339 1.1742.081 1.939.3544 3.2439 1.4468 4.0359 2.3827.8143.9623 1.2552 1.9315 1.4312 2.4543-1.3232-.1346-2.2234.1268-2.6797.779-.9926 1.4189.543 4.1729 1.2811 5.4964.1353.2426.2522.4522.2889.5413.2403.5825.5515.9713.7787 1.2552.0696.087.1372.1714.1885.245-.4008.1155-1.1208.3825-1.0552 1.717-.0123.1563-.0423.4469-.0834.8148-.0461.2077-.0702.4603-.0994.7662zm.8905-1.6211c-.0405-.8316.2691-.9185.5967-1.0105a2.8566 2.8566 0 0 0 .135-.0406 1.202 1.202 0 0 0 .1342.103c.5703.3765 1.5823.4213 3.0068.1344-.2016.1769-.5189.3994-.9533.6011-.4098.1903-1.0957.333-1.7473.3636-.7197.0336-1.0859-.0807-1.1721-.151zm.5695-9.2712c-.0059.3508-.0542.6692-.1054 1.0017-.055.3576-.112.7274-.1264 1.1762-.0142.4368.0404.8909.0932 1.3301.1066.887.216 1.8003-.2075 2.7014a3.5272 3.5272 0 0 1-.1876-.3856c-.0527-.1276-.1669-.3326-.3251-.6162-.6156-1.1041-2.0574-3.6896-1.3193-4.7446.3795-.5427 1.3408-.5661 2.1781-.463zm.2284 7.0137a12.3762 12.3762 0 0 0-.0853-.1074l-.0355-.0444c.7262-1.1995.5842-2.3862.4578-3.4385-.0519-.4318-.1009-.8396-.0885-1.2226.0129-.4061.0666-.7543.1185-1.0911.0639-.415.1288-.8443.1109-1.3505.0134-.0531.0188-.1158.0118-.1902-.0457-.4855-.5999-1.938-1.7294-3.253-.6076-.7073-1.4896-1.4972-2.6889-2.0395.5251-.1066 1.2328-.2035 2.0244-.1859 2.0515.0456 3.6746.8135 4.8242 2.2824a.908.908 0 0 1 .0667.1002c.7231 1.3556-.2762 6.2751-2.9867 10.5405zm-8.8166-6.1162c-.025.1794-.3089.4225-.6211.4225a.5821.5821 0 0 1-.0809-.0056c-.1873-.026-.3765-.144-.5059-.3156-.0458-.0605-.1203-.178-.1055-.2844.0055-.0401.0261-.0985.0925-.1488.1182-.0894.3518-.1226.6096-.0867.3163.0441.6426.1938.6113.4186zm7.9305-.4114c.0111.0792-.049.201-.1531.3102-.0683.0717-.212.1961-.4079.2232a.5456.5456 0 0 1-.075.0052c-.2935 0-.5414-.2344-.5607-.3717-.024-.1765.2641-.3106.5611-.352.297-.0414.6111.0088.6356.1851z" /></svg></span><span>PostgreSQL</span></div>
+                <div class="tech-tile"><span class="tech-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M22.71 13.145c-1.66 2.092-3.452 4.483-7.038 4.483-3.203 0-4.397-2.825-4.48-5.12.701 1.484 2.073 2.685 4.214 2.63 4.117-.133 6.94-3.852 6.94-7.239 0-4.05-3.022-6.972-8.268-6.972-3.752 0-8.4 1.428-11.455 3.685C2.59 6.937 3.885 9.958 4.35 9.626c2.648-1.904 4.748-3.13 6.784-3.744C8.12 9.244.886 17.05 0 18.425c.1 1.261 1.66 4.648 2.424 4.648.232 0 .431-.133.664-.365a100.49 100.49 0 0 0 5.54-6.765c.222 3.104 1.748 6.898 6.014 6.898 3.819 0 7.604-2.756 9.33-8.965.2-.764-.73-1.361-1.261-.73zm-4.349-5.013c0 1.959-1.926 2.922-3.685 2.922-.941 0-1.664-.247-2.235-.568 1.051-1.592 2.092-3.225 3.21-4.973 1.972.334 2.71 1.43 2.71 2.619z" /></svg></span><span>Redis</span></div>
+                <div class="tech-tile"><span class="tech-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M16.922 0h2.623v18.104h-2.623zm-4.126 12.94h2.623v2.57h-2.623zm0-7.037h2.623v5.446h-2.623zm0 11.197h2.623v5.446h-2.623zM4.456 5.896h2.622V24H4.455zm4.213 2.559h2.623v2.57H8.67zm0 4.151h2.623v5.447H8.67zm0-11.187h2.623v5.446H8.67Z" /></svg></span><span>Pandas</span></div>
+                <div class="tech-tile"><span class="tech-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.185.185.186m-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.887c0 .102.083.185.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.185.185 0 00-.185-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.185.186.186m5.893 2.715h2.118a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.184-.186h-2.12a.186.186 0 00-.186.186v1.887c0 .102.084.185.186.185m-2.92 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.082.185.185.185M23.763 9.89c-.065-.051-.672-.51-1.954-.51-.338.001-.676.03-1.01.087-.248-1.7-1.653-2.53-1.716-2.566l-.344-.199-.226.327c-.284.438-.49.922-.612 1.43-.23.97-.09 1.882.403 2.661-.595.332-1.55.413-1.744.42H.751a.751.751 0 00-.75.748 11.376 11.376 0 00.692 4.062c.545 1.428 1.355 2.48 2.41 3.124 1.18.723 3.1 1.137 5.275 1.137.983.003 1.963-.086 2.93-.266a12.248 12.248 0 003.823-1.389c.98-.567 1.86-1.288 2.61-2.136 1.252-1.418 1.998-2.997 2.553-4.4h.221c1.372 0 2.215-.549 2.68-1.009.309-.293.55-.65.707-1.046l.098-.288Z" /></svg></span><span>Docker</span></div>
+                <div class="tech-tile"><span class="tech-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M10.204 14.35l.007.01-.999 2.413a5.171 5.171 0 0 1-2.075-2.597l2.578-.437.004.005a.44.44 0 0 1 .484.606zm-.833-2.129a.44.44 0 0 0 .173-.756l.002-.011L7.585 9.7a5.143 5.143 0 0 0-.73 3.255l2.514-.725.002-.009zm1.145-1.98a.44.44 0 0 0 .699-.337l.01-.005.15-2.62a5.144 5.144 0 0 0-3.01 1.442l2.147 1.523.004-.002zm.76 2.75l.723.349.722-.347.18-.78-.5-.623h-.804l-.5.623.179.779zm1.5-3.095a.44.44 0 0 0 .7.336l.008.003 2.134-1.513a5.188 5.188 0 0 0-2.992-1.442l.148 2.615.002.001zm10.876 5.97l-5.773 7.181a1.6 1.6 0 0 1-1.248.594l-9.261.003a1.6 1.6 0 0 1-1.247-.596l-5.776-7.18a1.583 1.583 0 0 1-.307-1.34L2.1 5.573c.108-.47.425-.864.863-1.073L11.305.513a1.606 1.606 0 0 1 1.385 0l8.345 3.985c.438.209.755.604.863 1.073l2.062 8.955c.108.47-.005.963-.308 1.34zm-3.289-2.057c-.042-.01-.103-.026-.145-.034-.174-.033-.315-.025-.479-.038-.35-.037-.638-.067-.895-.148-.105-.04-.18-.165-.216-.216l-.201-.059a6.45 6.45 0 0 0-.105-2.332 6.465 6.465 0 0 0-.936-2.163c.052-.047.15-.133.177-.159.008-.09.001-.183.094-.282.197-.185.444-.338.743-.522.142-.084.273-.137.415-.242.032-.024.076-.062.11-.089.24-.191.295-.52.123-.736-.172-.216-.506-.236-.745-.045-.034.027-.08.062-.111.088-.134.116-.217.23-.33.35-.246.25-.45.458-.673.609-.097.056-.239.037-.303.033l-.19.135a6.545 6.545 0 0 0-4.146-2.003l-.012-.223c-.065-.062-.143-.115-.163-.25-.022-.268.015-.557.057-.905.023-.163.061-.298.068-.475.001-.04-.001-.099-.001-.142 0-.306-.224-.555-.5-.555-.275 0-.499.249-.499.555l.001.014c0 .041-.002.092 0 .128.006.177.044.312.067.475.042.348.078.637.056.906a.545.545 0 0 1-.162.258l-.012.211a6.424 6.424 0 0 0-4.166 2.003 8.373 8.373 0 0 1-.18-.128c-.09.012-.18.04-.297-.029-.223-.15-.427-.358-.673-.608-.113-.12-.195-.234-.329-.349-.03-.026-.077-.062-.111-.088a.594.594 0 0 0-.348-.132.481.481 0 0 0-.398.176c-.172.216-.117.546.123.737l.007.005.104.083c.142.105.272.159.414.242.299.185.546.338.743.522.076.082.09.226.1.288l.16.143a6.462 6.462 0 0 0-1.02 4.506l-.208.06c-.055.072-.133.184-.215.217-.257.081-.546.11-.895.147-.164.014-.305.006-.48.039-.037.007-.09.02-.133.03l-.004.002-.007.002c-.295.071-.484.342-.423.608.061.267.349.429.645.365l.007-.001.01-.003.129-.029c.17-.046.294-.113.448-.172.33-.118.604-.217.87-.256.112-.009.23.069.288.101l.217-.037a6.5 6.5 0 0 0 2.88 3.596l-.09.218c.033.084.069.199.044.282-.097.252-.263.517-.452.813-.091.136-.185.242-.268.399-.02.037-.045.095-.064.134-.128.275-.034.591.213.71.248.12.556-.007.69-.282v-.002c.02-.039.046-.09.062-.127.07-.162.094-.301.144-.458.132-.332.205-.68.387-.897.05-.06.13-.082.215-.105l.113-.205a6.453 6.453 0 0 0 4.609.012l.106.192c.086.028.18.042.256.155.136.232.229.507.342.84.05.156.074.295.145.457.016.037.043.09.062.129.133.276.442.402.69.282.247-.118.341-.435.213-.71-.02-.039-.045-.096-.065-.134-.083-.156-.177-.261-.268-.398-.19-.296-.346-.541-.443-.793-.04-.13.007-.21.038-.294-.018-.022-.059-.144-.083-.202a6.499 6.499 0 0 0 2.88-3.622c.064.01.176.03.213.038.075-.05.144-.114.28-.104.266.039.54.138.87.256.154.06.277.128.448.173.036.01.088.019.13.028l.009.003.007.001c.297.064.584-.098.645-.365.06-.266-.128-.537-.423-.608zM16.4 9.701l-1.95 1.746v.005a.44.44 0 0 0 .173.757l.003.01 2.526.728a5.199 5.199 0 0 0-.108-1.674A5.208 5.208 0 0 0 16.4 9.7zm-4.013 5.325a.437.437 0 0 0-.404-.232.44.44 0 0 0-.372.233h-.002l-1.268 2.292a5.164 5.164 0 0 0 3.326.003l-1.27-2.296h-.01zm1.888-1.293a.44.44 0 0 0-.27.036.44.44 0 0 0-.214.572l-.003.004 1.01 2.438a5.15 5.15 0 0 0 2.081-2.615l-2.6-.44-.004.005z" /></svg></span><span>Kubernetes</span></div>
+                <div class="tech-tile"><span class="tech-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M23.02 10.59a8.578 8.578 0 0 0-.862-3.034 8.911 8.911 0 0 0-1.789-2.445c.337-1.342-.413-2.505-.413-2.505-1.292-.08-2.113.4-2.416.62-.052-.02-.102-.044-.154-.064-.22-.089-.446-.172-.677-.247-.231-.073-.47-.14-.711-.197a9.867 9.867 0 0 0-.875-.161C14.557.753 12.94 0 12.94 0c-1.804 1.145-2.147 2.744-2.147 2.744l-.018.093c-.098.029-.2.057-.298.088-.138.042-.275.094-.413.143-.138.055-.275.107-.41.166a8.869 8.869 0 0 0-1.557.87l-.063-.029c-2.497-.955-4.716.195-4.716.195-.203 2.658.996 4.33 1.235 4.636a11.608 11.608 0 0 0-.607 2.635C1.636 12.677.953 15.014.953 15.014c1.926 2.214 4.171 2.351 4.171 2.351.003-.002.006-.002.006-.005.285.509.615.994.986 1.446.156.19.32.371.488.548-.704 2.009.099 3.68.099 3.68 2.144.08 3.553-.937 3.849-1.173a9.784 9.784 0 0 0 3.164.501h.08l.055-.003.107-.002.103-.005.003.002c1.01 1.44 2.788 1.646 2.788 1.646 1.264-1.332 1.337-2.653 1.337-2.94v-.058c0-.02-.003-.039-.003-.06.265-.187.52-.387.758-.6a7.875 7.875 0 0 0 1.415-1.7c1.43.083 2.437-.885 2.437-.885-.236-1.49-1.085-2.216-1.264-2.354l-.018-.013-.016-.013a.217.217 0 0 1-.031-.02c.008-.092.016-.18.02-.27.011-.162.016-.323.016-.48v-.253l-.005-.098-.008-.135a1.891 1.891 0 0 0-.01-.13c-.003-.042-.008-.083-.013-.125l-.016-.124-.018-.122a6.215 6.215 0 0 0-2.032-3.73 6.015 6.015 0 0 0-3.222-1.46 6.292 6.292 0 0 0-.85-.048l-.107.002h-.063l-.044.003-.104.008a4.777 4.777 0 0 0-3.335 1.695c-.332.4-.592.84-.768 1.297a4.594 4.594 0 0 0-.312 1.817l.003.091c.005.055.007.11.013.164a3.615 3.615 0 0 0 .698 1.82 3.53 3.53 0 0 0 1.827 1.282c.33.098.66.14.971.137.039 0 .078 0 .114-.002l.063-.003c.02 0 .041-.003.062-.003.034-.002.065-.007.099-.01.007 0 .018-.003.028-.003l.031-.005.06-.008a1.18 1.18 0 0 0 .112-.02c.036-.008.072-.013.109-.024a2.634 2.634 0 0 0 .914-.415c.028-.02.056-.041.085-.065a.248.248 0 0 0 .039-.35.244.244 0 0 0-.309-.06l-.078.042c-.09.044-.184.083-.283.116a2.476 2.476 0 0 1-.475.096c-.028.003-.054.006-.083.006l-.083.002c-.026 0-.054 0-.08-.002l-.102-.006h-.012l-.024.006c-.016-.003-.031-.003-.044-.006-.031-.002-.06-.007-.091-.01a2.59 2.59 0 0 1-.724-.213 2.557 2.557 0 0 1-.667-.438 2.52 2.52 0 0 1-.805-1.475 2.306 2.306 0 0 1-.029-.444l.006-.122v-.023l.002-.031c.003-.021.003-.04.005-.06a3.163 3.163 0 0 1 1.352-2.29 3.12 3.12 0 0 1 .937-.43 2.946 2.946 0 0 1 .776-.101h.06l.07.002.045.003h.026l.07.005a4.041 4.041 0 0 1 1.635.49 3.94 3.94 0 0 1 1.602 1.662 3.77 3.77 0 0 1 .397 1.414l.005.076.003.075c.002.026.002.05.002.075 0 .024.003.052 0 .07v.065l-.002.073-.008.174a6.195 6.195 0 0 1-.08.639 5.1 5.1 0 0 1-.267.927 5.31 5.31 0 0 1-.624 1.13 5.052 5.052 0 0 1-3.237 2.014 4.82 4.82 0 0 1-.649.066l-.039.003h-.287a6.607 6.607 0 0 1-1.716-.265 6.776 6.776 0 0 1-3.4-2.274 6.75 6.75 0 0 1-.746-1.15 6.616 6.616 0 0 1-.714-2.596l-.005-.083-.002-.02v-.056l-.003-.073v-.096l-.003-.104v-.07l.003-.163c.008-.22.026-.45.054-.678a8.707 8.707 0 0 1 .28-1.355c.128-.444.286-.872.473-1.277a7.04 7.04 0 0 1 1.456-2.1 5.925 5.925 0 0 1 .953-.763c.169-.111.343-.213.524-.306.089-.05.182-.091.273-.135.047-.02.093-.042.138-.062a7.177 7.177 0 0 1 .714-.267l.145-.045c.049-.015.098-.026.148-.041.098-.029.197-.052.296-.076.049-.013.1-.02.15-.033l.15-.032.151-.028.076-.013.075-.01.153-.024c.057-.01.114-.013.171-.023l.169-.021c.036-.003.073-.008.106-.01l.073-.008.036-.003.042-.002c.057-.003.114-.008.171-.01l.086-.006h.023l.037-.003.145-.007a7.999 7.999 0 0 1 1.708.125 7.917 7.917 0 0 1 2.048.68 8.253 8.253 0 0 1 1.672 1.09l.09.077.089.078c.06.052.114.107.171.159.057.052.112.106.166.16.052.055.107.107.159.164a8.671 8.671 0 0 1 1.41 1.978c.012.026.028.052.04.078l.04.078.075.156c.023.051.05.1.07.153l.065.15a8.848 8.848 0 0 1 .45 1.34.19.19 0 0 0 .201.142.186.186 0 0 0 .172-.184c.01-.246.002-.532-.024-.856z" /></svg></span><span>Grafana</span></div>
             </div>
         </div>
     </section>
 
-
-
-    <!-- TECHNOLOGIES -->
-    <section id="teknologiat" class="section">
+    <!-- FAQ -->
+    <section id="faq" class="section section-roomy">
         <div class="section-header">
-            <span class="section-tag">Teknologiat</span>
-            <h2>Rakennettu <span class="gradient-text">parhailla työkaluilla.</span></h2>
-            <p class="section-desc">Hyödynnämme uusimpia ja luotettavimpia teknologioita — ei trendejä trendien vuoksi,
-                vaan teknologiaa joka kestää aikaa.</p>
-        </div>
-        <div class="tech-grid">
-            <div class="tech-item" data-animate>
-                <img src="img/python.svg" alt="Python" class="tech-logo" width="24" height="24" loading="lazy">
-                <span>Python</span>
-            </div>
-            <div class="tech-item" data-animate>
-                <img src="img/robot-bot-icon.svg" alt="LLM" class="tech-logo" width="24" height="24" loading="lazy">
-                <span>LLM</span>
-            </div>
-            <div class="tech-item" data-animate>
-                <img src="img/vertexai-svgrepo-com.svg" alt="Vertex AI" class="tech-logo" width="24" height="24" loading="lazy">
-                <span>RAG / Vertex AI</span>
-            </div>
-            <div class="tech-item" data-animate>
-                <img src="img/docker.svg" alt="Docker" class="tech-logo" width="24" height="24" loading="lazy">
-                <span>Docker</span>
-            </div>
-            <div class="tech-item" data-animate>
-                <img src="img/google-cloud-svgrepo-com.svg" alt="Google Cloud" class="tech-logo" width="24" height="24" loading="lazy">
-                <span>Google Cloud Platform</span>
-            </div>
-            <div class="tech-item" data-animate>
-                <img src="img/postgresql.svg" alt="PostgreSQL" class="tech-logo" width="24" height="24" loading="lazy">
-                <span>PostgreSQL</span>
-            </div>
-            <div class="tech-item" data-animate>
-                <img src="img/n8n.svg" alt="n8n" class="tech-logo" width="24" height="24" loading="lazy">
-                <span>n8n</span>
-            </div>
-            <a href="https://qdrant.tech/" target="_blank" class="tech-item" data-animate
-                style="text-decoration: none; color: inherit;">
-                <img src="img/qdrant-brandmark-red.png" alt="Qdrant Vector Database" class="tech-logo" width="1387" height="1601" loading="lazy">
-                <span>Qdrant</span>
-            </a>
-        </div>
-    </section>
-
-    <!-- FAQ SECTION -->
-    <section id="faq" class="section faq-section">
-        <div class="section-header">
-            <span class="section-tag">Usein Kysyttyä</span>
-            <h2>Kysymyksiä <span class="gradient-text">ja vastauksia.</span></h2>
-            <p class="section-desc">Keräsimme alle yleisimpiä asioita, joita asiakkaamme pohtivat automaation tai
+            <span class="section-tag">Usein kysyttyä</span>
+            <h2>Kysymyksiä <span class="accent-text">ja vastauksia</span>.</h2>
+            <p class="section-desc">Kokosimme yleisimmät kysymykset, joita mietit automaation tai
                 tekoälyratkaisujen hankkimisessa.</p>
         </div>
         <div class="faq-container">
@@ -410,9 +1180,9 @@
                     </svg>
                 </button>
                 <div class="faq-answer">
-                    <p>Se tarkoittaa rutiinitehtävien siirtämistä älykkäiden työnkulkujen hoidettavaksi. Valok yhdistää
-                        eri ohjelmistot, jolloin tieto liikkuu automaattisesti ilman manuaalista työtä. Lue lisää <a
-                            href="prosessiautomaatio.html">prosessiautomaatio-sivultamme</a>.</p>
+                    <p>Se tarkoittaa rutiinitehtävien siirtämistä älykkäiden työnkulkujen hoidettavaksi. Valok
+                        yhdistää eri ohjelmistot, jolloin tieto liikkuu automaattisesti ilman manuaalista työtä.
+                        Lue lisää <a href="prosessiautomaatio.html">prosessiautomaatio-sivultamme</a>.</p>
                 </div>
             </div>
             <div class="faq-item" data-animate>
@@ -423,10 +1193,9 @@
                     </svg>
                 </button>
                 <div class="faq-answer">
-                    <p>Dedikoitu kielimalli on yrityksesi omaan dataan kytketty tekoälyratkaisu, joka ei hallusinoi.
-                        Käytämme RAG-tekniikkaa, jolloin tekoäly hakee vastaukset yrityksesi omista tiedostoista
-                        turvallisesti. Lue tarkempi selitys <a
-                            href="blogi/rag-viisain-asiantuntija.html">blogistamme</a>.</p>
+                    <p>Dedikoitu kielimalli on yrityksesi omaan dataan kytketty tekoälyratkaisu, joka ei
+                        hallusinoi. Käytämme RAG-tekniikkaa, jolloin tekoäly hakee vastaukset yrityksesi omista
+                        tiedostoista turvallisesti. Lue tarkempi selitys <a href="blogi/rag-viisain-asiantuntija.html">blogistamme</a>.</p>
                 </div>
             </div>
             <div class="faq-item" data-animate>
@@ -437,8 +1206,9 @@
                     </svg>
                 </button>
                 <div class="faq-answer">
-                    <p>Ei ole. Modernit työkalut mahdollistavat nopean kehityksen ilman raskaita alkuinvestointeja.
-                        Automaatio maksaa itsensä yleensä takaisin säästettynä työaikana jo muutamassa kuukaudessa.</p>
+                    <p>Ei ole. Modernit työkalut mahdollistavat nopean kehityksen ilman raskaita
+                        alkuinvestointeja. Automaatio maksaa yleensä itsensä takaisin säästettynä työaikana jo
+                        muutamassa kuukaudessa.</p>
                 </div>
             </div>
             <div class="faq-item" data-animate>
@@ -449,36 +1219,37 @@
                     </svg>
                 </button>
                 <div class="faq-answer">
-                    <p>Valok tarjoaa jatkuvan valvonnan ja tuen. Jos rajapinta päivittyy tai koodissa ilmenee jotain
-                        yllättävää, me saamme siitä automaattisen ilmoituksen ja korjaamme tilanteen välittömästi.</p>
+                    <p>Valok tarjoaa jatkuvan valvonnan ja tuen. Jos rajapinta päivittyy tai koodissa ilmenee
+                        jotain yllättävää, saamme siitä automaattisen ilmoituksen ja korjaamme tilanteen
+                        välittömästi.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- CONTACT SECTION -->
-    <section id="yhteystiedot" class="section contact-section">
-        <div class="section-header">
-            <span class="section-tag">Ota yhteyttä</span>
-            <h2>Aloitetaan projekti<br><span class="gradient-text">yhdessä.</span></h2>
-            <p class="section-desc">Kerro meille tarpeestasi, niin kartoitamme tilanteen maksutta ja ehdotamme parasta
-                ratkaisua.</p>
-        </div>
-
-        <div class="contact-container">
-            <div class="info-card" data-animate style="text-align: center; max-width: 700px; margin: 0 auto 32px;">
-                <strong>Haluatko jutella heti?</strong>
-                <p style="margin: 0 0 20px; color: var(--text-muted);">Varaa suoraan 15 minuutin etätapaaminen kalenteristani, ilman lomakkeen täyttämistä.</p>
-                <a href="https://calendar.app.google/go2sDgLdm6r2eKTK7" target="_blank" rel="noopener" class="btn btn-primary">
-                    Varaa aika kalenterista
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7" />
-                    </svg>
-                </a>
+    <section id="yhteystiedot" class="section section-roomy">
+        <div class="contact-grid">
+            <div class="cta-simple">
+                <img class="contact-mascot" srcset="img/valok-aleksanteri-mobile.webp 800w, img/valok-aleksanteri.webp 600w" sizes="120px" src="img/valok-aleksanteri.webp" alt="Aleksanteri, Valok" width="600" height="600" loading="lazy">
+                <span class="section-tag">Ota yhteyttä</span>
+                <h2>Aloitetaan kartoituksella.</h2>
+                <p class="section-desc">Aloitetaan sieltä, missä työ jumittuu. 15 minuuttia riittää
+                    selvittämään, kannattaako automaatio sinun tapauksessasi.</p>
+                <div style="margin-top: 32px;">
+                    <a href="https://calendar.app.google/go2sDgLdm6r2eKTK7" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
+                        Varaa maksuton kartoitus
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </a>
+                </div>
             </div>
-            <div class="contact-form-card" data-animate>
+
+            <div class="contact-form-card" data-animate style="text-align: left;">
+                <p class="form-card-label">Tai jätä viesti</p>
                 <form action="https://formspree.io/f/xlgpgyjl" method="POST" id="contact-form">
-                    <div class="form-grid">
+                    <div class="form-grid" style="grid-template-columns: 1fr;">
                         <div class="form-group">
                             <label for="name">Nimi</label>
                             <input type="text" id="name" name="name" autocomplete="name" placeholder="Oma nimesi" required>
@@ -487,27 +1258,18 @@
                             <label for="email">Sähköposti</label>
                             <input type="email" id="email" name="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="esimerkki@yritys.fi" required>
                         </div>
-                        <div class="form-group full-width select-wrapper">
-                            <label for="service">Mitä tarvitset?</label>
-                            <select id="service" name="service">
-                                <option value="automaatio">Prosessien automatisointi</option>
-                                <option value="tekoaly" selected>Dedikoitu tekoälyratkaisu</option>
-                                <option value="konsultointi">Konsultointi & Arkkitehtuuri</option>
-                                <option value="muu">Muu tarve</option>
-                            </select>
-                        </div>
 
                         <!-- Bot anti-spam (honeypot) -->
                         <input type="text" name="_gotcha" class="form-gotcha">
 
-                        <div class="form-group full-width">
-                            <label for="message">Projektin kuvaus</label>
-                            <textarea id="message" name="message" rows="5"
+                        <div class="form-group">
+                            <label for="message">Viesti</label>
+                            <textarea id="message" name="message" rows="4"
                                 placeholder="Kerro lyhyesti mitä haluat saavuttaa…" required></textarea>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-lg full-width">
-                        Lähetä tarjouspyyntö
+                    <button type="submit" class="btn btn-ghost full-width">
+                        Lähetä viesti
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2">
                             <path d="M5 12h14M12 5l7 7-7 7" />
@@ -527,24 +1289,21 @@
                 <p>Prosessien automatisointia ja dedikoituja tekoälyratkaisuja suomalaisille PK-yrityksille.</p>
                 <div class="footer-social">
                     <a href="https://linkedin.com/company/valok" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
-                    <a href="#" aria-label="GitHub">gh</a>
                 </div>
             </div>
             <div class="footer-col">
                 <h4>Palvelut</h4>
                 <ul>
-                    <li><a href="#palvelut">Prosessien automatisointi</a></li>
+                    <li><a href="#ratkaisu">Prosessien automatisointi</a></li>
                     <li><a href="prosessiautomaatio.html">Prosessiautomaatio: lue lisää</a></li>
-                    <li><a href="#palvelut">Dedikoitu tekoäly</a></li>
-                    <li><a href="#palvelut">Data & konsultointi</a></li>
+                    <li><a href="#ratkaisu">Dedikoitu tekoäly</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h4>Yritys</h4>
                 <ul>
-                    <li><a href="#prosessi">Näin toimimme</a></li>
-                    <li><a href="#tulokset">Tulokset</a></li>
-                    <li><a href="#teknologiat">Teknologiat</a></li>
+                    <li><a href="#miten-toimii">Näin toimimme</a></li>
+                    <li><a href="blogi.html">Blogi</a></li>
                     <li><a href="tietosuoja.html">Tietosuoja</a></li>
                 </ul>
             </div>
@@ -575,6 +1334,28 @@
     </div>
 
     <script src="main.js"></script>
+    <script>
+        // Kettu nousee sivun ylälaidassa, kyyristyy pois HETI kun vieritys alkaa
+        // (käyttäjäpalaute 2026-08: IntersectionObserver-kynnysarvo antoi sen "leijua"
+        // hetken ennen katoamista — nyt reagoi suoraan scrollY:hen, ei heron näkyvyysasteeseen).
+        (function () {
+            var fox = document.querySelector('.hero-fox-peek');
+            if (!fox) return;
+            var ticking = false;
+            function update() {
+                fox.classList.toggle('is-risen', window.scrollY < 4);
+                ticking = false;
+            }
+            function onScroll() {
+                if (!ticking) {
+                    requestAnimationFrame(update);
+                    ticking = true;
+                }
+            }
+            update();
+            window.addEventListener('scroll', onScroll, { passive: true });
+        })();
+    </script>
 </body>
 
 </html>

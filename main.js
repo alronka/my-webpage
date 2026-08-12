@@ -161,7 +161,13 @@
         rootMargin: '0px 0px 50px 0px'
     });
 
-    elements.forEach(el => observer.observe(el));
+    // Only opt elements into the opacity:0 reveal state once JS is
+    // confirmed running; without this, content stays visible if a
+    // script error or blocker prevents this file from executing.
+    elements.forEach(el => {
+        el.classList.add('animate-pending');
+        observer.observe(el);
+    });
 })();
 
 // ---- COUNTER ANIMATION ----
@@ -341,19 +347,14 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         const question = item.querySelector('.faq-question');
         question.addEventListener('click', () => {
             const isActive = item.classList.contains('active');
-            
-            // Close all
-            faqItems.forEach(faq => {
-                faq.classList.remove('active');
-                const answer = faq.querySelector('.faq-answer');
-                if (answer) answer.style.maxHeight = null;
-            });
+
+            // Close all — the CSS grid-template-rows transition on .faq-answer
+            // handles the height animation, no inline max-height needed here.
+            faqItems.forEach(faq => faq.classList.remove('active'));
 
             // Open clicked if it wasn't active
             if (!isActive) {
                 item.classList.add('active');
-                const answer = item.querySelector('.faq-answer');
-                if (answer) answer.style.maxHeight = answer.scrollHeight + "px";
             }
         });
     });
