@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT-tiimin manuaaliset rutiinit: piilokustannus, jota kukaan ei laske — Valok</title>
+    <meta name="description"
+        content="IT-tiimit menettävät tutkitusti jopa kolmasosan työajastaan manuaalisiin rutiineihin. Lue mitkä prosessit kannattaa automatisoida perinteisellä automaatiolla ja missä kohtaa tekoälyagentti tuo oikeasti lisäarvoa.">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel=icon type=image/png sizes=32x32 href=../img/favicon-32x32.png>
+    <link rel=apple-touch-icon sizes=180x180 href=../img/favicon-180x180.png>
+
+    <link rel="canonical" href="https://valok.fi/blogi/it-tiimin-manuaaliset-rutiinit.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://valok.fi/blogi/it-tiimin-manuaaliset-rutiinit.html">
+    <meta property="og:title" content="IT-tiimin manuaaliset rutiinit: piilokustannus, jota kukaan ei laske">
+    <meta property="og:description" content="IT-tiimit menettävät jopa kolmasosan työajastaan manuaalisiin rutiineihin. Lue mitkä prosessit kannattaa automatisoida perinteisellä automaatiolla ja missä kohtaa tekoälyagentti tuo lisäarvoa.">
+    <meta property="og:image" content="https://valok.fi/img/it-tiimin-manuaaliset-rutiinit.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="IT-tiimin manuaaliset rutiinit: piilokustannus, jota kukaan ei laske">
+    <meta name="twitter:description" content="IT-tiimit menettävät jopa kolmasosan työajastaan manuaalisiin rutiineihin. Lue mitkä prosessit kannattaa automatisoida perinteisellä automaatiolla ja missä kohtaa tekoälyagentti tuo lisäarvoa.">
+    <meta name="twitter:image" content="https://valok.fi/img/it-tiimin-manuaaliset-rutiinit.webp">
+
+    <style>
+        .post-header {
+            min-height: auto !important;
+            padding: 160px 24px 24px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            background: radial-gradient(circle at top, var(--accent-glow) 0%, transparent 70%);
+        }
+
+        .post-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px 100px;
+            line-height: 1.8;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .post-content h2, .post-content h3 {
+            color: var(--text);
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .post-content p {
+            margin-bottom: 24px;
+        }
+
+        .post-content ul, .post-content ol {
+            margin-bottom: 24px;
+            padding-left: 20px;
+        }
+
+        .post-content li {
+            margin-bottom: 12px;
+        }
+
+        .post-meta {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dim);
+            text-decoration: none;
+            margin-bottom: 40px;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        .post-image {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .post-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .toc-box {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+        }
+
+        .toc-box h4 {
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        .toc-box ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .toc-box a {
+            color: #58a6ff;
+            text-decoration: none;
+            display: block;
+            padding: 4px 0;
+            transition: var(--transition);
+        }
+
+        .toc-box a:hover {
+            color: var(--accent);
+            padding-left: 4px;
+        }
+
+        .highlight-box {
+            background: var(--glass);
+            padding: 30px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+            border-left: 4px solid var(--accent);
+        }
+
+        .reference-list {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            margin-top: 60px;
+        }
+
+        .reference-list ol {
+            padding-left: 20px;
+        }
+
+        .contact-section {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 60px 40px;
+            border-radius: var(--radius);
+            margin-top: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="particles"></canvas>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light">VALOK<span
+                     class="logo-dot">.</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="/#palvelut">Palvelut</a>
+                <a href="/#prosessi">Prosessi</a>
+                <a href="../blogi.html">Blogi</a>
+                <a href="/#yhteystiedot" class="nav-cta">Ota yhteyttä</a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Avaa valikko">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <article>
+        <header class="post-header">
+            <a href="../blogi.html" class="back-link">← Takaisin blogiin</a>
+            <span class="post-meta">Automaatio • IT-operaatiot • Tekoäly</span>
+            <h1>IT-tiimin manuaaliset rutiinit: <span class="gradient-text">piilokustannus</span>, jota kukaan ei laske</h1>
+            <p style="color: var(--text-dim); margin-top: 20px;">Moni yritys laskee IT-kulunsa palkoista ja lisensseistä, mutta harvempi laskee, paljonko maksaa se, että osaava IT-ihminen käyttää aamunsa samaan toistuvaan rutiiniin, jonka hän on tehnyt jo satoja kertoja aiemmin.</p>
+        </header>
+
+        <div class="post-image">
+            <img src="../img/it-tiimin-manuaaliset-rutiinit.webp" alt="IT-tiimin manuaaliset rutiinit ja niiden automatisointi - Valok">
+        </div>
+
+        <main class="post-content">
+            <div class="toc-box">
+                <h4>Sisällysluettelo</h4>
+                <ul>
+                    <li><a href="#piilokustannus">1. Piilokustannus, jota kukaan ei laske</a></li>
+                    <li><a href="#ajankaytto">2. Mihin IT-tiimin aika oikeasti kuluu</a></li>
+                    <li><a href="#inhimillinen-virhe">3. Inhimillinen virhe: manuaalisen työn suurin riski</a></li>
+                    <li><a href="#neljä-prosessia">4. Neljä prosessia, jotka kannattaa automatisoida ensin</a></li>
+                    <li><a href="#milloin-mika">5. Milloin riittää perinteinen automaatio ja milloin tarvitset tekoälyagentin</a></li>
+                    <li><a href="#lopuksi">6. Miten Valok lähestyy tätä</a></li>
+                </ul>
+            </div>
+
+            <p>Moni pk-yritys laskee IT-kulunsa palkoista, lisensseistä ja laitteista. Harvempi laskee, paljonko maksaa se, että osaava IT-ihminen käyttää tiistaiaamunsa samaan käyttäjätunnuksen nollaukseen, jonka hän on tehnyt jo satoja kertoja aiemmin. Tämä on piilokustannus, joka ei näy yhdelläkään laskulla, mutta näkyy suoraan siinä, ehtiikö IT-tiimi tekemään mitään muuta kuin sammuttamaan tulipaloja.</p>
+
+            <h2 id="piilokustannus">1. Piilokustannus, jota kukaan ei laske</h2>
+            <p>Kun IT-budjettia käydään läpi, huomio menee helposti näkyviin eriin: palvelinkulut, ohjelmistolisenssit, ulkoistetun tuen laskut. Se mikä jää usein laskematta on osaavan henkilön aika, joka kuluu toistuviin, ennalta-arvattaviin tehtäviin, jotka eivät vaadi harkintaa, vain suorittamista kerta toisensa jälkeen.</p>
+            <p>Tämä ei ole pieni erä. Kun tähän lisätään vielä inhimillisen virheen riski, joka kasvaa aina kun sama toimenpide tehdään käsin kymmeniä tai satoja kertoja, piilokustannus alkaa näkyä myös siellä missä sitä vähiten haluaisi: käyttökatkoissa.</p>
+
+            <h2 id="ajankaytto">2. Mihin IT-tiimin aika oikeasti kuluu</h2>
+            <p>Tutkimusten mukaan tyypillinen IT-tiimi menettää noin 35 prosenttia työajastaan manuaalisiin, toistuviin tehtäviin.<sup>[1]</sup> Neljäsosa IT-ammattilaisista käyttää 40–60 prosenttia työpäivästään tällaiseen työhön, ja joka kymmenes yli 60 prosenttia.<sup>[1]</sup> Käytännössä tämä tarkoittaa tikettien lajittelua, käyttäjätilien manuaalista perustamista ja poistamista, lokien läpikäyntiä silmämääräisesti ja samojen raporttien kokoamista kuukaudesta toiseen kopioimalla lukuja järjestelmästä toiseen.</p>
+            <p>Yksi konkreettinen esimerkki: salasanan nollaukset muodostavat Gartnerin mukaan 30–40 prosenttia kaikista helpdesk-tiketeistä.<sup>[2]</sup> Kun jokaisen nollauksen todellinen kustannus, työaika, tuottavuuden menetys ja infrastruktuurin kulut mukaan lukien, asettuu 2026 hinnoittelussa noin 25–70 euron välille per tiketti,<sup>[2]</sup> pelkästään tämä yksi toistuva rutiini voi kymmenien tai satojen työntekijöiden yrityksessä muodostaa yllättävän ison vuosittaisen kuluerän, joka olisi teknisesti helppo automatisoida turvallisesti.</p>
+
+            <div class="highlight-box">
+                IT-tiimin aika ei ole ilmainen resurssi, jota voi kuluttaa loputtomiin toistoon. Jokainen tunti, joka kuluu manuaaliseen rutiiniin, on tunti pois kehityksestä, tietoturvasta ja niistä projekteista, jotka oikeasti veisivät yritystä eteenpäin.
+            </div>
+
+            <h2 id="inhimillinen-virhe">3. Inhimillinen virhe: manuaalisen työn suurin riski</h2>
+            <p>Manuaalisen työn hinta ei ole pelkkää hukkaan mennyttä aikaa. Se on myös riski. Uptime Instituten vuoden 2025 vuosittaisen käyttökatkoraportin mukaan lähes 40 prosenttia organisaatioista on kärsinyt vakavasta käyttökatkosta, jonka syynä on ollut inhimillinen virhe, viimeisen kolmen vuoden aikana.<sup>[3]</sup> Näistä tapauksista 85 prosenttia johtuu joko siitä, ettei henkilöstö noudattanut ohjeistettuja prosesseja, tai siitä, että prosessit ja ohjeistukset itsessään olivat puutteellisia.<sup>[3]</sup></p>
+            <p>Tämä on tärkeä yksityiskohta: valtaosa inhimillisistä virheistä ei johdu osaamattomuudesta, vaan siitä, että sama monivaiheinen toimenpide tehdään käsin niin usein, että jokin vaihe unohtuu tai suoritetaan väärässä järjestyksessä. Mitä useammin prosessi toistetaan manuaalisesti, sitä todennäköisemmin joku kerta menee pieleen, ei siksi että tekijä olisi huolimaton, vaan koska toisto itsessään kasvattaa virheen todennäköisyyttä.</p>
+
+            <h2 id="neljä-prosessia">4. Neljä prosessia, jotka kannattaa automatisoida ensin</h2>
+            <p>Kaikkea ei kannata eikä tarvitse automatisoida kerralla. Näissä neljässä on tyypillisesti paras suhde säästetyn ajan, pienentyneen virheriskin ja toteutuksen helppouden välillä:</p>
+            <ul>
+                <li><strong>Salasanan nollaus ja tilien lukitusten avaaminen.</strong> Suurin yksittäinen tikettivolyymi, selkeät säännöt, matala riski kun toteutus tehdään oikein valtuutuksineen. Tämä on tyypillisesti niin suoraviivainen prosessi, että pelkkä sääntöpohjainen automaatio riittää hyvin, tekoälyä ei tarvita.</li>
+                <li><strong>Käyttäjätilien perustaminen ja poistaminen (onboarding/offboarding).</strong> Toistuva, monivaiheinen prosessi, jossa unohdettu vaihe, esimerkiksi vanhan työntekijän oikeuksien poisto, on samalla tietoturvariski. Kun vaiheet ja säännöt ovat kiinteät, tämäkin hoituu perinteisellä työnkulkuautomaatiolla.</li>
+                <li><strong>Ohjelmistopäivitysten ja -korjausten seuranta.</strong> Kuka on päivittänyt mitäkin, milloin, ja mitä on vielä auki, on tyypillisesti käsin ylläpidetty taulukko, joka vanhenee heti kun joku unohtaa päivittää sitä.</li>
+                <li><strong>Lokien ja hälytysten ensivaiheen triage.</strong> Suurin osa hälytyksistä on rutiininomaisia ja vaatii vain nopean tarkistuksen ennen kuittausta, mutta hälytysten kuvaukset vaihtelevat ja tulkinta vaatii usein harkintaa, mikä tekee tästä hyvän kohteen nimenomaan tekoälyagentille.</li>
+            </ul>
+
+            <h2 id="milloin-mika">5. Milloin riittää perinteinen automaatio ja milloin tarvitset tekoälyagentin</h2>
+            <p>Ei kaikkea kannata eikä tarvitse ratkaista tekoälyllä. Suuri osa IT-tiimin rutiineista on täysin ennustettavia: samat säännöt, samat vaiheet, samat lopputulokset joka kerta. Näihin sopii erinomaisesti perinteinen, sääntöpohjainen automaatio, työnkulkutyökalu tai skripti, joka tekee juuri sen mitä siihen on kirjoitettu. Se on halvempi rakentaa, helpompi ylläpitää, ja täysin ennustettava. Salasanan nollaus tai käyttäjätilin perustaminen kiinteän checklistin mukaan ei vaadi harkintaa, vain johdonmukaista suorittamista, ja silloin monimutkaisempi ratkaisu olisi vain ylimääräinen kustannus ja riski.</p>
+            <p>Perinteinen automaatio kuitenkin jää jumiin heti kun eteen tulee jotain, mitä sitä rakennettaessa ei osattu ennakoida: tiketin kuvaus on epäselvä, hälytys ei täsmää mihinkään valmiiseen sääntöön, tai tilanne vaatisi pientä harkintaa ennen toimenpidettä. Juuri tässä kohtaa <a href="tekoalyn-rajoittaminen.html">oikein rajattu tekoälyagentti</a> tuo aidosti lisäarvoa: se pystyy tulkitsemaan vapaamuotoisen tiketin tai hälytyksen sisällön, päättelemään mitä toimenpiteitä tarvitaan, ja tekemään ne oikeiden rajapintojen kautta, sen sijaan että jumiutuisi ensimmäiseen poikkeukseen. Tärkeintä ei ole antaa agentille rajatonta pääsyä kaikkeen, vaan määritellä tarkkaan mitä se saa tehdä itsenäisesti ja missä kohtaa se aina pysähtyy odottamaan ihmisen vahvistusta.</p>
+            <p>Molemmat lähestymistavat kannattaa myös rakentaa samalla periaatteella kuin arkkitehtuuri muutenkin: puhumaan suoraan järjestelmien rajapintojen kanssa sen sijaan että simuloitaisiin käyttöliittymän klikkailua. <a href="rpa-vs-api-pohjainen-automaatio.html">Samat syyt, jotka tekevät API-pohjaisesta automaatiosta kestävämpää kuin RPA:sta</a>, pätevät riippumatta siitä, onko toteutus perinteinen skripti vai tekoälyagentti: kun ratkaisu puhuu rajapinnan kanssa eikä simuloi klikkailua, se ei hajoa siitä, että joku päivittää käyttöliittymän ulkoasua.</p>
+
+            <h2 id="lopuksi">6. Miten Valok lähestyy tätä</h2>
+            <p>Emme aloita ehdottamalla, että automatisoidaan kaikki tekoälyllä. Aloitamme kartoittamalla, mihin IT-tiiminne aika oikeasti kuluu, ja tunnistamalla sieltä ne 2–3 prosessia, joissa toisto on suurinta ja riski pienintä. Sen jälkeen valitsemme kuhunkin prosessiin sopivan ratkaisun: yksinkertainen sääntöpohjainen automaatio niihin, joissa säännöt ovat kiinteät, ja tarkasti rajattu tekoälyagentti niihin, joissa vaaditaan tulkintaa. Molempiin rakennamme selkeän lokin jokaisesta tehdystä toimenpiteestä ja pysäytyskohdat niihin muutoksiin, jotka aina vaativat ihmisen hyväksynnän.</p>
+            <p>Tavoite ei ole korvata IT-tiimiänne eikä käyttää tekoälyä sen itsensä vuoksi, vaan vapauttaa tiimi tekemään sitä työtä, johon heidän osaamisensa oikeasti riittää parhaiten, oikealla työkalulla jokaiseen tilanteeseen.</p>
+
+            <div class="reference-list">
+                <h4>Lähdeviitteet:</h4>
+                <ol>
+                    <li><a href="https://www.sysaid.com/blog/general-it/blog-it-team-productivity-manual-work-2026" target="_blank" rel="noopener">SysAid: IT Teams Lose 35% of Capacity to Manual Work</a>. Tutkimusdataa IT-tiimien ajankäytöstä manuaalisiin, toistuviin tehtäviin.</li>
+                    <li><a href="https://credentialgovernance.avatier.com/en/blog/real-cost-help-desk-password-reset-2026" target="_blank" rel="noopener">Avatier / Credential Governance: The Real Cost of a Help Desk Password Reset</a>. Gartnerin ja Forresterin dataan pohjautuva katsaus salasanan nollausten osuudesta ja kustannuksista.</li>
+                    <li><a href="https://uptimeinstitute.com/about-ui/press-releases/uptime-announces-annual-outage-analysis-report-2025" target="_blank" rel="noopener">Uptime Institute: Annual Outage Analysis Report 2025</a>. Vuosittainen raportti käyttökatkojen syistä, mukaan lukien inhimillisen virheen osuus.</li>
+                </ol>
+            </div>
+
+            <div class="contact-section">
+                <div class="section-header" style="text-align: center; margin-bottom: 40px;">
+                    <span class="section-tag">Otetaan askel eteenpäin</span>
+                    <h2>Kuluuko IT-tiiminne aika samojen rutiinien toistamiseen?</h2>
+                    <p>Valok kartoittaa mihin IT-tiiminne aika oikeasti kuluu ja rakentaa turvallisesti rajatun automaation sinne missä se säästää eniten.</p>
+                </div>
+
+                <div class="contact-container" style="max-width: 100%;">
+                    <div class="contact-form-card">
+                        <form action="https://formspree.io/f/xlgpgyjl" method="POST" id="contact-form">
+                            <div class="form-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 20px;">
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="name">Nimi</label>
+                                    <input type="text" id="name" name="name" placeholder="Oma nimesi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                </div>
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="email">Sähköposti</label>
+                                    <input type="email" id="email" name="email" placeholder="esimerkki@yritys.fi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg full-width" style="width: 100%; padding: 16px; font-weight: bold; cursor: pointer; margin-top: 20px;">
+                                Varaa ilmainen konsultaatio
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </article>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer">VALOK<span class="logo-dot">.</span></div>
+                <p>Prosessien automatisointia ja dedikoituja tekoälyratkaisuja suomalaisille PK-yrityksille.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Linkit</h4>
+                <ul>
+                    <li><a href="/">Etusivu</a></li>
+                    <li><a href="../blogi.html">Blogi</a></li>
+                    <li><a href="/#palvelut">Palvelut</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ota yhteyttä</h4>
+                <ul>
+                    <li>aleksanteri@valok.fi</li>
+                    <li>Jyväskylä, Finland</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Valok. Kaikki oikeudet pidätetään.
+        </div>
+    </footer>
+
+    <script src="../main.js"></script>
+</body>
+
+</html>
