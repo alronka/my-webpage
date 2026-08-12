@@ -1,0 +1,26 @@
+# Valok
+
+> Valok on suomalainen työnkulkuautomaation ja tekoälyratkaisujen kumppani PK-yrityksille. Rakennamme dedikoituja tekoälyagentteja, RAG-järjestelmiä ja integraatioita asiakkaan omalle infrastruktuurille, yksityisyyttä kunnioittaen. Toimimme Jyväskylästä käsin, koko Suomen alueella.
+
+Valok (Y-tunnus 3490027-7) auttaa pienten ja keskisuurten yritysten johtoa ja IT-vastaavia tunnistamaan, mitkä liiketoimintaprosessit kannattaa automatisoida perinteisellä RPA/API-automaatiolla ja missä tekoälyagentti tuo aidosti lisäarvoa. Palveluihin kuuluu dedikoitu tekoäly, multi-tenant chatbotit, prosessiautomaatio ja konsultointi. Sisältö on suomenkielistä ja kohdistettu PK-yritysten päättäjille.
+
+## Palvelut
+
+- [Etusivu](https://valok.fi/): Yritysesittely, ratkaisualueet, tekninen stack ja yhteydenotto.
+- [Prosessiautomaatio](https://valok.fi/prosessiautomaatio.html): PK-yrityksille suunnattu prosessiautomaation palvelukuvaus.
+- [Tekoäly ROI-laskuri](https://valok.fi/tekoaly-roi-laskuri.html): Työkalu tekoälyinvestoinnin säästöpotentiaalin arviointiin.
+- [Asiakaspalvelu AI ROI-laskuri](https://valok.fi/asiakaspalvelu-roi-laskuri.html): Työkalu tekoälypohjaisen asiakaspalvelun säästöpotentiaalin arviointiin.
+
+## Blogi (uusimmat artikkelit)
+
+- [IT-tiimin manuaaliset rutiinit: piilokustannus, jota kukaan ei laske](https://valok.fi/blogi/it-tiimin-manuaaliset-rutiinit.html): IT-tiimit menettävät jopa kolmasosan työajastaan manuaalisiin rutiineihin. Mitkä prosessit kannattaa automatisoida perinteisellä automaatiolla ja missä kohtaa tekoälyagentti tuo lisäarvoa.
+- [Miten valita kielimalli PK-yrityksellesi 2026: Avoin vai suljettu malli?](https://valok.fi/blogi/kielimallin-valinta-pk-yritykselle-2026.html): Miten PK-yritys valitsee oikean kielimallin kustannusten, tietosuojan ja suomen kielen tuen perusteella vuonna 2026.
+- [Tekoälykuvien ja -tekstien merkintä: EU:n uusi läpinäkyvyysvelvoite yrityksille](https://valok.fi/blogi/tekoalykuvien-merkinta-eu-tekoalyasetus.html): EU:n tekoälyasetuksen läpinäkyvyysvelvoite astui voimaan 2.8.2026. Milloin tekoälyllä tuotettu kuva tai teksti pitää merkitä, ja milloin ei.
+- [Tekoälyn rajoittaminen: Miten annat agentille juuri oikeat valtuudet](https://valok.fi/blogi/tekoalyn-rajoittaminen.html): "Vapaat kädet" on vaarallinen lähtökohta tekoälyagentille. Miten Valok rajaa valtuudet datan, toimintojen ja päätöksenteon tasolla.
+- [Rakenna itse vai osta valmis? Milloin räätälöity tekoälyratkaisu kannattaa PK-yritykselle](https://valok.fi/blogi/rakentaa-itse-vai-ostaa-valmis.html): Valmis SaaS-työkalu on nopea, mutta ei aina taivu tarpeisiin. Miten PK-yritys tekee järkevän build vs. buy -päätöksen.
+- [Tekoälyagenttien ROI: Mitkä mittarit oikeasti kertovat, kannattiko investointi?](https://valok.fi/blogi/tekoalyagenttien-roi-mittarit.html): Säästetty aika ei yksin riitä. Mitä mittareita Valok seuraa tekoälyagenttien ROI:n arvioinnissa.
+- [Blogin arkisto](https://valok.fi/arkisto.html): Kaikki vanhemmat artikkelit automaatiosta, tekoälystä, RAG:sta ja integraatioista.
+
+## Muut sivut
+
+- [Tietosuojaseloste](https://valok.fi/tietosuoja.html): Rekisterinpitäjän tiedot, tietojen käyttötarkoitukset ja rekisteröidyn oikeudet.

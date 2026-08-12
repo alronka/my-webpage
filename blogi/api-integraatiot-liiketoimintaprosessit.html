@@ -13,10 +13,6 @@
     <title>API-integraatiot liiketoimintaprosessien tehostamiseen — Valok</title>
     <meta name="description"
         content="Opi, miten API-integraatiot yhdistävät yrityksesi järjestelmät — CRM, ERP, laskutus, verkkokauppa — automaattisesti. Säästä aikaa ja poista manuaalinen työ.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet">
     <link rel="stylesheet" href="../styles.css">
     <link rel=icon type=image/png sizes=32x32 href=../img/favicon-32x32.png>
     <link rel=apple-touch-icon sizes=180x180 href=../img/favicon-180x180.png>
@@ -53,6 +49,39 @@
                 "url": "https://valok.fi/img/aRon_A1.webp"
             }
         }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Onko API-integraatio kallista?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Se riippuu toteutustavasta. Yksinkertainen no-code-integraatio Make-alustalla voi maksaa muutamia kymppejä kuukaudessa. Räätälöity custom-integraatio on suurempi investointi, mutta se maksaa itsensä takaisin nopeasti kun lasketaan säästetty manuaalinen työ ja poistuneet virheet."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Toimiiko integraatio, vaikka järjestelmä päivittyy?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Hyvin toteutettu integraatio on rakennettu kestämään järjestelmäpäivityksiä. Julkiset API:t ovat taaksepäin yhteensopivia, ja muutoksista ilmoitetaan etukäteen. Monitorointi varmistaa, että mahdolliset häiriöt havaitaan välittömästi."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Mitä jos järjestelmässämme ei ole API:a?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Vanhemmissa järjestelmissä API voi puuttua, mutta usein löytyy vaihtoehtoisia tapoja: tiedostopohjaiset integraatiot (CSV/XML-siirrot), tietokantapohjaiset yhteydet tai jopa RPA-automaatio (robottiprosessiautomaatio) käyttöliittymätasolla. Kartoitetaan ensin mitä on saatavilla."
+                }
+            }
+        ]
     }
     </script>
 
@@ -138,7 +167,7 @@
             background: var(--glass);
             padding: 24px;
             border-radius: var(--radius);
-            border-left: 4px solid #89CFF0;
+            border: 1px solid var(--border);
             margin: 30px 0;
         }
 
@@ -146,7 +175,7 @@
             background: var(--glass);
             padding: 24px;
             border-radius: var(--radius);
-            border-left: 4px solid #f0c040;
+            border: 1px solid var(--border);
             margin: 30px 0;
         }
 

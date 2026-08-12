@@ -69,16 +69,30 @@
 
     <!-- Article structured data -->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Article",
-      "headline": "Miten valita kielimalli PK-yrityksellesi 2026: Avoin vai suljettu malli?",
-      "description": "Lue miten PK-yritys valitsee oikean kielimallin kustannusten, tietosuojan ja suomen kielen tuen perusteella vuonna 2026.",
-      "image": "https://valok.fi/img/kielimallin-valinta-pk-yritykselle-2026.webp",
-      "datePublished": "2026-08-09",
-      "author": { "@type": "Organization", "name": "Valok" },
-      "publisher": { "@type": "Organization", "name": "Valok", "url": "https://valok.fi" }
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Miten valita kielimalli PK-yrityksellesi 2026: Avoin vai suljettu malli?",
+  "description": "Lue miten PK-yritys valitsee oikean kielimallin kustannusten, tietosuojan ja suomen kielen tuen perusteella vuonna 2026.",
+  "image": "https://valok.fi/img/kielimallin-valinta-pk-yritykselle-2026.webp",
+  "datePublished": "2026-08-09",
+  "author": {
+    "@type": "Person",
+    "name": "Aleksanteri Rönkä",
+    "url": "https://valok.fi/",
+    "email": "aleksanteri@valok.fi",
+    "jobTitle": "Perustaja",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Valok"
     }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Valok",
+    "url": "https://valok.fi"
+  }
+}
     </script>
 
     <style>
@@ -117,6 +131,36 @@
             margin-bottom: 16px;
             display: block;
         }
+
+        .post-author {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 24px;
+            text-align: left;
+        }
+
+        .post-author img {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .post-author-name {
+            display: block;
+            font-weight: 600;
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+
+        .post-author-role {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+
 
         .back-link {
             display: inline-flex;
@@ -224,6 +268,13 @@
             <span class="post-meta">Kielimallit • Teknologiavalinta • Tietoturva</span>
             <h1>Miten valita kielimalli PK-yrityksellesi 2026: <span class="gradient-text">Avoin vai suljettu malli?</span></h1>
             <p style="color: var(--text-dim); margin-top: 20px;">“Käytetäänkö me ChatGPT:tä?” on vuoden 2026 väärä kysymys. Oikea kysymys on, mikä kymmenistä kielimalleista sopii juuri teidän dataanne, budjettiinne ja käyttötapaukseenne.</p>
+            <div class="post-author">
+                <img src="../img/valok-aleksanteri.webp" alt="Aleksanteri Rönkä" width="44" height="44" loading="lazy">
+                <div>
+                    <span class="post-author-name">Aleksanteri Rönkä</span>
+                    <span class="post-author-role">Perustaja, Valok &middot; <a href="mailto:aleksanteri@valok.fi">aleksanteri@valok.fi</a></span>
+                </div>
+            </div>
         </header>
 
         <div class="post-image">
