@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miten valita kielimalli PK-yrityksellesi 2026: Avoin vai suljettu malli? — Valok</title>
+    <meta name="description"
+        content="Kielimallikenttä on räjähtänyt: Claude, GPT, Gemini, Mistral, DeepSeek, Llama, Qwen. Lue miten PK-yritys valitsee oikean mallin kustannusten, tietosuojan ja suomen kielen tuen perusteella vuonna 2026.">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel=icon type=image/png sizes=32x32 href=../img/favicon-32x32.png>
+    <link rel=apple-touch-icon sizes=180x180 href=../img/favicon-180x180.png>
+
+    <link rel="canonical" href="https://valok.fi/blogi/kielimallin-valinta-pk-yritykselle-2026.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://valok.fi/blogi/kielimallin-valinta-pk-yritykselle-2026.html">
+    <meta property="og:title" content="Miten valita kielimalli PK-yrityksellesi 2026: Avoin vai suljettu malli?">
+    <meta property="og:description" content="Lue miten PK-yritys valitsee oikean kielimallin kustannusten, tietosuojan ja suomen kielen tuen perusteella vuonna 2026.">
+    <meta property="og:image" content="https://valok.fi/img/kielimallin-valinta-pk-yritykselle-2026.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Miten valita kielimalli PK-yrityksellesi 2026?">
+    <meta name="twitter:description" content="Avoin vai suljettu kielimalli? Vertailemme kustannukset, tietosuojan ja suomen kielen tuen.">
+    <meta name="twitter:image" content="https://valok.fi/img/kielimallin-valinta-pk-yritykselle-2026.webp">
+
+    <!-- FAQ structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Onko avoin kielimalli aina halvempi kuin suljettu?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ei automaattisesti. Alle noin 50 miljoonan tokenin kuukausivolyymillä valmiin API:n käyttö suljetulla mallilla on yleensä edullisempaa kuin oman ajoympäristön pystyttäminen ja ylläpito. Avoin malli alkaa kannattaa kustannusmielessä vasta suuremmalla volyymilla tai kun tietosuojavaatimukset pakottavat oman infrastruktuurin käyttöön."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Voiko PK-yritys käyttää avointa kielimallia ilman omaa DevOps-tiimiä?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Kyllä, esimerkiksi OpenRouterin tai eurooppalaisten pilvipalveluiden kautta avoimia malleja voi käyttää samaan tapaan kuin suljettuja API-palveluita. Tällöin osa avoimen mallin kustannus- ja tietosuojaeduista kuitenkin jää saamatta, koska data kulkee edelleen kolmannen osapuolen palvelimen kautta eikä yrityksen omassa hallinnassa."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Onko suomenkielinen avoin kielimalli jo tuotantokelpoinen?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Kehitys on käynnissä: TurkuNLP:n ja Silo AI:n Poro- ja Viking-mallit sekä OpenEuroLLM-konsortion tuleva mallisarja rakentavat avointa pohjoismaista kielimalliosaamista. Toistaiseksi kaupalliset huippumallit ja Mistral suoriutuvat suomen kielestä paremmin useimmissa käytännön yrityssovelluksissa, mutta ero kapenee."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- Article structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Miten valita kielimalli PK-yrityksellesi 2026: Avoin vai suljettu malli?",
+      "description": "Lue miten PK-yritys valitsee oikean kielimallin kustannusten, tietosuojan ja suomen kielen tuen perusteella vuonna 2026.",
+      "image": "https://valok.fi/img/kielimallin-valinta-pk-yritykselle-2026.webp",
+      "datePublished": "2026-08-09",
+      "author": { "@type": "Organization", "name": "Valok" },
+      "publisher": { "@type": "Organization", "name": "Valok", "url": "https://valok.fi" }
+    }
+    </script>
+
+    <style>
+        .post-header {
+            min-height: auto !important;
+            padding: 160px 24px 24px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            background: radial-gradient(circle at top, var(--accent-glow) 0%, transparent 70%);
+        }
+
+        .post-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px 100px;
+            line-height: 1.8;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .post-content h2, .post-content h3 {
+            color: var(--text);
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .post-content p { margin-bottom: 24px; }
+
+        .post-meta {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dim);
+            text-decoration: none;
+            margin-bottom: 40px;
+            transition: var(--transition);
+        }
+
+        .back-link:hover { color: var(--accent); }
+
+        .post-image {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .post-image img { width: 100%; height: auto; display: block; }
+
+        .toc-box {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+        }
+
+        .toc-box h4 { margin-bottom: 16px; color: var(--text); }
+        .toc-box ul { list-style: none; padding-left: 0; margin-bottom: 0; }
+        .toc-box a { color: #58a6ff; text-decoration: none; display: block; padding: 4px 0; transition: var(--transition); }
+        .toc-box a:hover { color: var(--accent); padding-left: 4px; }
+
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0 32px;
+            font-size: 0.95rem;
+        }
+
+        .price-table th, .price-table td {
+            text-align: left;
+            padding: 12px 16px;
+            border: 1px solid var(--border);
+        }
+
+        .price-table th { background: var(--glass); color: var(--text); font-weight: 600; }
+
+        .source-list {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            font-size: 0.9rem;
+            color: var(--text-dim);
+        }
+
+        .source-list li { margin-bottom: 8px; list-style: none; }
+
+        .cta-box {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 40px;
+            border-radius: var(--radius);
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .highlight-box {
+            background: var(--glass);
+            padding: 30px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+            border-left: 4px solid var(--accent);
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="particles"></canvas>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light">VALOK<span
+                     class="logo-dot">.</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="/#palvelut">Palvelut</a>
+                <a href="/#prosessi">Prosessi</a>
+                <a href="../blogi.html">Blogi</a>
+                <a href="/#yhteystiedot" class="nav-cta">Ota yhteyttä</a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Avaa valikko">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <article>
+        <header class="post-header">
+            <a href="../blogi.html" class="back-link">← Takaisin blogiin</a>
+            <span class="post-meta">Kielimallit • Teknologiavalinta • Tietoturva</span>
+            <h1>Miten valita kielimalli PK-yrityksellesi 2026: <span class="gradient-text">Avoin vai suljettu malli?</span></h1>
+            <p style="color: var(--text-dim); margin-top: 20px;">"Käytetäänkö me ChatGPT:tä?" on vuoden 2026 väärä kysymys. Oikea kysymys on, mikä kymmenistä kielimalleista sopii juuri teidän dataanne, budjettiinne ja käyttötapaukseenne.</p>
+        </header>
+
+        <div class="post-image">
+            <img src="../img/kielimallin-valinta-pk-yritykselle-2026.webp" alt="Kielimallin valinta PK-yritykselle 2026 - Valok">
+        </div>
+
+        <main class="post-content">
+            <div class="toc-box">
+                <h4>Sisällysluettelo</h4>
+                <ul>
+                    <li><a href="#kaksi-kategoriaa">1. Kaksi isoa kategoriaa: suljetut huippumallit vs. avoimet painot</a></li>
+                    <li><a href="#kustannusvertailu">2. Kustannusvertailu: mitä eri mallit oikeasti maksavat</a></li>
+                    <li><a href="#tietosuoja">3. Tietosuoja ja EU-sääntely ratkaisevat yhä useammin valinnan</a></li>
+                    <li><a href="#suomen-kieli">4. Suomen kieli on oma kysymyksensä</a></li>
+                    <li><a href="#paatospuu">5. Käytännön päätöspuu PK-yritykselle</a></li>
+                    <li><a href="#miten-valok-auttaa">6. Miten Valok auttaa</a></li>
+                </ul>
+            </div>
+
+            <p>Vielä pari vuotta sitten kielimallin valinta tarkoitti käytännössä yhtä kysymystä: OpenAI vai ei mitään. Vuonna 2026 tilanne on toinen. Avoimen lähdekoodin mallit kuten DeepSeek, Qwen, Llama ja GLM ovat kuroneet suorituskykyeroa kaupallisiin huippumalleihin kiinni monimutkaisessa päättelyssä ja ohjelmoinnissa, ja Euroopassa oma kielimallikehitys (Mistral, Poro, Viking) on tuonut mukaan uusia vaihtoehtoja erityisesti tietosuoja- ja kielikysymyksiin.</p>
+
+            <p>Tämä on hyvä uutinen, mutta se tekee valinnasta myös aidosti monimutkaisemman. Käydään läpi mitä PK-yrityksen kannattaa oikeasti punnita ennen kuin sitoutuu johonkin malliin tai palveluun.</p>
+
+            <div class="highlight-box">
+                <strong>Lyhyt vastaus jos kiire:</strong> useimmalle PK-yritykselle valmis suljettu API-palvelu (Claude, GPT, Gemini) on edelleen järkevin lähtökohta, koska sen käyttöönotto ei vaadi omaa infrastruktuuria eikä ylläpitoa. Avoin malli alkaa olla harkinnan arvoinen vasta, kun käyttövolyymi kasvaa suureksi, tietosuojavaatimukset edellyttävät datan pysymistä omassa infrassa, tai molempia.
+            </div>
+
+            <h2 id="kaksi-kategoriaa">Kaksi isoa kategoriaa: suljetut huippumallit vs. avoimet painot</h2>
+            <p><strong>Suljetut mallit</strong> (Claude, GPT, Gemini) ovat palveluita: yritys ei näe mallin painoja eikä voi ajaa sitä omalla laitteistollaan, vaan kutsuu sitä API:n kautta ja maksaa käytön mukaan. Etuna on nopea käyttöönotto, ei omaa infrastruktuuria, ja tyypillisesti paras suorituskyky kaikkein vaativimmissa päättelytehtävissä, pitkässä kontekstissa ja multimodaalisissa (teksti+kuva) tehtävissä.</p>
+
+            <p><strong>Avoimet mallit</strong> (Llama, Mistral, DeepSeek, Qwen, Gemma, GLM) julkaisevat mallin painot, jotka voi ladata ja ajaa omalla tai vuokratulla laitteistolla. Tämä tarkoittaa täyttä kontrollia siitä, minne data liikkuu, ei per-token-maksua kun malli pyörii omassa infrassa, ja mahdollisuutta räätälöidä mallia syvemmin. Hintana on vastuu käyttöönotosta, skaalauksesta ja ylläpidosta, mikä vaatii joko omaa osaamista tai kumppanin.</p>
+
+            <p>Suorituskykyero on kaventunut merkittävästi: huhtikuussa 2026 Zhipu AI:n GLM-5 nousi avointen mallien kärkeen ja päihitti sekä GPT-5.4:n että Claude Opus 4.6:n SWE-Bench Pro -ohjelmointibenchmarkissa. Vastaavasti DeepSeek-V3 ja Qwen 3.5 kilpailevat tasavertaisesti suljettujen mallien kanssa monimutkaisessa päättelyssä. Käytännössä kysymys ei enää ole "onko avoin malli riittävän hyvä", vaan "mikä avoin malli sopii juuri tähän työkuormaan".</p>
+
+            <h2 id="kustannusvertailu">Kustannusvertailu: mitä eri mallit oikeasti maksavat</h2>
+            <p>Hinnat vaihtelevat mallin ja käyttötavan mukaan. Tässä poikkileikkaus elokuun 2026 hinnoista miljoonaa tokenia kohden (syöte / tuloste):</p>
+
+            <table class="price-table">
+                <tr><th>Malli</th><th>Tyyppi</th><th>Hinta (syöte / tuloste per 1M tokenia)</th></tr>
+                <tr><td>Claude Haiku 4.5</td><td>Suljettu</td><td>$1 / $5</td></tr>
+                <tr><td>Claude Sonnet 5</td><td>Suljettu</td><td>$3 / $15 (esittelyhintaan $2 / $10 elokuun 2026 loppuun)</td></tr>
+                <tr><td>Claude Opus 5</td><td>Suljettu</td><td>$5 / $25</td></tr>
+                <tr><td>Gemini Flash</td><td>Suljettu</td><td>~$0,075 / 1M tokenia</td></tr>
+                <tr><td>DeepSeek (API)</td><td>Avoin (myös itseajettava)</td><td>~$0,14 / 1M syötetokenia</td></tr>
+            </table>
+
+            <p>Avoimen mallin todellinen etu ei näy tässä taulukossa suoraan: jos ajat mallia omalla tai vuokratulla laitteistolla, per-token-hinta katoaa kokonaan ja jäljelle jää vain laitteistokustannus. Käytännön nyrkkisääntö on, että <strong>alle noin 50 miljoonan tokenin kuukausivolyymillä</strong> valmiin API:n käyttö on yleensä edullisempaa kuin oman ajoympäristön pystyttäminen ja ylläpito, koska laitteistokustannus ei vielä jakaudu tarpeeksi käytön kesken. Suuremmalla volyymilla oman infrastruktuurin pyörittäminen alkaa maksaa itsensä takaisin, joskus jopa merkittävästi.</p>
+
+            <p>Kuten kirjoitimme aiemmin <a href="kielimallien-api-kustannukset-ja-optimointi.html">kielimallien API-kustannuksista</a>, moni PK-yritys yliarvioi todellisen kulunsa reilusti: tyypillinen rutiiniautomaatio maksaa API-kutsuina vain kymmeniä euroja kuukaudessa, ei satoja.</p>
+
+            <h2 id="tietosuoja">Tietosuoja ja EU-sääntely ratkaisevat yhä useammin valinnan</h2>
+            <p>Kun malli ajetaan omalla infrastruktuurilla, arkaluonteinen data ei koskaan poistu organisaation hallinnasta kolmannen osapuolen palvelimelle. Tämä on suoraan relevanttia GDPR:n ja <a href="eu-tekoalylaki-pk-yritys-2026.html">EU:n tekoälyasetuksen</a> näkökulmasta, erityisesti jos käsittelet asiakastietoja, terveystietoja tai muuta erityisen suojan piiriin kuuluvaa dataa.</p>
+
+            <p>Eurooppalaiset pilvipalvelut mahdollistavat avoimen mallin sijoittamisen pohjoismaiseen datakeskukseen, jolloin data pysyy EU:n sisällä koko käsittelyketjun ajan. Tämä on selkeä etu verrattuna suljettuihin API-palveluihin, joiden datankäsittely voi tapahtua Yhdysvalloissa, vaikka useimmat isot toimijat tarjoavatkin nykyään myös EU-alueen datankäsittelyä lisämaksusta.</p>
+
+            <h2 id="suomen-kieli">Suomen kieli on oma kysymyksensä</h2>
+            <p>Suurin osa kielimalleista on koulutettu pääosin englanninkielisellä datalla, ja suomen kielen tuki vaihtelee mallien välillä huomattavasti. Käsittelimme tätä laajemmin <a href="rag-suomen-kielen-haasteet.html">RAG suomen kielellä -postauksessamme</a>, mutta pääpiirteissään: Mistral on eurooppalaisista malleista vahvin suomen ja muiden EU-kielten käsittelyssä, koska sen koulutusdatassa on painotettu eurooppalaisia kieliä enemmän kuin monissa yhdysvaltalaisissa malleissa.</p>
+
+            <p>Suomessa on myös oma avoimen kielimallin kehityshanke käynnissä: Turun yliopiston TurkuNLP-tutkimusryhmä ja Silo AI ovat kehittäneet Poro- ja Viking-mallit, jotka on koulutettu erityisesti suomeksi ja muille pohjoismaisille kielille. OpenEuroLLM-konsortio (mukana mm. Silo AI, TurkuNLP, AMD ja useita eurooppalaisia yliopistoja) julkaisee uuden 8 miljardin parametrin mallisarjan kesällä 2026, ja isompia versioita myöhemmin. Toistaiseksi kaupalliset huippumallit ja Mistral suoriutuvat suomen kielestä paremmin useimmissa käytännön sovelluksissa, mutta ero kapenee koko ajan.</p>
+
+            <h2 id="paatospuu">Käytännön päätöspuu PK-yritykselle</h2>
+            <ul>
+                <li><strong>Jos volyymi on matala ja tarve on nopea käyttöönotto:</strong> valitse suljettu malli valmiin API:n kautta. Tämä sopii valtaosalle PK-yrityksistä, koska rutiiniautomaation kuukausivolyymi jää harvoin lähellekään sitä pistettä, jossa oma infrastruktuuri kannattaisi.</li>
+                <li><strong>Jos data on erityisen arkaluonteista tai regulaatio vaatii EU-sisäistä käsittelyä:</strong> harkitse avointa mallia eurooppalaisella infrastruktuurilla, vaikka volyymi olisi matala. Tietosuojahyöty voi olla kustannussäästöä tärkeämpi.</li>
+                <li><strong>Jos volyymi on korkea ja pitkäkestoinen:</strong> laske oman infrastruktuurin takaisinmaksuaika. Yli 50 miljoonan tokenin kuukausikäytöllä avoin malli omalla ajoympäristöllä alkaa usein olla kustannustehokkaampi.</li>
+                <li><strong>Jos tarve on testata montaa mallia rinnastuksessa ilman sitoutumista:</strong> käytä aggregaattoripalvelua kuten OpenRouter, joka yhdistää satoja malleja saman rajapinnan taakse ja tekee vaihtamisesta helppoa ilman vendor lock-inia.</li>
+            </ul>
+
+            <h2 id="miten-valok-auttaa">Miten Valok auttaa</h2>
+            <p>Emme sido asiakkaitamme yhteen kielimalliin. Rakennamme automaatiot ja tekoälyratkaisut niin, että malli on vaihdettavissa tarpeen mukaan, ja valitsemme lähtömallin aina käyttötapauksen, budjetin ja tietosuojavaatimusten perusteella, ei sen mukaan mikä sattuu olemaan trendikkäin.</p>
+
+            <div class="cta-box">
+                <h3>Et ole varma mikä kielimalli sopii teidän käyttötapaukseenne?</h3>
+                <p>Käymme ilmaisessa kartoituksessa läpi datanne, volyyminne ja tietosuojavaatimuksenne, ja suosittelemme mallin joka oikeasti sopii, ei sitä joka on juuri nyt otsikoissa.</p>
+                <a href="/#yhteystiedot" class="btn btn-primary" style="margin-top: 20px;">Pyydä maksuton kartoitus</a>
+            </div>
+
+            <div class="source-list">
+                <h4>Lähteet:</h4>
+                <ul>
+                    <li>• <a href="https://platform.claude.com/docs/en/about-claude/pricing" target="_blank">Anthropic: Claude-mallien viralliset hinnat (elokuu 2026)</a></li>
+                    <li>• <a href="https://whatllm.org/blog/open-source-vs-proprietary-llms-2026" target="_blank">WhatLLM.org: "Open Source vs Proprietary LLMs in 2026: The Benchmark Gap"</a></li>
+                    <li>• <a href="https://datavlab.ai/post/best-open-source-llm-2026-decision-framework-european-teams" target="_blank">DataVLab: "Best Open Source LLMs for European Teams (2026 Guide)"</a></li>
+                    <li>• <a href="https://www.utu.fi/fi/ajankohtaista/uutinen/euroopan-avoin-kielimalli-poro-eurooppalaisen-tekoalyn-ja-kielten" target="_blank">Turun yliopisto: "Euroopan avoin kielimalli Poro" (TurkuNLP & Silo AI)</a></li>
+                </ul>
+            </div>
+        </main>
+    </article>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer">VALOK<span class="logo-dot">.</span></div>
+                <p>Prosessien automatisointia ja dedikoituja tekoälyratkaisuja suomalaisille PK-yrityksille.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Linkit</h4>
+                <ul>
+                    <li><a href="/">Etusivu</a></li>
+                    <li><a href="../blogi.html">Blogi</a></li>
+                    <li><a href="/#palvelut">Palvelut</a></li>
+                    <li><a href="../tietosuoja.html">Tietosuoja</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ota yhteyttä</h4>
+                <ul>
+                    <li>aleksanteri@valok.fi</li>
+                    <li>Jyväskylä, Finland</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Valok. Kaikki oikeudet pidätetään. · <a href="#" id="cookieSettingsLink">Evästeasetukset</a>
+        </div>
+    </footer>
+
+    <div id="cookieBanner" class="cookie-banner">
+        <h5>Yksityisyytesi on meille tärkeää</h5>
+        <p>Käytämme sivustolla vain välttämättömiä toimintoja varmistaaksemme parhaan mahdollisen käyttökokemuksen. Emme
+            käytä kolmannen osapuolen markkinointievästeitä ilman suostumustasi.</p>
+        <div class="cookie-btn-group">
+            <button id="acceptCookies" class="btn btn-primary">Hyväksy kaikki</button>
+            <button id="rejectCookies" class="btn btn-ghost">Hylkää</button>
+            <a href="../tietosuoja.html" class="btn btn-ghost">Lue lisää</a>
+        </div>
+    </div>
+
+    <script src="../main.js"></script>
+</body>
+
+</html>

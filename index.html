@@ -174,6 +174,12 @@
                     <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
             </a>
+            <a href="https://calendar.app.google/go2sDgLdm6r2eKTK7" target="_blank" rel="noopener" class="btn btn-ghost">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="4" width="18" height="18" rx="2" /><path d="M16 2v4M8 2v4M3 10h18" />
+                </svg>
+                Varaa tapaaminen
+            </a>
             <a href="#palvelut" class="btn btn-ghost">Tutustu palveluihin</a>
         </div>
         <div class="hero-glow"></div>
@@ -457,6 +463,16 @@
         </div>
 
         <div class="contact-container">
+            <div class="info-card" data-animate style="text-align: center; max-width: 700px; margin: 0 auto 32px;">
+                <strong>Haluatko jutella heti?</strong>
+                <p style="margin: 0 0 20px; color: var(--text-muted);">Varaa suoraan 15 minuutin etätapaaminen kalenteristani, ilman lomakkeen täyttämistä.</p>
+                <a href="https://calendar.app.google/go2sDgLdm6r2eKTK7" target="_blank" rel="noopener" class="btn btn-primary">
+                    Varaa aika kalenterista
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
+            </div>
             <div class="contact-form-card" data-animate>
                 <form action="https://formspree.io/f/xlgpgyjl" method="POST" id="contact-form">
                     <div class="form-grid">
@@ -507,7 +523,7 @@
                 <div class="logo"><img srcset="img/valok-white-with-black-outline-mobile.webp 800w, img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 1600px" src="img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer"><img srcset="img/valok-black-with-white-outline-mobile.webp 800w, img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 1600px" src="img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer">VALOK<span class="logo-dot">.</span></div>
                 <p>Prosessien automatisointia ja dedikoituja tekoälyratkaisuja suomalaisille PK-yrityksille.</p>
                 <div class="footer-social">
-                    <a href="#" aria-label="LinkedIn">in</a>
+                    <a href="https://linkedin.com/company/valok" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
                     <a href="#" aria-label="GitHub">gh</a>
                 </div>
             </div>
@@ -515,7 +531,7 @@
                 <h4>Palvelut</h4>
                 <ul>
                     <li><a href="#palvelut">Prosessien automatisointi</a></li>
-                    <li><a href="prosessiautomaatio.html">Prosessiautomaatio (LP)</a></li>
+                    <li><a href="prosessiautomaatio.html">Prosessiautomaatio: lue lisää</a></li>
                     <li><a href="#palvelut">Dedikoitu tekoäly</a></li>
                     <li><a href="#palvelut">Data & konsultointi</a></li>
                 </ul>
@@ -526,20 +542,20 @@
                     <li><a href="#prosessi">Näin toimimme</a></li>
                     <li><a href="#tulokset">Tulokset</a></li>
                     <li><a href="#teknologiat">Teknologiat</a></li>
-                    <li><a href="#">Tietosuojaseloste</a></li>
+                    <li><a href="tietosuoja.html">Tietosuoja</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h4>Yhteystiedot</h4>
                 <ul>
                     <li>aleksanteri@valok.fi</li>
-                    <li><a href="https://linkedin.com" target="_blank">Ota yhteyttä LinkedInissä</a></li>
+                    <li><a href="https://linkedin.com/company/valok" target="_blank" rel="noopener">Ota yhteyttä LinkedInissä</a></li>
                     <li>Jyväskylä, Finland</li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            &copy; 2026 Valok. Kaikki oikeudet pidätetään.
+            &copy; 2026 Valok. Kaikki oikeudet pidätetään. · <a href="#" id="cookieSettingsLink">Evästeasetukset</a>
         </div>
     </footer>
 
@@ -547,10 +563,11 @@
     <div id="cookieBanner" class="cookie-banner">
         <h5>Yksityisyytesi on meille tärkeää</h5>
         <p>Käytämme sivustolla vain välttämättömiä toimintoja varmistaaksemme parhaan mahdollisen käyttökokemuksen. Emme
-            käytä kolmannen osapuolen markkinointievästeitä.</p>
+            käytä kolmannen osapuolen markkinointievästeitä ilman suostumustasi.</p>
         <div class="cookie-btn-group">
-            <button id="acceptCookies" class="btn btn-primary">Ymmärrän</button>
-            <a href="#" class="btn btn-ghost">Lue lisää</a>
+            <button id="acceptCookies" class="btn btn-primary">Hyväksy kaikki</button>
+            <button id="rejectCookies" class="btn btn-ghost">Hylkää</button>
+            <a href="tietosuoja.html" class="btn btn-ghost">Lue lisää</a>
         </div>
     </div>
 
