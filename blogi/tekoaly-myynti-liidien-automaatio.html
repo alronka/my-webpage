@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#030712">
+    <title>Tekoäly myynnin ja liidien automaatiossa: Mistä PK-yritys hyötyy oikeasti — Valok</title>
+    <meta name="description"
+        content="Liidien pisteytys, seuranta ja ensikontaktin valmistelu voidaan automatisoida tekoälyllä, mutta kauppa syntyy silti ihmisten välillä. Lue missä kohtaa automaatio auttaa ja missä myyjän pitää säilyttää ohjat.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel=icon type=image/png sizes=32x32 href=../img/favicon-32x32.png>
+    <link rel=apple-touch-icon sizes=180x180 href=../img/favicon-180x180.png>
+
+    <link rel="canonical" href="https://valok.fi/blogi/tekoaly-myynti-liidien-automaatio.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://valok.fi/blogi/tekoaly-myynti-liidien-automaatio.html">
+    <meta property="og:title" content="Tekoäly myynnin ja liidien automaatiossa: Mistä PK-yritys hyötyy oikeasti">
+    <meta property="og:description" content="Liidien pisteytys ja ensikontaktin valmistelu voidaan automatisoida, mutta kauppa syntyy silti ihmisten välillä. Missä kohtaa automaatio auttaa ja missä myyjän pitää säilyttää ohjat.">
+    <meta property="og:image" content="https://valok.fi/img/tekoaly-myynti-liidien-automaatio.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tekoäly myynnin ja liidien automaatiossa: Mistä PK-yritys hyötyy oikeasti">
+    <meta name="twitter:description" content="Liidien pisteytys ja ensikontaktin valmistelu voidaan automatisoida, mutta kauppa syntyy silti ihmisten välillä. Missä kohtaa automaatio auttaa ja missä myyjän pitää säilyttää ohjat.">
+    <meta name="twitter:image" content="https://valok.fi/img/tekoaly-myynti-liidien-automaatio.webp">
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Tekoäly myynnin ja liidien automaatiossa: Mistä PK-yritys hyötyy oikeasti",
+  "description": "Liidien pisteytys ja ensikontaktin valmistelu voidaan automatisoida, mutta kauppa syntyy silti ihmisten välillä. Missä kohtaa automaatio auttaa ja missä myyjän pitää säilyttää ohjat.",
+  "image": "https://valok.fi/img/tekoaly-myynti-liidien-automaatio.webp",
+  "datePublished": "2026-08-14",
+  "dateModified": "2026-08-14",
+  "author": {
+    "@type": "Person",
+    "name": "Aleksanteri Rönkä",
+    "url": "https://valok.fi/",
+    "email": "aleksanteri@valok.fi",
+    "jobTitle": "Perustaja",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Valok"
+    }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Valok",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://valok.fi/img/valok-black-with-white-outline.webp"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://valok.fi/blogi/tekoaly-myynti-liidien-automaatio.html"
+  }
+}
+    </script>
+
+    <style>
+        .post-header {
+            min-height: auto !important;
+            padding: 160px 24px 24px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            background: radial-gradient(circle at top, var(--accent-glow) 0%, transparent 70%);
+        }
+
+        .post-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px 100px;
+            line-height: 1.8;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .post-content h2, .post-content h3 {
+            color: var(--text);
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .post-content p {
+            margin-bottom: 24px;
+        }
+
+        .post-content ul, .post-content ol {
+            margin-bottom: 24px;
+            padding-left: 20px;
+        }
+
+        .post-content li {
+            margin-bottom: 12px;
+        }
+
+        .post-meta {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .post-author {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 24px;
+            text-align: left;
+        }
+
+        .post-author img {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .post-author-name {
+            display: block;
+            font-weight: 600;
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+
+        .post-author-role {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dim);
+            text-decoration: none;
+            margin-bottom: 40px;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        .post-image {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .post-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .toc-box {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+        }
+
+        .toc-box h4 {
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        .toc-box ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .toc-box a {
+            color: #58a6ff;
+            text-decoration: none;
+            display: block;
+            padding: 4px 0;
+            transition: var(--transition);
+        }
+
+        .toc-box a:hover {
+            color: var(--accent);
+            padding-left: 4px;
+        }
+
+        .highlight-box {
+            background: var(--glass);
+            padding: 30px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+            border-left: 4px solid var(--accent);
+        }
+
+        .reference-list {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            margin-top: 60px;
+        }
+
+        .reference-list ol {
+            padding-left: 20px;
+        }
+
+        .contact-section {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 60px 40px;
+            border-radius: var(--radius);
+            margin-top: 80px;
+        }
+
+        .level-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .level-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+        }
+
+        .level-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: #fff;
+            font-weight: 900;
+            font-size: 0.9rem;
+        }
+
+        .level-text strong { display: block; color: var(--text); margin-bottom: 6px; }
+        .level-text p { margin: 0; font-size: 0.95rem; }
+    </style>
+</head>
+
+<body>
+    <canvas id="particles"></canvas>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark" width="4206" height="4206"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light" width="4206" height="4206">VALOK<span
+                     class="logo-dot">.</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="/#palvelut">Palvelut</a>
+                <a href="/#prosessi">Prosessi</a>
+                <a href="../blogi.html">Blogi</a>
+                <a href="/#yhteystiedot" class="nav-cta">Ota yhteyttä</a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Avaa valikko">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <article>
+        <header class="post-header">
+            <a href="../blogi.html" class="back-link">← Takaisin blogiin</a>
+            <span class="post-meta">Myynti • Liidit • Automaatio</span>
+            <h1>Tekoäly myynnin ja liidien automaatiossa: <span class="gradient-text">mistä PK-yritys hyötyy oikeasti</span></h1>
+            <p style="color: var(--text-dim); margin-top: 20px;">Moni yritys pelkää, että tekoäly myynnissä tarkoittaa myyjän korvaamista. Todellisuudessa hyvin rajattu automaatio tekee juuri päinvastoin: se vapauttaa myyjän ajan sinne missä ihmisen läsnäolo oikeasti ratkaisee kaupan.</p>
+            <div class="post-author">
+                <img src="../img/valok-aleksanteri.webp" alt="Aleksanteri Rönkä" width="44" height="44" loading="lazy">
+                <div>
+                    <span class="post-author-name">Aleksanteri Rönkä</span>
+                    <span class="post-author-role">Perustaja, Valok &middot; <a href="mailto:aleksanteri@valok.fi">aleksanteri@valok.fi</a></span>
+                </div>
+            </div>
+        </header>
+
+        <div class="post-image">
+            <img src="../img/tekoaly-myynti-liidien-automaatio.webp" alt="Tekoäly myynnin ja liidien automaatiossa PK-yritykselle - Valok" width="1024" height="1024">
+        </div>
+
+        <main class="post-content">
+            <div class="toc-box">
+                <h4>Sisällysluettelo</h4>
+                <ul>
+                    <li><a href="#eri-peli">1. Miksi myyntiprosessi on eri peli kuin asiakaspalvelun automaatio</a></li>
+                    <li><a href="#mita-osaa">2. Mitä tekoäly osaa tehdä myyntiprosessissa jo nyt</a></li>
+                    <li><a href="#pisteytys">3. Liidien pisteytys: miten agentti tunnistaa lämpimän liidin</a></li>
+                    <li><a href="#ohjat">4. Missä kohtaa myyjän pitää ottaa ohjat itse</a></li>
+                    <li><a href="#sudenkuopat">5. Yleisimmät sudenkuopat liidiautomaatiossa</a></li>
+                    <li><a href="#miten-valok">6. Miten Valok rakentaa myynnin automaatioprojektin</a></li>
+                </ul>
+            </div>
+
+            <p>PK-yritykset automatisoivat usein ensin asiakaspalvelun ja sähköpostit, koska ne tuntuvat turvallisimmalta kohteelta. Myyntiprosessi jää viimeiseksi, koska pelko on aito: uskaltaako tekoälylle antaa vastuuta juuri siitä osasta liiketoimintaa, joka tuo rahan taloon? Kysymys on oikea, mutta vastaus ei ole kaikki tai ei mitään.</p>
+
+            <p>Hyvin rajattu myynnin automaatio ei tee kaupasta tekoälyn tehtävää. Se tekee myyjästä paremmin valmistautuneen jokaiseen kontaktiin, poistaa sen ajan, joka muuten kuluisi taustatietojen kaivamiseen ja muistiinpanojen kirjaamiseen, eikä seuranta pääse enää unohtumaan kiireen keskellä.</p>
+
+            <h2 id="eri-peli">1. Miksi myyntiprosessi on eri peli kuin asiakaspalvelun automaatio</h2>
+            <p>Asiakaspalvelussa tavoite on selkeä: ratkaise ongelma nopeasti ja oikein. Myynnissä tavoite on toinen, hitaampi ja tunnepohjaisempi: rakenna luottamus, ymmärrä asiakkaan todellinen tarve, ja ohjaa päätöksentekoa, joka B2B-kaupassa venyy usein viikkojen tai kuukausien mittaiseksi. <a href="tekoaly-sahkopostien-automaatio.html">Kirjoitimme aiemmin tekoälyagenteista sähköpostin ja asiakaspalvelun automaatiossa</a>, ja moni yritys yrittää kopioida saman logiikan suoraan myyntiin. Se epäonnistuu usein, koska myynnissä väärä hetki automaatiolle tuntuu asiakkaasta heti epäaidolta.</p>
+
+            <p>Tästä syystä myynnin automaatio kannattaa suunnitella omana kokonaisuutenaan, ei asiakaspalveluautomaation laajennuksena. Työkalut voivat olla samoja, mutta rajat ja tavoitteet ovat erilaiset.</p>
+
+            <h2 id="mita-osaa">2. Mitä tekoäly osaa tehdä myyntiprosessissa jo nyt</h2>
+            <p>Käytännön tasolla toimivimmat myynnin automaatiot keskittyvät valmisteluun ja seurantaan, ei itse myymiseen:</p>
+            <ul>
+                <li><strong>Liidien pisteytys.</strong> Agentti arvioi datan perusteella, mitkä liidit ovat todennäköisimmin ostovalmiita juuri nyt.</li>
+                <li><strong>Ensikontaktin valmistelu.</strong> Agentti kokoaa taustatiedot liidistä (toimiala, aiempi vuorovaikutus, mahdollinen tarve) ja ehdottaa myyjälle lähestymistapaa, sen sijaan että lähettäisi geneerisen massaviestin.</li>
+                <li><strong>CRM:n ylläpito.</strong> Puheluiden ja tapaamisten muistiinpanot, seuraavat askeleet ja liidin tilan päivitys kirjautuvat automaattisesti, eivät jää myyjän muistin varaan.</li>
+                <li><strong>Oikea-aikainen seuranta.</strong> Agentti huomaa, kun lämmin liidi on ollut hiljaa kaksi viikkoa, ja muistuttaa myyjää ottamaan yhteyttä ennen kuin liidi jäähtyy kokonaan.</li>
+            </ul>
+
+            <div class="highlight-box">
+                Toimivin malli ei ole agentti, joka myy asiakkaan puolesta, vaan agentti, joka valmistelee myyjän jokaisen kontaktin niin hyvin, ettei aikaa kulu taustatietojen kaivamiseen vaan itse keskusteluun.
+            </div>
+
+            <h2 id="pisteytys">3. Liidien pisteytys: miten agentti tunnistaa lämpimän liidin</h2>
+            <p>Pisteytys yhdistää kolmenlaista signaalia: käyttäytymisdatan (mitä liidi on tehnyt sivustolla, mitä sisältöä se on lukenut), yritystiedot (toimiala, koko, sijainti) ja eksplisiittiset kiinnostuksen merkit, kuten hinnoittelusivun toistuvat käynnit tai ROI-laskurin täyttäminen. Meidän omalla sivustollamme <a href="../tekoaly-roi-laskuri.html">tekoäly ROI-laskurin</a> käyttö on juuri tällainen signaali: se kertoo, että vierailija on jo miettinyt konkreettista hyötyä, ei vain selaile satunnaisesti.</p>
+
+            <p>Pisteytys on kuitenkin vain niin hyvä kuin data, jolla se on rakennettu. Jos CRM:ssä on puutteellisia tai ristiriitaisia tietoja, agentti oppii vääriä signaaleja ja pisteyttää vääriä liidejä lämpimiksi. <a href="datan-kunto-ennen-tekoalya.html">Avasimme datan kunnon merkitystä tarkemmin toisessa artikkelissamme</a>, ja sama pätee suoraan myyntidataan: ennen pisteytysmallin rakentamista kannattaa varmistaa, että CRM:n perustiedot ovat ylipäätään luotettavia.</p>
+
+            <h2 id="ohjat">4. Missä kohtaa myyjän pitää ottaa ohjat itse</h2>
+            <p>Pisteytys ja valmistelu voidaan automatisoida pitkälle, mutta osa myyntiprosessista kannattaa jättää tietoisesti agentin ulottumattomiin. <a href="tekoalyn-rajoittaminen.html">Käsittelimme agentin valtuuksien rajaamista tarkemmin aiemmassa artikkelissamme</a>, ja sama “ihminen silmukassa” -periaate pätee myyntiin: mitä lähempänä kaupan päättämistä ollaan, sitä vähemmän agentti toimii itsenäisesti.</p>
+            <ul>
+                <li><strong>Automaattisesti ilman hyväksyntää:</strong> liidien pisteytys, taustatietojen kokoaminen, CRM-päivitykset, muistutukset.</li>
+                <li><strong>Vaatii aina myyjän:</strong> hinnoittelusta neuvotteleminen, ensimmäinen henkilökohtainen tapaaminen, kaupan päättäminen, poikkeukselliset sopimusehdot.</li>
+            </ul>
+            <p>Raja ei ole mielivaltainen: se kulkee siitä, missä kohtaa asiakas odottaa ja ansaitsee aidon ihmiskontaktin, ei vain oikeaa tietoa oikeaan aikaan.</p>
+
+            <h2 id="sudenkuopat">5. Yleisimmät sudenkuopat liidiautomaatiossa</h2>
+            <ul class="level-list">
+                <li>
+                    <div class="level-number">1</div>
+                    <div class="level-text">
+                        <strong>Huono lähtödata</strong>
+                        <p>Jos CRM:ssä on vuosien ajalta puutteellisia tai vanhentuneita tietoja, pisteytysmalli oppii niistä vääriä johtopäätöksiä eikä kukaan huomaa sitä ennen kuin myyjät alkavat epäillä koko järjestelmää.</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="level-number">2</div>
+                    <div class="level-text">
+                        <strong>Liikaa automatisoitua viestintää</strong>
+                        <p>Kun jokainen viesti on agentin kirjoittama ilman myyjän kosketusta, se alkaa tuntua asiakkaasta massaviestiltä, vaikka sisältö olisikin personoitua. Automaatio kannattaa pitää valmistelussa, ei itse lähetettävässä viestissä.</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="level-number">3</div>
+                    <div class="level-text">
+                        <strong>Rajaamaton pääsy hinnoitteluun</strong>
+                        <p>Jos agentilla on valtuudet ehdottaa alennuksia tai muokata tarjouksia itsenäisesti, yksikin väärä ehdotus voi maksaa enemmän kuin koko automaatioprojekti säästi.</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="level-number">4</div>
+                    <div class="level-text">
+                        <strong>Läpinäkymätön pisteytys</strong>
+                        <p>Jos myyjät eivät ymmärrä, miksi liidi sai tietyn pistemäärän, he lakkaavat luottamasta järjestelmään ja palaavat vanhaan tapaan priorisoida liidejä mutu-tuntumalla.</p>
+                    </div>
+                </li>
+            </ul>
+
+            <h2 id="miten-valok">6. Miten Valok rakentaa myynnin automaatioprojektin</h2>
+            <p>Aloitamme aina yhdestä kapeasta vaiheesta, emme koko myyntiprosessin automatisoinnista kerralla. Tyypillisesti ensimmäinen vaihe on pelkkä liidien pisteytys olemassa olevan CRM-datan päälle, koska se tuo hyötyä nopeasti ilman että se koskee asiakaskontaktiin lainkaan. Vasta kun pisteytys on osoittanut luotettavuutensa, laajennamme ensikontaktin valmisteluun ja seurantamuistutuksiin.</p>
+
+            <p>Jokaiselle vaiheelle määritellään etukäteen, mitä agentti saa tehdä itsenäisesti ja mikä vaatii aina myyjän hyväksynnän, samalla tavalla kuin <a href="tekoalyn-rajoittaminen.html">muissakin agenttiprojekteissamme</a>. Onnistumista mitataan konkreettisilla luvuilla, ei tunnelmalla: kuinka paljon myyjän aikaa vapautuu taustatyöstä, ja miten liidien konversio kehittyy ennen ja jälkeen. <a href="tekoalyagenttien-roi-mittarit.html">Syvennyimme ROI-mittareihin toisessa artikkelissamme</a>, jos haluat tietää mitä lukuja kannattaa seurata omassa projektissasi.</p>
+
+            <div class="reference-list">
+                <h4>Lähdeviitteet:</h4>
+                <ol>
+                    <li><a href="https://www.salesforce.com/resources/research-reports/state-of-sales/" target="_blank" rel="noopener">Salesforce: "State of Sales"</a>. Tutkimusraportti tekoälyn käytöstä myyntiorganisaatioissa.</li>
+                    <li><a href="https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai" target="_blank" rel="noopener">McKinsey: "The State of AI"</a>. Vuosittainen katsaus tekoälyn käyttöönottoon eri liiketoimintafunktioissa.</li>
+                </ol>
+            </div>
+
+            <div class="contact-section">
+                <div class="section-header" style="text-align: center; margin-bottom: 40px;">
+                    <span class="section-tag">Otetaan askel eteenpäin</span>
+                    <h2>Tietäisitkö, mitkä liidit ansaitsevat myyjänne ajan juuri nyt?</h2>
+                    <p>Valok rakentaa myynnin automaation vaiheittain, aina yhdestä kapeasta osasta kerrallaan, niin että myyjän aika vapautuu sinne missä se tuottaa eniten.</p>
+                </div>
+
+                <div class="contact-container" style="max-width: 100%;">
+                    <div class="contact-form-card">
+                        <form action="https://formspree.io/f/xlgpgyjl" method="POST" id="contact-form">
+                            <div class="form-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 20px;">
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="name">Nimi</label>
+                                    <input type="text" id="name" name="name" autocomplete="name" placeholder="Oma nimesi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                </div>
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="email">Sähköposti</label>
+                                    <input type="email" id="email" name="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="esimerkki@yritys.fi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg full-width" style="width: 100%; padding: 16px; font-weight: bold; cursor: pointer; margin-top: 20px;">
+                                Varaa ilmainen konsultaatio
+                            </button>
+                            <div id="form-status" class="form-status" aria-live="polite"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </article>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer" width="4206" height="4206" loading="lazy"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer" width="4206" height="4206" loading="lazy">VALOK<span class="logo-dot">.</span></div>
+                <p>Prosessien automatisointia ja dedikoituja tekoälyratkaisuja suomalaisille PK-yrityksille.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Linkit</h4>
+                <ul>
+                    <li><a href="/">Etusivu</a></li>
+                    <li><a href="../blogi.html">Blogi</a></li>
+                    <li><a href="/#palvelut">Palvelut</a></li>
+                    <li><a href="../tietosuoja.html">Tietosuoja</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ota yhteyttä</h4>
+                <ul>
+                    <li>aleksanteri@valok.fi</li>
+                    <li>Jyväskylä, Finland</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Valok. Kaikki oikeudet pidätetään. · <a href="#" id="cookieSettingsLink">Evästeasetukset</a>
+        </div>
+    </footer>
+
+        <div id="cookieBanner" class="cookie-banner">
+        <h5>Yksityisyytesi on meille tärkeää</h5>
+        <p>Käytämme sivustolla vain välttämättömiä toimintoja varmistaaksemme parhaan mahdollisen käyttökokemuksen. Emme
+            käytä kolmannen osapuolen markkinointievästeitä ilman suostumustasi.</p>
+        <div class="cookie-btn-group">
+            <button id="acceptCookies" class="btn btn-primary">Hyväksy kaikki</button>
+            <button id="rejectCookies" class="btn btn-ghost">Hylkää</button>
+            <a href="../tietosuoja.html" class="btn btn-ghost">Lue lisää</a>
+        </div>
+    </div>
+
+    <script src="../main.js"></script>
+</body>
+
+</html>

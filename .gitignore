@@ -1,4 +1,5 @@
 img/*.bak
+.DS_Store
 
 # impeccable design-skill state files (kept local only, this repo is public)
 PRODUCT.md
