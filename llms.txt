@@ -13,12 +13,12 @@ Valok (Y-tunnus 3490027-7) auttaa pienten ja keskisuurten yritysten johtoa ja IT
 
 ## Blogi (uusimmat artikkelit)
 
+- [Mihin prosessiin tekoäly kannattaa kohdistaa? PK-yrittäjän opas](https://valok.fi/blogi/mihin-prosessiin-tekoaly-kannattaa-kohdistaa.html): Chatbotin sijaan kannattaa katsoa laskutusta, kunnossapitoa ja varastonhallintaa. Viisi kriteeriä hyvän automaatiokohteen tunnistamiseen ja tutkimustietoa isojen yritysten saavuttamista hyödyistä.
 - [Tekoäly myynnin ja liidien automaatiossa: Mistä PK-yritys hyötyy oikeasti](https://valok.fi/blogi/tekoaly-myynti-liidien-automaatio.html): Liidien pisteytys ja ensikontaktin valmistelu voidaan automatisoida, mutta kauppa syntyy silti ihmisten välillä. Missä kohtaa automaatio auttaa ja missä myyjän pitää säilyttää ohjat.
 - [IT-tiimin manuaaliset rutiinit: piilokustannus, jota kukaan ei laske](https://valok.fi/blogi/it-tiimin-manuaaliset-rutiinit.html): IT-tiimit menettävät jopa kolmasosan työajastaan manuaalisiin rutiineihin. Mitkä prosessit kannattaa automatisoida perinteisellä automaatiolla ja missä kohtaa tekoälyagentti tuo lisäarvoa.
 - [Miten valita kielimalli PK-yrityksellesi 2026: Avoin vai suljettu malli?](https://valok.fi/blogi/kielimallin-valinta-pk-yritykselle-2026.html): Miten PK-yritys valitsee oikean kielimallin kustannusten, tietosuojan ja suomen kielen tuen perusteella vuonna 2026.
 - [Tekoälykuvien ja -tekstien merkintä: EU:n uusi läpinäkyvyysvelvoite yrityksille](https://valok.fi/blogi/tekoalykuvien-merkinta-eu-tekoalyasetus.html): EU:n tekoälyasetuksen läpinäkyvyysvelvoite astui voimaan 2.8.2026. Milloin tekoälyllä tuotettu kuva tai teksti pitää merkitä, ja milloin ei.
 - [Tekoälyn rajoittaminen: Miten annat agentille juuri oikeat valtuudet](https://valok.fi/blogi/tekoalyn-rajoittaminen.html): "Vapaat kädet" on vaarallinen lähtökohta tekoälyagentille. Miten Valok rajaa valtuudet datan, toimintojen ja päätöksenteon tasolla.
-- [Rakenna itse vai osta valmis? Milloin räätälöity tekoälyratkaisu kannattaa PK-yritykselle](https://valok.fi/blogi/rakentaa-itse-vai-ostaa-valmis.html): Valmis SaaS-työkalu on nopea, mutta ei aina taivu tarpeisiin. Miten PK-yritys tekee järkevän build vs. buy -päätöksen.
 - [Blogin arkisto](https://valok.fi/arkisto.html): Kaikki vanhemmat artikkelit automaatiosta, tekoälystä, RAG:sta ja integraatioista.
 
 ## Muut sivut

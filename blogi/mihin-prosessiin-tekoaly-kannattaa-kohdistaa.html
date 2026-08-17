@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#030712">
+    <title>Mihin prosessiin tekoäly kannattaa kohdistaa? PK-yrittäjän opas | Valok</title>
+    <meta name="description"
+        content="Chatbotin sijaan kannattaa katsoa laskutusta, kunnossapitoa ja varastonhallintaa. Viisi kriteeriä hyvän automaatiokohteen tunnistamiseen ja tutkimustietoa isojen yritysten saavuttamista hyödyistä.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel=icon type=image/png sizes=32x32 href=../img/favicon-32x32.png>
+    <link rel=apple-touch-icon sizes=180x180 href=../img/favicon-180x180.png>
+
+    <link rel="canonical" href="https://valok.fi/blogi/mihin-prosessiin-tekoaly-kannattaa-kohdistaa.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://valok.fi/blogi/mihin-prosessiin-tekoaly-kannattaa-kohdistaa.html">
+    <meta property="og:title" content="Mihin prosessiin tekoäly kannattaa kohdistaa? PK-yrittäjän opas">
+    <meta property="og:description" content="Chatbotin sijaan kannattaa katsoa laskutusta, kunnossapitoa ja varastonhallintaa. Viisi kriteeriä hyvän automaatiokohteen tunnistamiseen ja tutkimustietoa isojen yritysten saavuttamista hyödyistä.">
+    <meta property="og:image" content="https://valok.fi/img/mihin-prosessiin-tekoaly-kannattaa-kohdistaa.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Mihin prosessiin tekoäly kannattaa kohdistaa? PK-yrittäjän opas">
+    <meta name="twitter:description" content="Chatbotin sijaan kannattaa katsoa laskutusta, kunnossapitoa ja varastonhallintaa. Viisi kriteeriä hyvän automaatiokohteen tunnistamiseen ja tutkimustietoa isojen yritysten saavuttamista hyödyistä.">
+    <meta name="twitter:image" content="https://valok.fi/img/mihin-prosessiin-tekoaly-kannattaa-kohdistaa.webp">
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Mihin prosessiin tekoäly kannattaa kohdistaa? PK-yrittäjän opas",
+  "description": "Chatbotin sijaan kannattaa katsoa laskutusta, kunnossapitoa ja varastonhallintaa. Viisi kriteeriä hyvän automaatiokohteen tunnistamiseen ja tutkimustietoa isojen yritysten saavuttamista hyödyistä.",
+  "image": "https://valok.fi/img/mihin-prosessiin-tekoaly-kannattaa-kohdistaa.webp",
+  "datePublished": "2026-08-17",
+  "dateModified": "2026-08-17",
+  "author": {
+    "@type": "Person",
+    "name": "Aleksanteri Rönkä",
+    "url": "https://valok.fi/",
+    "email": "aleksanteri@valok.fi",
+    "jobTitle": "Perustaja",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Valok"
+    }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Valok",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://valok.fi/img/valok-black-with-white-outline.webp"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://valok.fi/blogi/mihin-prosessiin-tekoaly-kannattaa-kohdistaa.html"
+  }
+}
+    </script>
+
+    <style>
+        .post-header {
+            min-height: auto !important;
+            padding: 160px 24px 24px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            background: radial-gradient(circle at top, var(--accent-glow) 0%, transparent 70%);
+        }
+
+        .post-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px 100px;
+            line-height: 1.8;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .post-content h2, .post-content h3 {
+            color: var(--text);
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .post-content p {
+            margin-bottom: 24px;
+        }
+
+        .post-content ul, .post-content ol {
+            margin-bottom: 24px;
+            padding-left: 20px;
+        }
+
+        .post-content li {
+            margin-bottom: 12px;
+        }
+
+        .post-meta {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .post-author {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 24px;
+            text-align: left;
+        }
+
+        .post-author img {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .post-author-name {
+            display: block;
+            font-weight: 600;
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+
+        .post-author-role {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dim);
+            text-decoration: none;
+            margin-bottom: 40px;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        .post-image {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .post-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .toc-box {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+        }
+
+        .toc-box h4 {
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        .toc-box ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .toc-box a {
+            color: #58a6ff;
+            text-decoration: none;
+            display: block;
+            padding: 4px 0;
+            transition: var(--transition);
+        }
+
+        .toc-box a:hover {
+            color: var(--accent);
+            padding-left: 4px;
+        }
+
+        .highlight-box {
+            background: var(--glass);
+            padding: 30px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+            border-left: 4px solid var(--accent);
+        }
+
+        .reference-list {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            margin-top: 60px;
+        }
+
+        .reference-list ol {
+            padding-left: 20px;
+        }
+
+        .contact-section {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 60px 40px;
+            border-radius: var(--radius);
+            margin-top: 80px;
+        }
+
+        .criteria-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .criteria-list li {
+            padding: 18px 20px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            margin-bottom: 14px;
+        }
+
+        .criteria-list strong { color: var(--text); }
+
+        sup a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        sup a:hover { text-decoration: underline; }
+    </style>
+</head>
+
+<body>
+    <canvas id="particles"></canvas>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark" width="4206" height="4206"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light" width="4206" height="4206">VALOK<span
+                     class="logo-dot">.</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="/#palvelut">Palvelut</a>
+                <a href="/#prosessi">Prosessi</a>
+                <a href="../blogi.html">Blogi</a>
+                <a href="/#yhteystiedot" class="nav-cta">Ota yhteyttä</a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Avaa valikko">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <article>
+        <header class="post-header">
+            <a href="../blogi.html" class="back-link">← Takaisin blogiin</a>
+            <span class="post-meta">Tekoäly • Automaatio • Prosessit</span>
+            <h1>Mihin prosessiin tekoäly kannattaa <span class="gradient-text">kohdistaa ensin?</span></h1>
+            <p style="color: var(--text-dim); margin-top: 20px;">Moni PK-yrittäjä kysyy ensin "mitä tekoälyllä voisi tehdä?" Parempi kysymys on: mikä prosessimme on tällä hetkellä hidas, virheherkkä tai kallis? Tämä opas kääntää lähestymistavan oikein päin, kriteereillä, esimerkeillä ja tutkimustiedolla.</p>
+            <div class="post-author">
+                <img src="../img/valok-aleksanteri.webp" alt="Aleksanteri Rönkä" width="44" height="44" loading="lazy">
+                <div>
+                    <span class="post-author-name">Aleksanteri Rönkä</span>
+                    <span class="post-author-role">Perustaja, Valok &middot; <a href="mailto:aleksanteri@valok.fi">aleksanteri@valok.fi</a></span>
+                </div>
+            </div>
+        </header>
+
+        <div class="post-image">
+            <img src="../img/mihin-prosessiin-tekoaly-kannattaa-kohdistaa.webp" alt="Valok-kettumaskotti valitsee oikean prosessin automatisoitavaksi laatikoiden joukosta - Valok" width="1024" height="1024">
+        </div>
+
+        <main class="post-content">
+            <div class="toc-box">
+                <h4>Sisällysluettelo</h4>
+                <ul>
+                    <li><a href="#vaara-lahtokohta">1. Miksi "otetaan tekoäly käyttöön" on väärä lähtökohta</a></li>
+                    <li><a href="#viisi-kriteeria">2. Viisi kriteeriä: näin tunnistat hyvän automaatiokohteen</a></li>
+                    <li><a href="#esimerkit">3. Kuusi ei-triviaalia esimerkkiä chatbotin ulkopuolelta</a></li>
+                    <li><a href="#tutkimustietoa">4. Mitä isot yritykset ovat oikeasti saavuttaneet: tutkimustietoa</a></li>
+                    <li><a href="#harjoitus">5. Käytännön harjoitus: kartoita omat prosessisi 20 minuutissa</a></li>
+                    <li><a href="#miten-valok">6. Miten Valok auttaa tunnistuksessa</a></li>
+                </ul>
+            </div>
+
+            <p>Moni PK-yrittäjä lähestyy tekoälyä väärästä suunnasta: kysytään "mitä tekoälyllä voisi tehdä?" sen sijaan että kysyttäisiin "mikä meidän prosessimme on tällä hetkellä hidas, virheherkkä tai kallis?" Ensimmäinen kysymys johtaa lähes aina samaan lopputulokseen, chatbottiin verkkosivulle, koska se on helpoin asia kuvitella. Jälkimmäinen kysymys johtaa yleensä johonkin paljon tylsempään ja paljon kannattavampaan: laskujen täsmäytykseen, tilausten käsittelyyn tai kunnossapidon aikatauluttamiseen.</p>
+
+            <p>Tämä artikkeli kääntää lähestymistavan oikein päin. Käymme läpi, millä kriteereillä prosessi tunnistetaan hyväksi automaatio- tai tekoälykohteeksi, annamme kuusi esimerkkiä jotka eivät ole chatbotteja, ja katsomme mitä isot yritykset ovat tutkitusti saavuttaneet vastaavilla investoinneilla.</p>
+
+            <h2 id="vaara-lahtokohta">1. Miksi "otetaan tekoäly käyttöön" on väärä lähtökohta</h2>
+            <p>Kun lähtökohtana on teknologia eikä prosessi, päädytään lähes aina ratkaisuun joka on näkyvä mutta ei erityisen hyödyllinen: chatbot, joka vastaa kysymyksiin jotka olisi voinut löytää UKK-sivulta, tai tekoälytyökalu, joka tuottaa tekstiä jonka joku joutuu silti muokkaamaan käsin. Nämä eivät ole huonoja asioita sinänsä, mutta ne harvoin ovat yrityksen kannattavin mahdollinen investointi.</p>
+
+            <p>Kannattavin lähtökohta on aina prosessi, ei teknologia. Kysy ensin: missä kohtaa yritys käyttää eniten ihmisten aikaa toistuvaan, sääntöpohjaiseen työhön? Missä virheet maksavat eniten? Missä tieto kulkee tällä hetkellä käsin järjestelmästä toiseen? Vasta kun tämä prosessi on tunnistettu, kannattaa kysyä minkälainen teknologia, tekoäly, perinteinen automaatio (RPA) vai näiden yhdistelmä, sopii siihen parhaiten. <a href="rpa-vs-api-pohjainen-automaatio.html">RPA vs. API-pohjainen automaatio -artikkelissamme</a> käsittelimme tarkemmin, miten teknologiavalinta tehdään vasta prosessin ymmärtämisen jälkeen, ei ennen sitä.</p>
+
+            <h2 id="viisi-kriteeria">2. Viisi kriteeriä: näin tunnistat hyvän automaatiokohteen</h2>
+            <p>Kaikki prosessit eivät sovi automaatioon yhtä hyvin. Käytännössä hyvä ensimmäinen kohde täyttää useimmat näistä viidestä kriteeristä:</p>
+            <ul class="criteria-list">
+                <li><strong>Volyymi.</strong> Prosessi toistuu usein, useita kertoja viikossa tai useammin. Harvoin toistuva prosessi ei koskaan maksa automaation rakentamista takaisin, vaikka se olisi kuinka työläs yksittäisenä tapauksena.</li>
+                <li><strong>Sääntöpohjaisuus vs. harkinta.</strong> Mitä enemmän prosessissa on selkeitä sääntöjä ("jos summa alle 500€ ja toimittaja tunnettu, hyväksy automaattisesti") ja mitä vähemmän se vaatii aitoa tapauskohtaista harkintaa, sitä helpompi se on automatisoida luotettavasti.</li>
+                <li><strong>Datan saatavuus ja laatu.</strong> Tarvittava tieto on jo digitaalisessa muodossa jossain järjestelmässä (laskutusohjelma, CRM, sähköposti), eikä sitä tarvitse ensin kaivaa paperilta tai ihmisten muistista.</li>
+                <li><strong>Virheen hinta.</strong> Mitä kalliimpi yksittäinen virhe on, sitä enemmän kannattaa investoida ihmisen hyväksyntään prosessin sisällä, ei jättää prosessia automatisoimatta kokonaan. Matalan riskin virheet voi automatisoida täysin, korkean riskin kohdat kannattaa suunnitella niin, että ihminen vahvistaa lopputuloksen.</li>
+                <li><strong>Mitattava lähtötilanne.</strong> Prosessista pystyy jo nyt sanomaan, kuinka paljon aikaa tai rahaa se vie kuukaudessa. Jos lähtötilannetta ei tiedetä, hyötyä on mahdoton osoittaa jälkikäteen, mikä on yksi yleisimmistä syistä miksi automaatioprojekteja pidetään epäonnistuneina vaikka ne olisivat oikeasti toimineet. <a href="tekoalyagenttien-roi-mittarit.html">Tekoälyagenttien ROI-mittarit -artikkelissamme</a> käsittelimme tarkemmin, miten tämä lähtötilanteen mittaaminen kannattaa tehdä käytännössä.</li>
+            </ul>
+            <p>Prosessi joka täyttää neljä tai viisi näistä kriteereistä on lähes aina parempi ensimmäinen kohde kuin näkyvin tai trendikkäin mahdollinen käyttötapaus.</p>
+
+            <h2 id="esimerkit">3. Kuusi ei-triviaalia esimerkkiä chatbotin ulkopuolelta</h2>
+
+            <h3>Ostolaskujen ja tilausten täsmäytys</h3>
+            <p>Kun lasku saapuu, joku tarkistaa käsin täsmääkö se tilaukseen ja vastaanottoraporttiin (kolmikohtainen täsmäytys), tarkistaa summan ja hyväksymisrajan, ja kirjaa sen oikealle kustannuspaikalle. Tämä on lähes aina hyvin sääntöpohjaista ja volyymiltaan suurta, juuri sitä yhdistelmää joka sopii automaatioon parhaiten. Poikkeukset (summa ei täsmää, toimittaja on uusi) ohjataan ihmisen käsiteltäväksi, loput hoituvat itsestään.</p>
+
+            <h3>Sopimusten ja tarjousten läpikäynti</h3>
+            <p>Kun yritys saa alihankkijalta tai kumppanilta sopimusluonnoksen, joku käy sen läpi etsien poikkeamia vakioehdoista: maksuajat, vastuunrajoitukset, irtisanomisehdot. Tekoäly ei allekirjoita sopimuksia, mutta se voi lukea luonnoksen minuuteissa ja nostaa esiin juuri ne kohdat jotka poikkeavat yrityksen omasta vakiopohjasta, jolloin juristi tai yrittäjä itse käyttää aikansa vain niihin kohtiin jotka oikeasti vaativat harkintaa.</p>
+
+            <h3>Ennakoiva kunnossapito</h3>
+            <p>Tuotannollisessa yrityksessä laitteiden kunnossapito tehdään usein joko liian usein (turhaan) tai liian myöhään (laite hajoaa kesken tuotannon). Anturidatan ja käyttöhistorian perusteella tekoäly pystyy ennustamaan, milloin laite todennäköisesti tarvitsee huoltoa, jolloin huolto ajoitetaan juuri oikeaan hetkeen sen sijaan että se olisi arvaus tai kalenterin sanelema rutiini.</p>
+
+            <h3>Kysynnän ennustaminen ja varastonhallinta</h3>
+            <p>Käsin tehty varastotilaus perustuu yleensä kokemukseen ja karkeaan nyrkkisääntöön. Malli joka ottaa huomioon historiallisen myynnin, kausivaihtelun ja meneillään olevat kampanjat pystyy ennustamaan kysyntää huomattavasti tarkemmin, mikä vähentää sekä ylivarastointia (pääoma kiinni hyllyssä) että alivarastointia (myynti menetetään koska tuotetta ei ole).</p>
+
+            <h3>Laadunvalvonta konenäöllä</h3>
+            <p>Visuaalinen laaduntarkastus tehdään monessa PK-tuotantoyrityksessä yhä silmämääräisesti. Konenäköön perustuva tarkastus ei väsy kesken vuoron eikä sen tarkkuus vaihtele kellonajan mukaan, ja se pystyy havaitsemaan poikkeamia jotka ovat ihmissilmälle vaikeasti toistettavia, esimerkiksi hyvin pieniä mittapoikkeamia tai värieroja.</p>
+
+            <h3>Poikkeamien käsittely toimitusketjussa</h3>
+            <p>Suurin osa toimitusketjun tapahtumista sujuu ilman ongelmia, mutta se pieni osa joka ei suju (myöhästynyt toimitus, väärä määrä, vaurioitunut lähetys) vie suhteettoman paljon ihmisten aikaa selvittelyyn eri järjestelmien välillä. Automaatio joka havaitsee poikkeaman heti, kokoaa tarvittavan tiedon eri järjestelmistä ja ehdottaa toimenpidettä säästää juuri tätä käsityönä tehtävää etsimistä ja koostamista, vaikka lopullinen päätös jäisikin aina ihmiselle.</p>
+
+            <p>Yhteistä näille kuudelle on, ettei yksikään niistä ole "keskustele asiakkaan kanssa" -tyyppinen käyttötapaus. Ne ovat sisäisiä prosesseja, joissa hyöty on suoraan mitattavissa säästettynä aikana, pienempinä virhemäärinä tai parempana pääoman käyttönä, eikä sen tarvitse olla näkyvä asiakkaalle ollakseen kannattava.</p>
+
+            <h2 id="tutkimustietoa">4. Mitä isot yritykset ovat oikeasti saavuttaneet: tutkimustietoa</h2>
+            <p>Näkyvin syy epäillä näitä lukuja on ajatus "meidän yritys on liian pieni hyötyäkseen samasta". Tutkimustieto kertoo kuitenkin toista: hyöty ei riipu yrityksen koosta, vaan siitä kuinka tarkasti kohde on valittu.</p>
+
+            <p><strong>Automaatiopotentiaali on suurempi kuin useimmat kuvittelevat.</strong> McKinsey Global Instituten laajan toimialoja ja työtehtäviä kartoittavan tutkimuksen mukaan noin 60 prosentilla ammateista on vähintään 30 prosenttia työtehtävistä, jotka olisi jo nykyteknologialla mahdollista automatisoida.<sup><a href="#ref2">[2]</a></sup> Uudemman arvion mukaan nykyisin osoitetulla teknologialla voitaisiin periaatteessa automatisoida jopa noin 57 prosenttia Yhdysvaltain työtunneista.<sup><a href="#ref2">[2]</a></sup> Tämä ei tarkoita, että puolet työstä pitäisi tai kannattaisi automatisoida heti, mutta se kertoo, että lähes jokaisessa yrityksessä on todellisia, jo tunnistettavissa olevia kohteita, riippumatta yrityksen koosta.</p>
+
+            <p><strong>Kohdennus ratkaisee enemmän kuin laajuus.</strong> McKinseyn vuoden 2025 State of AI -tutkimuksessa 88 prosenttia organisaatioista käytti tekoälyä ainakin yhdessä toiminnossa, mutta vain 39 prosenttia pystyi osoittamaan mitään mitattavaa vaikutusta tulokseen, ja niistäkin suurin osa alle 5 prosentin luokkaa.<sup><a href="#ref1">[1]</a></sup> Sen sijaan noin 6 prosenttia "edelläkävijöistä" erottui muista selvästi paremmalla tuloksella, ja yhteinen tekijä oli, että ne suunnittelivat työnkulun kokonaan uudelleen harvojen, tarkkaan valittujen prosessien ympärille sen sijaan että olisivat levittäneet tekoälyä ohuesti kaikkialle.<sup><a href="#ref1">[1]</a></sup> Sama havainto toistuu Deloitten tutkimuksessa: nopein tie mitattavaan hyötyyn on keskittyä pieneen määrään korkean vaikutuksen käyttötapauksia kerrallaan, ei laajaan kertarysäykseen.<sup><a href="#ref3">[3]</a></sup></p>
+
+            <div class="highlight-box">
+                Ennakoiva kunnossapito: McKinseyn mukaan se voi vähentää laitteiden suunnittelemattomia seisokkeja jopa 50 prosenttia ja kunnossapitokustannuksia 10-40 prosenttia; Deloitten arvioissa kypsässä käytössä suunnittelemattomat seisokit voivat vähentyä jopa 70-90 prosenttia.<sup><a href="#ref4">[4]</a></sup> Suunnittelemattomat seisokit maksavat teollisuudelle McKinseyn arvion mukaan noin 50 miljardia dollaria vuodessa pelkästään menetettynä tuottavuutena, ja edelläkävijät ovat raportoineet 10-30-kertaisen tuoton investoinnilleen 12-18 kuukauden sisällä.<sup><a href="#ref4">[4]</a></sup>
+            </div>
+
+            <p><strong>Laskujen käsittely: mitattava, tylsä, kannattava.</strong> Toimialatutkimusten mukaan automatisoitu ostolaskujen käsittely on vähentänyt käsittelykustannuksia jopa 76-81 prosenttia verrattuna käsin tehtyyn prosessiin, ja hyväksymiskierron kestoa on saatu lyhennettyä keskimäärin noin 19,5 päivästä 3,2 päivään.<sup><a href="#ref5">[5]</a></sup> Tämä on juuri sellainen prosessi joka täyttää edellä mainitut viisi kriteeriä: suuri volyymi, selkeät säännöt, dataa jo digitaalisessa muodossa.</p>
+
+            <p><strong>Sopimusten läpikäynti: aikaa vapautuu harkintaan.</strong> Oikeudellisen alan tutkimusten mukaan tekoälyavusteinen sopimusten läpikäynti on vähentänyt yksittäisen sopimuksen läpikäyntiaikaa tyypillisesti 70-85 prosenttia verrattuna täysin käsin tehtyyn läpikäyntiin, jolloin juristin tai yrittäjän oma aika vapautuu niihin harvoihin kohtiin jotka oikeasti vaativat harkintaa.<sup><a href="#ref6">[6]</a></sup></p>
+
+            <p>Yhteinen johtopäätös näistä luvuista ei ole "automatisoi kaikki", vaan päinvastoin: suurin hyöty syntyy kun muutama oikea prosessi valitaan tarkkaan ja toteutetaan kunnolla, ei kun tekoälyä ripotellaan ohuesti joka paikkaan.</p>
+
+            <h2 id="harjoitus">5. Käytännön harjoitus: kartoita omat prosessisi 20 minuutissa</h2>
+            <p>Tätä ei tarvitse tehdä konsultin kanssa ensimmäisellä kerralla. Riittää, että yrittäjä tai tiimin vetäjä istuu alas kynän ja paperin (tai taulukon) kanssa ja käy läpi seuraavat kolme kysymystä jokaisesta viikoittaisesta tai kuukausittaisesta rutiinista:</p>
+            <ol>
+                <li><strong>Kuinka monta kertaa tätä tehdään kuukaudessa, ja kuinka kauan yksi kerta vie?</strong> Kerro nämä keskenään, tämä on karkea kuukausittainen aikakustannus.</li>
+                <li><strong>Kuinka moni näistä kerroista on käytännössä samanlainen edelliseen verrattuna?</strong> Jos vastaus on "lähes kaikki", prosessi on todennäköisesti hyvä automaatiokohde. Jos vastaus on "jokainen on erilainen", automaatio ei todennäköisesti sovi ainakaan vielä.</li>
+                <li><strong>Missä tieto tällä hetkellä on, ja missä muodossa?</strong> Jos vastaus on "sähköpostissa" tai "erillisessä järjestelmässä, josta se kopioidaan käsin toiseen", tämä on usein juuri se kohta joka aiheuttaa suurimman osan hitaudesta ja virheistä.</li>
+            </ol>
+            <p>Kolmesta viiteen prosessia, jotka nousevat tästä listasta korkeimmalle aikakustannukseltaan ja toistuvuudeltaan, ovat lähes aina parempia ensimmäisiä kohteita kuin mikään yksittäinen trendikäs käyttötapaus, jonka joku on nähnyt kilpailijan verkkosivulla.</p>
+
+            <h2 id="miten-valok">6. Miten Valok auttaa tunnistuksessa</h2>
+            <p>Kartoitamme asiakkaan kanssa aina ensin nämä prosessit ennen kuin puhutaan yhdestäkään teknologiaratkaisusta. Tämä tarkoittaa käytännössä lyhyttä keskustelua siitä, mihin aikaa kuluu eniten, missä virheet toistuvat, ja mistä tieto pitäisi kulkea mutta ei kulje sujuvasti. Vasta tämän jälkeen ehdotamme, sopiiko kohteeseen perinteinen automaatio, tekoälyagentti vai näiden yhdistelmä, ja minkä kokoinen ensimmäinen askel kannattaa ottaa.</p>
+
+            <p>Jos haluat karkean arvion siitä, paljonko oikean prosessin automatisointi voisi säästää juuri teidän yrityksessänne, <a href="../tekoaly-roi-laskuri.html">kokeile tekoäly ROI-laskuriamme</a>.</p>
+
+            <div class="reference-list">
+                <h4>Lähdeviitteet:</h4>
+                <ol>
+                    <li id="ref1"><a href="https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai" target="_blank" rel="noopener">McKinsey & Company: The state of AI in 2025</a>. Katsaus tekoälyn käyttöönoton laajuuteen ja mitattuun EBIT-vaikutukseen organisaatioissa.</li>
+                    <li id="ref2"><a href="https://www.mckinsey.com/~/media/mckinsey/featured%20insights/digital%20disruption/harnessing%20automation%20for%20a%20future%20that%20works/mgi-a-future-that-works-full-report-updated.pdf" target="_blank" rel="noopener">McKinsey Global Institute: A future that works: Automation, employment, and productivity</a>. Laaja tutkimus automaatiopotentiaalista ammateittain ja työtehtävittäin.</li>
+                    <li id="ref3"><a href="https://www.deloitte.com/global/en/issues/generative-ai/state-of-generative-ai-in-enterprise.html" target="_blank" rel="noopener">Deloitte: State of Generative AI in the Enterprise</a>. Tutkimustietoa tekoälyn ROI:sta ja korkean vaikutuksen käyttötapausten valinnasta.</li>
+                    <li id="ref4"><a href="https://www.deloitte.com/us/en/insights/industry/manufacturing-industrial-products/industry-4-0/using-predictive-technologies-for-asset-maintenance.html" target="_blank" rel="noopener">Deloitte Insights: Industry 4.0 and predictive technologies for asset maintenance</a>. Lukuja ennakoivan kunnossapidon vaikutuksesta seisokkeihin ja kustannuksiin.</li>
+                    <li id="ref5"><a href="https://www.netsuite.com/portal/resource/articles/accounting/ap-automation-business-case.shtml" target="_blank" rel="noopener">NetSuite (Oracle): Make the Business Case for AP Automation</a>. Toimialatutkimusta ostolaskujen käsittelyn automatisoinnin kustannus- ja aikasäästöistä.</li>
+                    <li id="ref6"><a href="https://www.definely.com/blogs/ai-contract-review-time-savings" target="_blank" rel="noopener">Definely: How much time does AI contract review save?</a>. Tutkimustietoa tekoälyavusteisen sopimusten läpikäynnin ajansäästöistä.</li>
+                </ol>
+            </div>
+
+            <div class="contact-section">
+                <div class="section-header" style="text-align: center; margin-bottom: 40px;">
+                    <span class="section-tag">Otetaan askel eteenpäin</span>
+                    <h2>Tiedätkö jo, mikä teidän prosessinne kannattaisi automatisoida ensin?</h2>
+                    <p>Valok kartoittaa yhdessä teidän kanssanne, mihin prosessiin tekoäly tai automaatio tuottaisi eniten hyötyä juuri teidän yrityksessänne.</p>
+                </div>
+
+                <div class="contact-container" style="max-width: 100%;">
+                    <div class="contact-form-card">
+                        <form action="https://formspree.io/f/xlgpgyjl" method="POST" id="contact-form">
+                            <div class="form-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 20px;">
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="name">Nimi</label>
+                                    <input type="text" id="name" name="name" autocomplete="name" placeholder="Oma nimesi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                </div>
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="email">Sähköposti</label>
+                                    <input type="email" id="email" name="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="esimerkki@yritys.fi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg full-width" style="width: 100%; padding: 16px; font-weight: bold; cursor: pointer; margin-top: 20px;">
+                                Varaa ilmainen konsultaatio
+                            </button>
+                            <div id="form-status" class="form-status" aria-live="polite"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </article>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer" width="4206" height="4206" loading="lazy"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer" width="4206" height="4206" loading="lazy">VALOK<span class="logo-dot">.</span></div>
+                <p>Prosessien automatisointia ja dedikoituja tekoälyratkaisuja suomalaisille PK-yrityksille.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Linkit</h4>
+                <ul>
+                    <li><a href="/">Etusivu</a></li>
+                    <li><a href="../blogi.html">Blogi</a></li>
+                    <li><a href="/#palvelut">Palvelut</a></li>
+                    <li><a href="../tietosuoja.html">Tietosuoja</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ota yhteyttä</h4>
+                <ul>
+                    <li>aleksanteri@valok.fi</li>
+                    <li>Jyväskylä, Finland</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Valok. Kaikki oikeudet pidätetään. · <a href="#" id="cookieSettingsLink">Evästeasetukset</a>
+        </div>
+    </footer>
+
+        <div id="cookieBanner" class="cookie-banner">
+        <h5>Yksityisyytesi on meille tärkeää</h5>
+        <p>Käytämme sivustolla vain välttämättömiä toimintoja varmistaaksemme parhaan mahdollisen käyttökokemuksen. Emme
+            käytä kolmannen osapuolen markkinointievästeitä ilman suostumustasi.</p>
+        <div class="cookie-btn-group">
+            <button id="acceptCookies" class="btn btn-primary">Hyväksy kaikki</button>
+            <button id="rejectCookies" class="btn btn-ghost">Hylkää</button>
+            <a href="../tietosuoja.html" class="btn btn-ghost">Lue lisää</a>
+        </div>
+    </div>
+
+    <script src="../main.js"></script>
+</body>
+
+</html>

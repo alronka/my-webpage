@@ -496,6 +496,7 @@ h1 {
     padding: 14px 32px;
     border-radius: var(--radius-sm);
     text-decoration: none;
+    font-family: inherit;
     font-weight: 600;
     font-size: 0.95rem;
     transition: var(--transition);

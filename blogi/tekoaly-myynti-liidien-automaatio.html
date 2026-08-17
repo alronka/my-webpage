@@ -408,7 +408,7 @@
                     <p>Valok rakentaa myynnin automaation vaiheittain, aina yhdestä kapeasta osasta kerrallaan, niin että myyjän aika vapautuu sinne missä se tuottaa eniten.</p>
                 </div>
 
-                <div class="contact-container" style="max-width: 100%;">
+                <div class="contact-container" style="max-width: 600px; margin: 0 auto;">
                     <div class="contact-form-card">
                         <form action="https://formspree.io/f/xlgpgyjl" method="POST" id="contact-form">
                             <div class="form-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 20px;">
@@ -421,9 +421,14 @@
                                     <input type="email" id="email" name="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="esimerkki@yritys.fi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-lg full-width" style="width: 100%; padding: 16px; font-weight: bold; cursor: pointer; margin-top: 20px;">
-                                Varaa ilmainen konsultaatio
-                            </button>
+                            <div style="text-align: center; margin-top: 24px;">
+                                <button type="submit" class="btn btn-primary btn-lg">
+                                    Varaa ilmainen konsultaatio
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M5 12h14M12 5l7 7-7 7" />
+                                    </svg>
+                                </button>
+                            </div>
                             <div id="form-status" class="form-status" aria-live="polite"></div>
                         </form>
                     </div>
