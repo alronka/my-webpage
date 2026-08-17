@@ -92,32 +92,54 @@
         }
 
         /* Kettu kurkkii heron oikeasta reunasta, dock.cool-vertailun jälkeen 2026-08.
-           Aiemmin kettu mursi kehyksen heron ALAreunassa (bottom: -18px, ulottui hieman
-           heron laatikon ulkopuolelle) ja tarvitsi scroll-sidotun JS:n häivyttämään sen
-           heti kun vieritys alkoi, muuten se olisi jäänyt näkyviin seuraavan osion päälle.
-           2026-08 käyttäjäpalaute: häivytys näytti tökeröltä. Korjattu siirtämällä kettu
-           kokonaan heron laatikon SISÄPUOLELLE oikeasta reunasta (ei enää negatiivista
-           bottom-arvoa) ja vaihtamalla liike-akseli pystystä (Y) vaakaan (X). Koska kettu ei
-           enää ulotu heron ulkopuolelle, se katoaa nyt täysin automaattisesti tavallisen
-           sivun vierityksen mukana kun hero vieritetään pois näkyvistä, eikä scroll-sidottua
-           häivytys-JS:ää enää tarvita, ks. sivun lopun kertaalleen ajettava nousuanimaatio. */
+           Kuvan omaa tiedostoa EI kierretä (kokeiltu 2026-08: koko kuvan kierto käänsi myös
+           kasvot/kaulapannan kyljelleen, näytti rikkinäiseltä) — sen sijaan kuva pyörähtää
+           CSS:n rotate(-90deg):lla, jolloin kasvot ja tunnusmerkit pysyvät ehjinä paikoillaan
+           kuvan sisällä, vain koko kuva kallistuu.
+
+           --fox-w on kuvan OMA (kiertämätön) leveys. Koska kuva on muotokuva (644x746,
+           korkeampi kuin leveä), -90deg-kierto vaihtaa näkyvät mitat keskenään: se mikä oli
+           kuvan ALAreuna (tassut, jotka koskettavat kuvatiedoston alinta pikseliriviä) siirtyy
+           kierrossa OIKEALLE reunalle, ja ulottuu oman laatikkonsa oikean reunan ohi täsmälleen
+           (korkeus−leveys)/2 verran (johdettu kiertomatriisista, ks. keskustelu 2026-08).
+           right-arvo laskee tämän offsetin pois calc():lla, jotta tassut asettuvat juuri
+           heron oikeaan reunaan (plus pieni "bleed"-arvo, jotta keho näyttää jatkuvan ruudun
+           ulkopuolelle). top:50% + translateY(-50%) keskittää kuvan OMAN keskipisteen heron
+           pystysuunnassa; koska -90deg-kierto tapahtuu juuri tämän keskipisteen ympäri,
+           pystykeskitys säilyy kierrosta huolimatta.
+
+           Sisääntuloanimaatio liikuttaa right-arvoa (ei transform-liukua), jotta rotate(-90deg)
+           transformissa pysyy koko ajan muuttumattomana eikä transform-järjestyksen kanssa
+           tarvitse taiteilla. Kettu pysyy myös kokonaan heron laatikon sisällä (ei negatiivista
+           bottom-arvoa kuten vanhassa alareunaversiossa), joten se katoaa automaattisesti
+           tavallisen sivun vierityksen mukana kun hero vieritetään pois näkyvistä eikä
+           scroll-sidottua häivytys-JS:ää tarvita, ks. sivun lopun kertaalleen ajettava
+           nousuanimaatio. */
         .hero-fox-peek {
             display: none;
             position: absolute;
-            right: 4%;
-            bottom: 48px;
-            width: clamp(140px, 14vw, 220px);
+            top: 50%;
+            --fox-w: clamp(140px, 14vw, 220px);
+            /* #hero on max-width:1280px ja keskitetty, joten leveillä näytöillä heron oma
+               oikea reuna jää kauas näytön todellisesta reunasta. --hero-gap laskee tämän
+               tyhjän marginaalin ja right-arvo vähentää sen pois, jotta kettu asettuu aina
+               NÄYTÖN oikeaan reunaan, ei vain heron sisäiseen reunaan. */
+            --hero-gap: max(0px, (100vw - 1280px) / 2);
+            /* piilotila: painettu vielä pidemmälle oikealle/reunan yli, "saapuu" sisään */
+            right: calc(0.0792 * var(--fox-w) - 110px - var(--hero-gap));
+            width: var(--fox-w);
             height: auto;
             pointer-events: none;
             z-index: 2;
             opacity: 0;
-            transform: translateX(90px);
-            transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1), opacity 400ms ease;
+            transform: translateY(-50%) rotate(-90deg);
+            transition: right 2200ms cubic-bezier(0.16, 1, 0.3, 1), opacity 1400ms ease;
         }
 
         .hero-fox-peek.is-risen {
             opacity: 1;
-            transform: translateX(0);
+            /* lepotila: tassut n. 20px NÄYTÖN oikean reunan yli, "jatkuu ruudun ulkopuolelle" */
+            right: calc(0.0792 * var(--fox-w) - 20px - var(--hero-gap));
         }
 
         @media (min-width: 1100px) {
@@ -129,7 +151,7 @@
         @media (prefers-reduced-motion: reduce) {
             .hero-fox-peek {
                 transition: opacity 300ms ease;
-                transform: translateX(0);
+                right: calc(0.0792 * var(--fox-w) - 20px - var(--hero-gap));
             }
         }
 
@@ -1342,16 +1364,17 @@
 
     <script src="main.js"></script>
     <script>
-        // Kettu kurkistaa sisään oikealta kertaalleen sivun latautuessa. Ei enää
-        // scroll-sidottua häivytystä (ks. selitys yllä .hero-fox-peek:in kohdalla) —
-        // kettu pysyy heron laatikon sisällä ja katoaa siksi automaattisesti tavallisen
-        // sivun vierityksen mukana, ilman erillistä JS-logiikkaa.
+        // Kettu kurkistaa sisään oikealta pienellä viiveellä sivun latautumisen jälkeen
+        // (800ms — antaa hero-tekstin ehtiä ilmestyä ensin). Ei enää scroll-sidottua
+        // häivytystä (ks. selitys yllä .hero-fox-peek:in kohdalla) — kettu pysyy heron
+        // laatikon sisällä ja katoaa siksi automaattisesti tavallisen sivun vierityksen
+        // mukana, ilman erillistä JS-logiikkaa.
         (function () {
             var fox = document.querySelector('.hero-fox-peek');
             if (!fox) return;
-            requestAnimationFrame(function () {
+            setTimeout(function () {
                 fox.classList.add('is-risen');
-            });
+            }, 800);
         })();
     </script>
 </body>
