@@ -12,7 +12,7 @@
     <meta name="theme-color" content="#030712">
     <title>Valok — Miksi tehdä itse, kun voi automatisoida?</title>
     <meta name="description"
-        content="Valok rakentaa suomalaisille PK-yrityksille työnkulkuautomaation ja tekoälyratkaisut omalla infrastruktuurillasi, yksityisyyttä kunnioittaen. Data pysyy omissa käsissäsi.">
+        content="Valok rakentaa suomalaisille PK-yrityksille räätälöidyt työnkulkuautomaatiot ja tekoälyratkaisut, jotka sovitetaan juuri sinun järjestelmiisi ja tarpeisiisi.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://api.fontshare.com">
@@ -91,28 +91,33 @@
             max-width: 780px;
         }
 
-        /* Kettu "murtaa kehyksen" heron alareunassa, dock.cool-vertailun jälkeen 2026-08.
-           Scroll-sidottu: nousee esiin kun hero on näkyvissä, kyyristyy pois kun vieritetään
-           ohi (ks. keskustelu 2026-08 — pelkkä kertaalleen ajettava nousu näytti "leijuvalta"
-           koska kettu vain jäi paikoilleen sivun mukana). Reagoi vierittämiseen molempiin
-           suuntiin: nousee uudelleen jos vieritetään takaisin heroon. */
+        /* Kettu kurkkii heron oikeasta reunasta, dock.cool-vertailun jälkeen 2026-08.
+           Aiemmin kettu mursi kehyksen heron ALAreunassa (bottom: -18px, ulottui hieman
+           heron laatikon ulkopuolelle) ja tarvitsi scroll-sidotun JS:n häivyttämään sen
+           heti kun vieritys alkoi, muuten se olisi jäänyt näkyviin seuraavan osion päälle.
+           2026-08 käyttäjäpalaute: häivytys näytti tökeröltä. Korjattu siirtämällä kettu
+           kokonaan heron laatikon SISÄPUOLELLE oikeasta reunasta (ei enää negatiivista
+           bottom-arvoa) ja vaihtamalla liike-akseli pystystä (Y) vaakaan (X). Koska kettu ei
+           enää ulotu heron ulkopuolelle, se katoaa nyt täysin automaattisesti tavallisen
+           sivun vierityksen mukana kun hero vieritetään pois näkyvistä, eikä scroll-sidottua
+           häivytys-JS:ää enää tarvita, ks. sivun lopun kertaalleen ajettava nousuanimaatio. */
         .hero-fox-peek {
             display: none;
             position: absolute;
             right: 4%;
-            bottom: -18px;
+            bottom: 48px;
             width: clamp(140px, 14vw, 220px);
             height: auto;
             pointer-events: none;
             z-index: 2;
             opacity: 0;
-            transform: translateY(70px);
+            transform: translateX(90px);
             transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1), opacity 400ms ease;
         }
 
         .hero-fox-peek.is-risen {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateX(0);
         }
 
         @media (min-width: 1100px) {
@@ -124,7 +129,7 @@
         @media (prefers-reduced-motion: reduce) {
             .hero-fox-peek {
                 transition: opacity 300ms ease;
-                transform: translateY(0);
+                transform: translateX(0);
             }
         }
 
@@ -175,7 +180,7 @@
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 3px;
-            color: var(--text-dim);
+            color: var(--accent);
             margin-bottom: 16px;
             display: block;
         }
@@ -804,7 +809,7 @@
     <meta property="og:url" content="https://valok.fi/">
     <meta property="og:title" content="Valok — Miksi tehdä itse, kun voi automatisoida?">
     <meta property="og:description"
-        content="Työnkulkuautomaatio ja tekoälyratkaisut omalla infrastruktuurillasi, yksityisyyttä kunnioittaen. Rakennettu Jyväskylästä käsin.">
+        content="Räätälöidyt työnkulkuautomaatiot ja tekoälyratkaisut, jotka sovitetaan sinun järjestelmiisi ja tarpeisiisi. Rakennettu Jyväskylästä käsin.">
     <meta property="og:image" content="https://valok.fi/img/valok-black-with-white-outline.webp">
 
     <!-- Twitter -->
@@ -812,7 +817,7 @@
     <meta property="twitter:url" content="https://valok.fi/">
     <meta property="twitter:title" content="Valok — Miksi tehdä itse, kun voi automatisoida?">
     <meta property="twitter:description"
-        content="Työnkulkuautomaatio ja tekoälyratkaisut omalla infrastruktuurillasi, yksityisyyttä kunnioittaen.">
+        content="Räätälöidyt työnkulkuautomaatiot ja tekoälyratkaisut, jotka sovitetaan sinun järjestelmiisi ja tarpeisiisi.">
     <meta property="twitter:image" content="https://valok.fi/img/valok-black-with-white-outline.webp">
 
     <!-- Schema.org Structured Data -->
@@ -920,7 +925,7 @@
         <div class="nav-container">
             <a href="/" class="logo"><img srcset="img/valok-white-with-black-outline-mobile.webp 800w, img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 1600px" src="img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark" width="4206" height="4206"><img srcset="img/valok-black-with-white-outline-mobile.webp 800w, img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 1600px" src="img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light" width="4206" height="4206">VALOK<span class="logo-dot">.</span></a>
             <div class="nav-links" id="navLinks">
-                <a href="#ratkaisu">Ratkaisu</a>
+                <a href="#palvelut">Palvelut</a>
                 <a href="#prosessi">Prosessi</a>
                 <a href="meista.html">Meistä</a>
                 <a href="blogi.html">Blogi</a>
@@ -940,8 +945,8 @@
         </div>
         <h1 class="animate-in">Miksi tehdä itse, kun voi <span class="accent-text">automatisoida</span>?</h1>
         <p class="hero-sub animate-in">Me <span class="brand-highlight">Valokilla</span> automatisoimme
-            työnkulkusi ja tekoälyratkaisusi suoraan järjestelmiisi, omalla infrastruktuurillasi. Säästät
-            aikaa ja rahaa, ja data pysyy sinulla, ei ulkopuolisten pilvipalveluissa.</p>
+            työnkulkusi ja tekoälyratkaisusi suoraan järjestelmiisi, oli kyse omasta infrastruktuurista tai
+            pilvipalvelusta. Säästät aikaa ja rahaa, ratkaisu rakennetaan aina sinun tarpeidesi mukaan.</p>
         <div class="hero-actions animate-in">
             <a href="https://calendar.app.google/go2sDgLdm6r2eKTK7" target="_blank" rel="noopener" class="btn btn-primary">
                 Varaa maksuton kartoitus
@@ -956,7 +961,7 @@
     </header>
 
     <!-- ONGELMA / RATKAISU -->
-    <section id="ratkaisu" class="section section-roomy">
+    <section id="palvelut" class="section section-roomy">
         <div class="split-grid">
             <div data-animate>
                 <span class="split-kicker">Ongelma</span>
@@ -976,13 +981,13 @@
             <div data-animate>
                 <span class="split-kicker">Ratkaisu</span>
                 <h2>Automaatio ei korvaa tiimiäsi, vaan vapauttaa sen.</h2>
-                <p>Rakennamme työnkulut ja tekoälyratkaisut suoraan järjestelmiisi, omalla infrastruktuurillasi.
-                    Ei valmista SaaS-tuotetta, johon sinun pitää sopeutua, vaan ratkaisu joka rakennetaan
-                    sinun tarpeidesi mukaan.</p>
+                <p>Rakennamme työnkulut ja tekoälyratkaisut suoraan järjestelmiisi, joko omalla infrastruktuurillasi
+                    tai valmiiden pilvipalveluiden päälle, sen mukaan mikä sopii sinulle parhaiten. Ei valmista
+                    SaaS-tuotetta, johon sinun pitää sopeutua, vaan ratkaisu joka rakennetaan sinun tarpeidesi mukaan.</p>
                 <ul class="diff-list">
                     <li>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5" /></svg>
-                        <span>Oma infrastruktuuri: data ei koskaan poistu hallinnastasi</span>
+                        <span>Joustava toteutus: oma infrastruktuuri tai pilvipalvelu, sinun tarpeidesi mukaan</span>
                     </li>
                     <li>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5" /></svg>
@@ -1000,7 +1005,7 @@
             <div class="service-card" data-animate>
                 <span class="service-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z" /></svg></span>
                 <h3>Dedikoitu tekoäly</h3>
-                <p>Yrityksesi omaan dataan kytketty tekoälyratkaisu, joka toimii omalla infrastruktuurillasi.</p>
+                <p>Yrityksesi omaan dataan kytketty tekoälyratkaisu, joka toimii sinulle sopivalla infrastruktuurilla.</p>
             </div>
             <div class="service-card" data-animate>
                 <span class="service-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" /></svg></span>
@@ -1295,9 +1300,9 @@
             <div class="footer-col">
                 <h4>Palvelut</h4>
                 <ul>
-                    <li><a href="#ratkaisu">Prosessien automatisointi</a></li>
+                    <li><a href="#palvelut">Prosessien automatisointi</a></li>
                     <li><a href="prosessiautomaatio.html">Prosessiautomaatio: lue lisää</a></li>
-                    <li><a href="#ratkaisu">Dedikoitu tekoäly</a></li>
+                    <li><a href="#palvelut">Dedikoitu tekoäly</a></li>
                 </ul>
             </div>
             <div class="footer-col">
@@ -1337,25 +1342,16 @@
 
     <script src="main.js"></script>
     <script>
-        // Kettu nousee sivun ylälaidassa, kyyristyy pois HETI kun vieritys alkaa
-        // (käyttäjäpalaute 2026-08: IntersectionObserver-kynnysarvo antoi sen "leijua"
-        // hetken ennen katoamista — nyt reagoi suoraan scrollY:hen, ei heron näkyvyysasteeseen).
+        // Kettu kurkistaa sisään oikealta kertaalleen sivun latautuessa. Ei enää
+        // scroll-sidottua häivytystä (ks. selitys yllä .hero-fox-peek:in kohdalla) —
+        // kettu pysyy heron laatikon sisällä ja katoaa siksi automaattisesti tavallisen
+        // sivun vierityksen mukana, ilman erillistä JS-logiikkaa.
         (function () {
             var fox = document.querySelector('.hero-fox-peek');
             if (!fox) return;
-            var ticking = false;
-            function update() {
-                fox.classList.toggle('is-risen', window.scrollY < 4);
-                ticking = false;
-            }
-            function onScroll() {
-                if (!ticking) {
-                    requestAnimationFrame(update);
-                    ticking = true;
-                }
-            }
-            update();
-            window.addEventListener('scroll', onScroll, { passive: true });
+            requestAnimationFrame(function () {
+                fox.classList.add('is-risen');
+            });
         })();
     </script>
 </body>
