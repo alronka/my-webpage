@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#030712">
+    <title>Tekoäly ja tietosuoja: Mitä PK-yrityksen pitää tarkistaa GDPR:n näkökulmasta | Valok</title>
+    <meta name="description"
+        content="Tekoälyn käyttöönotto muuttaa sen, minne yrityksen henkilötiedot päätyvät. Lue mitä GDPR vaatii ennen kuin syötät asiakas- tai henkilöstötietoja tekoälytyökaluun: käsittelyperuste, DPA-sopimus, tiedonsiirto EU:n ulkopuolelle ja rekisteröidyn oikeudet.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel=icon type=image/png sizes=32x32 href=../img/favicon-32x32.png>
+    <link rel=apple-touch-icon sizes=180x180 href=../img/favicon-180x180.png>
+
+    <link rel="canonical" href="https://valok.fi/blogi/tekoaly-ja-tietosuoja.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://valok.fi/blogi/tekoaly-ja-tietosuoja.html">
+    <meta property="og:title" content="Tekoäly ja tietosuoja: Mitä PK-yrityksen pitää tarkistaa GDPR:n näkökulmasta">
+    <meta property="og:description" content="Tekoälyn käyttöönotto muuttaa sen, minne yrityksen henkilötiedot päätyvät. Lue mitä GDPR vaatii ennen kuin syötät henkilötietoja tekoälytyökaluun.">
+    <meta property="og:image" content="https://valok.fi/img/tekoaly-ja-tietosuoja.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tekoäly ja tietosuoja: Mitä PK-yrityksen pitää tarkistaa GDPR:n näkökulmasta">
+    <meta name="twitter:description" content="Tekoälyn käyttöönotto muuttaa sen, minne yrityksen henkilötiedot päätyvät. Lue mitä GDPR vaatii ennen kuin syötät henkilötietoja tekoälytyökaluun.">
+    <meta name="twitter:image" content="https://valok.fi/img/tekoaly-ja-tietosuoja.webp">
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Tekoäly ja tietosuoja: Mitä PK-yrityksen pitää tarkistaa GDPR:n näkökulmasta",
+  "description": "Tekoälyn käyttöönotto muuttaa sen, minne yrityksen henkilötiedot päätyvät. Lue mitä GDPR vaatii ennen kuin syötät henkilötietoja tekoälytyökaluun.",
+  "image": "https://valok.fi/img/tekoaly-ja-tietosuoja.webp",
+  "datePublished": "2026-08-20",
+  "dateModified": "2026-08-20",
+  "author": {
+    "@type": "Person",
+    "name": "Aleksanteri Rönkä",
+    "url": "https://valok.fi/",
+    "email": "aleksanteri@valok.fi",
+    "jobTitle": "Perustaja",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Valok"
+    }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Valok",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://valok.fi/img/valok-black-with-white-outline.webp"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://valok.fi/blogi/tekoaly-ja-tietosuoja.html"
+  }
+}
+    </script>
+
+    <style>
+        .post-header {
+            min-height: auto !important;
+            padding: 160px 24px 24px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            background: radial-gradient(circle at top, var(--accent-glow) 0%, transparent 70%);
+        }
+
+        .post-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px 100px;
+            line-height: 1.8;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .post-content h2, .post-content h3 {
+            color: var(--text);
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .post-content p {
+            margin-bottom: 24px;
+        }
+
+        .post-content ul, .post-content ol {
+            margin-bottom: 24px;
+            padding-left: 20px;
+        }
+
+        .post-content li {
+            margin-bottom: 12px;
+        }
+
+        .post-meta {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .post-author {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 24px;
+            text-align: left;
+        }
+
+        .post-author img {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .post-author-name {
+            display: block;
+            font-weight: 600;
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+
+        .post-author-role {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dim);
+            text-decoration: none;
+            margin-bottom: 40px;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        .post-image {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .post-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .toc-box {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+        }
+
+        .toc-box h4 {
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        .toc-box ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .toc-box a {
+            color: #58a6ff;
+            text-decoration: none;
+            display: block;
+            padding: 4px 0;
+            transition: var(--transition);
+        }
+
+        .toc-box a:hover {
+            color: var(--accent);
+            padding-left: 4px;
+        }
+
+        .highlight-box {
+            background: var(--glass);
+            padding: 30px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+            border-left: 4px solid var(--accent);
+        }
+
+        .reference-list {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            margin-top: 60px;
+        }
+
+        .reference-list ol {
+            padding-left: 20px;
+        }
+
+        .contact-section {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 60px 40px;
+            border-radius: var(--radius);
+            margin-top: 80px;
+        }
+
+        .checklist-box {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 24px;
+        }
+
+        .checklist-box li {
+            position: relative;
+            padding: 14px 16px 14px 44px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            margin-bottom: 12px;
+        }
+
+        .checklist-box li::before {
+            content: "✓";
+            position: absolute;
+            left: 16px;
+            top: 14px;
+            color: var(--accent);
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="particles"></canvas>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark" width="4206" height="4206"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light" width="4206" height="4206">VALOK<span
+                     class="logo-dot">.</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="/#palvelut">Palvelut</a>
+                <a href="/#prosessi">Prosessi</a>
+                <a href="../blogi.html">Blogi</a>
+                <a href="/#yhteystiedot" class="nav-cta">Ota yhteyttä</a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Avaa valikko">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <article>
+        <header class="post-header">
+            <a href="../blogi.html" class="back-link">← Takaisin blogiin</a>
+            <span class="post-meta">Tietosuoja • GDPR • Tekoäly</span>
+            <h1>Tekoäly ja tietosuoja: Mitä PK-yrityksen pitää tarkistaa <span class="gradient-text">GDPR:n näkökulmasta</span></h1>
+            <p style="color: var(--text-dim); margin-top: 20px;">Tekoälyn käyttöönotto on usein IT-päätös tai tehokkuuspäätös, ei tietosuojapäätös. Lue mitä GDPR oikeasti vaatii ennen kuin asiakas- tai henkilöstötietoja syötetään tekoälytyökaluun.</p>
+            <div class="post-author">
+                <img src="../img/valok-aleksanteri.webp" alt="Aleksanteri Rönkä" width="44" height="44" loading="lazy">
+                <div>
+                    <span class="post-author-name">Aleksanteri Rönkä</span>
+                    <span class="post-author-role">Perustaja, Valok &middot; <a href="mailto:aleksanteri@valok.fi">aleksanteri@valok.fi</a></span>
+                </div>
+            </div>
+        </header>
+
+        <div class="post-image">
+            <img src="../img/tekoaly-ja-tietosuoja.webp" alt="Tekoäly ja tietosuoja: GDPR-vaatimukset PK-yritykselle - Valok" width="960" height="1107">
+        </div>
+
+        <main class="post-content">
+            <div class="toc-box">
+                <h4>Sisällysluettelo</h4>
+                <ul>
+                    <li><a href="#eri-riski">1. Miksi tekoäly on eri tietosuojariski kuin tavallinen ohjelmisto</a></li>
+                    <li><a href="#kasittelyperuste">2. Käsittelyperuste: millä oikeudella syötät henkilötietoja tekoälylle</a></li>
+                    <li><a href="#kuluttajatili">3. Kuluttajatili vs. yritystili: mihin data oikeasti menee</a></li>
+                    <li><a href="#dpa">4. Tietojenkäsittelysopimus (DPA) tekoälypalveluntarjoajan kanssa</a></li>
+                    <li><a href="#tiedonsiirto">5. Siirtyykö data EU:n ulkopuolelle?</a></li>
+                    <li><a href="#oikeudet">6. Rekisteröidyn oikeudet tekoälyjärjestelmässä</a></li>
+                    <li><a href="#muistilista">7. Muistilista ennen kuin otat tekoälytyökalun käyttöön</a></li>
+                    <li><a href="#miten-valok">8. Miten Valok huomioi tietosuojan agenttiprojekteissa</a></li>
+                </ul>
+            </div>
+
+            <p>Tekoälyn käyttöönotto on PK-yrityksissä usein IT-päätös tai tehokkuuspäätös, ei tietosuojapäätös. Joku kokeilee ChatGPT:tä asiakassähköpostien luonnosteluun, joku toinen liittää tekoälyagentin CRM:ään, ja kukaan ei ehdi pysähtyä miettimään mitä henkilötietoja työkalu näkee tai minne ne matkalla päätyvät. Tämä ei ole vain teoreettinen riski: GDPR koskee tekoälyn kautta käsiteltyä dataa täsmälleen samalla tavalla kuin mitä tahansa muuta käsittelyä, eikä "tekoäly teki sen" ole koskaan puolustus valvontaviranomaiselle.</p>
+
+            <p>Tämä artikkeli käy läpi, mitä PK-yrityksen kannattaa oikeasti tarkistaa ennen kuin henkilötietoja syötetään tekoälytyökaluun, ei koko GDPR:ää yleisesti, vaan juuri niitä kohtia jotka tekoäly tekee erilaisiksi.</p>
+
+            <h2 id="eri-riski">1. Miksi tekoäly on eri tietosuojariski kuin tavallinen ohjelmisto</h2>
+            <p>Tavallisessa ohjelmistossa data pysyy yleensä siinä järjestelmässä johon se syötettiin. Tekoälytyökalun kanssa data usein lähtee matkalle: se kulkee kolmannen osapuolen rajapinnan (API) kautta, saattaa tallentua palveluntarjoajan lokeihin, ja joissain tapauksissa käytetään mallin jatkokouluttamiseen ellei sitä ole erikseen kielletty. Tämä muuttaa kolme asiaa juridisesti: kuka on käsittelijä, minne data fyysisesti siirtyy, ja kuinka pitkään se säilyy jonkun toisen hallinnassa.</p>
+
+            <p>Sama huomio pätee myös tekoälyagentteihin, jotka toimivat itsenäisesti yrityksen järjestelmissä: agentti joka lukee asiakasrekisteriä hoitaakseen tehtävänsä, käsittelee henkilötietoja siinä missä ihminenkin, ja sille pitää määritellä täsmälleen sama käsittelyperuste ja samat rajat. Olemme käsitelleet tätä aiemmin agentin valtuuksien näkökulmasta <a href="tekoalyn-rajoittaminen.html">Tekoälyn rajoittaminen -artikkelissamme</a>, tämä teksti täydentää sitä juridisesta näkökulmasta: mitä valtuuksien pitää tarkoittaa, kun kyse on henkilötiedoista.</p>
+
+            <h2 id="kasittelyperuste">2. Käsittelyperuste: millä oikeudella syötät henkilötietoja tekoälylle</h2>
+            <p>GDPR vaatii, että jokaisella henkilötietojen käsittelyllä on käsittelyperuste (esim. sopimus, oikeutettu etu, tai suostumus), eikä tekoälyn käyttö ole poikkeus. Käytännössä tämä tarkoittaa, että ennen kuin asiakastietoja syötetään tekoälyyn (esimerkiksi asiakaspalveluagentille tai myyntiliidien käsittelyyn), pitää olla selvä vastaus kysymykseen: millä perusteella tätä käsittelyä tehdään, ja onko rekisteröidylle kerrottu siitä tietosuojaselosteessa.</p>
+
+            <p>Yleisin sudenkuoppa on, että käsittelyperuste on olemassa alkuperäiselle käyttötarkoitukselle (esim. asiakaspalvelu), mutta ei sille uudelle käyttötarkoitukselle jonka tekoäly mahdollistaa (esim. asiakaskäyttäytymisen analysointi tai profilointi). Jos tekoäly alkaa tehdä jotain uutta datalla, kannattaa tarkistaa riittääkö alkuperäinen peruste vai tarvitaanko uusi.</p>
+
+            <h2 id="kuluttajatili">3. Kuluttajatili vs. yritystili: mihin syöttämäsi data oikeasti menee</h2>
+            <p>Tämä on käytännössä tärkein yksittäinen ero, joka PK-yrityksissä jää usein huomaamatta. Ilmaisen tai henkilökohtaisen kuluttajatilin käyttöehdot ja yritys- tai enterprise-tason tilin käyttöehdot eroavat toisistaan merkittävästi juuri sen suhteen, käytetäänkö syötettyä dataa mallin jatkokouluttamiseen ja kuinka pitkään keskusteludataa säilytetään.</p>
+
+            <div class="highlight-box">
+                Nyrkkisääntö: jos työntekijä käyttää henkilökohtaista, yrityksen ulkopuolella luotua tekoälytiliä työtehtäviin ja syöttää siihen asiakas- tai henkilöstötietoja, yritys on todennäköisesti menettänyt hallinnan siitä missä data on ja millä ehdoilla sitä käsitellään. Tämä on juuri se "Varjo-AI" -ilmiö, jota käsittelimme <a href="sisainen-tekoaly-ja-tietoturva.html">Yrityksen sisäinen tekoäly ja tietoturva -artikkelissamme</a> tietoturvan näkökulmasta, tietosuojan kannalta sama ilmiö tarkoittaa käytännössä sitä, ettei yritys pysty enää osoittamaan noudattaneensa GDPR:ää siltä osin.
+            </div>
+
+            <p>Yritystason tilit (esim. ChatGPT Enterprise, Microsoft 365 Copilot, tai Claude for Enterprise) tarjoavat yleensä sopimusehdot, joissa dataa ei käytetä mallin kouluttamiseen ja säilytysajat ovat määriteltyjä, mutta tämä pitää aina tarkistaa kyseisen palvelun senhetkisistä ehdoista, ei olettaa.</p>
+
+            <h2 id="dpa">4. Tietojenkäsittelysopimus (DPA) tekoälypalveluntarjoajan kanssa</h2>
+            <p>GDPR:n 28 artikla edellyttää, että rekisterinpitäjä (yrityksesi) tekee kirjallisen tietojenkäsittelysopimuksen (Data Processing Agreement, DPA) jokaisen käsittelijän kanssa, joka käsittelee henkilötietoja yrityksen puolesta. Tekoälypalveluntarjoaja, joka näkee syöttämäsi henkilötiedot, on tässä mielessä käsittelijä siinä missä mikä tahansa muukin alihankkija, eikä DPA ole valinnainen lisäpalvelu vaan lakisääteinen vaatimus.</p>
+
+            <p>Käytännössä tämä tarkoittaa, että ennen kuin otat tekoälytyökalun käyttöön prosessissa jossa se näkee henkilötietoja, kannattaa varmistaa: onko palveluntarjoajalla tarjota DPA, mitä se kattaa (mm. alikäsittelijät, tietoturvatoimenpiteet, ilmoitusvelvollisuus tietoturvaloukkauksesta), ja onko se allekirjoitettu ennen kuin data alkaa liikkua, ei sen jälkeen.</p>
+
+            <h2 id="tiedonsiirto">5. Siirtyykö data EU:n ulkopuolelle?</h2>
+            <p>Moni suosituista tekoälypalveluista käsittelee dataa Yhdysvalloissa tai muualla EU:n ulkopuolella, mikä laukaisee GDPR:n V luvun vaatimukset kansainvälisistä tiedonsiirroista. Ilman riittävää suojamekanismia, kuten Euroopan komission tietosuojan riittävyyspäätöstä tai vakiosopimuslausekkeita (Standard Contractual Clauses, SCC), tiedonsiirto EU:n ulkopuolelle on yksinkertaisesti laitonta, riippumatta siitä kuinka hyvä palvelu muuten on.</p>
+
+            <p>Käytännön kysymykset joita kannattaa kysyä palveluntarjoajalta: missä data fyysisesti sijaitsee ja käsitellään, onko olemassa EU-alueen käsittelyvaihtoehto (monilla suurilla tarjoajilla on nykyään EU-datacenter-vaihtoehto), ja jos data siirtyy EU:n ulkopuolelle, mikä on sen oikeudellinen peruste. Jos palveluntarjoaja ei osaa vastata näihin suoraan, se on jo itsessään varoitusmerkki.</p>
+
+            <h2 id="oikeudet">6. Rekisteröidyn oikeudet tekoälyjärjestelmässä</h2>
+            <p>GDPR antaa rekisteröidylle (esim. asiakkaalle tai työntekijälle) oikeuden mm. saada tietonsa poistetuksi, oikaistuksi, ja tietyissä tilanteissa vastustaa automaattista päätöksentekoa. Tekoälyjärjestelmä ei ole poikkeus näistä oikeuksista, mutta se voi tehdä niiden toteuttamisesta teknisesti hankalampaa: jos asiakastieto on päätynyt osaksi tekoälyagentin muistia, keskusteluhistoriaa tai hakuindeksiä (esim. RAG-järjestelmässä), pelkkä alkuperäisen tietueen poistaminen lähdejärjestelmästä ei välttämättä riitä.</p>
+
+            <p>Tämä on syytä miettiä jo suunnitteluvaiheessa: miten poistopyyntö toteutetaan käytännössä, jos tieto on hajautunut agentin eri muistirakenteisiin, ja kuka teknisesti vastaa siitä että poisto tapahtuu myös niissä. Erityisen tärkeäksi tämä nousee, jos tekoäly tekee automaattisia päätöksiä jotka vaikuttavat henkilöön merkittävästi (esim. luottopäätös tai rekrytointiseula), koska tällöin rekisteröidyllä on oikeus vaatia ihmisen tekemää uudelleenarviointia.</p>
+
+            <h2 id="muistilista">7. Muistilista ennen kuin otat tekoälytyökalun käyttöön</h2>
+            <ul class="checklist-box">
+                <li>Käsittelyperuste on selvitetty jokaiselle henkilötietoja koskevalle käyttötarkoitukselle, myös uusille joita tekoäly mahdollistaa</li>
+                <li>Käytössä on yritys- tai enterprise-tason tili, ei henkilökohtainen kuluttajatili, jos työkalu näkee asiakas- tai henkilöstötietoja</li>
+                <li>Tietojenkäsittelysopimus (DPA) on allekirjoitettu ennen kuin data alkaa liikkua</li>
+                <li>On selvitetty, missä data fyysisesti käsitellään ja siirtyykö se EU:n ulkopuolelle</li>
+                <li>Tietosuojaseloste on päivitetty kertomaan tekoälyn käytöstä, jos se muuttaa käsittelyä</li>
+                <li>On olemassa tekninen tapa toteuttaa poisto- ja oikaisupyynnöt myös tekoälyjärjestelmän omissa muistirakenteissa</li>
+            </ul>
+
+            <h2 id="miten-valok">8. Miten Valok huomioi tietosuojan agenttiprojekteissa</h2>
+            <p>Kun suunnittelemme tekoälyratkaisua asiakkaalle, tietosuoja käydään läpi samassa vaiheessa kuin agentin valtuuksien kartoitus, ei erillisenä juridisena tarkastuksena projektin lopussa. Selvitämme aina mihin henkilötietoihin ratkaisu tarvitsee pääsyn, minne data käsittelyn aikana liikkuu, ja varmistamme että käytössä on sopimukset ja suojamekanismit jotka GDPR edellyttää, ennen kuin ratkaisu menee tuotantoon.</p>
+
+            <p>Tämä ei ole erillinen lisäpalvelu, vaan osa sitä miten rakennamme tekoälyratkaisuja ylipäätään: turvallinen ja vaatimustenmukainen ratkaisu on aina myös se, joka kestää pidempään ilman että se pitää rakentaa uudelleen ensimmäisen tietosuojakyselyn kohdalla. Jos haluat käydä läpi, mitä juuri teidän tekoälyprojektinne vaatisi tietosuojan näkökulmasta, varaa maksuton konsultaatio alta.</p>
+
+            <div class="reference-list">
+                <h4>Lähdeviitteet:</h4>
+                <ol>
+                    <li><a href="https://edpb.europa.eu" target="_blank" rel="noopener">Euroopan tietosuojaneuvosto (EDPB): SME Guide</a>. Ohjeistusta PK-yrityksille kansainvälisistä tiedonsiirroista ja GDPR-vaatimuksista.</li>
+                    <li><a href="https://www.crescendo.ai/blog/ai-and-gdpr" target="_blank" rel="noopener">Crescendo AI: "AI and GDPR in 2026"</a>. Katsaus GDPR:n ja tekoälyn yhteensovittamisen vaatimuksiin.</li>
+                    <li><a href="https://syntalith.ai/en/blog/gdpr-and-dpa-when-deploying-ai-2026" target="_blank" rel="noopener">Syntalith: "GDPR and DPA When Deploying AI 2026"</a>. Tietojenkäsittelysopimusten (DPA) rooli tekoälyn käyttöönotossa.</li>
+                </ol>
+            </div>
+
+            <div class="contact-section">
+                <div class="section-header" style="text-align: center; margin-bottom: 40px;">
+                    <span class="section-tag">Otetaan askel eteenpäin</span>
+                    <h2>Onko teidän tekoälyprojektinne tietosuoja kunnossa?</h2>
+                    <p>Valok kartoittaa käsittelyperusteet, sopimukset ja tiedonsiirrot osana agenttiprojektia, jotta ratkaisu on vaatimustenmukainen alusta asti.</p>
+                </div>
+
+                <div class="contact-container" style="max-width: 100%;">
+                    <div class="contact-form-card">
+                        <form action="https://formspree.io/f/xlgpgyjl" method="POST" id="contact-form">
+                            <div class="form-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 20px;">
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="name">Nimi</label>
+                                    <input type="text" id="name" name="name" autocomplete="name" placeholder="Oma nimesi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                </div>
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="email">Sähköposti</label>
+                                    <input type="email" id="email" name="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="esimerkki@yritys.fi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg full-width" style="width: 100%; padding: 16px; font-weight: bold; cursor: pointer; margin-top: 20px;">
+                                Varaa ilmainen konsultaatio
+                            </button>
+                            <div id="form-status" class="form-status" aria-live="polite"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </article>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer" width="4206" height="4206" loading="lazy"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer" width="4206" height="4206" loading="lazy">VALOK<span class="logo-dot">.</span></div>
+                <p>Prosessien automatisointia ja dedikoituja tekoälyratkaisuja suomalaisille PK-yrityksille.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Linkit</h4>
+                <ul>
+                    <li><a href="/">Etusivu</a></li>
+                    <li><a href="../blogi.html">Blogi</a></li>
+                    <li><a href="/#palvelut">Palvelut</a></li>
+                    <li><a href="../tietosuoja.html">Tietosuoja</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ota yhteyttä</h4>
+                <ul>
+                    <li>aleksanteri@valok.fi</li>
+                    <li>Jyväskylä, Finland</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Valok. Kaikki oikeudet pidätetään. · <a href="#" id="cookieSettingsLink">Evästeasetukset</a>
+        </div>
+    </footer>
+
+        <div id="cookieBanner" class="cookie-banner">
+        <h5>Yksityisyytesi on meille tärkeää</h5>
+        <p>Käytämme sivustolla vain välttämättömiä toimintoja varmistaaksemme parhaan mahdollisen käyttökokemuksen. Emme
+            käytä kolmannen osapuolen markkinointievästeitä ilman suostumustasi.</p>
+        <div class="cookie-btn-group">
+            <button id="acceptCookies" class="btn btn-primary">Hyväksy kaikki</button>
+            <button id="rejectCookies" class="btn btn-ghost">Hylkää</button>
+            <a href="../tietosuoja.html" class="btn btn-ghost">Lue lisää</a>
+        </div>
+    </div>
+
+    <script src="../main.js"></script>
+</body>
+
+</html>
