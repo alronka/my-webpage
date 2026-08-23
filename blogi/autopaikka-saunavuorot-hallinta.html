@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#030712">
+    <title>Autopaikka- ja saunavuorojen hallinta automaattisesti: Isännöitsijän piilokustannus | Valok</title>
+    <meta name="description"
+        content="Autopaikka- ja saunavuorolistat tuntuvat pieneltä asialta, mutta niiden manuaalinen ylläpito syö isännöitsijän asiakaspalveluaikaa viikoittain. Lue miten varaukset, muistutukset ja ristiriitojen ratkaisu voidaan automatisoida.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel=icon type=image/png sizes=32x32 href=../img/favicon-32x32.png>
+    <link rel=apple-touch-icon sizes=180x180 href=../img/favicon-180x180.png>
+
+    <link rel="canonical" href="https://valok.fi/blogi/autopaikka-saunavuorot-hallinta.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://valok.fi/blogi/autopaikka-saunavuorot-hallinta.html">
+    <meta property="og:title" content="Autopaikka- ja saunavuorojen hallinta automaattisesti: Isännöitsijän piilokustannus">
+    <meta property="og:description" content="Autopaikka- ja saunavuorolistat tuntuvat pieneltä asialta, mutta niiden manuaalinen ylläpito syö isännöitsijän asiakaspalveluaikaa viikoittain.">
+    <meta property="og:image" content="https://valok.fi/img/autopaikka-saunavuorot-hallinta.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Autopaikka- ja saunavuorojen hallinta automaattisesti: Isännöitsijän piilokustannus">
+    <meta name="twitter:description" content="Autopaikka- ja saunavuorolistat tuntuvat pieneltä asialta, mutta niiden manuaalinen ylläpito syö isännöitsijän asiakaspalveluaikaa viikoittain.">
+    <meta name="twitter:image" content="https://valok.fi/img/autopaikka-saunavuorot-hallinta.webp">
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Autopaikka- ja saunavuorojen hallinta automaattisesti: Isännöitsijän piilokustannus",
+  "description": "Autopaikka- ja saunavuorolistat tuntuvat pieneltä asialta, mutta niiden manuaalinen ylläpito syö isännöitsijän asiakaspalveluaikaa viikoittain.",
+  "image": "https://valok.fi/img/autopaikka-saunavuorot-hallinta.webp",
+  "datePublished": "2026-08-23",
+  "dateModified": "2026-08-23",
+  "author": {
+    "@type": "Person",
+    "name": "Aleksanteri Rönkä",
+    "url": "https://valok.fi/",
+    "email": "aleksanteri@valok.fi",
+    "jobTitle": "Perustaja",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Valok"
+    }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Valok",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://valok.fi/img/valok-black-with-white-outline.webp"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://valok.fi/blogi/autopaikka-saunavuorot-hallinta.html"
+  }
+}
+    </script>
+
+    <style>
+        .post-header {
+            min-height: auto !important;
+            padding: 160px 24px 24px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            background: radial-gradient(circle at top, var(--accent-glow) 0%, transparent 70%);
+        }
+
+        .post-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px 100px;
+            line-height: 1.8;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .post-content h2, .post-content h3 {
+            color: var(--text);
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .post-content p {
+            margin-bottom: 24px;
+        }
+
+        .post-content ul, .post-content ol {
+            margin-bottom: 24px;
+            padding-left: 20px;
+        }
+
+        .post-content li {
+            margin-bottom: 12px;
+        }
+
+        .post-meta {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .post-author {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 24px;
+            text-align: left;
+        }
+
+        .post-author img {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .post-author-name {
+            display: block;
+            font-weight: 600;
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+
+        .post-author-role {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dim);
+            text-decoration: none;
+            margin-bottom: 40px;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        .post-image {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .post-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .toc-box {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+        }
+
+        .toc-box h4 {
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        .toc-box ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .toc-box a {
+            color: #58a6ff;
+            text-decoration: none;
+            display: block;
+            padding: 4px 0;
+            transition: var(--transition);
+        }
+
+        .toc-box a:hover {
+            color: var(--accent);
+            padding-left: 4px;
+        }
+
+        .highlight-box {
+            background: var(--glass);
+            padding: 30px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+            border-left: 4px solid var(--accent);
+        }
+
+        .reference-list {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            margin-top: 60px;
+        }
+
+        .reference-list ol {
+            padding-left: 20px;
+        }
+
+        .contact-section {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 60px 40px;
+            border-radius: var(--radius);
+            margin-top: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="particles"></canvas>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark" width="4206" height="4206"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light" width="4206" height="4206">VALOK<span
+                     class="logo-dot">.</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="/#palvelut">Palvelut</a>
+                <a href="/#prosessi">Prosessi</a>
+                <a href="../blogi.html">Blogi</a>
+                <a href="/#yhteystiedot" class="nav-cta">Ota yhteyttä</a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Avaa valikko">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <article>
+        <header class="post-header">
+            <a href="../blogi.html" class="back-link">← Takaisin blogiin</a>
+            <span class="post-meta">Automaatio • Isännöinti • Taloyhtiöt</span>
+            <h1>Autopaikka- ja saunavuorojen hallinta <span class="gradient-text">automaattisesti</span></h1>
+            <p style="color: var(--text-dim); margin-top: 20px;">Autopaikka- ja saunavuorolistat tuntuvat pieneltä asialta, mutta niiden manuaalinen ylläpito syö isännöitsijän asiakaspalveluaikaa viikoittain. Lue miten varaukset, muistutukset ja ristiriitojen ratkaisu voidaan automatisoida.</p>
+            <div class="post-author">
+                <img src="../img/valok-aleksanteri.webp" alt="Aleksanteri Rönkä" width="44" height="44" loading="lazy">
+                <div>
+                    <span class="post-author-name">Aleksanteri Rönkä</span>
+                    <span class="post-author-role">Perustaja, Valok &middot; <a href="mailto:aleksanteri@valok.fi">aleksanteri@valok.fi</a></span>
+                </div>
+            </div>
+        </header>
+
+        <div class="post-image">
+            <img src="../img/autopaikka-saunavuorot-hallinta.webp" alt="Autopaikka- ja saunavuorojen hallinnan automatisointi isännöitsijälle - Valok" width="960" height="1107">
+        </div>
+
+        <main class="post-content">
+            <div class="toc-box">
+                <h4>Sisällysluettelo</h4>
+                <ul>
+                    <li><a href="#ajansyoppo">1. Miksi autopaikka- ja saunavuorolistat ovat yllättävän iso ajansyöppö</a></li>
+                    <li><a href="#nykytila">2. Nykytila: Excel, WhatsApp-ryhmä ja paperilista eivät skaalaudu</a></li>
+                    <li><a href="#mita-automaatio-hoitaa">3. Mitä automaatio oikeasti hoitaa</a></li>
+                    <li><a href="#kaytannon-esimerkki">4. Käytännön esimerkki: miltä automatisoitu prosessi näyttää</a></li>
+                    <li><a href="#hyodyt">5. Mitä isännöitsijä ja asukkaat siitä hyötyvät</a></li>
+                    <li><a href="#ei-aina-tekoalya">6. Tämä ei aina vaadi tekoälyä, ja se on hyvä asia</a></li>
+                    <li><a href="#miten-valok">7. Miten Valok rakentaa tämän</a></li>
+                </ul>
+            </div>
+
+            <p>Autopaikka- ja saunavuorolistat kuuluvat siihen isännöinnin arjen osaan, joka ei koskaan nouse minkään strategiapalaverin agendalle, mutta joka syö silti tasaisesti aikaa viikosta toiseen. Yksittäinen varauspyyntö on aina pieni tehtävä: joku soittaa tai laittaa viestiä, joku toinen tarkistaa listan, päivittää sen ja vastaa. Ongelma ei ole yksittäinen pyyntö, vaan se, että sama kierto toistuu kymmeniä kertoja kuukaudessa jokaisessa taloyhtiössä, ja jokainen kierto vaatii ihmisen huomion juuri sillä hetkellä, kun pyyntö tulee.</p>
+
+            <p>Tämä artikkeli käy läpi, miksi tämä prosessi on yllättävän hyvä automaation kohde, mitä automaatio siihen käytännössä tarkoittaa, ja miksi tässä tapauksessa kannattaa lähteä liikkeelle yksinkertaisesta säännönmukaisesta automaatiosta, ei suoraan tekoälyagentista.</p>
+
+            <h2 id="ajansyoppo">1. Miksi autopaikka- ja saunavuorolistat ovat yllättävän iso ajansyöppö</h2>
+            <p>Isännöitsijän tehtäviin kuuluu pitää ajantasainen tieto siitä, mitkä autopaikat ja saunavuorot ovat varattuja ja mitkä vapaana, ja tämä tieto kulkee käytännössä isännöitsijän kautta: asukas ottaa yhteyttä, isännöitsijä tarkistaa tilanteen, päivittää sen ja vahvistaa varauksen takaisin asukkaalle.<sup>1</sup> Kun tämä toistetaan jokaisessa taloyhtiössä erikseen, kertyy paljon pientä, toistuvaa asiakaspalvelutyötä, joka ei koskaan pääty, koska varaustilanne muuttuu jatkuvasti: joku peruu, joku toinen jonottaa tilalle, kausi vaihtuu, auto vaihtuu.</p>
+
+            <p>Tämä on juuri se piilokustannuksen tyyppi, jota käsittelimme <a href="it-tiimin-manuaaliset-rutiinit.html">IT-tiimin manuaaliset rutiinit -artikkelissamme</a> toisesta näkökulmasta: yksittäinen tehtävä on liian pieni näkyäkseen missään raportissa, mutta summa viikkojen ja vuosien yli on merkittävä, koska se on aikaa, joka on koko ajan pois asioista, jotka oikeasti vaativat isännöitsijän harkintaa.</p>
+
+            <h2 id="nykytila">2. Nykytila: Excel, WhatsApp-ryhmä ja paperilista eivät skaalaudu</h2>
+            <p>Käytännössä autopaikka- ja saunavuorolistat elävät hyvin usein jossain seuraavista muodoista: jaettu Excel-taulukko, WhatsApp- tai muu ryhmäviestiketju, tai fyysinen paperilista taloyhtiön ilmoitustaululla. Jokainen näistä toimii sinänsä, mutta kaikilla on sama perusongelma: tieto on yhdessä paikassa, mutta pääsy siihen kulkee aina ihmisen kautta. Kukaan asukas ei voi itse nähdä reaaliaikaista tilannetta ja tehdä varausta, vaan joku joutuu aina välittämään tiedon manuaalisesti.</p>
+
+            <p>Tämä näkyy konkreettisesti kolmena toistuvana ongelmana: päällekkäiset varaukset, kun kaksi asukasta ehtii pyytää saman vuoron ennen kuin lista ehditään päivittää, jonotuslistan ylläpito, kun peruutuksia pitää muistaa tarjota seuraavalle jonossa olevalle, ja se, että koko prosessi pysähtyy aina, kun isännöitsijä on lomalla, sairaana tai muuten tavoittamattomissa.</p>
+
+            <h2 id="mita-automaatio-hoitaa">3. Mitä automaatio oikeasti hoitaa</h2>
+            <p>Automaation tehtävä tässä prosessissa ei ole korvata isännöitsijän harkintaa, vaan poistaa se osa työstä, joka on puhtaasti mekaanista tiedon välittämistä ja päivittämistä. Käytännössä tämä tarkoittaa neljää asiaa:</p>
+
+            <ul>
+                <li><strong>Itsepalveluvaraus.</strong> Asukas näkee reaaliaikaisen tilanteen ja tekee varauksen itse ilman, että kenenkään tarvitsee olla välissä.</li>
+                <li><strong>Automaattinen vahvistus ja muistutus.</strong> Varauksesta lähtee vahvistus heti, ja saunavuoron lähestyessä lähtee muistutus ilman, että kukaan muistaa lähettää sitä käsin.</li>
+                <li><strong>Jonotuslistan hoito.</strong> Kun joku peruu, järjestelmä tarjoaa vuoron automaattisesti seuraavalle jonossa olevalle, sen sijaan että peruutus jää huomaamatta.</li>
+                <li><strong>Ristiriitojen esto, ei niiden selvittely jälkikäteen.</strong> Kaksi päällekkäistä varausta ei pääse syntymään ollenkaan, koska järjestelmä tietää reaaliajassa, mikä on jo varattu.</li>
+            </ul>
+
+            <div class="highlight-box">
+                Tärkeä huomio: tämä ei poista isännöitsijää prosessista, vaan poistaa prosessista sen osan, joka ei koskaan vaatinut isännöitsijän harkintaa ylipäätään. Poikkeustilanteet, riidat ja erikoistapaukset ohjautuvat edelleen ihmiselle, mutta ne ovat murto-osa kaikista pyynnöistä.
+            </div>
+
+            <h2 id="kaytannon-esimerkki">4. Käytännön esimerkki: miltä automatisoitu prosessi näyttää</h2>
+            <p>Konkreettisesti tämä voisi näyttää tältä: asukas avaa linkin (esim. tekstiviestillä tai taloyhtiön omalla sivulla), näkee vapaat saunavuorot tai autopaikat kalenterinäkymässä ja valitsee itselleen sopivan. Vahvistus lähtee automaattisesti tekstiviestillä tai sähköpostilla. Jos asukas peruu, vuoro vapautuu heti ja tarjotaan automaattisesti seuraavalle jonossa olevalle. Isännöitsijä näkee koko ajan kokonaistilanteen yhdestä näkymästä, mutta ei joudu koskemaan yksittäisiin varauksiin, ellei jotain poikkeavaa tapahdu.</p>
+
+            <p>Tämä on rakenteellisesti täsmälleen sama malli kuin monissa muissa varauspohjaisissa prosesseissa, ja sen toteutus nojaa integraatioihin olemassa olevien järjestelmien (esim. isännöintiohjelmisto, viestintäkanava) välillä, ei minkään yksittäisen uuden sovelluksen rakentamiseen tyhjästä.</p>
+
+            <h2 id="hyodyt">5. Mitä isännöitsijä ja asukkaat siitä hyötyvät</h2>
+            <p>Isännöitsijän näkökulmasta hyöty on ennen kaikkea ajankäytössä: asiakaspalveluaika vapautuu asioihin, jotka oikeasti vaativat harkintaa, kuten yhtiökokousten valmistelua, huoltotarpeiden koordinointia tai osakkaiden kysymyksiin vastaamista, sen sijaan että aika kuluisi listojen manuaaliseen päivittämiseen. Tämä on erityisen merkittävää isännöitsijätoimistoille, jotka hoitavat useita taloyhtiöitä samanaikaisesti: sama pieni kitka kertautuu jokaisen hoidettavan kohteen kohdalla.</p>
+
+            <p>Asukkaiden näkökulmasta hyöty on läpinäkyvyydessä ja nopeudessa: varauksen voi tehdä milloin tahansa, ei tarvitse odottaa, että isännöitsijä ehtii vastata, ja tilanne on aina ajan tasalla. Tämä vähentää myös yleisintä turhautumisen lähdettä, epäselvyyttä siitä, onko varaus mennyt läpi vai ei.</p>
+
+            <h2 id="ei-aina-tekoalya">6. Tämä ei aina vaadi tekoälyä, ja se on hyvä asia</h2>
+            <p>On tärkeä sanoa suoraan: autopaikka- ja saunavuorojen hallinta on prosessina sääntöpohjainen, ei tulkinnanvarainen. Kalenteri, varaussäännöt ja jonotuslogiikka voidaan toteuttaa perinteisellä automaatiolla ilman, että mukana tarvitsee olla kielimallia tai tekoälyagenttia lainkaan. Tämä on juuri se ero, jota käsittelimme <a href="rpa-vs-api-pohjainen-automaatio.html">RPA vs. API-pohjainen automaatio -artikkelissamme</a>: kun sääntö on selkeä ja toistuva, kannattaa käyttää yksinkertaisinta ratkaisua, joka hoitaa tehtävän luotettavasti, ei monimutkaisinta.</p>
+
+            <p>Tekoälylle jää tässä prosessissa oma, rajatumpi roolinsa: esimerkiksi asukkaan vapaamuotoisen viestin ("onko ensi viikon perjantai vapaana?") tulkitseminen ja ohjaaminen oikeaan varaustoimintoon tai poikkeustilanteiden tunnistaminen ja ohjaaminen isännöitsijälle. Oikea työkalu valitaan prosessin luonteen mukaan, ei sen mukaan, mikä on juuri nyt puheenaiheena.</p>
+
+            <h2 id="miten-valok">7. Miten Valok rakentaa tämän</h2>
+            <p>Kun toteutamme tämän tyyppisen ratkaisun isännöitsijätoimistolle, lähdemme aina liikkeelle kartoituksesta: mitä järjestelmiä on jo käytössä (isännöintiohjelmisto, viestintäkanavat), ja mikä osa prosessista on aidosti sääntöpohjaista ja mikä vaatii tulkintaa. Tämän pohjalta rakennamme integraation, joka toimii asukkaan, isännöitsijän ja olemassa olevien järjestelmien välissä, ilman että kenenkään tarvitsee omaksua kokonaan uutta työkalua asian hoitamiseen.</p>
+
+            <p>Koska sama malli toistuu käytännössä samanlaisena taloyhtiöstä toiseen, ratkaisu skaalautuu hyvin isännöitsijätoimistolle, joka hoitaa useita kohteita: kertainvestointi maksaa itsensä takaisin jokaisessa lisätaloyhtiössä, jossa manuaalinen listanhoito muuten toistuisi samanlaisena. Jos autopaikka- ja saunavuorolistat, tai jokin muu vastaava toistuva asiakaspalveluprosessi, syövät tiimiltäsi aikaa viikoittain, jutellaan mielellämme, mitä juuri teidän tilanteessanne kannattaisi automatisoida.</p>
+
+            <div class="reference-list">
+                <h4>Lähdeviitteet:</h4>
+                <ol>
+                    <li><a href="https://retta.fi/ajankohtaista/isannointi/taloyhtion-autopaikat/" target="_blank" rel="noopener">Retta: "Taloyhtiön autopaikat – yhteisesti sovitut säännöt selkeyttävät"</a>. Kuvaus autopaikkojen ja saunavuorojen hallinnan käytännöistä isännöinnissä.</li>
+                </ol>
+            </div>
+
+            <div class="contact-section">
+                <div class="section-header" style="text-align: center; margin-bottom: 40px;">
+                    <span class="section-tag">Otetaan askel eteenpäin</span>
+                    <h2>Syövätkö toistuvat varauspyynnöt tiiminne aikaa?</h2>
+                    <p>Valok kartoittaa, mikä osa isännöinnin arjesta kannattaa automatisoida sääntöpohjaisesti ja missä tekoäly tuo aidosti lisäarvoa.</p>
+                </div>
+
+                <div class="contact-container" style="max-width: 100%;">
+                    <div class="contact-form-card">
+                        <form action="https://formspree.io/f/xlgpgyjl" method="POST" id="contact-form">
+                            <div class="form-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 20px;">
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="name">Nimi</label>
+                                    <input type="text" id="name" name="name" autocomplete="name" placeholder="Oma nimesi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                </div>
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="email">Sähköposti</label>
+                                    <input type="email" id="email" name="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="esimerkki@yritys.fi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg full-width" style="width: 100%; padding: 16px; font-weight: bold; cursor: pointer; margin-top: 20px;">
+                                Varaa ilmainen konsultaatio
+                            </button>
+                            <div id="form-status" class="form-status" aria-live="polite"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </article>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer" width="4206" height="4206" loading="lazy"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer" width="4206" height="4206" loading="lazy">VALOK<span class="logo-dot">.</span></div>
+                <p>Prosessien automatisointia ja dedikoituja tekoälyratkaisuja suomalaisille PK-yrityksille.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Linkit</h4>
+                <ul>
+                    <li><a href="/">Etusivu</a></li>
+                    <li><a href="../blogi.html">Blogi</a></li>
+                    <li><a href="/#palvelut">Palvelut</a></li>
+                    <li><a href="../tietosuoja.html">Tietosuoja</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ota yhteyttä</h4>
+                <ul>
+                    <li>aleksanteri@valok.fi</li>
+                    <li>Jyväskylä, Finland</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Valok. Kaikki oikeudet pidätetään. · <a href="#" id="cookieSettingsLink">Evästeasetukset</a>
+        </div>
+    </footer>
+
+        <div id="cookieBanner" class="cookie-banner">
+        <h5>Yksityisyytesi on meille tärkeää</h5>
+        <p>Käytämme sivustolla vain välttämättömiä toimintoja varmistaaksemme parhaan mahdollisen käyttökokemuksen. Emme
+            käytä kolmannen osapuolen markkinointievästeitä ilman suostumustasi.</p>
+        <div class="cookie-btn-group">
+            <button id="acceptCookies" class="btn btn-primary">Hyväksy kaikki</button>
+            <button id="rejectCookies" class="btn btn-ghost">Hylkää</button>
+            <a href="../tietosuoja.html" class="btn btn-ghost">Lue lisää</a>
+        </div>
+    </div>
+
+    <script src="../main.js"></script>
+</body>
+
+</html>
