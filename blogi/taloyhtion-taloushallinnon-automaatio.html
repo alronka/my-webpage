@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#030712">
+    <title>Taloyhtiön taloushallinnon automaatio: Vastikelaskutus ja raportointi ilman jatkuvaa käsityötä | Valok</title>
+    <meta name="description"
+        content="Vastikelaskutus, maksuvalvonta ja hallituksen raportointi vievät isännöitsijän aikaa viikoittain. Lue mitä taloyhtiön taloushallinnosta voidaan automatisoida ja mikä vaatii yhä ihmisen harkintaa.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel=icon type=image/png sizes=32x32 href=../img/favicon-32x32.png>
+    <link rel=apple-touch-icon sizes=180x180 href=../img/favicon-180x180.png>
+
+    <link rel="canonical" href="https://valok.fi/blogi/taloyhtion-taloushallinnon-automaatio.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://valok.fi/blogi/taloyhtion-taloushallinnon-automaatio.html">
+    <meta property="og:title" content="Taloyhtiön taloushallinnon automaatio: Vastikelaskutus ja raportointi ilman jatkuvaa käsityötä">
+    <meta property="og:description" content="Vastikelaskutus, maksuvalvonta ja hallituksen raportointi vievät isännöitsijän aikaa viikoittain. Lue mitä taloyhtiön taloushallinnosta voidaan automatisoida.">
+    <meta property="og:image" content="https://valok.fi/img/taloyhtion-taloushallinnon-automaatio.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Taloyhtiön taloushallinnon automaatio: Vastikelaskutus ja raportointi ilman jatkuvaa käsityötä">
+    <meta name="twitter:description" content="Vastikelaskutus, maksuvalvonta ja hallituksen raportointi vievät isännöitsijän aikaa viikoittain. Lue mitä taloyhtiön taloushallinnosta voidaan automatisoida.">
+    <meta name="twitter:image" content="https://valok.fi/img/taloyhtion-taloushallinnon-automaatio.webp">
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Taloyhtiön taloushallinnon automaatio: Vastikelaskutus ja raportointi ilman jatkuvaa käsityötä",
+  "description": "Vastikelaskutus, maksuvalvonta ja hallituksen raportointi vievät isännöitsijän aikaa viikoittain. Lue mitä taloyhtiön taloushallinnosta voidaan automatisoida.",
+  "image": "https://valok.fi/img/taloyhtion-taloushallinnon-automaatio.webp",
+  "datePublished": "2026-08-26",
+  "dateModified": "2026-08-26",
+  "author": {
+    "@type": "Person",
+    "name": "Aleksanteri Rönkä",
+    "url": "https://valok.fi/",
+    "email": "aleksanteri@valok.fi",
+    "jobTitle": "Perustaja",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Valok"
+    }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Valok",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://valok.fi/img/valok-black-with-white-outline.webp"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://valok.fi/blogi/taloyhtion-taloushallinnon-automaatio.html"
+  }
+}
+    </script>
+
+    <style>
+        .post-header {
+            min-height: auto !important;
+            padding: 160px 24px 24px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            background: radial-gradient(circle at top, var(--accent-glow) 0%, transparent 70%);
+        }
+
+        .post-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px 100px;
+            line-height: 1.8;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .post-content h2, .post-content h3 {
+            color: var(--text);
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .post-content p {
+            margin-bottom: 24px;
+        }
+
+        .post-content ul, .post-content ol {
+            margin-bottom: 24px;
+            padding-left: 20px;
+        }
+
+        .post-content li {
+            margin-bottom: 12px;
+        }
+
+        .post-meta {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .post-author {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 24px;
+            text-align: left;
+        }
+
+        .post-author img {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .post-author-name {
+            display: block;
+            font-weight: 600;
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+
+        .post-author-role {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dim);
+            text-decoration: none;
+            margin-bottom: 40px;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        .post-image {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .post-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .toc-box {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+        }
+
+        .toc-box h4 {
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        .toc-box ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .toc-box a {
+            color: #58a6ff;
+            text-decoration: none;
+            display: block;
+            padding: 4px 0;
+            transition: var(--transition);
+        }
+
+        .toc-box a:hover {
+            color: var(--accent);
+            padding-left: 4px;
+        }
+
+        .highlight-box {
+            background: var(--glass);
+            padding: 30px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+            border-left: 4px solid var(--accent);
+        }
+
+        .reference-list {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            margin-top: 60px;
+        }
+
+        .reference-list ol {
+            padding-left: 20px;
+        }
+
+        .contact-section {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 60px 40px;
+            border-radius: var(--radius);
+            margin-top: 80px;
+        }
+
+        .checklist-box {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 24px;
+        }
+
+        .checklist-box li {
+            position: relative;
+            padding: 14px 16px 14px 44px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            margin-bottom: 12px;
+        }
+
+        .checklist-box li::before {
+            content: "✓";
+            position: absolute;
+            left: 16px;
+            top: 14px;
+            color: var(--accent);
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="particles"></canvas>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark" width="4206" height="4206"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light" width="4206" height="4206">VALOK<span
+                     class="logo-dot">.</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="/#palvelut">Palvelut</a>
+                <a href="/#prosessi">Prosessi</a>
+                <a href="../blogi.html">Blogi</a>
+                <a href="/#yhteystiedot" class="nav-cta">Ota yhteyttä</a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Avaa valikko">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <article>
+        <header class="post-header">
+            <a href="../blogi.html" class="back-link">← Takaisin blogiin</a>
+            <span class="post-meta">Taloushallinto • Isännöinti • Automaatio</span>
+            <h1>Taloyhtiön taloushallinnon automaatio: <span class="gradient-text">vastikelaskutus ja raportointi ilman jatkuvaa käsityötä</span></h1>
+            <p style="color: var(--text-dim); margin-top: 20px;">Vastikelaskutus, maksuvalvonta ja hallituksen raportointi vievät isännöitsijän aikaa viikoittain, vaikka suuri osa työstä on toistuvaa ja sääntöpohjaista. Lue mitä taloyhtiön taloushallinnosta kannattaa automatisoida ja mikä vaatii yhä ihmisen harkintaa.</p>
+            <div class="post-author">
+                <img src="../img/valok-aleksanteri.webp" alt="Aleksanteri Rönkä" width="44" height="44" loading="lazy">
+                <div>
+                    <span class="post-author-name">Aleksanteri Rönkä</span>
+                    <span class="post-author-role">Perustaja, Valok &middot; <a href="mailto:aleksanteri@valok.fi">aleksanteri@valok.fi</a></span>
+                </div>
+            </div>
+        </header>
+
+        <div class="post-image">
+            <img src="../img/taloyhtion-taloushallinnon-automaatio.webp" alt="Taloyhtiön taloushallinnon automaatio: vastikelaskutus ja raportointi isännöitsijälle - Valok" width="960" height="1107">
+        </div>
+
+        <main class="post-content">
+            <div class="toc-box">
+                <h4>Sisällysluettelo</h4>
+                <ul>
+                    <li><a href="#piilotyo">1. Miksi taloyhtiön taloushallinto on isännöitsijän arjen suurin piilotyö</a></li>
+                    <li><a href="#mita-kuuluu">2. Mitä taloyhtiön taloushallintoon oikeasti kuuluu</a></li>
+                    <li><a href="#kasityo-kasautuu">3. Missä käsityö kasautuu: vastikelaskutus ja maksuvalvonta</a></li>
+                    <li><a href="#rajapinnat">4. Hallituksen raportointi: kun tieto jää rajapintoihin</a></li>
+                    <li><a href="#mita-automaatio-hoitaa">5. Mitä automaatio oikeasti hoitaa</a></li>
+                    <li><a href="#kaytannon-esimerkki">6. Käytännön esimerkki: miltä automatisoitu taloushallinto näyttää</a></li>
+                    <li><a href="#tietoturva">7. Taloustiedon tietoturva: mitä pitää huomioida</a></li>
+                    <li><a href="#saantopohjainen-vai-tekoaly">8. Sääntöpohjainen automaatio vai tekoäly</a></li>
+                    <li><a href="#miten-valok">9. Miten Valok rakentaa tämän</a></li>
+                </ul>
+            </div>
+
+            <p>Taloyhtiön taloushallinto ei näy osakkaille juuri koskaan, ellei jokin mene pieleen: vastike myöhästyy, hallitus ei saa ajoissa selkeää kuvaa taloudesta, tai maksuhäiriö huomataan liian myöhään. Silti juuri tämä näkymätön työ, vastikkeiden laskutus, maksujen seuranta, kirjanpito ja hallituksen raportointi, vie ison osan isännöitsijän ja taloushallinnon ajasta kuukaudesta toiseen, taloyhtiön koosta riippumatta.</p>
+
+            <p>Tämä artikkeli käy läpi, mistä taloyhtiön taloushallinto oikeasti koostuu, missä kohdissa käsityö kasautuu turhaan, ja mitä siitä voidaan automatisoida ilman että isännöitsijän harkinta katoaa prosessista.</p>
+
+            <h2 id="piilotyo">1. Miksi taloyhtiön taloushallinto on isännöitsijän arjen suurin piilotyö</h2>
+            <p>Yksittäinen vastikelasku tai maksumuistutus on aina pieni tehtävä, mutta se toistuu jokaisessa taloyhtiössä joka ainoa laskutuskausi, ja isännöitsijätoimisto hoitaa tyypillisesti useita kohteita samanaikaisesti. Tämä on rakenteellisesti sama ilmiö, jota käsittelimme aiemmin <a href="autopaikka-saunavuorot-hallinta.html">Autopaikka- ja saunavuorojen hallinta -artikkelissamme</a>: yksittäinen tehtävä on liian pieni näkyäkseen missään kustannusraportissa, mutta summa kuukausien ja usean hoidettavan taloyhtiön yli on merkittävä.</p>
+
+            <p>Ero autopaikka- ja saunavuorolistoihin on siinä, että taloushallinnon virheillä on suoraan taloudellinen seuraus: myöhässä huomattu maksuhäiriö tai puutteellinen raportointi voi vaikuttaa koko taloyhtiön kassatilanteeseen, ei vain yhden asukkaan arkeen.</p>
+
+            <h2 id="mita-kuuluu">2. Mitä taloyhtiön taloushallintoon oikeasti kuuluu</h2>
+            <p>Taloyhtiön taloushallinto on käytännössä kokoelma toisiinsa kytkeytyviä tehtäviä, ei yksi yhtenäinen prosessi. Siihen kuuluu tyypillisesti vastikkeiden ja käyttökorvausten laskutus, ostolaskujen käsittely ja maksuliikenne, kirjanpito, tilinpäätöksen valmistelu, talousarvion seuranta sekä säännöllinen raportointi hallitukselle.<sup>1</sup> Jokainen näistä on omalla tavallaan toistuva, mutta ne kytkeytyvät toisiinsa siten, että yhden osan viivästyminen näkyy usein myös muissa: myöhässä oleva vastikekertymä vaikuttaa suoraan siihen, millaista kuvaa hallitukselle voidaan antaa taloyhtiön kassatilanteesta.</p>
+
+            <h2 id="kasityo-kasautuu">3. Missä käsityö kasautuu: vastikelaskutus ja maksuvalvonta</h2>
+            <p>Vastikelaskutus itsessään on nykyään pitkälti automatisoitu useimmissa isännöintiohjelmistoissa, mutta prosessi ei pääty laskun lähettämiseen. Käsityötä syntyy sen jälkeen: eräpäivien seuranta, myöhästyneiden maksujen tunnistaminen, muistutusten lähettäminen oikeaan aikaan, ja tilanteen eskalointi eteenpäin, jos maksu jää edelleen saamatta.</p>
+
+            <p>Aktiivinen maksuvalvonta on sekä hallituksen että isännöitsijän lakisääteinen vastuu, koska osakkaan vastikkeenmaksuvelvollisuus on juridisesti sitova, ja jos yksi osakas laiminlyö maksun, muut osakkaat voivat joutua käytännössä kompensoimaan puutteen.<sup>2</sup> Prosessi etenee tyypillisesti maksumuistutuksesta vapaaehtoiseen perintään ja tarvittaessa aina käräjäoikeuteen asti, ja jokainen näistä vaiheista pitää käynnistää oikea-aikaisesti, ei vasta kun joku huomaa asian sattumalta.</p>
+
+            <h2 id="rajapinnat">4. Hallituksen raportointi: kun tieto jää rajapintoihin</h2>
+            <p>Taloyhtiön hallitus tekee päätöksiä sen tiedon perusteella, jonka se saa, ja jos tieto on hajallaan eri järjestelmissä tai kulkee viiveellä isännöitsijän kautta, hallitus joutuu käytännössä toimimaan omana viestinviejänään ennen kuin päätöksiä voidaan tehdä. Tämä hidastaa reagointia juuri niihin asioihin, joissa nopeus olisi tärkeintä, kuten vastikkeiden riittävyyden arviointiin tai kassatilanteen muutoksiin.</p>
+
+            <div class="highlight-box">
+                Taloyhtiön arki helpottuu selvästi, kun hallituksen ei tarvitse koota tilannekuvaa itse eri lähteistä, vaan taloustieto on saatavilla yhdessä, ajantasaisessa näkymässä. Tämä ei poista hallituksen päätösvaltaa, vaan poistaa sen edeltävän vaiheen, jossa aikaa kuluu tiedon etsimiseen ennen kuin päätöstä ylipäätään voidaan harkita.
+            </div>
+
+            <h2 id="mita-automaatio-hoitaa">5. Mitä automaatio oikeasti hoitaa</h2>
+            <p>Suuri osa taloyhtiön taloushallinnosta on luonteeltaan sääntöpohjaista: eräpäivä on tiedossa etukäteen, muistutuksen lähettämisen ehdot ovat selkeät, ja raportointi hallitukselle noudattaa samaa kaavaa kuukaudesta toiseen. Tämä tekee siitä hyvän automaation kohteen, ja käytännössä automaatio voi hoitaa neljä asiaa:</p>
+
+            <ul>
+                <li><strong>Laskutuksen ja eräpäiväseurannan.</strong> Vastikkeet ja käyttökorvaukset laskutetaan automaattisesti sovitun aikataulun mukaan, ja järjestelmä seuraa maksujen saapumista ilman erillistä manuaalista tarkistusta.</li>
+                <li><strong>Maksumuistutusten lähetyksen.</strong> Kun eräpäivä ylittyy, muistutus lähtee automaattisesti sovittujen sääntöjen mukaan, sen sijaan että joku muistaa tarkistaa listan säännöllisesti.</li>
+                <li><strong>Maksuhäiriöiden tunnistuksen ja eskaloinnin.</strong> Toistuvasti myöhästyvät maksut nostetaan automaattisesti isännöitsijän ja hallituksen tietoon, jotta perintäprosessi voidaan käynnistää ajoissa, ei vasta kun ongelma on jo kasautunut.</li>
+                <li><strong>Reaaliaikaisen raportointinäkymän.</strong> Hallitus näkee vastikekertymän, kassatilanteen ja avoimet maksuhäiriöt yhdestä näkymästä ilman, että isännöitsijän tarvitsee koota erillistä raporttia jokaista kokousta varten.</li>
+            </ul>
+
+            <h2 id="kaytannon-esimerkki">6. Käytännön esimerkki: miltä automatisoitu taloushallinto näyttää</h2>
+            <p>Konkreettisesti tämä voisi näyttää tältä: vastikkeet laskutetaan automaattisesti kuukausittain suoraan kirjanpito-ohjelmistoon integroituna, ja järjestelmä seuraa maksujen saapumista reaaliajassa. Jos maksu ei ole saapunut sovitussa ajassa eräpäivästä, muistutus lähtee automaattisesti osakkaalle, ja jos tilanne ei korjaannu, isännöitsijä saa ilmoituksen aloittaakseen perinnän, ilman että kenenkään on täytynyt käydä läpi maksulistoja käsin. Hallitus näkee koko ajan ajantasaisen kokonaiskuvan yhdestä näkymästä, mutta puuttuu itse vain niihin tapauksiin, jotka oikeasti vaativat harkintaa.</p>
+
+            <p>Tämä nojaa integraatioihin olemassa olevien järjestelmien, kuten isännöintiohjelmiston ja kirjanpidon, välillä, ei minkään kokonaan uuden järjestelmän rakentamiseen tyhjästä. Sama malli toistuu käytännössä samanlaisena taloyhtiöstä toiseen, mikä tekee siitä erityisen kannattavan isännöitsijätoimistolle, joka hoitaa useita kohteita samanaikaisesti.</p>
+
+            <h2 id="tietoturva">7. Taloustiedon tietoturva: mitä pitää huomioida</h2>
+            <p>Taloyhtiön taloustieto sisältää sekä taloudellisesti arkaluonteista tietoa että henkilötietoja, kun laskutus ja maksuvalvonta kytkeytyvät yksittäisiin osakkaisiin. Jos automaatioon liittyy tekoälyä, esimerkiksi maksuviestien tulkintaan tai poikkeustilanteiden tunnistukseen, samat kysymykset pätevät kuin mihin tahansa muuhun henkilötietoja käsittelevään tekoälyratkaisuun: millä perusteella dataa käsitellään, kuka näkee sen, ja minne se päätyy. Kävimme nämä kysymykset läpi tarkemmin <a href="tekoaly-ja-tietosuoja.html">Tekoäly ja tietosuoja -artikkelissamme</a>, ja sama tarkastuslista pätee sellaisenaan taloyhtiön taloushallinnon automaatioon.</p>
+
+            <h2 id="saantopohjainen-vai-tekoaly">8. Sääntöpohjainen automaatio vai tekoäly</h2>
+            <p>On tärkeä sanoa suoraan: laskutus, eräpäiväseuranta ja perusraportointi ovat sääntöpohjaisia prosesseja, jotka eivät vaadi kielimallia tai tekoälyagenttia toimiakseen luotettavasti. Käsittelimme tätä eroa laajemmin <a href="rpa-vs-api-pohjainen-automaatio.html">RPA vs. API-pohjainen automaatio -artikkelissamme</a>: kun sääntö on selkeä ja toistuva, kannattaa valita yksinkertaisin ratkaisu, joka hoitaa tehtävän, ei monimutkaisin.</p>
+
+            <p>Tekoälylle jää tässä prosessissa oma, rajatumpi roolinsa: esimerkiksi osakkaan vapaamuotoisen maksukyselyn tulkitseminen, poikkeavan maksukäyttäytymisen tunnistaminen ennen kuin se näkyy suoraan raportissa, tai hallitukselle suunnatun raportin muotoileminen ymmärrettävään muotoon. Tämä on sama havainto, jonka teimme jo <a href="mihin-prosessiin-tekoaly-kannattaa-kohdistaa.html">Mihin prosessiin tekoäly kannattaa kohdistaa -artikkelissamme</a>, jossa juuri laskutus mainittiin yhtenä hyvänä automaatiokohteena: oikea työkalu valitaan prosessin luonteen mukaan, ei sen mukaan, mikä on juuri nyt puheenaiheena.</p>
+
+            <h2 id="miten-valok">9. Miten Valok rakentaa tämän</h2>
+            <p>Kun toteutamme tämän tyyppisen ratkaisun isännöitsijätoimistolle, lähdemme liikkeelle kartoituksesta: mitä järjestelmiä on jo käytössä (isännöintiohjelmisto, kirjanpito, viestintäkanavat), ja mikä osa taloushallinnosta on aidosti sääntöpohjaista ja mikä vaatii tulkintaa tai harkintaa. Tämän pohjalta rakennamme integraation, joka toimii isännöitsijän, hallituksen ja olemassa olevien järjestelmien välissä, ilman että kenenkään tarvitsee omaksua kokonaan uutta työkalua.</p>
+
+            <p>Koska sama malli toistuu käytännössä samanlaisena taloyhtiöstä toiseen, ratkaisu skaalautuu hyvin isännöitsijätoimistolle, joka hoitaa useita kohteita: kertainvestointi maksaa itsensä takaisin jokaisessa lisätaloyhtiössä, jossa manuaalinen laskutuksen ja raportoinnin ylläpito muuten toistuisi samanlaisena. Jos vastikelaskutus, maksuvalvonta tai hallituksen raportointi syövät tiimiltäsi aikaa kuukaudesta toiseen, jutellaan mielellämme, mitä juuri teidän tilanteessanne kannattaisi automatisoida.</p>
+
+            <div class="reference-list">
+                <h4>Lähdeviitteet:</h4>
+                <ol>
+                    <li><a href="https://khisannointi.fi/blogi/taloyhtion-taloushallinto/" target="_blank" rel="noopener">KH Isännöinti: "Taloyhtiön taloushallinto – mitä se sisältää ja milloin se riittää?"</a>. Kuvaus taloyhtiön taloushallinnon tehtäväkentästä ja hallituksen raportoinnin merkityksestä.</li>
+                    <li><a href="https://oi.fi/ajankohtaista/vastikemaksuja-seurattava-nyt-aktiivisesti/" target="_blank" rel="noopener">Oiva Isännöinti: "Vastikemaksuja seurattava nyt aktiivisesti"</a>. Kuvaus vastikemaksujen seurannan ja perintäprosessin käytännöistä.</li>
+                </ol>
+            </div>
+
+            <div class="contact-section">
+                <div class="section-header" style="text-align: center; margin-bottom: 40px;">
+                    <span class="section-tag">Otetaan askel eteenpäin</span>
+                    <h2>Syökö taloushallinnon käsityö tiiminne aikaa?</h2>
+                    <p>Valok kartoittaa, mikä osa taloyhtiön taloushallinnosta kannattaa automatisoida sääntöpohjaisesti ja missä tekoäly tuo aidosti lisäarvoa.</p>
+                </div>
+
+                <div class="contact-container" style="max-width: 100%;">
+                    <div class="contact-form-card">
+                        <form action="https://formspree.io/f/xlgpgyjl" method="POST" id="contact-form">
+                            <div class="form-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 20px;">
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="name">Nimi</label>
+                                    <input type="text" id="name" name="name" autocomplete="name" placeholder="Oma nimesi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                </div>
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="email">Sähköposti</label>
+                                    <input type="email" id="email" name="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="esimerkki@yritys.fi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg full-width" style="width: 100%; padding: 16px; font-weight: bold; cursor: pointer; margin-top: 20px;">
+                                Varaa ilmainen konsultaatio
+                            </button>
+                            <div id="form-status" class="form-status" aria-live="polite"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </article>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer" width="4206" height="4206" loading="lazy"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer" width="4206" height="4206" loading="lazy">VALOK<span class="logo-dot">.</span></div>
+                <p>Prosessien automatisointia ja dedikoituja tekoälyratkaisuja suomalaisille PK-yrityksille.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Linkit</h4>
+                <ul>
+                    <li><a href="/">Etusivu</a></li>
+                    <li><a href="../blogi.html">Blogi</a></li>
+                    <li><a href="/#palvelut">Palvelut</a></li>
+                    <li><a href="../tietosuoja.html">Tietosuoja</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ota yhteyttä</h4>
+                <ul>
+                    <li>aleksanteri@valok.fi</li>
+                    <li>Jyväskylä, Finland</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Valok. Kaikki oikeudet pidätetään. · <a href="#" id="cookieSettingsLink">Evästeasetukset</a>
+        </div>
+    </footer>
+
+        <div id="cookieBanner" class="cookie-banner">
+        <h5>Yksityisyytesi on meille tärkeää</h5>
+        <p>Käytämme sivustolla vain välttämättömiä toimintoja varmistaaksemme parhaan mahdollisen käyttökokemuksen. Emme
+            käytä kolmannen osapuolen markkinointievästeitä ilman suostumustasi.</p>
+        <div class="cookie-btn-group">
+            <button id="acceptCookies" class="btn btn-primary">Hyväksy kaikki</button>
+            <button id="rejectCookies" class="btn btn-ghost">Hylkää</button>
+            <a href="../tietosuoja.html" class="btn btn-ghost">Lue lisää</a>
+        </div>
+    </div>
+
+    <script src="../main.js"></script>
+</body>
+
+</html>
