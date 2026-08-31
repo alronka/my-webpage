@@ -13,12 +13,12 @@ Valok (Y-tunnus 3490027-7) auttaa pienten ja keskisuurten yritysten johtoa ja IT
 
 ## Blogi (uusimmat artikkelit)
 
+- [Mitä tekoälyagentit oikeasti ovat, ja missä niitä käytännössä ajetaan](https://valok.fi/blogi/tekoalyagentit-missa-niita-ajetaan.html): Mitä agentti tarkoittaa, miten se eroaa chatbotista ja makrosta, missä agentit fyysisesti ajetaan (valmis työkalu, automaatioalusta, oma palvelin, työntekijän kone), ja viisi arjen esimerkkiä organisaatioista.
 - [Taloyhtiön taloushallinnon automaatio: Vastikelaskutus ja raportointi ilman jatkuvaa käsityötä](https://valok.fi/blogi/taloyhtion-taloushallinnon-automaatio.html): Vastikelaskutus, maksuvalvonta ja hallituksen raportointi vievät isännöitsijän aikaa viikoittain. Mitä taloyhtiön taloushallinnosta voidaan automatisoida ja mikä vaatii yhä ihmisen harkintaa.
 - [Autopaikka- ja saunavuorojen hallinta automaattisesti: Isännöitsijän piilokustannus](https://valok.fi/blogi/autopaikka-saunavuorot-hallinta.html): Autopaikka- ja saunavuorolistojen manuaalinen ylläpito syö isännöitsijän asiakaspalveluaikaa viikoittain. Miten varaukset, muistutukset ja ristiriitojen ratkaisu voidaan automatisoida.
 - [Tekoäly ja tietosuoja: Mitä PK-yrityksen pitää tarkistaa GDPR:n näkökulmasta](https://valok.fi/blogi/tekoaly-ja-tietosuoja.html): Mitä GDPR vaatii ennen kuin syötät asiakas- tai henkilöstötietoja tekoälytyökaluun: käsittelyperuste, DPA-sopimus, tiedonsiirto EU:n ulkopuolelle ja rekisteröidyn oikeudet.
 - [Mihin prosessiin tekoäly kannattaa kohdistaa? PK-yrittäjän opas](https://valok.fi/blogi/mihin-prosessiin-tekoaly-kannattaa-kohdistaa.html): Chatbotin sijaan kannattaa katsoa laskutusta, kunnossapitoa ja varastonhallintaa. Viisi kriteeriä hyvän automaatiokohteen tunnistamiseen ja tutkimustietoa isojen yritysten saavuttamista hyödyistä.
 - [Tekoäly myynnin ja liidien automaatiossa: Mistä PK-yritys hyötyy oikeasti](https://valok.fi/blogi/tekoaly-myynti-liidien-automaatio.html): Liidien pisteytys ja ensikontaktin valmistelu voidaan automatisoida, mutta kauppa syntyy silti ihmisten välillä. Missä kohtaa automaatio auttaa ja missä myyjän pitää säilyttää ohjat.
-- [IT-tiimin manuaaliset rutiinit: piilokustannus, jota kukaan ei laske](https://valok.fi/blogi/it-tiimin-manuaaliset-rutiinit.html): IT-tiimit menettävät jopa kolmasosan työajastaan manuaalisiin rutiineihin. Mitkä prosessit kannattaa automatisoida perinteisellä automaatiolla ja missä kohtaa tekoälyagentti tuo lisäarvoa.
 - [Blogin arkisto](https://valok.fi/arkisto.html): Kaikki vanhemmat artikkelit automaatiosta, tekoälystä, RAG:sta ja integraatioista.
 
 ## Muut sivut

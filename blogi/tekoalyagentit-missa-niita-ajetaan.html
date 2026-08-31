@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#030712">
+    <title>Mitä tekoälyagentit oikeasti ovat, ja missä niitä käytännössä ajetaan | Valok</title>
+    <meta name="description"
+        content="Selkokielinen katsaus siihen, mitä tekoälyagentti tarkoittaa, miten se eroaa chatbotista ja makrosta, missä agentit fyysisesti ajetaan ja millaisissa arjen tehtävissä ne auttavat organisaatioita.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel=icon type=image/png sizes=32x32 href=../img/favicon-32x32.png>
+    <link rel=apple-touch-icon sizes=180x180 href=../img/favicon-180x180.png>
+
+    <link rel="canonical" href="https://valok.fi/blogi/tekoalyagentit-missa-niita-ajetaan.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://valok.fi/blogi/tekoalyagentit-missa-niita-ajetaan.html">
+    <meta property="og:title" content="Mitä tekoälyagentit oikeasti ovat, ja missä niitä käytännössä ajetaan">
+    <meta property="og:description" content="Selkokielinen katsaus siihen, mitä tekoälyagentti tarkoittaa, missä agentit fyysisesti ajetaan ja millaisissa arjen tehtävissä ne auttavat organisaatioita.">
+    <meta property="og:image" content="https://valok.fi/img/tekoalyagentit-missa-niita-ajetaan.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Mitä tekoälyagentit oikeasti ovat, ja missä niitä käytännössä ajetaan">
+    <meta name="twitter:description" content="Selkokielinen katsaus siihen, mitä tekoälyagentti tarkoittaa, missä agentit fyysisesti ajetaan ja millaisissa arjen tehtävissä ne auttavat organisaatioita.">
+    <meta name="twitter:image" content="https://valok.fi/img/tekoalyagentit-missa-niita-ajetaan.webp">
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Mitä tekoälyagentit oikeasti ovat, ja missä niitä käytännössä ajetaan",
+  "description": "Selkokielinen katsaus siihen, mitä tekoälyagentti tarkoittaa, missä agentit fyysisesti ajetaan ja millaisissa arjen tehtävissä ne auttavat organisaatioita.",
+  "image": "https://valok.fi/img/tekoalyagentit-missa-niita-ajetaan.webp",
+  "datePublished": "2026-08-31",
+  "dateModified": "2026-08-31",
+  "author": {
+    "@type": "Person",
+    "name": "Aleksanteri Rönkä",
+    "url": "https://valok.fi/",
+    "email": "aleksanteri@valok.fi",
+    "jobTitle": "Perustaja",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Valok"
+    }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Valok",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://valok.fi/img/valok-black-with-white-outline.webp"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://valok.fi/blogi/tekoalyagentit-missa-niita-ajetaan.html"
+  }
+}
+    </script>
+
+    <style>
+        .post-header {
+            min-height: auto !important;
+            padding: 160px 24px 24px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            background: radial-gradient(circle at top, var(--accent-glow) 0%, transparent 70%);
+        }
+
+        .post-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px 100px;
+            line-height: 1.8;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .post-content h2, .post-content h3 {
+            color: var(--text);
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .post-content p {
+            margin-bottom: 24px;
+        }
+
+        .post-content ul, .post-content ol {
+            margin-bottom: 24px;
+            padding-left: 20px;
+        }
+
+        .post-content li {
+            margin-bottom: 12px;
+        }
+
+        .post-meta {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .post-author {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 24px;
+            text-align: left;
+        }
+
+        .post-author img {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .post-author-name {
+            display: block;
+            font-weight: 600;
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+
+        .post-author-role {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dim);
+            text-decoration: none;
+            margin-bottom: 40px;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        .post-image {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .post-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .toc-box {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+        }
+
+        .toc-box h4 {
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        .toc-box ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .toc-box a {
+            color: #58a6ff;
+            text-decoration: none;
+            display: block;
+            padding: 4px 0;
+            transition: var(--transition);
+        }
+
+        .toc-box a:hover {
+            color: var(--accent);
+            padding-left: 4px;
+        }
+
+        .highlight-box {
+            background: var(--glass);
+            padding: 30px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+            border-left: 4px solid var(--accent);
+        }
+
+        .reference-list {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            margin-top: 60px;
+        }
+
+        .reference-list ol {
+            padding-left: 20px;
+        }
+
+        .contact-section {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 60px 40px;
+            border-radius: var(--radius);
+            margin-top: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="particles"></canvas>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark" width="4206" height="4206"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light" width="4206" height="4206">VALOK<span
+                     class="logo-dot">.</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="/#palvelut">Palvelut</a>
+                <a href="/#prosessi">Prosessi</a>
+                <a href="../blogi.html">Blogi</a>
+                <a href="/#yhteystiedot" class="nav-cta">Ota yhteyttä</a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Avaa valikko">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <article>
+        <header class="post-header">
+            <a href="../blogi.html" class="back-link">← Takaisin blogiin</a>
+            <span class="post-meta">Tekoälyagentti • Automaatio • Käytännön käyttö</span>
+            <h1>Mitä tekoälyagentit oikeasti ovat, <span class="gradient-text">ja missä niitä käytännössä ajetaan</span></h1>
+            <p style="color: var(--text-dim); margin-top: 20px;">"Tekoälyagentti" on tällä hetkellä yksi alan käytetyimmistä ja epämääräisimmistä sanoista. Tässä artikkelissa käydään läpi selkokielellä, mitä agentti oikeasti tarkoittaa, mitä se ei tarkoita, missä agentit fyysisesti ajetaan, ja millaisissa arjen tehtävissä ne auttavat organisaatioita jo nyt.</p>
+            <div class="post-author">
+                <img src="../img/valok-aleksanteri.webp" alt="Aleksanteri Rönkä" width="44" height="44" loading="lazy">
+                <div>
+                    <span class="post-author-name">Aleksanteri Rönkä</span>
+                    <span class="post-author-role">Perustaja, Valok &middot; <a href="mailto:aleksanteri@valok.fi">aleksanteri@valok.fi</a></span>
+                </div>
+            </div>
+        </header>
+
+        <div class="post-image">
+            <img src="../img/tekoalyagentit-missa-niita-ajetaan.webp" alt="Tekoälyagentti lajittelee saapuvia tehtäviä oikeisiin lokeroihin - Valok" width="960" height="1104">
+        </div>
+
+        <main class="post-content">
+            <div class="toc-box">
+                <h4>Sisällysluettelo</h4>
+                <ul>
+                    <li><a href="#maaritelma">1. Lyhyt määritelmä: mikä tekee ohjelmasta agentin</a></li>
+                    <li><a href="#mita-ei-ole">2. Mitä agentti ei ole: chatbot, makro ja "tekoäly" yleisesti</a></li>
+                    <li><a href="#kolme-osaa">3. Agentin kolme osaa: malli, työkalut ja silmukka</a></li>
+                    <li><a href="#missa-ajetaan">4. Missä agentit käytännössä ajetaan</a></li>
+                    <li><a href="#esimerkit">5. Viisi arjen esimerkkiä organisaatioista</a></li>
+                    <li><a href="#hyvin-huonosti">6. Mitä agentti tekee hyvin ja mitä huonosti</a></li>
+                    <li><a href="#liikkeelle">7. Miten lähteä liikkeelle ilman, että rakentaa liikaa</a></li>
+                </ul>
+            </div>
+
+            <p>"Tekoälyagentti" toistuu tällä hetkellä joka toisessa esityksessä ja tuote-esitteessä, mutta harvemmin kukaan pysähtyy kertomaan, mitä sana tarkalleen tarkoittaa tai miten se eroaa siitä chatbotista, joka yrityksellä on ehkä jo käytössä. Tässä artikkelissa käydään läpi määritelmä ilman markkinapuhetta, se usein sivuutettu kysymys missä agentti fyysisesti ajetaan, ja viisi konkreettista tehtävää, joissa agentti auttaa organisaatioita jo nyt.</p>
+
+            <h2 id="maaritelma">1. Lyhyt määritelmä: mikä tekee ohjelmasta agentin</h2>
+            <p>Tekoälyagentti on ohjelma, joka saa tavoitteen, päättää itse mitä välivaiheita tavoitteen saavuttaminen vaatii, ja käyttää siihen ulkoisia työkaluja: hakee tietoa, kutsuu rajapintoja, kirjoittaa tiedostoja, lähettää viestejä. Olennaista on, että vaiheiden järjestystä ei ole ohjelmoitu etukäteen. Kielimalli päättää joka kierroksella, mitä seuraavaksi kannattaa tehdä sen perusteella, mitä edellinen vaihe tuotti.<sup>1</sup></p>
+
+            <p>Tavallinen automaatio etenee kiinteää polkua: kun lasku saapuu, poimi summa ja vie se kirjanpitoon. Agentti taas saa tehtävän "selvitä, miksi tämän toimittajan laskut ovat viivästyneet" ja rakentaa reitin itse: se lukee laskuhistorian, huomaa toistuvan viitevirheen, tarkistaa sopimuksen ja kirjoittaa yhteenvedon. Sama tehtävä, eri toimittaja, eri reitti.</p>
+
+            <p>Tämä on myös agentin riski: koska reittiä ei ole lukittu, lopputulos ei ole yhtä ennustettava kuin sääntöpohjaisessa automaatiossa. Käsittelimme tätä eroa tarkemmin artikkelissa <a href="rpa-vs-api-pohjainen-automaatio.html">RPA vs. API-pohjainen automaatio</a>.</p>
+
+            <h2 id="mita-ei-ole">2. Mitä agentti ei ole: chatbot, makro ja "tekoäly" yleisesti</h2>
+            <p>Kolme yleistä sekaannusta kannattaa oikaista heti:</p>
+
+            <ul>
+                <li><strong>Chatbot ei ole agentti.</strong> Chatbot vastaa kysymykseen tekstillä. Se ei tee mitään chat-ikkunan ulkopuolella. Agentti voi keskustella, mutta sen tarkoitus on suorittaa tehtävä loppuun: varata aika, päivittää tietue, luoda tiketti.</li>
+                <li><strong>Makro tai skripti ei ole agentti.</strong> Zapier-automaatio tai ajastettu Python-skripti tekee täsmälleen sen, mitä siihen on kirjoitettu. Se ei sopeudu poikkeukseen, jota ei ole ennakoitu.</li>
+                <li><strong>"Tekoäly" ei tarkoita agenttia.</strong> Suurin osa yritysten tekoälykäytöstä on yhä yksittäisiä kielimallikutsuja: tiivistä tämä, luokittele tämä, käännä tämä. Se on hyödyllistä eikä vaadi agenttia. Agentti tulee kuvaan vasta, kun tehtävä vaatii useita vaiheita ja päätöksiä niiden välillä.</li>
+            </ul>
+
+            <p>Yksinkertainen nyrkkisääntö: jos tehtävän voi kuvata yhtenä kysymyksenä ja yhtenä vastauksena, agenttia ei tarvita. Jos tehtävä on "hoida tämä asia", jossa "tämä asia" vaatii tiedon hakemista useasta paikasta ja välipäätöksiä, agentti voi olla oikea työkalu.</p>
+
+            <h2 id="kolme-osaa">3. Agentin kolme osaa: malli, työkalut ja silmukka</h2>
+            <p>Riippumatta siitä, millä alustalla agentti ajetaan, sillä on aina kolme osaa:</p>
+
+            <ul>
+                <li><strong>Malli.</strong> Kielimalli, joka tekee päätökset: mikä on seuraava vaihe, onko tehtävä valmis, mitä työkalua kutsua ja millä parametreilla. Malli ajetaan lähes aina pilvipalvelun rajapinnan kautta (esimerkiksi Anthropic, OpenAI, Google) tai harvemmin organisaation omalla laitteistolla.</li>
+                <li><strong>Työkalut.</strong> Konkreettiset toiminnot, joita agentti saa käyttää: hae asiakas CRM:stä, lähetä sähköposti, lue tiedosto, tee HTTP-kutsu tähän rajapintaan. Työkalujen määrä ja rajaus on tärkein turvallisuuspäätös: agentti voi tehdä vain sen, mihin sille on annettu työkalu.</li>
+                <li><strong>Silmukka.</strong> Ohjelmakoodi, joka pyörittää kierrosta: kysy mallilta seuraava askel, suorita se, anna tulos takaisin mallille, toista kunnes tehtävä on valmis tai raja tulee vastaan. Tämä silmukka on se osa, joka "ajetaan" jossain, ja seuraava luku käsittelee sitä.</li>
+            </ul>
+
+            <h2 id="missa-ajetaan">4. Missä agentit käytännössä ajetaan</h2>
+            <p>Tämä on kysymys, joka jää usein epäselväksi. Agentti ei "asu" kielimallissa. Malli on vain rajapinta, jota kutsutaan. Silmukka ja työkalut ajetaan jossain seuraavista paikoista:</p>
+
+            <ul>
+                <li><strong>Valmiin työkalun sisällä.</strong> Yhä useampi ohjelmisto sisältää agentin, joka ajetaan toimittajan omassa pilvessä: CRM:n myyntiagentti, asiakaspalvelualustan ratkaisuagentti, koodieditorin ohjelmointiagentti. Organisaatio ei ylläpidä mitään, mutta myös hallinta ja datan kulku ovat toimittajan käsissä.</li>
+                <li><strong>Automaatioalustalla (esimerkiksi n8n tai Make).</strong> Agentti rakennetaan visuaaliseen työnkulkuun yhtenä solmuna, joka saa käyttöönsä muut solmut työkaluina. Alusta voi olla toimittajan pilvessä tai organisaation itse pystyttämä. Tämä on yleisin tapa, jolla PK-yritys saa oman agentin tuotantoon ilman erillistä ohjelmistoprojektia.</li>
+                <li><strong>Organisaation omalla palvelimella tai pilvitilillä.</strong> Silmukka on tavallinen sovellus, joka ajetaan kontissa tai palvelimettomana funktiona organisaation omassa ympäristössä (esimerkiksi Azure, AWS tai Hetzner). Tämä antaa täyden hallinnan siihen, mitä työkaluja agentilla on ja mitä dataa sille päätyy, mutta vaatii ylläpitoa.</li>
+                <li><strong>Työntekijän koneella.</strong> Kevyimmillään agentti ajetaan kehittäjän tai analyytikon omalla koneella komentoriviltä yksittäistä tehtävää varten. Tämä sopii kokeiluun ja kertaluontoiseen työhön, ei jatkuvaan tuotantoprosessiin.</li>
+            </ul>
+
+            <p>Käytännössä useimmat organisaatiot päätyvät yhdistelmään: valmiiden työkalujen sisäänrakennetut agentit siellä, missä ne riittävät, ja yksi tai kaksi räätälöityä agenttia automaatioalustalla niitä prosesseja varten, jotka ovat organisaatiolle erityisiä.</p>
+
+            <div class="highlight-box">
+                Kun mietit agentin käyttöönottoa, kysy toimittajalta suoraan: missä silmukka ajetaan, mitä työkaluja agentilla on käytössään, ja minne data kulkee sen aikana. Jos näihin ei saa selkeää vastausta, ratkaisua ei ole vielä mietitty loppuun.
+            </div>
+
+            <h2 id="esimerkit">5. Viisi arjen esimerkkiä organisaatioista</h2>
+            <p>Nämä ovat tyypillisiä tehtäviä, joissa agentti tuo aidosti lisäarvoa yksittäisen kielimallikutsun sijaan:</p>
+
+            <ol>
+                <li><strong>Saapuvan sähköpostin esikäsittely.</strong> Agentti lukee yhteydenoton, hakee lähettäjän tiedot CRM:stä, päättelee mihin tiimiin viesti kuuluu, luo tiketin oikeaan jonoon ja ehdottaa vastausluonnosta. Ihminen tarkistaa ja lähettää.</li>
+                <li><strong>Tarjouspyynnön koostaminen.</strong> Myyjä välittää asiakkaan viestin agentille, joka poimii vaatimukset, hakee hinnaston ja aiemmat vastaavat tarjoukset, ja kokoaa tarjousluonnoksen tarkistettavaksi.</li>
+                <li><strong>Raportin kokoaminen useasta järjestelmästä.</strong> Kuukausiraporttia varten agentti hakee luvut kirjanpidosta, verkkoanalytiikasta ja CRM:stä, täsmää ne samaan muotoon ja kirjoittaa lyhyen yhteenvedon poikkeamista.</li>
+                <li><strong>Toistuvan asiakaskysymyksen ratkaisu loppuun.</strong> "Missä tilaukseni menee" -tyyppinen kysymys: agentti tunnistaa tilausnumeron, hakee toimitustilanteen rahdinkuljettajan rajapinnasta ja vastaa asiakkaalle, tai eskaloi ihmiselle jos tilanne on epäselvä.</li>
+                <li><strong>Datan siivous ennen vientiä.</strong> Ennen kuin lista viedään järjestelmään, agentti käy rivit läpi, korjaa ilmeiset muotovirheet, merkitsee epävarmat tapaukset ja tuottaa listan asioista, jotka vaativat ihmisen katsauksen.</li>
+            </ol>
+
+            <p>Yhteinen piirre: agentti hoitaa valmistelun ja rutiinitapaukset, ihminen tekee lopullisen päätöksen ja hoitaa poikkeukset. Tätä samaa jakoa käsiteltiin artikkelissa <a href="mihin-prosessiin-tekoaly-kannattaa-kohdistaa.html">Mihin prosessiin tekoäly kannattaa kohdistaa</a>.</p>
+
+            <h2 id="hyvin-huonosti">6. Mitä agentti tekee hyvin ja mitä huonosti</h2>
+            <p><strong>Hyvin:</strong></p>
+            <ul>
+                <li>Tehtävät, joissa on monta vaihetta ja tieto on hajallaan useassa järjestelmässä.</li>
+                <li>Tehtävät, joissa syötteen muoto vaihtelee (vapaamuotoinen sähköposti, eri toimittajien laskut).</li>
+                <li>Valmistelutyö, jonka ihminen muuten tekisi käsin ennen varsinaista päätöstä.</li>
+            </ul>
+
+            <p><strong>Huonosti tai riskialttiisti:</strong></p>
+            <ul>
+                <li>Tehtävät, joissa vaaditaan täydellistä toistettavuutta ja tarkastettavuutta. Sääntöpohjainen automaatio on silloin parempi.</li>
+                <li>Tehtävät, joissa virheellä on suora ja peruuttamaton seuraus (maksun suoritus, sopimuksen allekirjoitus) ilman ihmisen välitarkistusta.</li>
+                <li>Tehtävät, joissa agentille annetaan laajat oikeudet ja pääsy arkaluonteiseen dataan ilman rajausta. Tietoturvanäkökulmat käytiin läpi artikkelissa <a href="sisainen-tekoaly-ja-tietoturva.html">Sisäinen tekoäly ja tietoturva</a>.</li>
+            </ul>
+
+            <h2 id="liikkeelle">7. Miten lähteä liikkeelle ilman, että rakentaa liikaa</h2>
+            <p>Yleisin virhe on rakentaa iso, monta asiaa hoitava agentti kerralla. Kannattavampi tie:</p>
+
+            <ol>
+                <li>Valitse yksi selkeästi rajattu tehtävä, joka toistuu viikoittain ja jossa valmistelu vie ihmiseltä aikaa.</li>
+                <li>Anna agentille vain ne työkalut, joita juuri se tehtävä vaatii, ei enempää.</li>
+                <li>Pidä ihminen silmukassa: agentti tuottaa luonnoksen tai ehdotuksen, ihminen hyväksyy.</li>
+                <li>Seuraa muutaman viikon ajan, kuinka usein agentin ehdotus menee suoraan läpi ja missä se epäonnistuu.</li>
+                <li>Laajenna vasta, kun ensimmäinen tehtävä toimii luotettavasti.</li>
+            </ol>
+
+            <p>Jos organisaatiollanne on prosessi, jossa työntekijät tekevät paljon samankaltaista valmistelutyötä eri järjestelmien välissä, se on tyypillisesti hyvä ensimmäinen kohde agentille. Autamme mielellämme arvioimaan, kannattaako siihen agentti vai riittääkö yksinkertaisempi automaatio.</p>
+
+            <div class="reference-list">
+                <h4>Lähdeviitteet:</h4>
+                <ol>
+                    <li><a href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank" rel="noopener">Anthropic: "Building effective agents"</a>. Kuvaus agentin ja kiinteän työnkulun erosta sekä työkalusilmukan rakenteesta.</li>
+                    <li><a href="https://www.anthropic.com/engineering/building-agents-with-the-claude-agent-sdk" target="_blank" rel="noopener">Anthropic: "Building agents with the Claude Agent SDK"</a>. Kuvaus agentin ajoympäristöistä ja työkalujen rajaamisesta.</li>
+                </ol>
+            </div>
+
+            <div class="contact-section">
+                <div class="section-header" style="text-align: center; margin-bottom: 40px;">
+                    <span class="section-tag">Otetaan askel eteenpäin</span>
+                    <h2>Onko teillä prosessi, joka hyötyisi agentista?</h2>
+                    <p>Valok arvioi, kannattaako tehtävään tekoälyagentti vai riittääkö yksinkertaisempi automaatio, ja missä silmukka kannattaa ajaa.</p>
+                </div>
+
+                <div class="contact-container" style="max-width: 100%;">
+                    <div class="contact-form-card">
+                        <form action="https://formspree.io/f/xlgpgyjl" method="POST" id="contact-form">
+                            <div class="form-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 20px;">
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="name">Nimi</label>
+                                    <input type="text" id="name" name="name" autocomplete="name" placeholder="Oma nimesi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                </div>
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="email">Sähköposti</label>
+                                    <input type="email" id="email" name="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="esimerkki@yritys.fi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg full-width" style="width: 100%; padding: 16px; font-weight: bold; cursor: pointer; margin-top: 20px;">
+                                Varaa ilmainen konsultaatio
+                            </button>
+                            <div id="form-status" class="form-status" aria-live="polite"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </article>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer" width="4206" height="4206" loading="lazy"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer" width="4206" height="4206" loading="lazy">VALOK<span class="logo-dot">.</span></div>
+                <p>Prosessien automatisointia ja dedikoituja tekoälyratkaisuja suomalaisille PK-yrityksille.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Linkit</h4>
+                <ul>
+                    <li><a href="/">Etusivu</a></li>
+                    <li><a href="../blogi.html">Blogi</a></li>
+                    <li><a href="/#palvelut">Palvelut</a></li>
+                    <li><a href="../tietosuoja.html">Tietosuoja</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ota yhteyttä</h4>
+                <ul>
+                    <li>aleksanteri@valok.fi</li>
+                    <li>Jyväskylä, Finland</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Valok. Kaikki oikeudet pidätetään. · <a href="#" id="cookieSettingsLink">Evästeasetukset</a>
+        </div>
+    </footer>
+
+        <div id="cookieBanner" class="cookie-banner">
+        <h5>Yksityisyytesi on meille tärkeää</h5>
+        <p>Käytämme sivustolla vain välttämättömiä toimintoja varmistaaksemme parhaan mahdollisen käyttökokemuksen. Emme
+            käytä kolmannen osapuolen markkinointievästeitä ilman suostumustasi.</p>
+        <div class="cookie-btn-group">
+            <button id="acceptCookies" class="btn btn-primary">Hyväksy kaikki</button>
+            <button id="rejectCookies" class="btn btn-ghost">Hylkää</button>
+            <a href="../tietosuoja.html" class="btn btn-ghost">Lue lisää</a>
+        </div>
+    </div>
+
+    <script src="../main.js"></script>
+</body>
+
+</html>
