@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#030712">
+    <title>Paikallinen vs. pilvi-tekoäly: Milloin kannattaa ajaa kielimallia itse | Valok</title>
+    <meta name="description"
+        content="Pilvi-API on oletusvalinta useimmille PK-yrityksille, mutta ei aina oikea. Lue milloin paikallisesti ajettava kielimalli alkaa olla perusteltu, mitä se vaatii, ja miksi kysymys ei ole sama kuin avoin vai suljettu malli.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel=icon type=image/png sizes=32x32 href=../img/favicon-32x32.png>
+    <link rel=apple-touch-icon sizes=180x180 href=../img/favicon-180x180.png>
+
+    <link rel="canonical" href="https://valok.fi/blogi/paikallinen-vs-pilvi-tekoaly.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://valok.fi/blogi/paikallinen-vs-pilvi-tekoaly.html">
+    <meta property="og:title" content="Paikallinen vs. pilvi-tekoäly: Milloin kannattaa ajaa kielimallia itse">
+    <meta property="og:description" content="Pilvi-API on oletusvalinta useimmille PK-yrityksille, mutta ei aina oikea. Lue milloin paikallisesti ajettava kielimalli alkaa olla perusteltu.">
+    <meta property="og:image" content="https://valok.fi/img/paikallinen-vs-pilvi-tekoaly.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Paikallinen vs. pilvi-tekoäly: Milloin kannattaa ajaa kielimallia itse">
+    <meta name="twitter:description" content="Pilvi-API on oletusvalinta useimmille PK-yrityksille, mutta ei aina oikea. Lue milloin paikallisesti ajettava kielimalli alkaa olla perusteltu.">
+    <meta name="twitter:image" content="https://valok.fi/img/paikallinen-vs-pilvi-tekoaly.webp">
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Paikallinen vs. pilvi-tekoäly: Milloin kannattaa ajaa kielimallia itse",
+  "description": "Pilvi-API on oletusvalinta useimmille PK-yrityksille, mutta ei aina oikea. Lue milloin paikallisesti ajettava kielimalli alkaa olla perusteltu.",
+  "image": "https://valok.fi/img/paikallinen-vs-pilvi-tekoaly.webp",
+  "datePublished": "2026-09-01",
+  "dateModified": "2026-09-01",
+  "author": {
+    "@type": "Person",
+    "name": "Aleksanteri Rönkä",
+    "url": "https://valok.fi/",
+    "email": "aleksanteri@valok.fi",
+    "jobTitle": "Perustaja",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Valok"
+    }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Valok",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://valok.fi/img/valok-black-with-white-outline.webp"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://valok.fi/blogi/paikallinen-vs-pilvi-tekoaly.html"
+  }
+}
+    </script>
+
+    <style>
+        .post-header {
+            min-height: auto !important;
+            padding: 160px 24px 24px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            background: radial-gradient(circle at top, var(--accent-glow) 0%, transparent 70%);
+        }
+
+        .post-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px 100px;
+            line-height: 1.8;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .post-content h2, .post-content h3 {
+            color: var(--text);
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .post-content p {
+            margin-bottom: 24px;
+        }
+
+        .post-content ul, .post-content ol {
+            margin-bottom: 24px;
+            padding-left: 20px;
+        }
+
+        .post-content li {
+            margin-bottom: 12px;
+        }
+
+        .post-meta {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .post-author {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 24px;
+            text-align: left;
+        }
+
+        .post-author img {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .post-author-name {
+            display: block;
+            font-weight: 600;
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+
+        .post-author-role {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dim);
+            text-decoration: none;
+            margin-bottom: 40px;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        .post-image {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .post-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .toc-box {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+        }
+
+        .toc-box h4 {
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        .toc-box ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .toc-box a {
+            color: #58a6ff;
+            text-decoration: none;
+            display: block;
+            padding: 4px 0;
+            transition: var(--transition);
+        }
+
+        .toc-box a:hover {
+            color: var(--accent);
+            padding-left: 4px;
+        }
+
+        .highlight-box {
+            background: var(--glass);
+            padding: 30px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+            border-left: 4px solid var(--accent);
+        }
+
+        .reference-list {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            margin-top: 60px;
+        }
+
+        .reference-list ol {
+            padding-left: 20px;
+        }
+
+        .contact-section {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 60px 40px;
+            border-radius: var(--radius);
+            margin-top: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="particles"></canvas>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark" width="4206" height="4206"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light" width="4206" height="4206">VALOK<span
+                     class="logo-dot">.</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="/#palvelut">Palvelut</a>
+                <a href="/#prosessi">Prosessi</a>
+                <a href="../blogi.html">Blogi</a>
+                <a href="/#yhteystiedot" class="nav-cta">Ota yhteyttä</a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Avaa valikko">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <article>
+        <header class="post-header">
+            <a href="../blogi.html" class="back-link">← Takaisin blogiin</a>
+            <span class="post-meta">Kielimallit • Infrastruktuuri • Tietoturva</span>
+            <h1>Paikallinen vs. pilvi-tekoäly: <span class="gradient-text">milloin kannattaa ajaa kielimallia itse</span></h1>
+            <p style="color: var(--text-dim); margin-top: 20px;">Pilvi-API on oletusvalinta useimmille PK-yrityksille, eikä se ole väärä valinta. Lue milloin paikallisesti ajettava kielimalli alkaa olla perusteltu, mitä se käytännössä vaatii, ja miksi kysymys ei ole sama kuin avoin vai suljettu malli.</p>
+            <div class="post-author">
+                <img src="../img/valok-aleksanteri.webp" alt="Aleksanteri Rönkä" width="44" height="44" loading="lazy">
+                <div>
+                    <span class="post-author-name">Aleksanteri Rönkä</span>
+                    <span class="post-author-role">Perustaja, Valok &middot; <a href="mailto:aleksanteri@valok.fi">aleksanteri@valok.fi</a></span>
+                </div>
+            </div>
+        </header>
+
+        <div class="post-image">
+            <img src="../img/paikallinen-vs-pilvi-tekoaly.webp" alt="Paikallinen vs. pilvi-tekoäly: milloin PK-yrityksen kannattaa ajaa kielimallia itse - Valok" width="960" height="1107">
+        </div>
+
+        <main class="post-content">
+            <div class="toc-box">
+                <h4>Sisällysluettelo</h4>
+                <ul>
+                    <li><a href="#kaksi-kysymysta">1. Kaksi eri kysymystä: mikä malli ja missä se ajetaan</a></li>
+                    <li><a href="#pilvi-oletus">2. Miksi pilvi-API on oikea oletusvalinta useimmille</a></li>
+                    <li><a href="#milloin-paikallinen">3. Milloin paikallinen ajo alkaa olla perusteltu</a></li>
+                    <li><a href="#kustannusvertailu">4. Kustannusvertailu: raja-arvo ei ole yksiselitteinen</a></li>
+                    <li><a href="#mita-vaatii">5. Mitä paikallinen ajo käytännössä vaatii</a></li>
+                    <li><a href="#hybridimalli">6. Hybridimalli: paras molemmista</a></li>
+                    <li><a href="#miten-valok">7. Miten Valok auttaa valinnassa</a></li>
+                </ul>
+            </div>
+
+            <p>"Pitäisikö meidän ajaa kielimallia itse?" on kysymys, joka nousee esiin lähes aina, kun tietoturva tai kustannukset tulevat puheeksi tekoälyprojektissa. Vastaus lähtee usein väärästä oletuksesta: että paikallinen ajo on aina turvallisempi ja halvempi, tai päinvastoin että se on aina tarpeetonta vaivaa PK-yritykselle. Kumpikaan ei pidä yleisesti paikkaansa, ja oikea vastaus riippuu käyttömäärästä, datan arkaluonteisuudesta ja siitä, kuinka paljon ylläpitoa organisaatio on valmis ottamaan vastaan.</p>
+
+            <p>Tämä artikkeli käy läpi, milloin paikallisesti ajettava kielimalli alkaa olla perusteltu vaihtoehto pilvi-API:lle, mitä se käytännössä vaatii, ja miksi useimmille PK-yrityksille pilvi on edelleen järkevin lähtökohta.</p>
+
+            <h2 id="kaksi-kysymysta">1. Kaksi eri kysymystä: mikä malli ja missä se ajetaan</h2>
+            <p>Tämä kysymys sekoittuu helposti toiseen, täysin erilliseen valintaan: käytetäänkö avointa vai suljettua mallia. Ne eivät ole sama asia. Avoimen mallin voi ajaa joko pilvessä (esimerkiksi Together.ai:n tai Fireworksin kautta) tai omalla laitteistolla, ja suljettu malli on aina pilvipalvelun takana. Kävimme avoimen ja suljetun mallin eron läpi tarkemmin <a href="kielimallin-valinta-pk-yritykselle-2026.html">Miten valita kielimalli PK-yrityksellesi -artikkelissamme</a>, tämä teksti käsittelee eri kysymystä: kannattaako laskenta ylipäätään tapahtua organisaation omassa ympäristössä vai jonkun muun palvelimella.</p>
+
+            <p>Tämä kysymys eroaa myös siitä, missä tekoälyagentin oma silmukka ja työkalut ajetaan, jota käsittelimme <a href="tekoalyagentit-missa-niita-ajetaan.html">Mitä tekoälyagentit oikeasti ovat -artikkelissamme</a>. Silmukka voi ajaa organisaation omalla palvelimella, vaikka itse kielimalli kutsuttaisiin pilvi-API:n kautta, ja päinvastoin. Tässä artikkelissa keskitytään nimenomaan siihen, missä kielimallin oma laskenta fyysisesti tapahtuu.</p>
+
+            <h2 id="pilvi-oletus">2. Miksi pilvi-API on oikea oletusvalinta useimmille</h2>
+            <p>Useimmalla PK-yrityksellä kielimallin käyttömäärä on pieni ja epätasainen: muutama kysely tunnissa, piikkejä arkipäivinä, hiljaisia jaksoja viikonloppuisin. Pilvi-API sopii tähän hyvin, koska maksat vain käytöstä, et joudu hankkimaan tai ylläpitämään laitteistoa, ja pääset käsiksi kulloinkin kyvykkäimpiin malleihin ilman erillistä päivitysprojektia. Tämä pätee erityisesti silloin, kun kysyntä vaihtelee kausittain tai käyttö on vielä kokeiluvaiheessa.</p>
+
+            <p>Pilvi on myös ainoa realistinen tapa käyttää kaikkein kyvykkäimpiä malleja, koska niiden ajaminen vaatisi laitteistoa, joka on harvalla PK-yrityksellä valmiiksi käytössä. Jos tarve on satunnainen, monimutkaisiin tehtäviin, tai kysyntä ei ole ennustettavissa, pilvi-API on käytännössä ainoa järkevä lähtökohta.</p>
+
+            <h2 id="milloin-paikallinen">3. Milloin paikallinen ajo alkaa olla perusteltu</h2>
+            <p>Kolme tilannetta kääntävät vaakakupin paikallisen ajon puolelle:</p>
+
+            <ul>
+                <li><strong>Datan arkaluonteisuus ja compliance-vaatimukset.</strong> Terveys-, oikeus- tai julkishallinnon datalle voi olla lakisääteinen tai sopimusperusteinen vaatimus, ettei tieto poistu organisaation omasta ympäristöstä. Tällöin paikallinen ajo ei ole vaihtoehto vaan edellytys.</li>
+                <li><strong>Viive-kriittinen käyttö.</strong> Paikallisesti ajettavan mallin vasteaika on tyypillisesti 50–200 millisekuntia, kun pilvi-API:n vasteaika on 500–2000 millisekuntia riippuen mallista ja kuormasta.<sup>1</sup> Reaaliaikaisissa sovelluksissa, joissa jokainen sata millisekuntia näkyy käyttäjälle, tämä ero on merkittävä.</li>
+                <li><strong>Tasainen ja korkea käyttömäärä.</strong> Jos kysyntä on ennustettavaa ja jatkuvaa, kiinteä laitteistoinvestointi voi tulla halvemmaksi kuin käytön mukaan skaalautuva pilvilasku.</li>
+            </ul>
+
+            <p>Jos mikään näistä kolmesta ei päde, kannattaa pysyä pilvi-API:ssa, vaikka paikallinen ajo saattaa vaikuttaa houkuttelevalta periaatteen tasolla.</p>
+
+            <h2 id="kustannusvertailu">4. Kustannusvertailu: raja-arvo ei ole yksiselitteinen</h2>
+            <p>Kustannusvertailussa liikkuu paljon lukuja, mutta ne on syytä suhteuttaa oikeaan mittakaavaan. Osa alan arvioista sijoittaa raja-arvon paikallisen ajon kannattavuudelle noin 50–100 miljoonaan tokeniin kuukaudessa, jolloin GPU-palvelin tai omistettu laskentakapasiteetti alkaa tulla halvemmaksi kuin API-kutsut.<sup>2</sup> Pienemmässä mittakaavassa raja-arvo on mallikohtainen: esimerkiksi seitsemän miljardin parametrin mallille noin 500 000 tokenia päivässä, suuremmalle 70 miljardin parametrin mallille noin kaksi miljoonaa tokenia päivässä.</p>
+
+            <div class="highlight-box">
+                Nämä ovat suuruusluokan arvioita, ei tarkkoja rajoja, ja useimmat PK-yritykset eivät koskaan saavuta niitä. Tämä on syytä sanoa suoraan: pelkkä kustannussäästö harvoin yksin perustelee paikallista ajoa pienelle yritykselle. Kustannusperustelu vahvistuu vasta yhdistettynä johonkin kolmesta edellisen luvun syystä, ei yksinään.
+            </div>
+
+            <p>Se, mikä paikallisessa ajossa muuttuu, on kustannusrakenne: vaihteleva, käytön mukaan skaalautuva API-kulu muuttuu kiinteäksi laitteistoinvestoinniksi. Tämä voi olla etu, jos volyymi on ennustettava, mutta se on myös riski, jos kysyntä laskee investoinnin jälkeen.</p>
+
+            <h2 id="mita-vaatii">5. Mitä paikallinen ajo käytännössä vaatii</h2>
+            <p>Avointen mallien (esimerkiksi Llama, Mistral, Qwen) laatuero suljettuihin huippumalleihin on kaventunut merkittävästi useimmissa liiketoimintasovelluksissa, mikä tekee paikallisesta ajosta aiempaa realistisemman vaihtoehdon moneen käyttötarkoitukseen.<sup>2</sup> Tämä ei kuitenkaan poista sitä, että paikallinen ajo on ylläpitovastuu, ei kertaluontoinen hankinta: joku organisaatiossa vastaa mallin päivityksistä, laitteiston kunnosta, tietoturvasta ja siitä, ettei paikallista rajapintaa jää vahingossa avoimeksi julkiseen internetiin ilman todennusta.</p>
+
+            <p>Tietoturvanäkökulmat pätevät paikalliseen ajoon täsmälleen samalla tavalla kuin muuhunkin sisäiseen tekoälyn käyttöön, jonka kävimme läpi <a href="sisainen-tekoaly-ja-tietoturva.html">Sisäinen tekoäly ja tietoturva -artikkelissamme</a>: paikallinen ajo poistaa yhden riskin (data lähtee organisaation ulkopuolelle), mutta ei poista tarvetta hallita pääsyoikeuksia ja valvoa käyttöä.</p>
+
+            <h2 id="hybridimalli">6. Hybridimalli: paras molemmista</h2>
+            <p>Käytännössä useimmat organisaatiot, jotka päätyvät käyttämään paikallista ajoa, eivät valitse joko-tai-ratkaisua, vaan hybridimallia: pieni paikallinen malli hoitaa rutiinitehtävät ja yksinkertaisen luokittelun, keskikokoinen paikallinen malli hoitaa suuremman osan päivittäisestä kuormasta, ja pilvi-API otetaan mukaan vain kaikkein vaativimpiin tai harvinaisimpiin tehtäviin.<sup>2</sup> Tämä sama ajattelu toistuu myös agenttien työkalu- ja alustavalinnoissa: yhdistelmä yleensä voittaa puhtaan joko-tai-ratkaisun.</p>
+
+            <p>Tämä tarkoittaa, ettei valintaa tarvitse tehdä kertaalleen koko organisaatiolle. Eri prosessit voivat päätyä eri ratkaisuun sen mukaan, mitä kukin niistä oikeasti vaatii.</p>
+
+            <h2 id="miten-valok">7. Miten Valok auttaa valinnassa</h2>
+            <p>Kun arvioimme asiakkaalle, kannattaako jokin prosessi ajaa paikallisesti vai pilvessä, lähdemme aina liikkeelle käyttömäärästä ja datan luonteesta, emme periaatteesta. Kartoitamme, onko kyseessä oikeasti compliance-vaatimus, viive-kriittinen sovellus tai tasainen korkea volyymi, vai onko pilvi-API edelleen yksinkertaisesti järkevin valinta.</p>
+
+            <p>Tämä sama arviointi on osa jokaista agenttiprojektia: emme ehdota paikallista laitteistoa siksi että se kuulostaa vaikuttavalta, vaan siksi että se ratkaisee jonkin konkreettisen ongelman, joka pilvi-API:lla jäisi ratkaisematta. Jos mietit tällä hetkellä, kumpi ratkaisu sopisi juuri teidän tilanteeseenne, jutellaan mielellämme.</p>
+
+            <div class="reference-list">
+                <h4>Lähdeviitteet:</h4>
+                <ol>
+                    <li><a href="https://www.aisanomat.fi/p/kayta-tekoalya-omalla-koneella" target="_blank" rel="noopener">AI Sanomat: "Paikallinen tekoäly omalla koneella – vuoden 2026 opas"</a>. Laitteistovaatimukset ja käytännön suositukset paikallisen kielimallin ajamiseen.</li>
+                    <li><a href="https://eskom.ai/fi/blog/lokalne-llm-przedsiebiorstwo/" target="_blank" rel="noopener">ESKOM.AI: "Paikalliset LLM-mallit yrityksessä — Llama, Mistral, Bielik vai pilvi?"</a>. Kustannus- ja viivevertailu paikallisen ja pilvipohjaisen kielimallin välillä yrityskäytössä.</li>
+                </ol>
+            </div>
+
+            <div class="contact-section">
+                <div class="section-header" style="text-align: center; margin-bottom: 40px;">
+                    <span class="section-tag">Otetaan askel eteenpäin</span>
+                    <h2>Kannattaisiko teidän tekoälynne ajaa paikallisesti vai pilvessä?</h2>
+                    <p>Valok arvioi käyttömäärän, datan luonteen ja compliance-vaatimukset ennen kuin suosittelee kumpaakaan.</p>
+                </div>
+
+                <div class="contact-container" style="max-width: 100%;">
+                    <div class="contact-form-card">
+                        <form action="https://formspree.io/f/xlgpgyjl" method="POST" id="contact-form">
+                            <div class="form-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 20px;">
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="name">Nimi</label>
+                                    <input type="text" id="name" name="name" autocomplete="name" placeholder="Oma nimesi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                </div>
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="email">Sähköposti</label>
+                                    <input type="email" id="email" name="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="esimerkki@yritys.fi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg full-width" style="width: 100%; padding: 16px; font-weight: bold; cursor: pointer; margin-top: 20px;">
+                                Varaa ilmainen konsultaatio
+                            </button>
+                            <div id="form-status" class="form-status" aria-live="polite"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </article>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer" width="4206" height="4206" loading="lazy"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer" width="4206" height="4206" loading="lazy">VALOK<span class="logo-dot">.</span></div>
+                <p>Prosessien automatisointia ja dedikoituja tekoälyratkaisuja suomalaisille PK-yrityksille.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Linkit</h4>
+                <ul>
+                    <li><a href="/">Etusivu</a></li>
+                    <li><a href="../blogi.html">Blogi</a></li>
+                    <li><a href="/#palvelut">Palvelut</a></li>
+                    <li><a href="../tietosuoja.html">Tietosuoja</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ota yhteyttä</h4>
+                <ul>
+                    <li>aleksanteri@valok.fi</li>
+                    <li>Jyväskylä, Finland</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Valok. Kaikki oikeudet pidätetään. · <a href="#" id="cookieSettingsLink">Evästeasetukset</a>
+        </div>
+    </footer>
+
+        <div id="cookieBanner" class="cookie-banner">
+        <h5>Yksityisyytesi on meille tärkeää</h5>
+        <p>Käytämme sivustolla vain välttämättömiä toimintoja varmistaaksemme parhaan mahdollisen käyttökokemuksen. Emme
+            käytä kolmannen osapuolen markkinointievästeitä ilman suostumustasi.</p>
+        <div class="cookie-btn-group">
+            <button id="acceptCookies" class="btn btn-primary">Hyväksy kaikki</button>
+            <button id="rejectCookies" class="btn btn-ghost">Hylkää</button>
+            <a href="../tietosuoja.html" class="btn btn-ghost">Lue lisää</a>
+        </div>
+    </div>
+
+    <script src="../main.js"></script>
+</body>
+
+</html>
