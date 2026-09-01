@@ -308,29 +308,29 @@
             <p>Kolme tilannetta kääntävät vaakakupin paikallisen ajon puolelle:</p>
 
             <ul>
-                <li><strong>Datan arkaluonteisuus ja compliance-vaatimukset.</strong> Terveys-, oikeus- tai julkishallinnon datalle voi olla lakisääteinen tai sopimusperusteinen vaatimus, ettei tieto poistu organisaation omasta ympäristöstä. Tällöin paikallinen ajo ei ole vaihtoehto vaan edellytys.</li>
-                <li><strong>Viive-kriittinen käyttö.</strong> Paikallisesti ajettavan mallin vasteaika on tyypillisesti 50–200 millisekuntia, kun pilvi-API:n vasteaika on 500–2000 millisekuntia riippuen mallista ja kuormasta.<sup>1</sup> Reaaliaikaisissa sovelluksissa, joissa jokainen sata millisekuntia näkyy käyttäjälle, tämä ero on merkittävä.</li>
+                <li><strong>Datan arkaluonteisuus ja compliance-vaatimukset.</strong> Terveys-, oikeus- tai julkishallinnon datalle voi olla lakisääteinen tai sopimusperusteinen vaatimus, ettei tieto poistu organisaation omasta ympäristöstä. Deloitten mukaan juuri tämä, ei kustannus, on suurimmalle osalle yrityksistä se todellinen syy harkita paikallista ajoa: kun tietosuojavaatimukset kieltävät datan lähettämisen kolmannen osapuolen infrastruktuuriin, paikallinen ajo ei ole vaihtoehto vaan edellytys.<sup>1</sup></li>
+                <li><strong>Viive-kriittinen käyttö.</strong> Paikallinen ajo poistaa verkon yli kulkevan matkan ja siihen liittyvän jonotuksen kokonaan, mikä tekee vasteajasta sekä nopeamman että ennustettavamman. Tämä korostuu erityisesti reaaliaikaisissa sovelluksissa, kuten teollisuusautomaatiossa, joissa Deloitte nostaa ultramatalan viiveen yhdeksi keskeiseksi syyksi valita paikallinen ajo pilven sijaan.<sup>1</sup></li>
                 <li><strong>Tasainen ja korkea käyttömäärä.</strong> Jos kysyntä on ennustettavaa ja jatkuvaa, kiinteä laitteistoinvestointi voi tulla halvemmaksi kuin käytön mukaan skaalautuva pilvilasku.</li>
             </ul>
 
             <p>Jos mikään näistä kolmesta ei päde, kannattaa pysyä pilvi-API:ssa, vaikka paikallinen ajo saattaa vaikuttaa houkuttelevalta periaatteen tasolla.</p>
 
             <h2 id="kustannusvertailu">4. Kustannusvertailu: raja-arvo ei ole yksiselitteinen</h2>
-            <p>Kustannusvertailussa liikkuu paljon lukuja, mutta ne on syytä suhteuttaa oikeaan mittakaavaan. Osa alan arvioista sijoittaa raja-arvon paikallisen ajon kannattavuudelle noin 50–100 miljoonaan tokeniin kuukaudessa, jolloin GPU-palvelin tai omistettu laskentakapasiteetti alkaa tulla halvemmaksi kuin API-kutsut.<sup>2</sup> Pienemmässä mittakaavassa raja-arvo on mallikohtainen: esimerkiksi seitsemän miljardin parametrin mallille noin 500 000 tokenia päivässä, suuremmalle 70 miljardin parametrin mallille noin kaksi miljoonaa tokenia päivässä.</p>
+            <p>Kustannusperustelu paikalliselle ajolle syntyy yleensä vasta ison käyttömäärän kohdalla. Deloitten mukaan osa suuryrityksistä maksaa jo kymmeniä miljoonia dollareita kuukaudessa tekoälyn laskentakapasiteetista, erityisesti kun agenttipohjaiset järjestelmät siirtyvät tuotantoon, ja juuri tässä mittakaavassa pilvikustannukset alkavat muuttua epäkäytännöllisiksi verrattuna omaan infrastruktuuriin.<sup>1</sup> Tämä on kuitenkin suuryritysten mittakaava, ei tyypillisen PK-yrityksen.</p>
 
             <div class="highlight-box">
-                Nämä ovat suuruusluokan arvioita, ei tarkkoja rajoja, ja useimmat PK-yritykset eivät koskaan saavuta niitä. Tämä on syytä sanoa suoraan: pelkkä kustannussäästö harvoin yksin perustelee paikallista ajoa pienelle yritykselle. Kustannusperustelu vahvistuu vasta yhdistettynä johonkin kolmesta edellisen luvun syystä, ei yksinään.
+                Tämä on syytä sanoa suoraan: pelkkä kustannussäästö harvoin yksin perustelee paikallista ajoa pienelle yritykselle, koska useimpien PK-yritysten käyttömäärä jää kauas siitä pisteestä, jossa kiinteä laitteistoinvestointi voittaa vaihtelevan API-kulun. Kustannusperustelu vahvistuu vasta yhdistettynä johonkin kolmesta edellisen luvun syystä, ei yksinään.
             </div>
 
             <p>Se, mikä paikallisessa ajossa muuttuu, on kustannusrakenne: vaihteleva, käytön mukaan skaalautuva API-kulu muuttuu kiinteäksi laitteistoinvestoinniksi. Tämä voi olla etu, jos volyymi on ennustettava, mutta se on myös riski, jos kysyntä laskee investoinnin jälkeen.</p>
 
             <h2 id="mita-vaatii">5. Mitä paikallinen ajo käytännössä vaatii</h2>
-            <p>Avointen mallien (esimerkiksi Llama, Mistral, Qwen) laatuero suljettuihin huippumalleihin on kaventunut merkittävästi useimmissa liiketoimintasovelluksissa, mikä tekee paikallisesta ajosta aiempaa realistisemman vaihtoehdon moneen käyttötarkoitukseen.<sup>2</sup> Tämä ei kuitenkaan poista sitä, että paikallinen ajo on ylläpitovastuu, ei kertaluontoinen hankinta: joku organisaatiossa vastaa mallin päivityksistä, laitteiston kunnosta, tietoturvasta ja siitä, ettei paikallista rajapintaa jää vahingossa avoimeksi julkiseen internetiin ilman todennusta.</p>
+            <p>Avointen mallien laatuero suljettuihin huippumalleihin on kaventunut merkittävästi: Stanfordin yliopiston AI Index -raportin 2026 mukaan parhaan avoimen mallin (GLM-5) ja parhaan suljetun huippumallin (Claude Opus 4.6) ero on enää noin 53 pistettä yleisellä kyvykkyysmittarilla, mikä on huomattavasti pienempi kuin aiempina vuosina.<sup>2</sup> Tämä tekee paikallisesta ajosta aiempaa realistisemman vaihtoehdon moneen käyttötarkoitukseen. Tämä ei kuitenkaan poista sitä, että paikallinen ajo on ylläpitovastuu, ei kertaluontoinen hankinta: joku organisaatiossa vastaa mallin päivityksistä, laitteiston kunnosta, tietoturvasta ja siitä, ettei paikallista rajapintaa jää vahingossa avoimeksi julkiseen internetiin ilman todennusta.</p>
 
             <p>Tietoturvanäkökulmat pätevät paikalliseen ajoon täsmälleen samalla tavalla kuin muuhunkin sisäiseen tekoälyn käyttöön, jonka kävimme läpi <a href="sisainen-tekoaly-ja-tietoturva.html">Sisäinen tekoäly ja tietoturva -artikkelissamme</a>: paikallinen ajo poistaa yhden riskin (data lähtee organisaation ulkopuolelle), mutta ei poista tarvetta hallita pääsyoikeuksia ja valvoa käyttöä.</p>
 
             <h2 id="hybridimalli">6. Hybridimalli: paras molemmista</h2>
-            <p>Käytännössä useimmat organisaatiot, jotka päätyvät käyttämään paikallista ajoa, eivät valitse joko-tai-ratkaisua, vaan hybridimallia: pieni paikallinen malli hoitaa rutiinitehtävät ja yksinkertaisen luokittelun, keskikokoinen paikallinen malli hoitaa suuremman osan päivittäisestä kuormasta, ja pilvi-API otetaan mukaan vain kaikkein vaativimpiin tai harvinaisimpiin tehtäviin.<sup>2</sup> Tämä sama ajattelu toistuu myös agenttien työkalu- ja alustavalinnoissa: yhdistelmä yleensä voittaa puhtaan joko-tai-ratkaisun.</p>
+            <p>Deloitten tuoreen analyysin mukaan kysymys ei ole enää binäärinen valinta pilven ja paikallisen infrastruktuurin välillä, vaan harkittu, työkuorman mukaan mietitty hybridimalli.<sup>1</sup> Käytännössä tämä tarkoittaa kolmea tasoa: julkinen pilvi hoitaa joustavat ja kokeelliset työkuormat, oma infrastruktuuri hoitaa tasaisen ja suurivolyymisen tuotantokäytön, ja reunalaskenta (edge) hoitaa aikakriittisen päätöksenteon. Tämä sama ajattelu toistuu myös agenttien työkalu- ja alustavalinnoissa: yhdistelmä yleensä voittaa puhtaan joko-tai-ratkaisun.</p>
 
             <p>Tämä tarkoittaa, ettei valintaa tarvitse tehdä kertaalleen koko organisaatiolle. Eri prosessit voivat päätyä eri ratkaisuun sen mukaan, mitä kukin niistä oikeasti vaatii.</p>
 
@@ -342,8 +342,8 @@
             <div class="reference-list">
                 <h4>Lähdeviitteet:</h4>
                 <ol>
-                    <li><a href="https://www.aisanomat.fi/p/kayta-tekoalya-omalla-koneella" target="_blank" rel="noopener">AI Sanomat: "Paikallinen tekoäly omalla koneella – vuoden 2026 opas"</a>. Laitteistovaatimukset ja käytännön suositukset paikallisen kielimallin ajamiseen.</li>
-                    <li><a href="https://eskom.ai/fi/blog/lokalne-llm-przedsiebiorstwo/" target="_blank" rel="noopener">ESKOM.AI: "Paikalliset LLM-mallit yrityksessä — Llama, Mistral, Bielik vai pilvi?"</a>. Kustannus- ja viivevertailu paikallisen ja pilvipohjaisen kielimallin välillä yrityskäytössä.</li>
+                    <li><a href="https://www.deloitte.com/ce/en/services/consulting/analysis/bg-ai-inference-is-reshaping-enterprise-compute-strategies.html" target="_blank" rel="noopener">Deloitte: "AI inference is reshaping enterprise compute strategies"</a>. Analyysi pilven, paikallisen infrastruktuurin ja reunalaskennan työkuormapohjaisesta hybridimallista sekä compliance- ja kustannusajureista.</li>
+                    <li><a href="https://hai.stanford.edu/ai-index/2026-ai-index-report" target="_blank" rel="noopener">Stanford HAI: "The 2026 AI Index Report"</a>. Vertailu avointen ja suljettujen kielimallien kyvykkyyserosta.</li>
                 </ol>
             </div>
 
