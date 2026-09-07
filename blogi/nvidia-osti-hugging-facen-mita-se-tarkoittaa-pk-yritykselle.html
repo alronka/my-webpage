@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#030712">
+    <title>Nvidia osti Hugging Facen: mitä 13 miljardin kauppa tarkoittaa pk-yritykselle | Valok</title>
+    <meta name="description"
+        content="Nvidia osti Hugging Facen 12,9 mrd dollarilla. Harva pk-yritys käyttää sitä suoraan, mutta moni tekoälytyökalu nojaa siihen. Mitä kaupasta seuraa ja mitä tehdä nyt.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel=icon type=image/png sizes=32x32 href=../img/favicon-32x32.png>
+    <link rel=apple-touch-icon sizes=180x180 href=../img/favicon-180x180.png>
+
+    <link rel="canonical" href="https://valok.fi/blogi/nvidia-osti-hugging-facen-mita-se-tarkoittaa-pk-yritykselle.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://valok.fi/blogi/nvidia-osti-hugging-facen-mita-se-tarkoittaa-pk-yritykselle.html">
+    <meta property="og:title" content="Nvidia osti Hugging Facen: mitä 13 miljardin kauppa tarkoittaa pk-yritykselle">
+    <meta property="og:description" content="Useimmat pk-yritykset eivät käytä Hugging Facea suoraan, mutta moni tekoälytyökalu nojaa siihen. Mitä kaupasta seuraa ja mitä kannattaa nyt tehdä.">
+    <meta property="og:image" content="https://valok.fi/img/nvidia-osti-hugging-facen-mita-se-tarkoittaa-pk-yritykselle.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Nvidia osti Hugging Facen: mitä 13 miljardin kauppa tarkoittaa pk-yritykselle">
+    <meta name="twitter:description" content="Useimmat pk-yritykset eivät käytä Hugging Facea suoraan, mutta moni tekoälytyökalu nojaa siihen. Mitä kaupasta seuraa ja mitä kannattaa nyt tehdä.">
+    <meta name="twitter:image" content="https://valok.fi/img/nvidia-osti-hugging-facen-mita-se-tarkoittaa-pk-yritykselle.webp">
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Nvidia osti Hugging Facen: mitä 13 miljardin kauppa tarkoittaa pk-yritykselle",
+  "description": "Useimmat pk-yritykset eivät käytä Hugging Facea suoraan, mutta moni tekoälytyökalu nojaa siihen. Mitä kaupasta seuraa ja mitä kannattaa nyt tehdä.",
+  "image": "https://valok.fi/img/nvidia-osti-hugging-facen-mita-se-tarkoittaa-pk-yritykselle.webp",
+  "datePublished": "2026-09-07",
+  "dateModified": "2026-09-07",
+  "author": {
+    "@type": "Person",
+    "name": "Aleksanteri Rönkä",
+    "url": "https://valok.fi/",
+    "email": "aleksanteri@valok.fi",
+    "jobTitle": "Perustaja",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Valok"
+    }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Valok",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://valok.fi/img/valok-black-with-white-outline.webp"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://valok.fi/blogi/nvidia-osti-hugging-facen-mita-se-tarkoittaa-pk-yritykselle.html"
+  }
+}
+    </script>
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Käyttääkö yritykseni Hugging Facea tietämättään?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Todennäköisesti epäsuorasti. Harva pk-yritys lataa malleja Hugging Facesta itse, mutta monet tekoälytyökalut, sovelluskehykset ja pilvipalvelut hakevat avoimia malleja sen kautta konepellin alla. Jos käytätte pelkästään suljettuja rajapintoja, kuten OpenAI:n, Anthropicin tai Googlen API:a, ette kosketa Hugging Facea lainkaan."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Pitääkö meidän tehdä jotain heti?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ei kiireellistä. Nvidia lupasi, että alusta pysyy avoimena eikä sen käyttö vaadi Nvidian laitteistoa, ja kauppa sulkeutuu aikaisintaan alkuvuonna 2027 viranomaishyväksyntöjen jälkeen. Järkevä toimenpide nyt on kysyä tekoälytoimittajaltanne, mistä käyttämänne mallit tulevat ja voisiko mallin tai palveluntarjoajan vaihtaa ilman järjestelmän uudelleenrakentamista."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Muuttuuko avoimien mallien hinta tai saatavuus?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ei välittömästi. Mallit itsessään ovat avoimin lisenssein jaettuja, eikä yksittäinen omistaja voi vetää niitä pois jo julkaistuista kopioista. Pidemmällä aikavälillä riski on hienovarainen: alustan oletukset ja suositukset voivat alkaa ohjata käyttäjiä kohti Nvidian laitteistoa ja palveluita. Se ei ole este, mutta seurattava asia."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Onko avoin malli nyt riskialttiimpi valinta kuin ennen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ei. Käytännössä kauppa vahvistaa, että avoimet mallit ovat pysyvä vaihtoehto suljettujen rajapintojen rinnalla, koska maailman suurin tekoälylaitteiston valmistaja panosti niihin lähes 13 miljardia dollaria. Valintakriteerit pysyvät samoina: tehtävän vaativuus, kielituki, tietosuoja ja kokonaiskustannus."
+      }
+    }
+  ]
+}
+    </script>
+
+    <style>
+        .post-header {
+            min-height: auto !important;
+            padding: 160px 24px 24px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            background: radial-gradient(circle at top, var(--accent-glow) 0%, transparent 70%);
+        }
+
+        .post-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px 100px;
+            line-height: 1.8;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .post-content h2, .post-content h3 {
+            color: var(--text);
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .post-content p {
+            margin-bottom: 24px;
+        }
+
+        .post-content ul, .post-content ol {
+            margin-bottom: 24px;
+            padding-left: 20px;
+        }
+
+        .post-content li {
+            margin-bottom: 12px;
+        }
+
+        .post-meta {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .post-author {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 24px;
+            text-align: left;
+        }
+
+        .post-author img {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .post-author-name {
+            display: block;
+            font-weight: 600;
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+
+        .post-author-role {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dim);
+            text-decoration: none;
+            margin-bottom: 40px;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        .post-image {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .post-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .toc-box {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+        }
+
+        .toc-box h4 {
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        .toc-box ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .toc-box a {
+            color: #58a6ff;
+            text-decoration: none;
+            display: block;
+            padding: 4px 0;
+            transition: var(--transition);
+        }
+
+        .toc-box a:hover {
+            color: var(--accent);
+            padding-left: 4px;
+        }
+
+        .highlight-box {
+            background: var(--glass);
+            padding: 30px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+            border-left: 4px solid var(--accent);
+        }
+
+        .reference-list {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            margin-top: 60px;
+        }
+
+        .reference-list ol {
+            padding-left: 20px;
+        }
+
+        .contact-section {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 60px 40px;
+            border-radius: var(--radius);
+            margin-top: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="particles"></canvas>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark" width="4206" height="4206"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light" width="4206" height="4206">VALOK<span
+                     class="logo-dot">.</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="/#palvelut">Palvelut</a>
+                <a href="/#prosessi">Prosessi</a>
+                <a href="../blogi.html">Blogi</a>
+                <a href="/#yhteystiedot" class="nav-cta">Ota yhteyttä</a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Avaa valikko">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <article>
+        <header class="post-header">
+            <a href="../blogi.html" class="back-link">← Takaisin blogiin</a>
+            <span class="post-meta">Tekoälymarkkina • Avoimet mallit • Toimittajariippuvuus</span>
+            <h1>Nvidia osti Hugging Facen: <span class="gradient-text">mitä 13 miljardin kauppa tarkoittaa pk-yritykselle</span></h1>
+            <p style="color: var(--text-dim); margin-top: 20px;">Nvidia ilmoitti 3.9.2026 ostavansa Hugging Facen noin 12,9 miljardilla dollarilla. Uutinen on iso tekoälyalalla, mutta useimmat pk-yritykset eivät ole koskaan kirjautuneet Hugging Faceen. Silti moni yrityksen käyttämä tekoälytyökalu nojaa siihen konepellin alla. Käydään läpi mitä kaupassa sovittiin, mikä siinä on aidosti seurattavaa, ja mitä kannattaa nyt tehdä.</p>
+            <div class="post-author">
+                <img src="../img/valok-aleksanteri.webp" alt="Aleksanteri Rönkä" width="44" height="44" loading="lazy">
+                <div>
+                    <span class="post-author-name">Aleksanteri Rönkä</span>
+                    <span class="post-author-role">Perustaja, Valok &middot; <a href="mailto:aleksanteri@valok.fi">aleksanteri@valok.fi</a></span>
+                </div>
+            </div>
+        </header>
+
+        <div class="post-image">
+            <img src="../img/nvidia-osti-hugging-facen-mita-se-tarkoittaa-pk-yritykselle.webp" alt="Nvidian ja Hugging Facen kaupan merkitys PK-yritykselle - Valok" width="960" height="1104">
+        </div>
+
+        <main class="post-content">
+            <div class="toc-box">
+                <h4>Sisällysluettelo</h4>
+                <ul>
+                    <li><a href="#mika-hugging-face">1. Mikä Hugging Face on, ja miksi et ehkä ole kuullut siitä</a></li>
+                    <li><a href="#mita-sovittiin">2. Mitä kaupassa tarkkaan ottaen sovittiin</a></li>
+                    <li><a href="#ei-viela-valmis">3. Kauppa ei ole vielä valmis</a></li>
+                    <li><a href="#koskeeko-meita">4. Koskeeko tämä meitä? Suora ja epäsuora riippuvuus</a></li>
+                    <li><a href="#oikea-huoli">5. Se oikea huoli: neutraliteetin rapautuminen ajan myötä</a></li>
+                    <li><a href="#mita-tehda">6. Mitä pk-yrityksen kannattaa nyt tehdä</a></li>
+                    <li><a href="#iso-kuva">7. Iso kuva: avoimet mallit jäivät pysyvästi pöydälle</a></li>
+                    <li><a href="#ukk">8. Usein kysyttyä</a></li>
+                </ul>
+            </div>
+
+            <p>Kun tekoälyalalta tulee ison rahan otsikko, pk-yrityksen kannattaa kysyä sama asia kuin uuden mallin julkaisun kohdalla: muuttuuko tässä jotain, joka vaikuttaa meidän käyttöömme, vai onko tämä pääosin alan sisäistä uutista. Nvidian ja Hugging Facen kaupan tapauksessa vastaus on enimmäkseen jälkimmäinen, mutta ei kokonaan. Muutama asia on hyvä ymmärtää, ja yksi konkreettinen toimenpide kannattaa tehdä.</p>
+
+            <h2 id="mika-hugging-face">1. Mikä Hugging Face on, ja miksi et ehkä ole kuullut siitä</h2>
+            <p>Hugging Face on käytännössä avoimien tekoälymallien jakelukeskus. Sitä on kuvattu tekoälymallien GitHubiksi: paikka, josta kehittäjät lataavat valmiita malleja, jakavat omiaan ja hakevat harjoitusdataa. Yhtiön mukaan alustalla on yli 3 miljoonaa mallia, noin 500 000 datajoukkoa ja yli 18 miljoonaa kehittäjää.<sup>1</sup></p>
+
+            <p>Olennainen ero suljettuihin tekoälypalveluihin: OpenAI:n, Anthropicin ja Googlen huippumalleja käytetään vain näiden omien rajapintojen kautta, eikä itse mallia saa haltuunsa. Hugging Facessa jaettavat mallit ovat avoimin lisenssein julkaistuja, eli ne voi ladata omalle koneelle tai palvelimelle ja ajaa itse. Hugging Facen arvo on koko alalle perustunut nimenomaan siihen, että se on ollut riippumaton yksittäisistä laite- ja pilvitoimijoista.<sup>2</sup></p>
+
+            <p>Useimmat pk-yritykset eivät asioi Hugging Facen kanssa suoraan. Silti se on usein näkymättömänä infrastruktuurina taustalla: kun tekoälytyökalu, sovelluskehys tai pilvipalvelu käyttää avointa mallia, malli haetaan tyypillisesti juuri Hugging Facesta. Ero suljetun pilvi-API:n ja itse ajettavan avoimen mallin välillä on sama, jota käsittelimme artikkelissa <a href="paikallinen-vs-pilvi-tekoaly.html">Paikallinen vs. pilvi-tekoäly</a>.</p>
+
+            <h2 id="mita-sovittiin">2. Mitä kaupassa tarkkaan ottaen sovittiin</h2>
+            <p>Nvidia ilmoitti 3.9.2026 ostavansa Hugging Facen noin 12,93 miljardilla dollarilla. Hugging Facen liikevaihdon on raportoitu olevan noin 150 miljoonaa dollaria vuositasolle laskettuna, eli hinta on moninkertainen liikevaihtoon nähden. Yhtiön mukaan Hugging Face oli torjunut Nvidian noin 500 miljoonan dollarin tarjouksen vielä vuotta aiemmin.<sup>1</sup></p>
+
+            <p>Nvidia antoi julkistuksessa kolme keskeistä lupausta:<sup>2</sup></p>
+            <ul>
+                <li><strong>Alusta pysyy avoimena koko ekosysteemille.</strong> Hugging Face jatkaa avoimen lähdekoodin ja avoimien painojen mallien tukemista riippumatta siitä, kuka ne on tehnyt.</li>
+                <li><strong>Nvidian laitteistoa ei vaadita.</strong> Julkistuksessa sanottiin suoraan, että "Nvidia-laskentaa ei tarvita" mallien rakentamiseen tai käyttöönottoon alustan kautta.</li>
+                <li><strong>Monipilvi- ja monilaitteistotuki säilyy.</strong> Kehittäjät voivat jatkossakin valita pilvensä ja kiihdytinlaitteistonsa vapaasti.</li>
+            </ul>
+
+            <p>Hugging Facen toimitusjohtaja Clément Delangue perusteli kauppaa sillä, että avoin tekoäly tarvitsee lisää laskentaa, resursseja ja näkyvyyttä pärjätäkseen suljettujen rajapintojen rinnalla laajassa mittakaavassa.<sup>1</sup> Nvidian toimitusjohtaja Jensen Huang taas totesi tavoitteena olevan Hugging Facen alustan skaalaaminen ja pääsyn laajentaminen tekoälyyn.<sup>3</sup></p>
+
+            <h2 id="ei-viela-valmis">3. Kauppa ei ole vielä valmis</h2>
+            <p>Ilmoitus ei tarkoita, että kauppa olisi toteutunut. Tämän kokoluokan yrityskaupat käyvät läpi kilpailuviranomaisten tarkastelun, ja tässä tapauksessa arvioita odotetaan ainakin Yhdysvalloissa, EU:ssa ja todennäköisesti Isossa-Britanniassa. Erityisen tarkastelun kohteena on pystysuuntainen asetelma, jossa maailman hallitseva tekoälypiirien toimittaja ostaisi hallitsevan avoimien mallien jakelualustan. Nvidia on itse arvioinut kaupan sulkeutuvan aikaisintaan alkuvuonna 2027.<sup>4</sup></p>
+
+            <div class="highlight-box">
+                <p style="margin-bottom: 0;"><strong>Lyhyesti:</strong> mikään ei muutu tänään eikä huomenna. Hugging Face toimii kaupan käsittelyn ajan itsenäisesti, ja mahdolliset muutokset alustan toimintaan tulisivat aikaisintaan kaupan sulkeuduttua, jos se ylipäätään menee viranomaisilta läpi ehdoitta.</p>
+            </div>
+
+            <h2 id="koskeeko-meita">4. Koskeeko tämä meitä? Suora ja epäsuora riippuvuus</h2>
+            <p>Kysymys kannattaa jakaa kahtia.</p>
+
+            <p><strong>Suora riippuvuus.</strong> Jos yrityksenne tekoälyratkaisu perustuu pelkästään suljettuihin rajapintoihin, kuten OpenAI:n, Anthropicin tai Googlen API:in, ette käytä Hugging Facea lainkaan, eikä tämä kauppa kosketa teitä. Näin on suuressa osassa pk-yritysten arkisia tekoälyratkaisuja.</p>
+
+            <p><strong>Epäsuora riippuvuus.</strong> Jos ratkaisunne käyttää avointa mallia, esimerkiksi paikallisesti ajettavaa kielimallia tietosuojasyistä, itse hostattua puheentunnistusta tai avointa upotusmallia tiedonhaussa, malli on todennäköisesti haettu Hugging Facesta. Tällöin ette ole riippuvaisia kaupasta itsestään, mutta olette riippuvaisia siitä, että alusta pysyy toimivana ja neutraalina mallien lähteenä.</p>
+
+            <p>Kummassakaan tapauksessa ei ole syytä paniikkiin. Suora riippuvuus tarkoittaa, ettei kauppa kosketa teitä. Epäsuora riippuvuus tarkoittaa, että kannattaa varmistaa muutama perusasia, joista lisää kohdassa 6.</p>
+
+            <h2 id="oikea-huoli">5. Se oikea huoli: neutraliteetin rapautuminen ajan myötä</h2>
+            <p>Alan kommentaareissa toistuu sama huoli, eikä se koske äkillistä katkosta vaan hidasta liukumaa. Nvidia saa kaupan myötä poikkeuksellisen näkymän siihen, mitä malleja kehittäjät lataavat, millä laitteistolla niitä ajetaan ja mihin suuntaan ala liikkuu. Samalla se omistaa alustan oletukset: mitkä mallit nostetaan esiin, mikä ajoympäristö on valmiiksi optimoitu, mitä inference-palvelua suositellaan.<sup>5</sup></p>
+
+            <p>Riski ei siis ole se, että avoimet mallit katoaisivat tai että Hugging Face lakkaisi toimimasta muilla kuin Nvidian laitteilla. Riski on se, että ajan myötä helpoin polku alustalla johtaa Nvidian laitteistoon ja palveluihin, ja muut vaihtoehdot jäävät teknisesti mahdollisiksi mutta hankalammiksi. Useat kommentaattorit arvioivat, että Nvidialla on vahva taloudellinen kannuste säilyttää neutraliteetti ainakin aluksi, koska juuri se tekee Hugging Facesta arvokkaan, mutta kehitystä kannattaa seurata pidemmällä aikavälillä.<sup>5</sup></p>
+
+            <h2 id="mita-tehda">6. Mitä pk-yrityksen kannattaa nyt tehdä</h2>
+            <p>Mitään kiireellistä ei ole, mutta tämä on hyvä hetki tarkistaa, ettei tekoälyratkaisunne ole vahingossa sitoutunut yhteen malliin tai yhteen lähteeseen tavalla, jota ette ole tarkoittaneet. Nämä ovat hyviä käytäntöjä joka tapauksessa, riippumatta tästä kaupasta.</p>
+
+            <ul>
+                <li><strong>Kysy toimittajaltasi, mistä mallit tulevat.</strong> Yksi sähköposti tekoälytoimittajalle tai integraatiokumppanille: mitä mallia ratkaisumme käyttää, kuka sen omistaa, ja mistä se haetaan. Vastauksen pitäisi olla selkeä.</li>
+                <li><strong>Selvitä, voisiko mallin vaihtaa ilman uudelleenrakentamista.</strong> Hyvin suunnitellussa ratkaisussa malli on vaihdettavissa toiseen ilman, että koko järjestelmä pitää tehdä uusiksi. Jos vaihto vaatisi kuukausien työn, olette tiukemmin sidottuja kuin ehkä luulette.</li>
+                <li><strong>Jos ajatte avointa mallia itse, ota siitä oma kopio.</strong> Älä nojaa siihen, että tietty malli on aina ladattavissa samasta osoitteesta. Säilytä käytössä oleva malliversio, sen lisenssiteksti ja asetustiedostot omassa hallinnassanne, niin tuotanto ei ole kiinni ulkoisen alustan pysyvyydestä.</li>
+                <li><strong>Pidä malliriippumattomuus suunnitteluperiaatteena.</strong> Kun tekoälyratkaisu rakennetaan niin, että malli on yksi vaihdettava osa eikä koko järjestelmän perusta, omistajanvaihdokset ja hinnanmuutokset muuttuvat kriisistä rutiiniksi. Sama periaate suojaa myös suljettujen rajapintojen hinnankorotuksilta.</li>
+                <li><strong>Älä tee hätäsiirtoja.</strong> Jos nykyinen ratkaisunne toimii, tämän uutisen takia ei kannata vaihtaa mallia tai palveluntarjoajaa. Tee muutokset silloin, kun niille on oma peruste.</li>
+            </ul>
+
+            <p>Jos ette ole varmoja, kuinka sidottu ratkaisunne on yhteen malliin, se kannattaa selvittää samassa yhteydessä kuin mallin valintaa muutenkin punnitaan. Kävimme valintakriteerit läpi artikkelissa <a href="kielimallin-valinta-pk-yritykselle-2026.html">Kielimallin valinta pk-yritykselle</a>.</p>
+
+            <h2 id="iso-kuva">7. Iso kuva: avoimet mallit jäivät pysyvästi pöydälle</h2>
+            <p>Yksi myönteinen tulkinta kaupasta: maailman arvokkain tekoälyyhtiö panosti lähes 13 miljardia dollaria nimenomaan avoimien mallien ekosysteemiin. Se on vahva signaali siitä, että avoimet mallit eivät ole ohimenevä vaihe vaan pysyvä osa markkinaa suljettujen rajapintojen rinnalla.</p>
+
+            <p>Pk-yritykselle tämä on hyvä uutinen. Mitä elinvoimaisempi avoimien mallien vaihtoehto on, sitä enemmän kilpailua ja hintapainetta kohdistuu myös suljettuihin rajapintoihin, ja sitä paremmat mahdollisuudet on ajaa mallia itse silloin, kun tietosuoja tai kustannukset sitä puoltavat. Valintakriteerit eivät muutu: tehtävän vaativuus, suomen kielen taso, tietosuoja ja kokonaiskustannus ratkaisevat, ei se, kenen otsikoissa malli sattuu olemaan.</p>
+
+            <h2 id="ukk">8. Usein kysyttyä</h2>
+
+            <h3>Käyttääkö yritykseni Hugging Facea tietämättään?</h3>
+            <p>Todennäköisesti epäsuorasti. Harva pk-yritys lataa malleja Hugging Facesta itse, mutta monet tekoälytyökalut, sovelluskehykset ja pilvipalvelut hakevat avoimia malleja sen kautta konepellin alla. Jos käytätte pelkästään suljettuja rajapintoja, kuten OpenAI:n, Anthropicin tai Googlen API:a, ette kosketa Hugging Facea lainkaan.</p>
+
+            <h3>Pitääkö meidän tehdä jotain heti?</h3>
+            <p>Ei kiireellistä. Nvidia lupasi, että alusta pysyy avoimena eikä sen käyttö vaadi Nvidian laitteistoa, ja kauppa sulkeutuu aikaisintaan alkuvuonna 2027 viranomaishyväksyntöjen jälkeen. Järkevä toimenpide nyt on kysyä tekoälytoimittajaltanne, mistä käyttämänne mallit tulevat ja voisiko mallin tai palveluntarjoajan vaihtaa ilman järjestelmän uudelleenrakentamista.</p>
+
+            <h3>Muuttuuko avoimien mallien hinta tai saatavuus?</h3>
+            <p>Ei välittömästi. Mallit itsessään ovat avoimin lisenssein jaettuja, eikä yksittäinen omistaja voi vetää niitä pois jo julkaistuista kopioista. Pidemmällä aikavälillä riski on hienovarainen: alustan oletukset ja suositukset voivat alkaa ohjata käyttäjiä kohti Nvidian laitteistoa ja palveluita. Se ei ole este, mutta seurattava asia.</p>
+
+            <h3>Onko avoin malli nyt riskialttiimpi valinta kuin ennen?</h3>
+            <p>Ei. Käytännössä kauppa vahvistaa, että avoimet mallit ovat pysyvä vaihtoehto suljettujen rajapintojen rinnalla, koska maailman suurin tekoälylaitteiston valmistaja panosti niihin lähes 13 miljardia dollaria. Valintakriteerit pysyvät samoina: tehtävän vaativuus, kielituki, tietosuoja ja kokonaiskustannus.</p>
+
+            <div class="reference-list">
+                <h4>Lähdeviitteet:</h4>
+                <ol>
+                    <li><a href="https://techcrunch.com/2026/09/03/nvidia-confirms-it-will-buy-hugging-face-for-12-9-billion/" target="_blank" rel="noopener">TechCrunch: "Nvidia confirms it will buy Hugging Face for $12.9 billion"</a> (3.9.2026). Kauppahinta, Hugging Facen käyttäjä- ja mallimäärät, liikevaihtoarvio, aiempi torjuttu tarjous, Delanguen ja Huangin kommentit.</li>
+                    <li><a href="https://blogs.nvidia.com/blog/nvidia-to-acquire-hugging-face/" target="_blank" rel="noopener">NVIDIA Blog: "NVIDIA to Acquire Hugging Face"</a> (3.9.2026). Nvidian oma julkistus: lupaukset alustan avoimuudesta, "Nvidia-laskentaa ei vaadita", monipilvi- ja monilaitteistotuki.</li>
+                    <li><a href="https://www.cnbc.com/2026/09/03/nvidia-agrees-to-buy-hugging-face-for-almost-13-billion-ai-expansion.html" target="_blank" rel="noopener">CNBC: "Nvidia agrees to buy Hugging Face for almost $13 billion in AI expansion"</a> (3.9.2026). Kaupan vahvistus ja tausta, Delanguen haastattelu kaupan synnystä.</li>
+                    <li><a href="https://www.techtimes.com/articles/325863/20260828/nvidias-129b-hugging-face-deal-must-pass-antitrust-review-its-quasi-mergers-dodged.htm" target="_blank" rel="noopener">TechTimes: "Nvidia's $12.9B Hugging Face Deal Must Pass Antitrust Review"</a> (28.8.2026). Viranomaistarkastelu EU:ssa, Yhdysvalloissa ja Isossa-Britanniassa, arvioitu sulkeutumisajankohta alkuvuosi 2027.</li>
+                    <li><a href="https://venturebeat.com/infrastructure/nvidia-acquires-hugging-face-after-stripe-nabs-openrouter-heres-what-open-source-ai-builders-should-do" target="_blank" rel="noopener">VentureBeat: "Nvidia acquires Hugging Face ... here's what open source AI builders should do"</a> (3.9.2026). Neutraliteetin rapautumisen riski, markkinanäkymäetu, käytännön suositukset mallien varmuuskopioinnista ja malliriippumattomuudesta.</li>
+                </ol>
+            </div>
+
+            <div class="contact-section">
+                <div class="section-header" style="text-align: center; margin-bottom: 40px;">
+                    <span class="section-tag">Otetaan askel eteenpäin</span>
+                    <h2>Kuinka sidottu tekoälyratkaisunne on yhteen malliin?</h2>
+                    <p>Valok käy läpi, mistä käyttämänne mallit tulevat, ja rakentaa ratkaisut niin, että malli on vaihdettavissa ilman koko järjestelmän uudelleenrakentamista.</p>
+                </div>
+
+                <div class="contact-container" style="max-width: 100%;">
+                    <div class="contact-form-card">
+                        <form action="https://formspree.io/f/xlgpgyjl" method="POST" id="contact-form">
+                            <div class="form-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 20px;">
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="name">Nimi</label>
+                                    <input type="text" id="name" name="name" autocomplete="name" placeholder="Oma nimesi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                </div>
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="email">Sähköposti</label>
+                                    <input type="email" id="email" name="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="esimerkki@yritys.fi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg full-width" style="width: 100%; padding: 16px; font-weight: bold; cursor: pointer; margin-top: 20px;">
+                                Varaa ilmainen konsultaatio
+                            </button>
+                            <div id="form-status" class="form-status" aria-live="polite"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </article>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer" width="4206" height="4206" loading="lazy"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer" width="4206" height="4206" loading="lazy">VALOK<span class="logo-dot">.</span></div>
+                <p>Prosessien automatisointia ja dedikoituja tekoälyratkaisuja suomalaisille PK-yrityksille.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Linkit</h4>
+                <ul>
+                    <li><a href="/">Etusivu</a></li>
+                    <li><a href="../blogi.html">Blogi</a></li>
+                    <li><a href="/#palvelut">Palvelut</a></li>
+                    <li><a href="../tietosuoja.html">Tietosuoja</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ota yhteyttä</h4>
+                <ul>
+                    <li>aleksanteri@valok.fi</li>
+                    <li>Jyväskylä, Finland</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Valok. Kaikki oikeudet pidätetään. · <a href="#" id="cookieSettingsLink">Evästeasetukset</a>
+        </div>
+    </footer>
+
+        <div id="cookieBanner" class="cookie-banner">
+        <h5>Yksityisyytesi on meille tärkeää</h5>
+        <p>Käytämme sivustolla vain välttämättömiä toimintoja varmistaaksemme parhaan mahdollisen käyttökokemuksen. Emme
+            käytä kolmannen osapuolen markkinointievästeitä ilman suostumustasi.</p>
+        <div class="cookie-btn-group">
+            <button id="acceptCookies" class="btn btn-primary">Hyväksy kaikki</button>
+            <button id="rejectCookies" class="btn btn-ghost">Hylkää</button>
+            <a href="../tietosuoja.html" class="btn btn-ghost">Lue lisää</a>
+        </div>
+    </div>
+
+    <script src="../main.js"></script>
+</body>
+
+</html>
