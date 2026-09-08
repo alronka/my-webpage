@@ -33,24 +33,21 @@
 
     <!-- Article structured data -->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Article",
-      "headline": "{{title}}",
-      "description": "{{meta_description}}",
-      "image": "https://valok.fi/img/{{cover_image}}",
-      "datePublished": "{{date_iso}}",
-      "author": {
-        "@type": "Organization",
-        "name": "Valok"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "Valok",
-        "url": "https://valok.fi"
-      }
-    }
-    </script>
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{{title}}",
+  "description": "{{meta_description}}",
+  "image": "https://valok.fi/img/{{cover_image}}",
+  "datePublished": "{{date_iso}}",
+  "author": {
+    "@id": "https://valok.fi/#organization"
+  },
+  "publisher": {
+    "@id": "https://valok.fi/#organization"
+  }
+}
+</script>
 
     <style>
         .post-header {
