@@ -894,10 +894,10 @@
         },
         {
           "@type": "Question",
-          "name": "Mitä tarkoittaa dedikoitu kielimalli tai sisäinen tekoäly?",
+          "name": "Mitä tarkoittaa yrityksen oma tekoäly tai RAG?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Dedikoitu kielimalli on yrityksesi omaan dataan kytketty tekoälyratkaisu, joka ei hallusinoi. Käytämme RAG-tekniikkaa, jolloin tekoäly hakee vastaukset yrityksesi omista tiedostoista turvallisesti. Lue tarkempi selitys blogistamme: https://valok.fi/blogi/rag-viisain-asiantuntija.html"
+            "text": "Yrityksen oma tekoäly on yrityksesi omaan dataan kytketty ratkaisu, joka ei hallusinoi. Käytämme RAG-tekniikkaa, jolloin tekoäly hakee vastaukset yrityksesi omista tiedostoista turvallisesti ja näyttää lähteet. Lue tarkempi selitys blogistamme: https://valok.fi/blogi/rag-viisain-asiantuntija.html"
           }
         },
         {
@@ -998,7 +998,9 @@
                 <h2>Automaatio ei korvaa tiimiäsi, vaan vapauttaa sen.</h2>
                 <p>Rakennamme työnkulut ja tekoälyratkaisut suoraan järjestelmiisi, joko omalla infrastruktuurillasi
                     tai valmiiden pilvipalveluiden päälle, sen mukaan mikä sopii sinulle parhaiten. Ei valmista
-                    SaaS-tuotetta, johon sinun pitää sopeutua, vaan ratkaisu joka rakennetaan sinun tarpeidesi mukaan.</p>
+                    SaaS-tuotetta, johon sinun pitää sopeutua, vaan ratkaisu joka rakennetaan sinun tarpeidesi mukaan.
+                    Tietoturva ja tietosuoja ovat mukana suunnittelusta alkaen, koska tekoäly ja automaatio
+                    käsittelevät usein liiketoiminnan arkaluontoisinta tietoa.</p>
                 <ul class="diff-list">
                     <li>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5" /></svg>
@@ -1012,6 +1014,10 @@
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5" /></svg>
                         <span>Läpinäkyvä hinnoittelu, ei piilokuluja tai per-käyttäjä-lisenssejä</span>
                     </li>
+                    <li>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5" /></svg>
+                        <span>Tietoturva ja tietosuoja suunnittelusta alkaen: pääsynhallinta, lokitus ja tietojen minimointi</span>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -1019,13 +1025,13 @@
         <div class="services-grid">
             <div class="service-card" data-animate>
                 <span class="service-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z" /></svg></span>
-                <h3>Dedikoitu tekoäly</h3>
-                <p>Yrityksesi omaan dataan kytketty tekoälyratkaisu, joka toimii sinulle sopivalla infrastruktuurilla.</p>
+                <h3>Yrityksen oma tekoälyhaku (RAG)</h3>
+                <p>Kielimalli, joka vastaa yrityksesi omista dokumenteista ja tietojärjestelmistä, lähteet näyttäen eikä ulkomuistista arvaillen.</p>
             </div>
             <div class="service-card" data-animate>
                 <span class="service-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" /></svg></span>
-                <h3>Multi-tenant chatbotit</h3>
-                <p>Skaalautuva chatbot-ratkaisu, joka palvelee useita asiakkaita tai osastoja samasta pohjasta.</p>
+                <h3>Tekoälyagentit</h3>
+                <p>Agentti, joka vie monivaiheisen tehtävän alusta loppuun järjestelmissäsi: lukee, päättää seuraavan askeleen ja toteuttaa sen ihmisen valvonnassa.</p>
             </div>
             <div class="service-card" data-animate>
                 <span class="service-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16l-6 7v6l-4 2v-8L4 5z" stroke-linejoin="round" /></svg></span>
@@ -1208,15 +1214,15 @@
             </div>
             <div class="faq-item" data-animate>
                 <button class="faq-question">
-                    Mitä tarkoittaa dedikoitu kielimalli tai sisäinen tekoäly?
+                    Mitä tarkoittaa yrityksen oma tekoäly tai RAG?
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M6 9l6 6 6-6" />
                     </svg>
                 </button>
                 <div class="faq-answer">
-                    <p>Dedikoitu kielimalli on yrityksesi omaan dataan kytketty tekoälyratkaisu, joka ei
+                    <p>Yrityksen oma tekoäly on yrityksesi omaan dataan kytketty ratkaisu, joka ei
                         hallusinoi. Käytämme RAG-tekniikkaa, jolloin tekoäly hakee vastaukset yrityksesi omista
-                        tiedostoista turvallisesti. Lue tarkempi selitys <a href="blogi/rag-viisain-asiantuntija.html">blogistamme</a>.</p>
+                        tiedostoista turvallisesti ja näyttää lähteet. Lue tarkempi selitys <a href="blogi/rag-viisain-asiantuntija.html">blogistamme</a>.</p>
                 </div>
             </div>
             <div class="faq-item" data-animate>
@@ -1307,7 +1313,7 @@
         <div class="footer-grid">
             <div class="footer-col footer-brand">
                 <div class="logo"><img srcset="img/valok-white-with-black-outline-mobile.webp 800w, img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 1600px" src="img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer" width="4206" height="4206" loading="lazy"><img srcset="img/valok-black-with-white-outline-mobile.webp 800w, img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 1600px" src="img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer" width="4206" height="4206" loading="lazy">VALOK<span class="logo-dot">.</span></div>
-                <p>Prosessien automatisointia ja dedikoituja tekoälyratkaisuja suomalaisille PK-yrityksille.</p>
+                <p>Prosessien automatisointia ja yrityksen omaan tietoon perustuvia tekoälyratkaisuja suomalaisille PK-yrityksille, tietoturva ja tietosuoja edellä.</p>
                 <div class="footer-social">
                     <a href="https://linkedin.com/company/valok" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
                 </div>
@@ -1317,7 +1323,8 @@
                 <ul>
                     <li><a href="#palvelut">Prosessien automatisointi</a></li>
                     <li><a href="prosessiautomaatio.html">Prosessiautomaatio: lue lisää</a></li>
-                    <li><a href="#palvelut">Dedikoitu tekoäly</a></li>
+                    <li><a href="#palvelut">Yrityksen oma tekoälyhaku (RAG)</a></li>
+                    <li><a href="#palvelut">Tekoälyagentit</a></li>
                 </ul>
             </div>
             <div class="footer-col">
