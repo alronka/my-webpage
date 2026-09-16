@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#030712">
+    <title>Miten tiedät, vastaako yrityksesi tekoäly oikein? | Valok</title>
+    <meta name="description"
+        content="Miten todennat, että yrityksesi tekoäly vastaa oikein? Viisi laatuulottuvuutta, testiaineiston rakentaminen ja se, mitä automaattinen arviointi ei kerro.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel=icon type=image/png sizes=32x32 href=../img/favicon-32x32.png>
+    <link rel=apple-touch-icon sizes=180x180 href=../img/favicon-180x180.png>
+
+    <link rel="canonical" href="https://valok.fi/blogi/tekoalyn-vastausten-laadun-mittaaminen.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://valok.fi/blogi/tekoalyn-vastausten-laadun-mittaaminen.html">
+    <meta property="og:title" content="Miten tiedät, vastaako yrityksesi tekoäly oikein? Näin tekoälyratkaisun laatu mitataan">
+    <meta property="og:description" content="Miten todennat, että yrityksesi tekoäly vastaa oikein? Viisi laatuulottuvuutta, testiaineiston rakentaminen ja se, mitä automaattinen arviointi ei kerro.">
+    <meta property="og:image" content="https://valok.fi/img/tekoalyn-vastausten-laadun-mittaaminen.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Miten tiedät, vastaako yrityksesi tekoäly oikein? Näin tekoälyratkaisun laatu mitataan">
+    <meta name="twitter:description" content="Miten todennat, että yrityksesi tekoäly vastaa oikein? Viisi laatuulottuvuutta, testiaineiston rakentaminen ja se, mitä automaattinen arviointi ei kerro.">
+    <meta name="twitter:image" content="https://valok.fi/img/tekoalyn-vastausten-laadun-mittaaminen.webp">
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Miten tiedät, vastaako yrityksesi tekoäly oikein? Näin tekoälyratkaisun laatu mitataan",
+  "description": "Miten todennat, että yrityksesi tekoäly vastaa oikein? Viisi laatuulottuvuutta, testiaineiston rakentaminen ja se, mitä automaattinen arviointi ei kerro.",
+  "image": "https://valok.fi/img/tekoalyn-vastausten-laadun-mittaaminen.webp",
+  "datePublished": "2026-09-16",
+  "dateModified": "2026-09-16",
+  "author": {
+    "@type": "Person",
+    "name": "Aleksanteri Rönkä",
+    "url": "https://valok.fi/",
+    "email": "aleksanteri@valok.fi",
+    "jobTitle": "Perustaja",
+    "worksFor": {
+      "@id": "https://valok.fi/#organization"
+    }
+  },
+  "publisher": {
+    "@id": "https://valok.fi/#organization"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://valok.fi/blogi/tekoalyn-vastausten-laadun-mittaaminen.html"
+  }
+}
+</script>
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Miten tekoälyn vastausten laatua mitataan?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Laatu mitataan viidellä ulottuvuudella: löysikö haku oikeat lähteet, pysyykö vastaus uskollisena lähteelle, vastaako se kysyttyyn, onko asiasisältö oikein ja osoittaako lähdeviite oikeaan kohtaan. Näitä verrataan käsin rakennettuun testiaineistoon, jossa jokaiselle kysymykselle on valmiiksi kirjoitettu hyväksyttävä vastaus. Mittaaminen toistetaan aina, kun malli, kehote tai aineisto vaihtuu, ei vain kerran käyttöönoton yhteydessä."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Voiko kielimalli arvioida toisen kielimallin vastauksia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Osittain. Tutkimuksissa kielimallien arviot ovat päätyneet lähelle ihmisten keskinäistä yhtenevyyttä, mutta samat tutkimukset ovat mitanneet myös selviä vinoumia, kuten taipumuksen suosia omia vastauksiaan ja arvion muuttumisen pelkästä vastausten esitysjärjestyksestä. Automaattinen arvio sopii muutosten seurantaan tuotannossa, mutta ei yksin hyväksymispäätöksen perusteeksi."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kuinka monta testikysymystä tarvitaan?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tutkimuskirjallisuudessa muutama sata käsin merkittyä esimerkkiä on riittänyt luotettavaan RAG-järjestelmän arviointiin. Pk-yrityksen ensimmäiseen testiaineistoon riittää käytännössä 30 ja 50 aitoa kysymystä, kunhan mukana on myös kysymyksiä, joihin oikea vastaus on kieltäytyminen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Miten hallusinaatiota mitataan käytännössä?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Uskollisuus lähteelle on se ulottuvuus, joka mittaa hallusinaatiota: sanooko vastaus vain sitä, mitä haetusta lähdeaineistosta löytyy, vai lisääkö se väitteitä, joita lähteessä ei ole. Tämä eroaa asiasisällön oikeellisuudesta, joka mittaa onko väite ylipäätään totta. Molempia tarvitaan, koska vastaus voi olla uskollinen väärälle lähteelle tai oikeassa ilman, että se perustuu haettuun aineistoon."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Pitääkö tekoälyä valvoa käyttöönoton jälkeen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Kyllä. Yhdysvaltain NIST:n tekoälyn riskienhallintakehys edellyttää järjestelmän toiminnan seurantaa tuotannossa, ja EU:n tekoälyasetuksen 72 artikla velvoittaa korkean riskin järjestelmien tarjoajat markkinoille saattamisen jälkeiseen seurantaan. Tavallisellekin sisäiselle käyttötapaukselle jatkuva seuranta on hyvä käytäntö, vaikka se ei olisi lakisääteinen velvoite."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Mitä laadulle tapahtuu, kun malli päivittyy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Se voi muuttua kumpaan suuntaan tahansa ilman erillistä ilmoitusta, koska mallintarjoaja voi päivittää mallin taustalla samalla nimellä. Ainoa tapa huomata muutos on ajaa sama testiaineisto uudelleen jokaisen mallipäivityksen jälkeen ja verrata tulosta edelliseen."
+      }
+    }
+  ]
+}
+</script>
+
+    <style>
+        .post-header {
+            min-height: auto !important;
+            padding: 160px 24px 24px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            background: radial-gradient(circle at top, var(--accent-glow) 0%, transparent 70%);
+        }
+
+        .post-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px 100px;
+            line-height: 1.8;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .post-content h2, .post-content h3 {
+            color: var(--text);
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .post-content p {
+            margin-bottom: 24px;
+        }
+
+        .post-content ul, .post-content ol {
+            margin-bottom: 24px;
+            padding-left: 20px;
+        }
+
+        .post-content li {
+            margin-bottom: 12px;
+        }
+
+        .post-meta {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .post-author {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 24px;
+            text-align: left;
+        }
+
+        .post-author img {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .post-author-name {
+            display: block;
+            font-weight: 600;
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+
+        .post-author-role {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dim);
+            text-decoration: none;
+            margin-bottom: 40px;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        .post-image {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .post-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .toc-box {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+        }
+
+        .toc-box h4 {
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        .toc-box ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .toc-box a {
+            color: #58a6ff;
+            text-decoration: none;
+            display: block;
+            padding: 4px 0;
+            transition: var(--transition);
+        }
+
+        .toc-box a:hover {
+            color: var(--accent);
+            padding-left: 4px;
+        }
+
+        .highlight-box {
+            background: var(--glass);
+            padding: 30px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+            border-left: 4px solid var(--accent);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 40px 0;
+            background: var(--glass);
+            border-radius: var(--radius);
+            overflow: hidden;
+            font-size: 0.95rem;
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 14px 18px;
+            border: 1px solid var(--border);
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .comparison-table th {
+            background: rgba(var(--accent-rgb), 0.12);
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .comparison-table td:first-child {
+            font-weight: 600;
+            color: var(--text);
+            white-space: nowrap;
+        }
+
+        .table-scroll {
+            overflow-x: auto;
+        }
+
+        .reference-list {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            margin-top: 60px;
+        }
+
+        .reference-list ol {
+            padding-left: 20px;
+        }
+
+        .contact-section {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 60px 40px;
+            border-radius: var(--radius);
+            margin-top: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="particles"></canvas>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark" width="4206" height="4206"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light" width="4206" height="4206">VALOK<span
+                     class="logo-dot">.</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="/#palvelut">Palvelut</a>
+                <a href="/#prosessi">Prosessi</a>
+                <a href="../blogi.html">Blogi</a>
+                <a href="/#yhteystiedot" class="nav-cta">Ota yhteyttä</a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Avaa valikko">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <article>
+        <header class="post-header">
+            <a href="../blogi.html" class="back-link">← Takaisin blogiin</a>
+            <span class="post-meta">Tekoäly • Laadunvarmistus • RAG</span>
+            <h1>Miten tiedät, vastaako yrityksesi tekoäly <span class="gradient-text">oikein?</span></h1>
+            <p style="color: var(--text-dim); margin-top: 20px;">Tekoälyratkaisun laatu mitataan viidellä ulottuvuudella: haetun tiedon osuvuus, vastauksen pohjautuminen lähteeseen, vastauksen osuvuus kysymykseen, asiasisällön oikeellisuus ja lähdeviittauksen laatu. Näin tiivistää SN Computer Science -lehdessä 16.6.2026 julkaistu vertaisarvioitu katsaus, joka kävi läpi kahdentoista tutkimuksen arviointikäytännöt. Mittaaminen ei ole käyttöönoton portti vaan jatkuva toimenpide: Traficomin ja Huoltovarmuuskeskuksen 28.1.2026 julkaisemassa ohjeistuksessa se sanotaan suoraan, tekoälyjärjestelmien tuotantoon pääseminen vaatii aina huolellista testaamista. Tässä artikkelissa käydään läpi, miten testiaineisto rakennetaan, mitä automaattinen arviointi kertoo ja mitä se ei kerro.</p>
+            <div class="post-author">
+                <img src="../img/valok-aleksanteri.webp" alt="Aleksanteri Rönkä" width="44" height="44" loading="lazy">
+                <div>
+                    <span class="post-author-name">Aleksanteri Rönkä</span>
+                    <span class="post-author-role">Perustaja, Valok &middot; <a href="mailto:aleksanteri@valok.fi">aleksanteri@valok.fi</a></span>
+                </div>
+            </div>
+        </header>
+
+        <div class="post-image">
+            <img src="../img/tekoalyn-vastausten-laadun-mittaaminen.webp" alt="Tekoälyn vastausten laadun mittaaminen yrityksessä - Valok" width="960" height="1104">
+        </div>
+
+        <main class="post-content">
+            <div class="toc-box">
+                <h4>Sisällysluettelo</h4>
+                <ul>
+                    <li><a href="#tuntuu-toimivan">1. Miksi "se tuntuu toimivan hyvin" ei ole mittaus</a></li>
+                    <li><a href="#viisi-ulottuvuutta">2. Viisi ulottuvuutta, joilla laatu mitataan</a></li>
+                    <li><a href="#testiaineisto">3. Testiaineisto on se, joka pitää tehdä itse</a></li>
+                    <li><a href="#automaattinen-arviointi">4. Automaattinen arviointi toimii, mutta ei niin kuin oletat</a></li>
+                    <li><a href="#llm-arvioi-llm">5. Kun kielimalli arvioi toista kielimallia</a></li>
+                    <li><a href="#ei-lopu-kayttoonottoon">6. Mittaaminen ei lopu käyttöönottoon</a></li>
+                    <li><a href="#tulosta-tekevat">7. Mitä tämä erottaa yrityksissä, jotka saavat tekoälystä tulosta</a></li>
+                    <li><a href="#kysymykset-toimittajalle">8. Kuusi kysymystä, jotka kannattaa kysyä toimittajalta</a></li>
+                    <li><a href="#ukk">9. Usein kysyttyä</a></li>
+                </ul>
+            </div>
+
+            <h2 id="tuntuu-toimivan">1. Miksi "se tuntuu toimivan hyvin" ei ole mittaus</h2>
+
+            <div class="highlight-box">
+                <p style="margin-bottom: 0;">Kielimallin vastaus on suunniteltu kuulostamaan oikealta. Se ei ole sama asia kuin se, että se on oikein.</p>
+            </div>
+
+            <p>Käyttöönoton jälkeen kysymys muuttuu. Ensin kysyttiin, saadaanko järjestelmä toimimaan, sitten, miten se kannattaa rakentaa. Kun se on rakennettu ja käytössä, jäljelle jää se kysymys, jota harva osaa esittää etukäteen mutta jonka jokainen asiakas esittää ennemmin tai myöhemmin: mistä tiedän, että se vastaa oikein? Jos yrityksesi harkitsee vasta järjestelmän rakentamista, kävimme läpi, <a href="rag-arkkitehtuuri-opas.html">miten luotettava RAG-järjestelmä rakennetaan</a>, omassa artikkelissamme. Tämä teksti olettaa, että järjestelmä on jo pystyssä, ja keskittyy siihen, mitä sen jälkeen tapahtuu.</p>
+
+            <p>Käyttäjän kokemus laadusta on aito kokemus, mutta se ei ole mittaus. Käyttäjä näkee sen vastauksen, jonka järjestelmä antoi, ei niitä tapauksia, joissa haku jätti olennaisen dokumentin löytämättä tai joissa vastaus näytti hyvältä mutta sisälsi yksityiskohdan, jota kukaan ei jäänyt tarkistamaan. Kielimalli ei myöskään merkitse epävarmuutta samalla tavalla kuin ihminen: sama itsevarma sävy toistuu riippumatta siitä, onko vastauksen taustalla vahva lähde vai ei lähdettä lainkaan.</p>
+
+            <p>Tähän kytkeytyy myös myynnillinen pointti, joka usein unohtuu: ilman ennen ja jälkeen -mittausta et voi todistaa hyötyä etkä huomata laadun heikkenemistä, kun malli tai aineisto vaihtuu taustalla. "Tuntuu toimivan hyvin" on lähtökohta, ei loppupiste. Loput tästä artikkelista käyvät läpi, millä sen korvaa.</p>
+
+            <h2 id="viisi-ulottuvuutta">2. Viisi ulottuvuutta, joilla laatu mitataan</h2>
+
+            <p>Knollmeyer ym. kävivät SN Computer Science -lehdessä 16.6.2026 julkaistussa vertaisarvioidussa katsauksessaan läpi kahdentoista tutkimuksen arviointikäytännöt ja tunnistivat viisi toistuvaa ulottuvuutta, joilla RAG-pohjaisen tekoälyjärjestelmän laatua mitataan.<sup>1</sup> Sama katsaus tunnisti myös kolme arvioijatyyppiä: sanatason vastaavuuden, merkitystason samankaltaisuuden ja kielimallin arvioijana, joista viimeiseen palataan luvussa 5.</p>
+
+            <div class="table-scroll">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Ulottuvuus</th>
+                            <th>Mitä se vastaa</th>
+                            <th>Miten se epäonnistuu käytännössä</th>
+                            <th>Kuka sen voi arvioida</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Kontekstin osuvuus</td>
+                            <td>Löysikö haku oikeat dokumentit?</td>
+                            <td>Epäonnistuu hiljaa: vastaus voi silti kuulostaa uskottavalta, vaikka pohja on väärä.</td>
+                            <td>Automaattinen mittari, tarkistettuna satunnaisotoksella.</td>
+                        </tr>
+                        <tr>
+                            <td>Uskollisuus lähteelle</td>
+                            <td>Sanooko vastaus sitä, mitä lähde sanoo?</td>
+                            <td>Hallusinaatio: vastaus lisää väitteitä, joita haetussa aineistossa ei ole.</td>
+                            <td>Rakenteinen mittari tai ihmisarvioija.</td>
+                        </tr>
+                        <tr>
+                            <td>Vastauksen osuvuus</td>
+                            <td>Vastasiko se kysyttyyn?</td>
+                            <td>Oikea tieto, väärä kysymys: vastaus on totta muttei relevantti.</td>
+                            <td>Kielimalli arvioijana tai ihminen.</td>
+                        </tr>
+                        <tr>
+                            <td>Oikeellisuus</td>
+                            <td>Onko asiasisältö oikein?</td>
+                            <td>Vanhentunut tai virheellinen tieto lähteessä siirtyy vastaukseen sellaisenaan.</td>
+                            <td>Ihmisarvioija, aihealueen tuntija.</td>
+                        </tr>
+                        <tr>
+                            <td>Lähdeviittauksen laatu</td>
+                            <td>Osoittaako viite oikeaan kohtaan?</td>
+                            <td>Viite näyttää uskottavalta muttei johda oikeaan dokumenttiin tai kappaleeseen.</td>
+                            <td>Automaattinen tarkistus, pistokoe ihmisen tekemänä.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>Käytännön pointti kannattaa sanoa ääneen: nämä viisi epäonnistuvat eri syistä ja korjataan eri paikassa. Kontekstin osuvuuden ongelma korjataan hakuvaiheessa, esimerkiksi hakuindeksin tai pilkonnan säädöllä. Uskollisuusongelma korjataan kehotteessa ja mallivalinnassa. Tämä on erityisen tärkeää suomenkielisessä käytössä, jossa haku epäonnistuu herkemmin kuin englanniksi: kävimme <a href="rag-suomen-kielen-haasteet.html">miksi RAG on suomeksi vaikeampaa kuin englanniksi</a> läpi tarkemmin omassa artikkelissamme. Jos et tiedä, kumpi ongelma sinulla on, et myöskään tiedä, kumpaa kannattaa korjata ensin, ja juuri siksi ulottuvuudet pitää mitata erikseen, ei yhtenä yleisarvosanana.</p>
+
+            <h2 id="testiaineisto">3. Testiaineisto on se, joka pitää tehdä itse</h2>
+
+            <p>Tämä on tekstin hyödyllisin ja samalla eniten myyntiä perusteleva osa, koska kukaan toimittaja ei voi tehdä tätä puolestasi valmiiksi. Testiaineisto on joukko kysymyksiä ja niiden hyväksyttäviä vastauksia, jota vasten järjestelmän jokainen versio ajetaan ennen kuin sitä muutetaan tuotannossa.</p>
+
+            <ol>
+                <li><strong>Kerää 30 ja 50 aitoa kysymystä</strong>, joita joku on oikeasti esittänyt, ei keksittyjä esimerkkejä.</li>
+                <li><strong>Kirjoita jokaiselle hyväksyttävä vastaus</strong> ja se dokumentti, josta sen kuuluu löytyä, jotta vastausta voi verrata johonkin konkreettiseen.</li>
+                <li><strong>Ota mukaan viisi kysymystä, joihin järjestelmän kuuluu vastata "en tiedä".</strong> Näille ei ole oikeaa vastausta aineistossa, ja oikea käytös on kieltäytyä arvaamasta.</li>
+                <li><strong>Ota mukaan viisi kysymystä, joiden vastaus on muuttunut viime vuonna</strong>, jotta näet, tarttuuko järjestelmä vanhentuneeseen tietoon.</li>
+                <li><strong>Aja sama aineisto uudelleen aina</strong>, kun malli, kehote tai aineisto vaihtuu, ei vain kerran käyttöönoton yhteydessä.</li>
+            </ol>
+
+            <p>Kohta 3 on se, jonka lähes kaikki jättävät tekemättä. Ilman kieltäytymistestiä et mittaa lainkaan sitä, keksiikö järjestelmä vastauksen silloin, kun tietoa ei ole tarjolla, mikä on juuri se tilanne, jossa hallusinaatio syntyy ja jossa asiakas huomaa sen ensimmäisenä.</p>
+
+            <p>Kuinka paljon työtä tämä on käytännössä? Saad-Falcon ym. osoittivat ARES-työssään, että RAG-järjestelmän luotettavaan arviointiin on riittänyt muutama sata käsin merkittyä esimerkkiä, ei tuhansia.<sup>3</sup> Tämä on rehellinen ja samalla rohkaiseva luku pk-yritykselle: 30 ja 50 kysymystä on realistinen lähtöpiste, ei kompromissi laadusta.</p>
+
+            <h2 id="automaattinen-arviointi">4. Automaattinen arviointi toimii, mutta ei niin kuin oletat</h2>
+
+            <p>Es ym. vertasivat RAGAS-työssään automaattisia RAG-mittareita ihmisarvioihin: rakenteinen uskollisuusmittari saavutti 0,95 yhtenevyyden ihmisten kanssa, kun taas se, että kielimallia pyydetään suoraan pisteyttämään vastaus ilman rakennetta, jäi 0,72:een.<sup>2</sup> Käytännön johtopäätös on selvä: automaattinen mittaaminen kannattaa, mutta mittari pitää rakentaa huolella, ei improvisoida yhdellä kehotteella.</p>
+
+            <p>Tähän kannattaa liittää heti vastapaino, joka tekee luvusta uskottavan, sen sijaan että se kuulostaisi markkinoinnilta. Ru ym. mittasivat RAGChecker-työssään, että ihmisarvioijien keskinäinen yhtenevyys oli 90,95 prosenttia.<sup>4</sup> Se on katto, jota yksikään automaattinen mittari ei tähän mennessä ole ylittänyt. Automaatio täydentää ihmistarkastusta, se ei korvaa sitä, ja hyvä mittaristo yhdistää molemmat: automaattinen ajo jokaisella muutoksella, ihmisen pistokoe säännöllisin väliajoin.</p>
+
+            <h2 id="llm-arvioi-llm">5. Kun kielimalli arvioi toista kielimallia</h2>
+
+            <p>Tämä on osuus, jota kilpailijoiden teksteissä harvoin näkee, koska se paljastaa myös menetelmän omat rajat. Zheng ym. mittasivat, että GPT-4:n ja ihmisten arvioiden yhtenevyys oli 85 prosenttia, mikä on itse asiassa korkeampi kuin ihmisten keskinäinen yhtenevyys, 81 prosenttia.<sup>5</sup> Sama tutkimus mittasi kuitenkin myös selviä vinoumia: kun kahden vastauksen esitysjärjestys vaihdettiin, malli antoi saman tuomion vain 65 prosentissa tapauksista, ja mallit suosivat omia vastauksiaan 10 ja 25 prosenttiyksikön verran verrattuna muiden malliperheiden vastauksiin.</p>
+
+            <p>Tuoreempi vahvistus samasta ilmiöstä: Norman ym. ajoivat noin 541 000 arviota 21 arvioijamallilla ja havaitsivat 33 ja 41 prosenttiyksikön eron raakayhtenevyyden ja sattumalle korjatun yhtenevyyden välillä.<sup>6</sup> Tutkimus on esijulkaisu, ei vielä vertaisarvioitu, joten sitä kannattaa lukea suuntaa antavana, mutta se osuu samaan suuntaan kuin Zhengin vertaisarvioitu tulos.</p>
+
+            <p>Käytännön johtopäätös yritykselle: automaattinen kielimalliarvio kelpaa muutosten seurantaan, esimerkiksi sen huomaamiseen, että uusi versio vastaa selvästi huonommin kuin edellinen, mutta se ei yksin riitä hyväksymispäätökseen. Vielä yksi tarkennus, joka on syytä sanoa ääneen: Zhengin 85 prosentin luku koskee kahden vastauksen paremmuusvertailua, ei sitä, että malli olisi 85-prosenttisesti oikeassa yksittäisen vastauksen sisällöstä. Tätä lukua siteerataan markkinoinnissa säännöllisesti väärin, ja oikaisu on itsessään luottamussignaali.</p>
+
+            <h2 id="ei-lopu-kayttoonottoon">6. Mittaaminen ei lopu käyttöönottoon</h2>
+
+            <p>Yhdysvaltain NIST:n tekoälyn riskienhallintakehys (NIST AI 100-1, tammikuu 2023) edellyttää MEASURE-toiminnossaan, että järjestelmän toimintaa seurataan tuotannossa, ja että kenttädatasta tunnistetaan sekä parannukset että heikkenemiset.<sup>8</sup> Sama ajatus toistuu EU:n tekoälyasetuksen 72 artiklassa, joka velvoittaa korkean riskin järjestelmien tarjoajan järjestämään markkinoille saattamisen jälkeisen seurannan.<sup>9</sup> Myös ISO/IEC 42001:2023 -standardin suorituskyvyn arviointia käsittelevä luku rakentuu samalle periaatteelle: mittaaminen on jatkuva toiminto, ei kertaluontoinen hyväksyntä.<sup>11</sup></p>
+
+            <p>72 artikla sitoo suoraan vain korkean riskin järjestelmiä. Tavallinen sisäinen hakuassistentti, esimerkiksi isännöinti- tai tilitoimiston oma tietopankkiavustaja, ei tyypillisesti kuulu tähän luokkaan, mutta esimerkiksi rekrytointikäyttö kuuluu. Käytännön sääntö: jatkuva seuranta on velvoittavaa korkean riskin käytössä ja hyvä käytäntö kaikessa muussa, ei jotain, joka koskisi vain suuria toimijoita.</p>
+
+            <h2 id="tulosta-tekevat">7. Mitä tämä erottaa yrityksissä, jotka saavat tekoälystä tulosta</h2>
+
+            <p>McKinseyn 25.8.2026 julkaiseman kyselyn mukaan, johon vastasi 1 719 vastaajaa 97 maasta kenttätyöllä 4.5. ja 8.6.2026 välillä, parhaiten suoriutuvista yrityksistä 56 prosenttia oli määritellyt selkeästi, milloin mallin tuotos vaatii ihmisen tarkistuksen, kun muissa yrityksissä osuus oli 33 prosenttia.<sup>10</sup> Sama ero näkyi vaikutusten mittaamisessa: parhaiten suoriutuvista 73 prosenttia mittasi tekoälyn liiketoimintavaikutusta systemaattisesti, muista vain 41 prosenttia.</p>
+
+            <p>McKinsey on konsulttiyhtiö, jolla on kaupallinen intressi tulokseen, joten kyseessä on konsulttiyhtiön kysely, ei riippumaton tutkimus. Menetelmä on kuitenkin julkaistu ja otos on iso, joten lähde kelpaa suuntaa antavana. Ero on silti johdonmukainen tähän mennessä käydyn kanssa: mittaaminen ja tarkistuspisteet eivät ole ylimääräinen vaihe, vaan se, mikä erottaa tuloksellisen käyttöönoton kokeilusta, joka jää roikkumaan. Jos haluat konkreettisia lukuja siitä, mitä mitata rahassa, kävimme <a href="tekoalyagenttien-roi-mittarit.html">mitkä mittarit kertovat, kannattiko investointi</a> läpi omassa artikkelissamme.</p>
+
+            <h2 id="kysymykset-toimittajalle">8. Kuusi kysymystä, jotka kannattaa kysyä toimittajalta</h2>
+
+            <p>Nämä kysymykset toimivat myös käänteisenä tarkistuslistana omalle tiimillesi, jos rakennatte järjestelmää itse:</p>
+
+            <ol>
+                <li>Millä testiaineistolla järjestelmä on testattu, ja saanko sen nähtäväkseni?</li>
+                <li>Mikä on kieltäytymisprosentti, eli kuinka usein järjestelmä sanoo, ettei tiedä?</li>
+                <li>Miten laatua mitataan sen jälkeen, kun järjestelmä on tuotannossa?</li>
+                <li>Mitä tapahtuu, kun taustalla oleva malli päivittyy?</li>
+                <li>Näkyykö vastauksen lähde, ja pääseekö siihen käsiksi?</li>
+                <li>Kuka katsoo lokeja, ja kuinka usein?</li>
+            </ol>
+
+            <p>Jos toimittaja ei osaa vastata ensimmäiseen kysymykseen suoraan, loput viisi ovat todennäköisesti myös vastaamatta.</p>
+
+            <h2 id="ukk">9. Usein kysyttyä</h2>
+
+            <h3>Miten tekoälyn vastausten laatua mitataan?</h3>
+            <p>Laatu mitataan viidellä ulottuvuudella: löysikö haku oikeat lähteet, pysyykö vastaus uskollisena lähteelle, vastaako se kysyttyyn, onko asiasisältö oikein ja osoittaako lähdeviite oikeaan kohtaan. Näitä verrataan käsin rakennettuun testiaineistoon, jossa jokaiselle kysymykselle on valmiiksi kirjoitettu hyväksyttävä vastaus. Mittaaminen toistetaan aina, kun malli, kehote tai aineisto vaihtuu, ei vain kerran käyttöönoton yhteydessä.</p>
+
+            <h3>Voiko kielimalli arvioida toisen kielimallin vastauksia?</h3>
+            <p>Osittain. Tutkimuksissa kielimallien arviot ovat päätyneet lähelle ihmisten keskinäistä yhtenevyyttä, mutta samat tutkimukset ovat mitanneet myös selviä vinoumia, kuten taipumuksen suosia omia vastauksiaan ja arvion muuttumisen pelkästä vastausten esitysjärjestyksestä. Automaattinen arvio sopii muutosten seurantaan tuotannossa, mutta ei yksin hyväksymispäätöksen perusteeksi.</p>
+
+            <h3>Kuinka monta testikysymystä tarvitaan?</h3>
+            <p>Tutkimuskirjallisuudessa muutama sata käsin merkittyä esimerkkiä on riittänyt luotettavaan RAG-järjestelmän arviointiin. Pk-yrityksen ensimmäiseen testiaineistoon riittää käytännössä 30 ja 50 aitoa kysymystä, kunhan mukana on myös kysymyksiä, joihin oikea vastaus on kieltäytyminen.</p>
+
+            <h3>Miten hallusinaatiota mitataan käytännössä?</h3>
+            <p>Uskollisuus lähteelle on se ulottuvuus, joka mittaa hallusinaatiota: sanooko vastaus vain sitä, mitä haetusta lähdeaineistosta löytyy, vai lisääkö se väitteitä, joita lähteessä ei ole. Tämä eroaa asiasisällön oikeellisuudesta, joka mittaa onko väite ylipäätään totta. Molempia tarvitaan, koska vastaus voi olla uskollinen väärälle lähteelle tai oikeassa ilman, että se perustuu haettuun aineistoon.</p>
+
+            <h3>Pitääkö tekoälyä valvoa käyttöönoton jälkeen?</h3>
+            <p>Kyllä. Yhdysvaltain NIST:n tekoälyn riskienhallintakehys edellyttää järjestelmän toiminnan seurantaa tuotannossa, ja EU:n tekoälyasetuksen 72 artikla velvoittaa korkean riskin järjestelmien tarjoajat markkinoille saattamisen jälkeiseen seurantaan. Tavallisellekin sisäiselle käyttötapaukselle jatkuva seuranta on hyvä käytäntö, vaikka se ei olisi lakisääteinen velvoite.</p>
+
+            <h3>Mitä laadulle tapahtuu, kun malli päivittyy?</h3>
+            <p>Se voi muuttua kumpaan suuntaan tahansa ilman erillistä ilmoitusta, koska mallintarjoaja voi päivittää mallin taustalla samalla nimellä. Ainoa tapa huomata muutos on ajaa sama testiaineisto uudelleen jokaisen mallipäivityksen jälkeen ja verrata tulosta edelliseen.</p>
+
+            <div class="reference-list">
+                <h4>Lähdeviitteet:</h4>
+                <ol>
+                    <li><a href="https://link.springer.com/article/10.1007/s42979-026-05134-x" target="_blank" rel="noopener">Knollmeyer, Caymazer, Koval, Akmal, Asif, Mathias ja Großmann: "Evaluating Retrieval Augmented Generation: A Comprehensive Review of Evaluation Dimensions, Question Types, and Application"</a>, SN Computer Science 7:576 (16.6.2026). DOI 10.1007/s42979-026-05134-x. Kahdentoista tutkimuksen katsaus, joka tunnistaa viisi toistuvaa arviointiulottuvuutta ja kolme arvioijatyyppiä.</li>
+                    <li><a href="https://arxiv.org/abs/2309.15217" target="_blank" rel="noopener">Es, James, Espinosa-Anke ja Schockaert: "Ragas: Automated Evaluation of Retrieval Augmented Generation"</a>, arXiv:2309.15217 (v1 26.9.2023, v2 28.4.2025). Rakenteisen uskollisuusmittarin ja suoran kielimalliarvion yhtenevyys ihmisarvioihin.</li>
+                    <li><a href="https://aclanthology.org/2024.naacl-long.20/" target="_blank" rel="noopener">Saad-Falcon, Khattab, Potts ja Zaharia: "ARES: An Automated Evaluation Framework for Retrieval-Augmented Generation Systems"</a>, NAACL 2024, s. 338 ja 354. DOI 10.18653/v1/2024.naacl-long.20. Muutama sata käsin merkittyä esimerkkiä riittää RAG-järjestelmän arviointiin.</li>
+                    <li><a href="https://arxiv.org/abs/2408.08067" target="_blank" rel="noopener">Ru ym.: "RAGChecker: A Fine-grained Framework for Diagnosing Retrieval-Augmented Generation"</a>, NeurIPS 2024 Datasets and Benchmarks, arXiv:2408.08067. Ihmisarvioijien keskinäinen yhtenevyys 90,95 prosenttia.</li>
+                    <li><a href="https://arxiv.org/abs/2306.05685" target="_blank" rel="noopener">Zheng ym.: "Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena"</a>, NeurIPS 2023, arXiv:2306.05685. GPT-4:n ja ihmisten yhtenevyys, asemointivinouma ja itsesuosinta kielimalliarvioinnissa.</li>
+                    <li><a href="https://arxiv.org/abs/2606.19544" target="_blank" rel="noopener">Norman, Rivera ja Hughes: "Reliability without Validity: A Systematic, Large-Scale Evaluation of LLM-as-a-Judge Models Across Agreement, Consistency, and Bias"</a>, arXiv:2606.19544 (17.6.2026). Esijulkaisu, ei vertaisarvioitu. Noin 541 000 arviota 21 arvioijamallilla.</li>
+                    <li><a href="https://traficom.fi/fi/julkaisut/tekoalyagenttien-kyberturvallisuus" target="_blank" rel="noopener">Traficom ja Huoltovarmuuskeskus: "Tekoälyagenttien kyberturvallisuus"</a>, Traficomin julkaisuja 5/2026 (28.1.2026). Tuotantoon pääseminen vaatii huolellista testaamista.</li>
+                    <li><a href="https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf" target="_blank" rel="noopener">NIST: "Artificial Intelligence Risk Management Framework (AI RMF 1.0)"</a>, NIST AI 100-1 (tammikuu 2023), MEASURE 2.1, 2.3, 2.4, 2.5, 3.3 ja 4.3. Jatkuva suorituskyvyn seuranta tuotannossa.</li>
+                    <li><a href="https://eur-lex.europa.eu/legal-content/FI/TXT/?uri=CELEX%3A32024R1689" target="_blank" rel="noopener">Euroopan unionin asetus (EU) 2024/1689 (tekoälyasetus)</a>, 15 ja 72 artikla. Markkinoille saattamisen jälkeinen seuranta korkean riskin järjestelmille.</li>
+                    <li><a href="https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai" target="_blank" rel="noopener">McKinsey: "The State of AI in 2026: On the Road to ROI"</a> (25.8.2026). Konsulttiyhtiön kysely, 1 719 vastaajaa 97 maasta.</li>
+                    <li>ISO/IEC 42001:2023, "Information technology, Artificial intelligence, Management system", luku 9, Performance evaluation.</li>
+                </ol>
+            </div>
+
+            <div class="contact-section">
+                <div class="section-header" style="text-align: center; margin-bottom: 40px;">
+                    <span class="section-tag">Otetaan askel eteenpäin</span>
+                    <h2>Testaa, vastaako tekoälysi oikein</h2>
+                    <p>Lähetä meille 20 kysymystä, joihin yrityksesi tekoälyn pitäisi osata vastata. Ajamme ne läpi ja kerromme, montako menee oikein ja missä kohtaa haku pettää.</p>
+                </div>
+
+                <div class="contact-container" style="max-width: 100%;">
+                    <div class="contact-form-card">
+                        <form action="https://formspree.io/f/xlgpgyjl" method="POST" id="contact-form">
+                            <div class="form-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 20px;">
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="name">Nimi</label>
+                                    <input type="text" id="name" name="name" autocomplete="name" placeholder="Oma nimesi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                </div>
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="email">Sähköposti</label>
+                                    <input type="email" id="email" name="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="esimerkki@yritys.fi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg full-width" style="width: 100%; padding: 16px; font-weight: bold; cursor: pointer; margin-top: 20px;">
+                                Varaa ilmainen konsultaatio
+                            </button>
+                            <div id="form-status" class="form-status" aria-live="polite"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </article>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer" width="4206" height="4206" loading="lazy"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer" width="4206" height="4206" loading="lazy">VALOK<span class="logo-dot">.</span></div>
+                <p>Prosessien automatisointia ja yrityksen omaan tietoon perustuvia tekoälyratkaisuja suomalaisille PK-yrityksille, tietoturva ja tietosuoja edellä.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Linkit</h4>
+                <ul>
+                    <li><a href="/">Etusivu</a></li>
+                    <li><a href="../blogi.html">Blogi</a></li>
+                    <li><a href="/#palvelut">Palvelut</a></li>
+                    <li><a href="../tietosuoja.html">Tietosuoja</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ota yhteyttä</h4>
+                <ul>
+                    <li>aleksanteri@valok.fi</li>
+                    <li>Jyväskylä, Finland</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Valok. Kaikki oikeudet pidätetään. · <a href="#" id="cookieSettingsLink">Evästeasetukset</a>
+        </div>
+    </footer>
+
+        <div id="cookieBanner" class="cookie-banner">
+        <h5>Yksityisyytesi on meille tärkeää</h5>
+        <p>Käytämme sivustolla vain välttämättömiä toimintoja varmistaaksemme parhaan mahdollisen käyttökokemuksen. Emme
+            käytä kolmannen osapuolen markkinointievästeitä ilman suostumustasi.</p>
+        <div class="cookie-btn-group">
+            <button id="acceptCookies" class="btn btn-primary">Hyväksy kaikki</button>
+            <button id="rejectCookies" class="btn btn-ghost">Hylkää</button>
+            <a href="../tietosuoja.html" class="btn btn-ghost">Lue lisää</a>
+        </div>
+    </div>
+
+    <script src="../main.js"></script>
+</body>
+
+</html>
