@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#030712">
+    <title>Kuka näkee mitä, kun koko yrityksen aineisto on yhdessä hakuindeksissä? | Valok</title>
+    <meta name="description"
+        content="Hakuindeksi ei peri dokumenttien käyttöoikeuksia itsestään. Näin rakennat yrityksen tekoälyhaun niin, ettei kukaan näe aineistoa, johon hänellä ei ole oikeutta.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel=icon type=image/png sizes=32x32 href=../img/favicon-32x32.png>
+    <link rel=apple-touch-icon sizes=180x180 href=../img/favicon-180x180.png>
+
+    <link rel="canonical" href="https://valok.fi/blogi/rag-kayttooikeudet-kuka-nakee-mita.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://valok.fi/blogi/rag-kayttooikeudet-kuka-nakee-mita.html">
+    <meta property="og:title" content="Kuka näkee mitä, kun koko yrityksen aineisto on yhdessä hakuindeksissä? RAG ja käyttöoikeudet">
+    <meta property="og:description" content="Hakuindeksi ei peri dokumenttien käyttöoikeuksia itsestään. Näin rakennat yrityksen tekoälyhaun niin, ettei kukaan näe aineistoa, johon hänellä ei ole oikeutta.">
+    <meta property="og:image" content="https://valok.fi/img/rag-kayttooikeudet-kuka-nakee-mita.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Kuka näkee mitä, kun koko yrityksen aineisto on yhdessä hakuindeksissä? RAG ja käyttöoikeudet">
+    <meta name="twitter:description" content="Hakuindeksi ei peri dokumenttien käyttöoikeuksia itsestään. Näin rakennat yrityksen tekoälyhaun niin, ettei kukaan näe aineistoa, johon hänellä ei ole oikeutta.">
+    <meta name="twitter:image" content="https://valok.fi/img/rag-kayttooikeudet-kuka-nakee-mita.webp">
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Kuka näkee mitä, kun koko yrityksen aineisto on yhdessä hakuindeksissä? RAG ja käyttöoikeudet",
+  "description": "Hakuindeksi ei peri dokumenttien käyttöoikeuksia itsestään. Näin rakennat yrityksen tekoälyhaun niin, ettei kukaan näe aineistoa, johon hänellä ei ole oikeutta.",
+  "image": "https://valok.fi/img/rag-kayttooikeudet-kuka-nakee-mita.webp",
+  "datePublished": "2026-09-20",
+  "dateModified": "2026-09-20",
+  "author": {
+    "@type": "Person",
+    "name": "Aleksanteri Rönkä",
+    "url": "https://valok.fi/",
+    "email": "aleksanteri@valok.fi",
+    "jobTitle": "Perustaja",
+    "worksFor": {
+      "@id": "https://valok.fi/#organization"
+    }
+  },
+  "publisher": {
+    "@id": "https://valok.fi/#organization"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://valok.fi/blogi/rag-kayttooikeudet-kuka-nakee-mita.html"
+  }
+}
+</script>
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Näkeekö tekoäly kaikki yrityksen dokumentit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ei automaattisesti, mutta usein käytännössä kyllä, jos oikeuksia ei ole erikseen rakennettu. Hakuindeksi käy läpi kaiken aineiston, johon sillä on tekninen pääsy, riippumatta siitä, kuka kysyy. Ilman erillistä käyttöoikeuksien tarkistusta jokainen käyttäjä saa saman vastauksen samasta kysymyksestä, myös silloin kun vastaus sisältää tietoa, joka kuuluisi vain osalle organisaatiosta."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Periytyvätkö käyttöoikeudet hakuindeksiin automaattisesti?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Eivät. Hakuindeksi on tekninen kopio tai käsittelyvaihe alkuperäisestä aineistosta, eikä se peri lähdejärjestelmän käyttöoikeuksia ilman erillistä integraatiota. Jos oikeustietoa ei siirretä mukana indeksointivaiheessa, indeksi kohtelee kaikkea aineistoa samanarvoisena, ja tämä on suurin yksittäinen syy tahattomiin tietovuotoihin."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Onko vektoritietokanta anonyymi?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ei. Tutkimus on osoittanut, että tekstiupotuksista voidaan palauttaa alkuperäinen teksti hyvin tarkasti lyhyillä syötteillä, ja kliinisistä teksteistä on saatu ulos potilaiden nimiä pelkän vektorin perusteella. Vektoritietokantaa, joka sisältää henkilötietoja, tulee kohdella henkilötietorekisterinä ja suojata samalla tasolla kuin alkuperäistä aineistoa, ei erillisenä, vaarattomana numeroesityksenä."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Voiko saman järjestelmän jakaa usean asiakkaan kesken?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Voi, mutta hakuindeksi ei silloin saa olla jaettu. Sama tekninen alusta voidaan usein jakaa useiden asiakkaiden kesken kustannustehokkaasti, kunhan jokaisen asiakkaan aineisto elää omassa, erillisessä indeksissään eikä yhteisessä hakuavaruudessa, josta tulokset voisivat sekoittua asiakkaiden välillä."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Miten dokumentti poistetaan tekoälyn muistista?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Dokumentti pitää poistaa sekä hakuindeksistä että sen pohjalta lasketuista upotusvektoreista, ei vain lähdejärjestelmästä. Pelkkä lähdetiedoston poistaminen ei riitä, jos indeksi ei synkronoidu automaattisesti tai synkronointi viivästyy, koska dokumentti jää silloin hakujen ulottuville, vaikka alkuperäinen tiedosto on jo poistettu."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Miten käyttöoikeudet testataan?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Valitsemalla muutama todellinen käyttäjärooli, kirjoittamalla kysymyksiä joihin kullakin roolilla ei saisi tulla vastausta, ja ajamalla nämä kysymykset järjestelmän läpi jokaisella roolilla ennen käyttöönottoa. Sama testi kannattaa toistaa aina, kun aineistoa tai käyttöoikeuksia muutetaan, ei vain kerran käyttöönoton yhteydessä."
+      }
+    }
+  ]
+}
+</script>
+
+    <style>
+        .post-header {
+            min-height: auto !important;
+            padding: 160px 24px 24px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            background: radial-gradient(circle at top, var(--accent-glow) 0%, transparent 70%);
+        }
+
+        .post-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px 100px;
+            line-height: 1.8;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .post-content h2, .post-content h3 {
+            color: var(--text);
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .post-content p {
+            margin-bottom: 24px;
+        }
+
+        .post-content ul, .post-content ol {
+            margin-bottom: 24px;
+            padding-left: 20px;
+        }
+
+        .post-content li {
+            margin-bottom: 12px;
+        }
+
+        .post-meta {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .post-author {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 24px;
+            text-align: left;
+        }
+
+        .post-author img {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .post-author-name {
+            display: block;
+            font-weight: 600;
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+
+        .post-author-role {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dim);
+            text-decoration: none;
+            margin-bottom: 40px;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        .post-image {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .post-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .toc-box {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+        }
+
+        .toc-box h4 {
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        .toc-box ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .toc-box a {
+            color: #58a6ff;
+            text-decoration: none;
+            display: block;
+            padding: 4px 0;
+            transition: var(--transition);
+        }
+
+        .toc-box a:hover {
+            color: var(--accent);
+            padding-left: 4px;
+        }
+
+        .highlight-box {
+            background: var(--glass);
+            padding: 30px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+            border-left: 4px solid var(--accent);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 40px 0;
+            background: var(--glass);
+            border-radius: var(--radius);
+            overflow: hidden;
+            font-size: 0.95rem;
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 14px 18px;
+            border: 1px solid var(--border);
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .comparison-table th {
+            background: rgba(var(--accent-rgb), 0.12);
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .comparison-table td:first-child {
+            font-weight: 600;
+            color: var(--text);
+            white-space: nowrap;
+        }
+
+        .table-scroll {
+            overflow-x: auto;
+        }
+
+        .reference-list {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            margin-top: 60px;
+        }
+
+        .reference-list ol {
+            padding-left: 20px;
+        }
+
+        .contact-section {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 60px 40px;
+            border-radius: var(--radius);
+            margin-top: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="particles"></canvas>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark" width="4206" height="4206"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light" width="4206" height="4206">VALOK<span
+                     class="logo-dot">.</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="/#palvelut">Palvelut</a>
+                <a href="/#prosessi">Prosessi</a>
+                <a href="../blogi.html">Blogi</a>
+                <a href="/#yhteystiedot" class="nav-cta">Ota yhteyttä</a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Avaa valikko">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <article>
+        <header class="post-header">
+            <a href="../blogi.html" class="back-link">← Takaisin blogiin</a>
+            <span class="post-meta">RAG • Tietoturva • Käyttöoikeudet</span>
+            <h1>Kuka näkee mitä, kun koko yrityksen aineisto on yhdessä hakuindeksissä? <span class="gradient-text">RAG ja käyttöoikeudet</span></h1>
+            <p style="color: var(--text-dim); margin-top: 20px;">Kun yrityksen aineisto viedään tekoälyn hakuindeksiin, käyttöoikeudet eivät seuraa mukana itsestään. Indeksi on uusi järjestelmä, jolla on oma pääsynhallintansa, ja jos sitä ei rakenneta, jokainen käyttäjä näkee kaiken. Ongelma ei ole se, että tekoäly ylittäisi oikeuksia. Ongelma on se, että se löytää tehokkaasti kaiken, mihin sille on annettu pääsy, myös sen, minkä olemassaolon kaikki olivat unohtaneet. Riski on mitattu: Zeng ym. osoittivat ACL 2024 Findings -julkaisussaan, että 250 kehotteella RAG-järjestelmästä saatiin ulos 107 henkilötietoa Enron-sähköpostiaineistosta ja 116 kehotetta tuotti sanatarkan otteen haetusta lähteestä. Tässä artikkelissa käydään läpi, mistä vuoto syntyy ja neljä arkkitehtuurivaihtoehtoa, joilla se estetään.</p>
+            <div class="post-author">
+                <img src="../img/valok-aleksanteri.webp" alt="Aleksanteri Rönkä" width="44" height="44" loading="lazy">
+                <div>
+                    <span class="post-author-name">Aleksanteri Rönkä</span>
+                    <span class="post-author-role">Perustaja, Valok &middot; <a href="mailto:aleksanteri@valok.fi">aleksanteri@valok.fi</a></span>
+                </div>
+            </div>
+        </header>
+
+        <div class="post-image">
+            <img src="../img/rag-kayttooikeudet-kuka-nakee-mita.webp" alt="RAG-hakuindeksin käyttöoikeudet ja dokumenttien pääsynhallinta - Valok" width="960" height="1107">
+        </div>
+
+        <main class="post-content">
+            <div class="toc-box">
+                <h4>Sisällysluettelo</h4>
+                <ul>
+                    <li><a href="#ei-ylita">1. Tekoäly ei ylitä käyttöoikeuksia, se paljastaa väärin asetetut</a></li>
+                    <li><a href="#nelja-tapaa-vuoto">2. Neljä tapaa, joilla tieto vuotaa hakuindeksistä</a></li>
+                    <li><a href="#tutkimus-mittasi">3. Mitä tutkimus mittasi, ja millä asetelmalla</a></li>
+                    <li><a href="#upotus-ei-salaus">4. Upotus ei ole salaus</a></li>
+                    <li><a href="#nelja-tapaa-rakentaa">5. Neljä tapaa rakentaa käyttöoikeudet hakuun</a></li>
+                    <li><a href="#laki-vaatii">6. Mitä laki vaatii, ja missä raja on ehdoton</a></li>
+                    <li><a href="#seitseman-kysymysta">7. Seitsemän kysymystä, jotka kannattaa kysyä toimittajalta</a></li>
+                    <li><a href="#testaus">8. Näin käyttöoikeudet testataan ennen käyttöönottoa</a></li>
+                    <li><a href="#ukk">9. Usein kysyttyä</a></li>
+                </ul>
+            </div>
+
+            <h2 id="ei-ylita">1. Tekoäly ei ylitä käyttöoikeuksia, se paljastaa väärin asetetut</h2>
+
+            <div class="highlight-box">
+                <p style="margin-bottom: 0;">Hakuassistentti ei riko lukkoja. Se on ensimmäinen, joka kokeilee jokaista ovea kerralla.</p>
+            </div>
+
+            <p>Useimmissa yrityksissä verkkolevyn ja dokumenttijärjestelmän oikeudet ovat kertyneet kymmenen vuoden ajan ilman että kukaan on katsonut niitä kokonaisuutena. Projekteja on arkistoitu jaettuihin kansioihin, joiden oikeudet jäivät auki, koska sulkeminen ei ollut kenenkään tehtävälistalla. Työntekijöitä on vaihtunut, ja heidän oikeutensa on periytynyt seuraajalle ilman tarkistusta. Niin kauan kuin tiedon löytäminen vaati tietämistä siitä, mistä etsiä, väärin asetettu oikeus ei näkynyt käytännössä. Kukaan ei selaa läpi satoja kansioita löytääkseen jotain, mitä ei tiedä olevan olemassa.</p>
+
+            <p>Hakuassistentti poistaa juuri tämän suojan. Se ei etsi tietoa muistin tai tuurin varassa, vaan käy koko indeksin läpi joka kerta ja palauttaa relevanteimman osuman, oli se sitten oikealla paikalla tai ei. Microsoftin oma käyttöönotto-ohjeistus Microsoft 365 Copilotille sanoo saman asian omasta tuotteestaan: yritysten kannattaa varautua siihen, että ylijaetut tiedostot ja väärin asetetut oikeudet tulevat esiin heti, kun tekoälyhaku otetaan käyttöön, ja suositus on siivota oikeudet ennen käyttöönottoa, ei sen jälkeen.<sup>10</sup> Tämä on toimittajan oma käyttöönotto-ohje, ei riippumaton tutkimus, mutta se on linjassa sen kanssa, mitä tässä artikkelissa käydään läpi.</p>
+
+            <p>Johtopäätös kannattaa sanoa suoraan: käyttöoikeuksien siivous ei ole tekoälyprojektin este vaan sen ensimmäinen vaihe. Se on hyödyllistä työtä riippumatta siitä, rakennetaanko hakua koskaan, koska väärin asetettu oikeus on riski sellaisenaan, tekoälystä riippumatta. Kävimme laajemmin läpi <a href="rag-arkkitehtuuri-opas.html">miten luotettava RAG-järjestelmä rakennetaan</a> omassa artikkelissamme; tässä keskitytään yksinomaan siihen, kenelle hakuindeksi vastaa. Aiemmin kirjoitimme myös <a href="tekoalyagentin-tietoturva-kayttooikeudet.html">miten tekoälyagentin käyttöoikeudet rajataan</a>, mutta se kysymys koskee sitä, mitä agentti saa tehdä. Tämä artikkeli vastaa sukulaiskysymykseen: kenelle haku vastaa.</p>
+
+            <h2 id="nelja-tapaa-vuoto">2. Neljä tapaa, joilla tieto vuotaa hakuindeksistä</h2>
+
+            <div class="table-scroll">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Vuototapa</th>
+                            <th>Miten se tapahtuu</th>
+                            <th>Huomataanko se</th>
+                            <th>Miten estetään</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Indeksointi ohittaa lähdejärjestelmän oikeudet</td>
+                            <td>Aineisto kopioidaan hakuindeksiin sellaisenaan, ilman että alkuperäisen dokumentin käyttöoikeustieto siirtyy mukana</td>
+                            <td>Ei huomata koskaan ilman erillistä testausta, koska indeksi näyttää toimivan normaalisti</td>
+                            <td>Käyttöoikeus tallennetaan jokaiselle dokumentille metatietona indeksointivaiheessa, tai aineisto eriytetään omiin indekseihin jo lähtökohtaisesti</td>
+                        </tr>
+                        <tr>
+                            <td>Vastauksen ote paljastaa dokumentin, jota kysyjä ei saisi nähdä</td>
+                            <td>Malli poimii vastaukseensa suoran lainauksen tai tiivistelmän dokumentista, johon käyttäjällä ei ole pääsyä</td>
+                            <td>Huomataan vasta, kun joku kertoo saaneensa tietoa, jota ei pitänyt saada</td>
+                            <td>Käyttöoikeus tarkistetaan hakutuloksille ennen kuin niitä annetaan mallille, ei vastauksen valmistuttua</td>
+                        </tr>
+                        <tr>
+                            <td>Upotusvektori palautetaan tekstiksi</td>
+                            <td>Vektoritietokannassa oleva numeerinen upotus käännetään takaisin lähelle alkuperäistä tekstiä</td>
+                            <td>Ei huomata, koska vektoritietokantaa pidetään yleisesti anonyyminä numeroesityksenä</td>
+                            <td>Vektorikantaa kohdellaan samana suojaustasona kuin alkuperäistä aineistoa, pääsy rajataan ja tallennus salataan</td>
+                        </tr>
+                        <tr>
+                            <td>Jäsenyyspäättely: selviää, onko tietty dokumentti indeksissä ylipäätään</td>
+                            <td>Kysymyksillä testataan, tunnistaako järjestelmä tietyn dokumentin olemassaolon, vaikka sisältöä ei koskaan palauteta</td>
+                            <td>Riittää usein jo vahingoksi, mutta harvoin testataan lainkaan</td>
+                            <td>Erillinen indeksi per asiakas tai toimeksianto, jolloin kysymys "onko tällaista aineistoa olemassa" ei koskaan ylitä rajaa</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>Neljäs vuototapa on hienovaraisin, koska mikään sisältö ei koskaan paljastu, ainoastaan olemassaolo. Tämä riittää kuitenkin usein jo vahingoksi: tieto siitä, että tietyn asiakkaan aineisto on toimeksiantona olemassa, on itsessään salassa pidettävä tieto. Hu ym. luokittelevat tämän omaksi uhkakseen katsauksessaan, joka kokoaa RAG-järjestelmien tietoturvauhkat yhteen.<sup>3</sup> Kyseessä on esijulkaisu (arXiv, 23.3.2026), ei vertaisarvioitu tutkimus, mutta uhkamalli itsessään on looginen johtopäätös siitä, miten hakujärjestelmät toimivat.</p>
+
+            <h2 id="tutkimus-mittasi">3. Mitä tutkimus mittasi, ja millä asetelmalla</h2>
+
+            <p>Zeng, Zhang, He, Xing, Liu, Xu, Ren, Wang, Yin, Chang ja Tang testasivat Findings of ACL 2024 -julkaisussaan RAG-järjestelmää, jonka hakuaineistona oli Enron-sähköpostiaineisto ja terveydenhuollon keskusteluaineisto.<sup>1</sup> Asetelma jäljitteli tilannetta, jossa hyökkääjä ei pääse käsiksi hakuaineistoon suoraan, vaan ainoastaan kehotteiden kautta, samaan tapaan kuin tavallinen käyttäjä käyttäisi yrityksen hakuassistenttia.</p>
+
+            <p>250 kehotteella tutkijat saivat ulos 452 eri tietopalasta, ja 116 kehotetta tuotti mallilta sanatarkan toiston haetusta sisällöstä eikä pelkkää tiivistelmää. Kohdennetuissa hyökkäyksissä, joissa kehotteet muotoiltiin nimenomaan tiettyä tietotyyppiä varten, saatiin ulos 107 henkilötietoa Enron-aineistosta ja 89 kohdennettua terveydenhuollon keskustelupalaa.</p>
+
+            <p>Heti perään kannattaa esittää sama tutkimuksen rehellinen vastapaino, joka tekee tuloksesta uskottavan: RAG vähensi mallin oman koulutusdatan vuotamista selvästi, yli 200 onnistuneesta rekonstruktiosta alle 40:een verrattuna malliin, jolla ei ollut hakua käytössä. Johtopäätös kannattaa kirjoittaa auki: RAG ei luo vuotoriskiä tyhjästä, se siirtää sen mallista hakuaineistoon. Hakuaineisto on kuitenkin se, jonka yritys itse omistaa ja jota se voi suojata teknisin ja organisatorisin keinoin, eikä se ole riippuvainen siitä, miten malli on koulutettu. Se on tässä yhteydessä hyvä uutinen.</p>
+
+            <h2 id="upotus-ei-salaus">4. Upotus ei ole salaus</h2>
+
+            <p>Tämä on koko tekstin erottavin kappale, koska suomenkielisessä sisällössä tätä havaintoa ei juuri käsitellä. Morris, Kuleshov, Shmatikov ja Rush osoittivat EMNLP 2023 -julkaisussaan, että tekstiupotuksista voidaan palauttaa alkuperäinen teksti lähes sellaisenaan.<sup>2</sup> 92 prosenttia 32 tokenin pituisista syötteistä palautettiin täsmälleen, ja kliinisistä hoitokertomuksista saatiin ulos potilaiden koko nimiä pelkän upotusvektorin perusteella.</p>
+
+            <p>Käytännön merkitys kannattaa sanoa yhdellä virkkeellä: vektoritietokanta, joka sisältää henkilötietoja, on henkilötietorekisteri, ei anonyymi numeroesitys, ja sitä koskevat samat suojaustoimet kuin alkuperäistä aineistoa.</p>
+
+            <p>Rajaus on syytä tehdä heti: tutkimus ei tarkoita, että jokainen upotusmalli olisi yhtä altis palautukselle. Tutkimus koski tiettyjä malleja ja lyhyitä, 32 tokenin pituisia tekstejä, ja palautustarkkuus laskee tekstin pidentyessä. Oikea muotoilu on "osoitettiin mahdolliseksi", ei "on aina mahdollista". Tämä rehellinen rajaus ei heikennä argumenttia, koska johtopäätös, eli kohtele vektoreita kuin aineistoa, pätee joka tapauksessa riippumatta siitä, kuinka altis juuri käytössä oleva malli on.</p>
+
+            <h2 id="nelja-tapaa-rakentaa">5. Neljä tapaa rakentaa käyttöoikeudet hakuun</h2>
+
+            <div class="table-scroll">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Malli</th>
+                            <th>Milloin sopii</th>
+                            <th>Kustannus</th>
+                            <th>Riski</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Erillinen indeksi per asiakas, toimeksianto tai taloyhtiö</td>
+                            <td>Kun salassapito tai esteellisyys on ehdoton vaatimus, ei riskiperusteinen valinta</td>
+                            <td>Kallein toteuttaa ja ylläpitää</td>
+                            <td>Ainoa malli, joka kestää esteellisyystarkastelun; pienin jäännösriski</td>
+                        </tr>
+                        <tr>
+                            <td>Yksi indeksi ja metatietosuodatus ennen hakua</td>
+                            <td>Sisäisessä käytössä, kun käyttäjäryhmiä on vähän ja ne ovat pysyviä</td>
+                            <td>Kohtuullinen, kertainvestointi suodatuslogiikkaan</td>
+                            <td>Toimii vain, jos suodatus tehdään aina ennen hakua eikä sitä koskaan unohdeta yhdenkään haun kohdalla</td>
+                        </tr>
+                        <tr>
+                            <td>Käyttöoikeuksien tarkistus hakutuloksille ennen mallille antamista</td>
+                            <td>Kun lähdejärjestelmässä on jo toimiva roolipohjainen pääsynhallinta, jota voidaan kysyä reaaliaikaisesti</td>
+                            <td>Vaatii jatkuvan synkronoinnin lähdejärjestelmän kanssa</td>
+                            <td>Hidastaa hakua, ja synkronoinnin jälkeenjääminen aiheuttaa hetkellisiä väärin näkyviä tuloksia</td>
+                        </tr>
+                        <tr>
+                            <td>Vastauksen suodatus jälkikäteen</td>
+                            <td>Älä käytä tätä mallia</td>
+                            <td>Halvin, mutta väärä säästö</td>
+                            <td>Kun tieto on kerran mennyt mallin kontekstiin, se on vuotanut riippumatta siitä, mitä lopputekstistä siivotaan</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>Neljäs rivi on tekstin tärkein yksittäinen ohje: älä koskaan luota siihen, että vastauksesta voi suodattaa väärän tiedon pois jälkikäteen. Kun dokumentti on kerran haettu mallin kontekstiin, malli on jo "nähnyt" sen, ja jälkikäteinen suodatus vain piilottaa oireen, ei korjaa syytä. Tarkistus kuuluu tehdä ennen hakua, ei sen jälkeen.</p>
+
+            <p>Tutkimusankkurit vaihtoehdon 3 toteutukseen ovat olemassa: dokumenttitason roolipohjaisesta pääsynhallinnasta RAG-putkessa on julkaistu sekä ACM SAC 2025 -konferenssijulkaisu, jossa pääsynhallinta integroidaan RAG-järjestelmään potilastietoesimerkin kautta<sup>4</sup>, että Springerin kokoomajulkaisun luku RBAC-pohjaisesta vuodonestosta kielimallisovelluksissa<sup>5</sup>. Molemmat ovat konferenssitason lähteitä, eivät vakiintunutta standardia, joten oikea muotoilu on "tutkimuksissa esitetty lähestymistapa", ei "vakiintunut käytäntö".</p>
+
+            <h2 id="laki-vaatii">6. Mitä laki vaatii, ja missä raja on ehdoton</h2>
+
+            <p>Tietosuoja-asetuksen 5 artiklan 1 kohdan f alakohta edellyttää henkilötietojen käsittelyltä eheyttä ja luottamuksellisuutta, ja 32 artikla velvoittaa toteuttamaan riskiä vastaavat tekniset ja organisatoriset toimenpiteet.<sup>8</sup> Tämä on yleinen taso, joka koskee kaikkea henkilötietojen käsittelyä, riippumatta toimialasta. Kävimme laajemmin läpi <a href="tekoaly-ja-tietosuoja.html">mitä tietosuoja edellyttää tekoälyä käyttävältä yritykseltä</a> omassa artikkelissamme.</p>
+
+            <p>Osassa aineistoa raja ei kuitenkaan ole riskiperusteinen vaan ehdoton. Salassapitovelvollisuuden, esteellisyyssääntöjen tai erityisten henkilötietoryhmien, kuten terveystietojen tai HR-aineiston, piirissä oleva tieto ei saa koskaan päätyä samaan hakuun sellaisen käyttäjän kanssa, jolla ei ole siihen oikeutta, vaikka virhe olisi harvinainen. Tällaisia rajoja syntyy monessa toimialassa: kahden eri asiakkaan tai toimeksiannon aineisto, kahden eri taloyhtiön aineisto, tai henkilöstöhallinnon aineisto suhteessa muuhun organisaatioon. Käytännön johtopäätös: kun aineiston joukossa on tällaista ehdottoman rajan tietoa, vaihtoehto 1 taulukosta yllä, eli eriytetty indeksi, ei ole kallis ylilyönti vaan lähtökohta, josta rakentaminen aloitetaan. Tämä kannattaa sanoa asiakkaalle suoraan, koska se perustelee hinnan.</p>
+
+            <p>Suomen Asianajajaliiton omissa ohjeissa ei ole nimenomaista kantaa hakuindeksien eriyttämiseen, sellaista vaatimusta ei ole erikseen kirjoitettu.<sup>9</sup> Yllä oleva on salassapito- ja esteellisyysvelvoitteesta johdettu yleinen päätelmä, ei suora lainaus liiton ohjeista eikä minkään yksittäisen toimialan erityisvaatimus.</p>
+
+            <h2 id="seitseman-kysymysta">7. Seitsemän kysymystä, jotka kannattaa kysyä toimittajalta</h2>
+
+            <ol>
+                <li>Miten käyttöoikeudet siirtyvät lähdejärjestelmästä indeksiin, ja kuinka usein ne päivittyvät?</li>
+                <li>Tehdäänkö suodatus ennen hakua vai sen jälkeen?</li>
+                <li>Missä vektorit sijaitsevat ja kuka niihin pääsee käsiksi?</li>
+                <li>Mitä tapahtuu, kun työntekijän oikeudet poistetaan? Kuinka kauan hän näkyy indeksissä?</li>
+                <li>Miten poistettu dokumentti poistetaan indeksistä, ja miten se todennetaan?</li>
+                <li>Näkyykö lokista, kuka kysyi mitä ja mitkä dokumentit haku palautti?</li>
+                <li>Miten järjestelmä testataan käyttöoikeuksien osalta ennen käyttöönottoa?</li>
+            </ol>
+
+            <p>Kohta 4 on se, jonka lähes kaikki unohtavat: irtisanotun tai vaihtaneen työntekijän oikeuksien poisto lähdejärjestelmästä ei aina poista niitä indeksistä samalla hetkellä. Kohta 7 on se, jota ei tee juuri kukaan, vaikka se on halvin tapa löytää virhe ennen kuin asiakas löytää sen.</p>
+
+            <h2 id="testaus">8. Näin käyttöoikeudet testataan ennen käyttöönottoa</h2>
+
+            <ol>
+                <li>Valitse kolme käyttäjäroolia, joilla on aidosti eri oikeudet.</li>
+                <li>Kirjoita kymmenen kysymystä, joihin ei saa tulla vastausta kullakin roolilla.</li>
+                <li>Aja ne läpi jokaisella roolilla ja kirjaa tulokset.</li>
+                <li>Toista sama ajo aina, kun aineistoa tai oikeuksia muutetaan.</li>
+            </ol>
+
+            <p>Tämä on sama menetelmä kuin <a href="tekoalyn-vastausten-laadun-mittaaminen.html">tekoälyratkaisun laadun mittaamisessa</a>, mutta käänteisenä. Laatutestissä mitataan, löytyykö oikea vastaus. Tässä mitataan, ettei väärä löydy.</p>
+
+            <h2 id="ukk">9. Usein kysyttyä</h2>
+
+            <h3>Näkeekö tekoäly kaikki yrityksen dokumentit?</h3>
+            <p>Ei automaattisesti, mutta usein käytännössä kyllä, jos oikeuksia ei ole erikseen rakennettu. Hakuindeksi käy läpi kaiken aineiston, johon sillä on tekninen pääsy, riippumatta siitä, kuka kysyy. Ilman erillistä käyttöoikeuksien tarkistusta jokainen käyttäjä saa saman vastauksen samasta kysymyksestä, myös silloin kun vastaus sisältää tietoa, joka kuuluisi vain osalle organisaatiosta.</p>
+
+            <h3>Periytyvätkö käyttöoikeudet hakuindeksiin automaattisesti?</h3>
+            <p>Eivät. Hakuindeksi on tekninen kopio tai käsittelyvaihe alkuperäisestä aineistosta, eikä se peri lähdejärjestelmän käyttöoikeuksia ilman erillistä integraatiota. Jos oikeustietoa ei siirretä mukana indeksointivaiheessa, indeksi kohtelee kaikkea aineistoa samanarvoisena, ja tämä on suurin yksittäinen syy tahattomiin tietovuotoihin.</p>
+
+            <h3>Onko vektoritietokanta anonyymi?</h3>
+            <p>Ei. Tutkimus on osoittanut, että tekstiupotuksista voidaan palauttaa alkuperäinen teksti hyvin tarkasti lyhyillä syötteillä, ja kliinisistä teksteistä on saatu ulos potilaiden nimiä pelkän vektorin perusteella. Vektoritietokantaa, joka sisältää henkilötietoja, tulee kohdella henkilötietorekisterinä ja suojata samalla tasolla kuin alkuperäistä aineistoa, ei erillisenä, vaarattomana numeroesityksenä.</p>
+
+            <h3>Voiko saman järjestelmän jakaa usean asiakkaan kesken?</h3>
+            <p>Voi, mutta hakuindeksi ei silloin saa olla jaettu. Sama tekninen alusta voidaan usein jakaa useiden asiakkaiden kesken kustannustehokkaasti, kunhan jokaisen asiakkaan aineisto elää omassa, erillisessä indeksissään eikä yhteisessä hakuavaruudessa, josta tulokset voisivat sekoittua asiakkaiden välillä.</p>
+
+            <h3>Miten dokumentti poistetaan tekoälyn muistista?</h3>
+            <p>Dokumentti pitää poistaa sekä hakuindeksistä että sen pohjalta lasketuista upotusvektoreista, ei vain lähdejärjestelmästä. Pelkkä lähdetiedoston poistaminen ei riitä, jos indeksi ei synkronoidu automaattisesti tai synkronointi viivästyy, koska dokumentti jää silloin hakujen ulottuville, vaikka alkuperäinen tiedosto on jo poistettu.</p>
+
+            <h3>Miten käyttöoikeudet testataan?</h3>
+            <p>Valitsemalla muutama todellinen käyttäjärooli, kirjoittamalla kysymyksiä joihin kullakin roolilla ei saisi tulla vastausta, ja ajamalla nämä kysymykset järjestelmän läpi jokaisella roolilla ennen käyttöönottoa. Sama testi kannattaa toistaa aina, kun aineistoa tai käyttöoikeuksia muutetaan, ei vain kerran käyttöönoton yhteydessä.</p>
+
+            <div class="reference-list">
+                <h4>Lähdeviitteet:</h4>
+                <ol>
+                    <li>Zeng, Zhang, He, Xing, Liu, Xu, Ren, Wang, Yin, Chang, Tang: <a href="https://aclanthology.org/2024.findings-acl.267/" target="_blank" rel="noopener">"The Good and The Bad: Exploring Privacy Issues in Retrieval-Augmented Generation (RAG)"</a>. Findings of the Association for Computational Linguistics: ACL 2024.</li>
+                    <li>Morris, Kuleshov, Shmatikov, Rush: <a href="https://aclanthology.org/2023.emnlp-main.765/" target="_blank" rel="noopener">"Text Embeddings Reveal (Almost) As Much As Text"</a>. EMNLP 2023, arXiv:2310.06816.</li>
+                    <li>Hu, Mu, Li, Yuan, Wu, Liu, Liu, Wang, Zhou, Liu: <a href="https://arxiv.org/abs/2603.21654" target="_blank" rel="noopener">"Towards Secure Retrieval-Augmented Generation: A Comprehensive Review of Threats, Defenses and Benchmarks"</a>. arXiv:2603.21654 (23.3.2026). Esijulkaisu.</li>
+                    <li>Chen, Tackman, Setälä, Poranen, Zhang: <a href="https://dl.acm.org/doi/abs/10.1145/3672608.3707848" target="_blank" rel="noopener">"Integrating Access Control with Retrieval-Augmented Generation: A Proof of Concept for Managing Sensitive Patient Profiles"</a>. Proceedings of the 40th ACM/SIGAPP Symposium on Applied Computing (SAC 2025).</li>
+                    <li>Martinelli, Ponti: <a href="https://link.springer.com/chapter/10.1007/978-3-032-15993-9_34" target="_blank" rel="noopener">"Towards Secure Retrieval-Augmented Generation: Preventing LLM Data Leaks with RBAC"</a>. Teoksessa Intelligent Systems (BRACIS 2025), Lecture Notes in Computer Science vol. 16182. Springer, Cham.</li>
+                    <li>OWASP GenAI Security Project: <a href="https://owasp.org/www-project-top-10-for-large-language-model-applications/" target="_blank" rel="noopener">"Top 10 for LLM Applications 2025"</a>, kohta LLM02 Sensitive Information Disclosure.</li>
+                    <li>Traficom ja Huoltovarmuuskeskus: <a href="https://traficom.fi/fi/julkaisut/tekoalyagenttien-kyberturvallisuus" target="_blank" rel="noopener">"Tekoälyagenttien kyberturvallisuus"</a>, Traficomin julkaisuja 5/2026 (28.1.2026).</li>
+                    <li>EU 2016/679 (yleinen tietosuoja-asetus), <a href="https://eur-lex.europa.eu/legal-content/FI/TXT/?uri=CELEX%3A32016R0679" target="_blank" rel="noopener">5 artiklan 1 kohdan f alakohta ja 32 artikla</a>.</li>
+                    <li>Suomen Asianajajaliitto: Tietoturvaopas, voimassa 1.12.2025 lukien, liite 5 tekoälyn käytöstä.</li>
+                    <li>Microsoft: <a href="https://learn.microsoft.com/en-us/copilot/microsoft-365/manage-copilot-oversharing" target="_blank" rel="noopener">"Mitigate oversharing to govern Microsoft 365 Copilot and agents"</a> (toimittajan oma käyttöönotto-ohje).</li>
+                </ol>
+            </div>
+
+            <div class="contact-section">
+                <div class="section-header" style="text-align: center; margin-bottom: 40px;">
+                    <span class="section-tag">Otetaan askel eteenpäin</span>
+                    <h2>Kenelle teidän hakuindeksinne vastaisi?</h2>
+                    <p>Kerro, missä yrityksesi dokumentit sijaitsevat ja kuka niihin pääsee nyt käsiksi. Käymme läpi, mitä hakuindeksi paljastaisi ja miten oikeudet rakennetaan sen sisään. Maksuton, kestää tunnin.</p>
+                </div>
+
+                <div class="contact-container" style="max-width: 100%;">
+                    <div class="contact-form-card">
+                        <form action="https://formspree.io/f/xlgpgyjl" method="POST" id="contact-form">
+                            <div class="form-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 20px;">
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="name">Nimi</label>
+                                    <input type="text" id="name" name="name" autocomplete="name" placeholder="Oma nimesi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                </div>
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="email">Sähköposti</label>
+                                    <input type="email" id="email" name="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="esimerkki@yritys.fi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg full-width" style="width: 100%; padding: 16px; font-weight: bold; cursor: pointer; margin-top: 20px;">
+                                Varaa ilmainen konsultaatio
+                            </button>
+                            <div id="form-status" class="form-status" aria-live="polite"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </article>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer" width="4206" height="4206" loading="lazy"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer" width="4206" height="4206" loading="lazy">VALOK<span class="logo-dot">.</span></div>
+                <p>Prosessien automatisointia ja yrityksen omaan tietoon perustuvia tekoälyratkaisuja suomalaisille PK-yrityksille, tietoturva ja tietosuoja edellä.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Linkit</h4>
+                <ul>
+                    <li><a href="/">Etusivu</a></li>
+                    <li><a href="../blogi.html">Blogi</a></li>
+                    <li><a href="/#palvelut">Palvelut</a></li>
+                    <li><a href="../tietosuoja.html">Tietosuoja</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ota yhteyttä</h4>
+                <ul>
+                    <li>aleksanteri@valok.fi</li>
+                    <li>Jyväskylä, Finland</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Valok. Kaikki oikeudet pidätetään. · <a href="#" id="cookieSettingsLink">Evästeasetukset</a>
+        </div>
+    </footer>
+
+        <div id="cookieBanner" class="cookie-banner">
+        <h5>Yksityisyytesi on meille tärkeää</h5>
+        <p>Käytämme sivustolla vain välttämättömiä toimintoja varmistaaksemme parhaan mahdollisen käyttökokemuksen. Emme
+            käytä kolmannen osapuolen markkinointievästeitä ilman suostumustasi.</p>
+        <div class="cookie-btn-group">
+            <button id="acceptCookies" class="btn btn-primary">Hyväksy kaikki</button>
+            <button id="rejectCookies" class="btn btn-ghost">Hylkää</button>
+            <a href="../tietosuoja.html" class="btn btn-ghost">Lue lisää</a>
+        </div>
+    </div>
+
+    <script src="../main.js"></script>
+</body>
+
+</html>
