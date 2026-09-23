@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#030712">
+    <title>Miksi tekoäly ilman yrityksen kontekstia arvaa, unohtaa ja vuotaa | Valok</title>
+    <meta name="description"
+        content="Yleiskäyttöinen tekoäly ilman yrityksen omaa kontekstia arvaa vastauksia. Näin konteksti parantaa käyttökokemusta, tietoturvaa ja faktoja.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel=icon type=image/png sizes=32x32 href=../img/favicon-32x32.png>
+    <link rel=apple-touch-icon sizes=180x180 href=../img/favicon-180x180.png>
+
+    <link rel="canonical" href="https://valok.fi/blogi/miksi-tekoaly-tarvitsee-yrityksen-kontekstin.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://valok.fi/blogi/miksi-tekoaly-tarvitsee-yrityksen-kontekstin.html">
+    <meta property="og:title" content="Miksi kontekstin määrittäminen yrityksen tekoälytyökaluihin on tärkeää">
+    <meta property="og:description" content="Yleiskäyttöinen tekoäly ilman yrityksen omaa kontekstia arvaa vastauksia. Näin konteksti parantaa käyttökokemusta, tietoturvaa ja faktoja.">
+    <meta property="og:image" content="https://valok.fi/img/miksi-tekoaly-tarvitsee-yrityksen-kontekstin.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Miksi kontekstin määrittäminen yrityksen tekoälytyökaluihin on tärkeää">
+    <meta name="twitter:description" content="Yleiskäyttöinen tekoäly ilman yrityksen omaa kontekstia arvaa vastauksia. Näin konteksti parantaa käyttökokemusta, tietoturvaa ja faktoja.">
+    <meta name="twitter:image" content="https://valok.fi/img/miksi-tekoaly-tarvitsee-yrityksen-kontekstin.webp">
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Miksi kontekstin määrittäminen yrityksen tekoälytyökaluihin on tärkeää",
+  "description": "Yleiskäyttöinen tekoäly ilman yrityksen omaa kontekstia arvaa vastauksia. Näin konteksti parantaa käyttökokemusta, tietoturvaa ja faktoja.",
+  "image": "https://valok.fi/img/miksi-tekoaly-tarvitsee-yrityksen-kontekstin.webp",
+  "datePublished": "2026-09-23",
+  "dateModified": "2026-09-23",
+  "author": {
+    "@type": "Person",
+    "name": "Aleksanteri Rönkä",
+    "url": "https://valok.fi/",
+    "email": "aleksanteri@valok.fi",
+    "jobTitle": "Perustaja",
+    "worksFor": {
+      "@id": "https://valok.fi/#organization"
+    }
+  },
+  "publisher": {
+    "@id": "https://valok.fi/#organization"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://valok.fi/blogi/miksi-tekoaly-tarvitsee-yrityksen-kontekstin.html"
+  }
+}
+</script>
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Mitä konteksti tarkoittaa tekoälytyökalussa?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Kontekstilla tarkoitetaan sitä tietoa, jonka tekoäly saa käyttöönsä ennen kuin se vastaa: yrityksen omat dokumentit, hinnastot, käytännöt, aiemmat asiakaskeskustelut tai pääsy live-järjestelmiin. Ilman tätä tietoa malli vastaa vain sen perusteella, mitä se on oppinut koulutusvaiheessa, eikä se tiedä mitään yrityksen todellisesta tilanteesta."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Riittääkö pelkkä ChatGPT ilman yrityksen omaa kontekstia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yleiskäyttöiseen kirjoitusapuun ja ideointiin kyllä, mutta ei tehtäviin, joissa vastauksen pitää perustua yrityksen omiin tietoihin, kuten hintoihin, sopimusehtoihin tai asiakashistoriaan. Näissä tilanteissa malli täyttää tietoaukon todennäköisimmällä arvauksella, joka voi kuulostaa täysin uskottavalta ja olla silti väärin."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Parantaako konteksti myös tietoturvaa?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Kyllä, epäsuorasti mutta merkittävästi. Kun yrityksellä ei ole hyväksyttyä työkalua, jolla on oikea konteksti, työntekijät hakevat saman hyödyn kopioimalla yrityksen tietoa julkisiin tekoälytyökaluihin käsin. Rakennettu, hallittu konteksti sisäisessä työkalussa poistaa tarpeen tähän ja pitää tiedon yrityksen omassa hallinnassa."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Miten yritys tuo oman kontekstinsa tekoälyyn?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Neljällä päätavalla: kiinteä konteksti järjestelmäkehotteessa pienelle, harvoin muuttuvalle tietomäärälle, hakuindeksi eli RAG suurelle ja usein päivittyvälle dokumenttimäärälle, suora työkalukutsu live-järjestelmään reaaliaikaista tietoa varten, tai mallin hienosäätö, joka sopii vain kapeaan, vakaaseen erikoisosaamiseen. Useimmat yritykset tarvitsevat yhdistelmän ensimmäisestä kolmesta."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kuinka paljon kontekstin rakentaminen maksaa?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Riippuu tavasta: kiinteä kontekstiteksti järjestelmäkehotteessa on lähes ilmainen toteuttaa, hakuindeksi vaatii kertainvestoinnin indeksointiin ja ylläpitoon, ja live-integraatio vaatii jatkuvaa teknistä ylläpitoa. Suurin kustannus ei kuitenkaan yleensä ole tekniikka, vaan sen varmistaminen, että lähdeaineisto on ajan tasalla ja oikein oikeuksitettu ennen kuin se tuodaan tekoälyn ulottuville."
+      }
+    }
+  ]
+}
+</script>
+
+    <style>
+        .post-header {
+            min-height: auto !important;
+            padding: 160px 24px 24px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            background: radial-gradient(circle at top, var(--accent-glow) 0%, transparent 70%);
+        }
+
+        .post-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px 100px;
+            line-height: 1.8;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .post-content h2, .post-content h3 {
+            color: var(--text);
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .post-content p {
+            margin-bottom: 24px;
+        }
+
+        .post-content ul, .post-content ol {
+            margin-bottom: 24px;
+            padding-left: 20px;
+        }
+
+        .post-content li {
+            margin-bottom: 12px;
+        }
+
+        .post-meta {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .post-author {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 24px;
+            text-align: left;
+        }
+
+        .post-author img {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .post-author-name {
+            display: block;
+            font-weight: 600;
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+
+        .post-author-role {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dim);
+            text-decoration: none;
+            margin-bottom: 40px;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        .post-image {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .post-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .toc-box {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+        }
+
+        .toc-box h4 {
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        .toc-box ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .toc-box a {
+            color: #58a6ff;
+            text-decoration: none;
+            display: block;
+            padding: 4px 0;
+            transition: var(--transition);
+        }
+
+        .toc-box a:hover {
+            color: var(--accent);
+            padding-left: 4px;
+        }
+
+        .highlight-box {
+            background: var(--glass);
+            padding: 30px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+            border-left: 4px solid var(--accent);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 40px 0;
+            background: var(--glass);
+            border-radius: var(--radius);
+            overflow: hidden;
+            font-size: 0.95rem;
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 14px 18px;
+            border: 1px solid var(--border);
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .comparison-table th {
+            background: rgba(var(--accent-rgb), 0.12);
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .comparison-table td:first-child {
+            font-weight: 600;
+            color: var(--text);
+            white-space: nowrap;
+        }
+
+        .table-scroll {
+            overflow-x: auto;
+        }
+
+        .reference-list {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            margin-top: 60px;
+        }
+
+        .reference-list ol {
+            padding-left: 20px;
+        }
+
+        .contact-section {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 60px 40px;
+            border-radius: var(--radius);
+            margin-top: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="particles"></canvas>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark" width="4206" height="4206"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light" width="4206" height="4206">VALOK<span
+                     class="logo-dot">.</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="/#palvelut">Palvelut</a>
+                <a href="/#prosessi">Prosessi</a>
+                <a href="../blogi.html">Blogi</a>
+                <a href="/#yhteystiedot" class="nav-cta">Ota yhteyttä</a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Avaa valikko">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <article>
+        <header class="post-header">
+            <a href="../blogi.html" class="back-link">← Takaisin blogiin</a>
+            <span class="post-meta">Tekoäly • Konteksti • Tietoturva</span>
+            <h1>Miksi kontekstin määrittäminen yrityksen tekoälytyökaluihin on <span class="gradient-text">tärkeää</span></h1>
+            <p style="color: var(--text-dim); margin-top: 20px;">Yleiskäyttöinen tekoäly osaa kirjoittaa sujuvasti mistä tahansa aiheesta, mutta se ei tiedä mitään yrityksenne hinnastosta, käytännöistä tai asiakashistoriasta, ellei sille kerrota. Kun tätä tietoaukkoa ei täytetä hallitusti, malli täyttää sen itse arvaamalla, ja tulos näyttää yhtä varmalta kuin oikea vastaus. Tässä artikkelissa käydään läpi, mitä konteksti tarkoittaa käytännössä, ja miten sen puute tai läsnäolo näkyy suoraan käyttökokemuksessa, tietoturvassa ja siinä, kuinka luotettavia vastaukset ovat.</p>
+            <div class="post-author">
+                <img src="../img/valok-aleksanteri.webp" alt="Aleksanteri Rönkä" width="44" height="44" loading="lazy">
+                <div>
+                    <span class="post-author-name">Aleksanteri Rönkä</span>
+                    <span class="post-author-role">Perustaja, Valok &middot; <a href="mailto:aleksanteri@valok.fi">aleksanteri@valok.fi</a></span>
+                </div>
+            </div>
+        </header>
+
+        <div class="post-image">
+            <img src="../img/miksi-tekoaly-tarvitsee-yrityksen-kontekstin.webp" alt="Yrityksen kontekstin tuominen tekoälytyökaluun - Valok" width="960" height="1107">
+        </div>
+
+        <main class="post-content">
+            <div class="toc-box">
+                <h4>Sisällysluettelo</h4>
+                <ul>
+                    <li><a href="#mita-konteksti">1. Mitä konteksti tarkoittaa tekoälytyökalussa</a></li>
+                    <li><a href="#ilman-kontekstia">2. Ilman kontekstia tekoäly ei tunne teitä, se arvaa</a></li>
+                    <li><a href="#kayttokokemus">3. Käyttökokemus: miksi työntekijät lopettavat käytön</a></li>
+                    <li><a href="#faktat">4. Faktat: kun konteksti puuttuu, seurauksilla on hintansa</a></li>
+                    <li><a href="#tietoturva">5. Tietoturva: konteksti syntyy joka tapauksessa, kysymys on missä</a></li>
+                    <li><a href="#nelja-tapaa">6. Neljä tapaa tuoda konteksti tekoälyyn</a></li>
+                    <li><a href="#mita-vaatii">7. Mitä hyvä konteksti vaatii yritykseltä</a></li>
+                    <li><a href="#ukk">8. Usein kysyttyä</a></li>
+                </ul>
+            </div>
+
+            <h2 id="mita-konteksti">1. Mitä konteksti tarkoittaa tekoälytyökalussa</h2>
+
+            <div class="highlight-box">
+                <p style="margin-bottom: 0;">Tekoäly ei tiedä yrityksestänne mitään, ellei sille kerrota. Se ei ole vika, se on lähtökohta.</p>
+            </div>
+
+            <p>Kielimalli on koulutettu valtavalla määrällä yleistä tekstiä internetistä, kirjoista ja koodista. Se osaa kieliopin, yleiset faktat ja tavat kirjoittaa erilaisia tekstityyppejä. Se ei kuitenkaan tiedä, mikä on teidän yrityksenne tämänhetkinen hinnasto, mitä asiakas X on ostanut aiemmin, mikä on teidän toimitusehtonne poikkeustilanteessa tai kuka yrityksessä vastaa mistäkin. Tätä puuttuvaa tietoa kutsutaan kontekstiksi: kaikki se, mikä tuodaan mallille juuri ennen kysymyksen esittämistä, jotta vastaus perustuu yrityksen todelliseen tilanteeseen eikä mallin yleiseen arvaukseen.</p>
+
+            <p>Konteksti voi olla monenlaista: kiinteä tekstipätkä, joka liitetään jokaiseen kysymykseen mukaan, hakuindeksi, josta malli hakee relevantin osan yrityksen dokumenteista juuri sillä hetkellä, tai suora yhteys live-järjestelmään, josta malli voi kysyä ajantasaisen tilanteen. Yhteistä kaikille on sama periaate: mitä paremmin malli tuntee yrityksenne todellisuuden ennen vastaamista, sitä hyödyllisempi, turvallisempi ja tarkempi vastaus on.</p>
+
+            <h2 id="ilman-kontekstia">2. Ilman kontekstia tekoäly ei tunne teitä, se arvaa</h2>
+
+            <p>Yleiskäyttöinen tekoälytyökalu, joka on otettu käyttöön ilman mitään yrityskohtaista kontekstia, on kuin uusi työntekijä ensimmäisenä päivänä ilman perehdytystä: älykäs, kielitaitoinen ja täysin tietämätön siitä, miten juuri teidän yrityksessänne asiat toimivat. Ero on siinä, että uusi työntekijä yleensä myöntää, ettei tiedä vastausta. Kielimalli ei tee näin luontaisesti. Se on koulutettu tuottamaan uskottavan kuuloista tekstiä, ja kun se ei tiedä oikeaa vastausta, se tuottaa todennäköisimmän kuuloisen vastauksen sen sijaan, että se myöntäisi, ettei tiedä.</p>
+
+            <p>Tämä ei ole pieni yksityiskohta, vaan koko ongelman ydin. Stanfordin yliopiston tutkimuskeskus HAI:n vuoden 2026 AI Index -raportissa mitattiin uudella tarkkuusbenchmarkilla, kuinka hyvin 26 johtavaa kielimallia erottaa tiedon uskomuksesta: hallusinaatioastetta esiintyi 22 prosentista aina 94 prosenttiin riippuen mallista.<sup>1</sup> Sama raportti nosti esiin vielä osuvamman havainnon kontekstin merkityksestä: kun virheellinen väite esitettiin jonkun toisen uskomuksena, mallit tunnistivat sen hyvin, mutta kun sama virheellinen väite esitettiin käyttäjän omana uskomuksena, mallien tarkkuus romahti. Konteksti ei siis ole vain lisätieto, se muuttaa sitä, miten kriittisesti malli suhtautuu omaan vastaukseensa.</p>
+
+            <h2 id="kayttokokemus">3. Käyttökokemus: miksi työntekijät lopettavat käytön</h2>
+
+            <p>Ensimmäinen paikka, jossa kontekstin puute näkyy, on käyttökokemus, ei tietoturva eikä faktat. Työntekijä kysyy sisäiseltä tekoälyavustimelta yksinkertaisen kysymyksen, esimerkiksi mikä on tietyn tuotteen nykyinen toimitusaika, ja saa vastauksen, joka on yleisluontoinen, vanhentunut tai selvästi väärä, koska malli ei pääse käsiksi yrityksen omaan tilaustietoon. Toisella kerralla työntekijä ei enää kysy. Kolmannella kerralla hän on siirtynyt takaisin vanhaan tapaan: soittaa kollegalle tai etsii tiedon käsin.</p>
+
+            <p>Deloitten globaalin 2026 State of AI in the Enterprise -raportin mukaan yritykset ovat laajentaneet hyväksyttyjen tekoälytyökalujen käyttöoikeutta vuodessa 50 prosentilla: osuus on noussut alle 40 prosentista noin 60 prosenttiin työntekijöistä.<sup>2</sup> Pelkkä pääsy työkaluun ei kuitenkaan tarkoita, että sitä käytetään, ja yleisin syy käytön hiipumiseen ei ole työkalun huono käyttöliittymä, vaan se, ettei työkalu tiedä tarpeeksi ollakseen hyödyllinen juuri sillä hetkellä. Kontekstin puute ei siis ole vain tekninen puute, se on suora syy sille, miksi kallis tekoälyinvestointi jää käyttämättä.</p>
+
+            <h2 id="faktat">4. Faktat: kun konteksti puuttuu, seurauksilla on hintansa</h2>
+
+            <p>Selkein julkinen esimerkki kontekstin puutteen seurauksista on Air Canadan tapaus Kanadan Brittiläisen Kolumbian kuluttajariitatuomioistuimessa. Yhtiön verkkosivun chatbot kertoi asiakkaalle, että tämä voi hakea suruvapaa-alennusta, eli lähiomaisen kuoleman vuoksi myönnettävää alennettua lentohintaa, jälkikäteen, vaikka yhtiön todellinen käytäntö ei sallinut tätä.<sup>5</sup> Chatbotilla ei ollut luotettavaa yhteyttä yhtiön oikeaan käytäntödokumentaatioon, joten se tuotti uskottavan mutta väärän vastauksen. Air Canada yritti puolustautua väittämällä, ettei se ole vastuussa botin sanomisista, mutta tuomioistuin totesi asian suoraan: chatbot on osa yhtiön verkkosivua, siinä missä mikä tahansa muukin sisältö, ja yhtiö on vastuussa siitä, mitä se sanoo. Yhtiö joutui maksamaan vahingonkorvaukset.</p>
+
+            <p>Tapaus on pieni rahallisesti, mutta se on täydellinen esimerkki mekanismista: kysymys ei ollut siitä, oliko malli tarpeeksi älykäs, vaan siitä, ettei sillä ollut pääsyä oikeaan, ajantasaiseen tietoon silloin kun vastaus annettiin. Tutkimuspuolella sama mekanismi näkyy toisin päin: kun malli saa haun kautta relevantin lähdeaineiston ennen vastaamista, hallusinaatiot vähenevät mitattavasti. Béchard ja Marquez Ayala osoittivat NAACL 2024 -julkaisussaan, että ilman hakua rakenteellisissa vastauksissa hallusinoituja kohtia oli jopa 21 prosenttia, mutta haun kanssa osuus laski alle 7,5 prosenttiin.<sup>3</sup> Kävimme laajemmin läpi, <a href="tekoalyn-vastausten-laadun-mittaaminen.html">miten tekoälyratkaisun vastausten laatua mitataan</a> omassa artikkelissamme; tässä on hyvä muistaa, että laadun mittaaminen ja kontekstin rakentaminen ovat saman ongelman kaksi puolta.</p>
+
+            <h2 id="tietoturva">5. Tietoturva: konteksti syntyy joka tapauksessa, kysymys on missä</h2>
+
+            <p>Kolmas seuraus on helpoin ohittaa, koska se ei näy suoraan vääränä vastauksena, vaan siinä, mitä työntekijät tekevät, kun hyväksytty työkalu ei tunne heidän tarvitsemaansa kontekstia. Cyberhavenin 2026 AI Adoption and Risk -raportin mukaan 39,7 prosenttia kaikesta tekoälytyökaluihin syötetystä tiedosta sisältää arkaluonteista tai luottamuksellista tietoa, mukaan lukien promptiin kirjoitettu, kopioitu tai tiedostona ladattu aineisto.<sup>4</sup> Kun hyväksytyllä sisäisellä työkalulla ei ole pääsyä oikeaan aineistoon, työntekijä hakee saman hyödyn kopioimalla tiedon itse julkiseen, hallitsemattomaan tekoälytyökaluun, koska tehtävä pitää silti saada tehtyä.</p>
+
+            <p>Tämä on keskeinen syy, miksi kontekstin puute on myös tietoturvaongelma, ei vain käytettävyysongelma. Konteksti ei jää rakentamatta, jos sitä ei tarjota hallitusti, se rakennetaan silti, mutta hallitsemattomasti ja yrityksen näkymättömissä. OWASP:n GenAI Security -projektin LLM-sovellusten Top 10 -listan kohta LLM02, arkaluonteisen tiedon paljastuminen, kuvaa juuri tätä riskiä sekä sisään- että ulospäin.<sup>6</sup> Kirjoitimme aiemmin tarkemmin siitä, <a href="rag-kayttooikeudet-kuka-nakee-mita.html">kenelle yrityksen hakuindeksi vastaa ja miten käyttöoikeudet rakennetaan sen sisään</a>; sama periaate koskee kaikkea kontekstin tuomista, ei vain hakuindeksiä.</p>
+
+            <h2 id="nelja-tapaa">6. Neljä tapaa tuoda konteksti tekoälyyn</h2>
+
+            <div class="table-scroll">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Tapa</th>
+                            <th>Milloin sopii</th>
+                            <th>Kustannus</th>
+                            <th>Rajoitus</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Kiinteä konteksti järjestelmäkehotteessa</td>
+                            <td>Pieni, harvoin muuttuva tietomäärä: hinnasto, käytännöt, toimintaohjeet</td>
+                            <td>Lähes ilmainen toteuttaa</td>
+                            <td>Ei skaalaudu suureen tai usein päivittyvään dokumenttimäärään</td>
+                        </tr>
+                        <tr>
+                            <td>Hakuindeksi (RAG)</td>
+                            <td>Suuri, usein päivittyvä dokumenttimäärä: sopimukset, tukiartikkelit, käsikirjat</td>
+                            <td>Kertainvestointi indeksointiin, jatkuva ylläpito</td>
+                            <td>Vaatii käyttöoikeuksien rakentamisen indeksin sisään, ei automaattisesti</td>
+                        </tr>
+                        <tr>
+                            <td>Suora työkalukutsu live-järjestelmään</td>
+                            <td>Reaaliaikainen tieto: varastosaldo, tilauksen tila, kalenteri</td>
+                            <td>Jatkuva tekninen ylläpito ja valvonta</td>
+                            <td>Jokainen kutsuttu järjestelmä on uusi hyökkäyspinta ja virhelähde</td>
+                        </tr>
+                        <tr>
+                            <td>Mallin hienosäätö</td>
+                            <td>Kapea, vakaa erikoisosaaminen, joka ei muutu usein</td>
+                            <td>Kallein, vaatii dataa ja laskentatehoa</td>
+                            <td>Ei sovi nopeasti muuttuvaan tietoon, koska päivitys vaatii uuden koulutuskierroksen</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>Useimmalle PK-yritykselle oikea ratkaisu ei ole yksi näistä, vaan kahden ensimmäisen yhdistelmä: kiinteä konteksti sille tiedolle, joka muuttuu harvoin, ja hakuindeksi sille tiedolle, joka on laaja ja elää jatkuvasti. Kävimme läpi tarkemmin, <a href="rag-arkkitehtuuri-opas.html">miten luotettava hakuindeksipohjainen järjestelmä rakennetaan</a> omassa artikkelissamme, jos hakuindeksi on oikea ratkaisu juuri teidän tapauksessanne.</p>
+
+            <h2 id="mita-vaatii">7. Mitä hyvä konteksti vaatii yritykseltä</h2>
+
+            <p>Teknologia on tässä yhtälössä helpompi puoli. Vaikeampi puoli on aineiston kunto ennen kuin sitä tuodaan tekoälyn ulottuville. Jos yrityksen hinnasto on kolme vuotta vanha Word-dokumentti, jota kukaan ei muista päivittää, tekoäly toistaa sen vanhentuneena yhtä varmasti kuin se toistaisi ajantasaisen tiedon. Konteksti ei paranna huonoa lähdeaineistoa, se ainoastaan levittää sen tarkemmin ja nopeammin kuin ihminen ehtisi.</p>
+
+            <p>Kolme asiaa kannattaa varmistaa ennen kuin kontekstia aletaan rakentaa: kuka omistaa kunkin tietolähteen ja vastaa sen ajantasaisuudesta, kuinka usein lähde päivittyy ja miten päivitys näkyy tekoälyn kontekstissa viiveettä, ja mikä osa aineistosta on rajattava käyttöoikeuksien perusteella eikä saa näkyä kaikille kysyjille. Nämä kolme kysymystä ovat samat riippumatta siitä, valitaanko kiinteä konteksti vai hakuindeksi.</p>
+
+            <h2 id="ukk">8. Usein kysyttyä</h2>
+
+            <h3>Mitä konteksti tarkoittaa tekoälytyökalussa?</h3>
+            <p>Kontekstilla tarkoitetaan sitä tietoa, jonka tekoäly saa käyttöönsä ennen kuin se vastaa: yrityksen omat dokumentit, hinnastot, käytännöt, aiemmat asiakaskeskustelut tai pääsy live-järjestelmiin. Ilman tätä tietoa malli vastaa vain sen perusteella, mitä se on oppinut koulutusvaiheessa, eikä se tiedä mitään yrityksen todellisesta tilanteesta.</p>
+
+            <h3>Riittääkö pelkkä ChatGPT ilman yrityksen omaa kontekstia?</h3>
+            <p>Yleiskäyttöiseen kirjoitusapuun ja ideointiin kyllä, mutta ei tehtäviin, joissa vastauksen pitää perustua yrityksen omiin tietoihin, kuten hintoihin, sopimusehtoihin tai asiakashistoriaan. Näissä tilanteissa malli täyttää tietoaukon todennäköisimmällä arvauksella, joka voi kuulostaa täysin uskottavalta ja olla silti väärin.</p>
+
+            <h3>Parantaako konteksti myös tietoturvaa?</h3>
+            <p>Kyllä, epäsuorasti mutta merkittävästi. Kun yrityksellä ei ole hyväksyttyä työkalua, jolla on oikea konteksti, työntekijät hakevat saman hyödyn kopioimalla yrityksen tietoa julkisiin tekoälytyökaluihin käsin. Rakennettu, hallittu konteksti sisäisessä työkalussa poistaa tarpeen tähän ja pitää tiedon yrityksen omassa hallinnassa.</p>
+
+            <h3>Miten yritys tuo oman kontekstinsa tekoälyyn?</h3>
+            <p>Neljällä päätavalla: kiinteä konteksti järjestelmäkehotteessa pienelle, harvoin muuttuvalle tietomäärälle, hakuindeksi eli RAG suurelle ja usein päivittyvälle dokumenttimäärälle, suora työkalukutsu live-järjestelmään reaaliaikaista tietoa varten, tai mallin hienosäätö, joka sopii vain kapeaan, vakaaseen erikoisosaamiseen. Useimmat yritykset tarvitsevat yhdistelmän ensimmäisestä kolmesta.</p>
+
+            <h3>Kuinka paljon kontekstin rakentaminen maksaa?</h3>
+            <p>Riippuu tavasta: kiinteä kontekstiteksti järjestelmäkehotteessa on lähes ilmainen toteuttaa, hakuindeksi vaatii kertainvestoinnin indeksointiin ja ylläpitoon, ja live-integraatio vaatii jatkuvaa teknistä ylläpitoa. Suurin kustannus ei kuitenkaan yleensä ole tekniikka, vaan sen varmistaminen, että lähdeaineisto on ajan tasalla ja oikein oikeuksitettu ennen kuin se tuodaan tekoälyn ulottuville.</p>
+
+            <div class="reference-list">
+                <h4>Lähdeviitteet:</h4>
+                <ol>
+                    <li>Stanford HAI: <a href="https://hai.stanford.edu/ai-index/2026-ai-index-report/responsible-ai" target="_blank" rel="noopener">"The 2026 AI Index Report, Responsible AI"</a>.</li>
+                    <li>Deloitte: <a href="https://www.deloitte.com/us/en/about/press-room/state-of-ai-report-2026.html" target="_blank" rel="noopener">"The State of AI in the Enterprise, 2026 AI report"</a>.</li>
+                    <li>Béchard, Marquez Ayala: <a href="https://arxiv.org/abs/2404.08189" target="_blank" rel="noopener">"Reducing hallucination in structured outputs via Retrieval-Augmented Generation"</a>. NAACL 2024, ServiceNow Research.</li>
+                    <li>Cyberhaven: <a href="https://www.cyberhaven.com/blog/sensitive-data-flowing-into-ai-tools" target="_blank" rel="noopener">"2026 AI Adoption and Risk Report"</a>.</li>
+                    <li>American Bar Association: <a href="https://www.americanbar.org/groups/business_law/resources/business-law-today/2024-february/bc-tribunal-confirms-companies-remain-liable-information-provided-ai-chatbot/" target="_blank" rel="noopener">"BC Tribunal Confirms Companies Remain Liable for Information Provided by AI Chatbot"</a>. Moffatt v. Air Canada, British Columbia Civil Resolution Tribunal, 2024.</li>
+                    <li>OWASP GenAI Security Project: <a href="https://owasp.org/www-project-top-10-for-large-language-model-applications/" target="_blank" rel="noopener">"Top 10 for LLM Applications 2025"</a>, kohta LLM02 Sensitive Information Disclosure.</li>
+                </ol>
+            </div>
+
+            <div class="contact-section">
+                <div class="section-header" style="text-align: center; margin-bottom: 40px;">
+                    <span class="section-tag">Otetaan askel eteenpäin</span>
+                    <h2>Tunteeko teidän tekoälynne yrityksenne?</h2>
+                    <p>Kerro, mihin tekoälytyökalua käytetään ja mitä tietoa sen pitäisi tuntea. Käymme läpi, mistä nykyinen kontekstiaukko syntyy ja miten se täytetään turvallisesti. Maksuton, kestää tunnin.</p>
+                </div>
+
+                <div class="contact-container" style="max-width: 100%;">
+                    <div class="contact-form-card">
+                        <form action="https://formspree.io/f/xlgpgyjl" method="POST" id="contact-form">
+                            <div class="form-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 20px;">
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="name">Nimi</label>
+                                    <input type="text" id="name" name="name" autocomplete="name" placeholder="Oma nimesi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                </div>
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="email">Sähköposti</label>
+                                    <input type="email" id="email" name="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="esimerkki@yritys.fi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg full-width" style="width: 100%; padding: 16px; font-weight: bold; cursor: pointer; margin-top: 20px;">
+                                Varaa ilmainen konsultaatio
+                            </button>
+                            <div id="form-status" class="form-status" aria-live="polite"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </article>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer" width="4206" height="4206" loading="lazy"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer" width="4206" height="4206" loading="lazy">VALOK<span class="logo-dot">.</span></div>
+                <p>Prosessien automatisointia ja yrityksen omaan tietoon perustuvia tekoälyratkaisuja suomalaisille PK-yrityksille, tietoturva ja tietosuoja edellä.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Linkit</h4>
+                <ul>
+                    <li><a href="/">Etusivu</a></li>
+                    <li><a href="../blogi.html">Blogi</a></li>
+                    <li><a href="/#palvelut">Palvelut</a></li>
+                    <li><a href="../tietosuoja.html">Tietosuoja</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ota yhteyttä</h4>
+                <ul>
+                    <li>aleksanteri@valok.fi</li>
+                    <li>Jyväskylä, Finland</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Valok. Kaikki oikeudet pidätetään. · <a href="#" id="cookieSettingsLink">Evästeasetukset</a>
+        </div>
+    </footer>
+
+        <div id="cookieBanner" class="cookie-banner">
+        <h5>Yksityisyytesi on meille tärkeää</h5>
+        <p>Käytämme sivustolla vain välttämättömiä toimintoja varmistaaksemme parhaan mahdollisen käyttökokemuksen. Emme
+            käytä kolmannen osapuolen markkinointievästeitä ilman suostumustasi.</p>
+        <div class="cookie-btn-group">
+            <button id="acceptCookies" class="btn btn-primary">Hyväksy kaikki</button>
+            <button id="rejectCookies" class="btn btn-ghost">Hylkää</button>
+            <a href="../tietosuoja.html" class="btn btn-ghost">Lue lisää</a>
+        </div>
+    </div>
+
+    <script src="../main.js"></script>
+</body>
+
+</html>
