@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#030712">
+    <title>Tekoälyn nopea intuitio: milloin se riittää ja milloin tarvitaan hidasta harkintaa | Valok</title>
+    <meta name="description"
+        content="Kaikki tekoälytehtävät eivät vaadi hidasta harkintaa. Mitä nopea intuitio tarkoittaa tekoälymallissa ja mihin sitä kannattaa käyttää yrityksessä.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel=icon type=image/png sizes=32x32 href=../img/favicon-32x32.png>
+    <link rel=apple-touch-icon sizes=180x180 href=../img/favicon-180x180.png>
+
+    <link rel="canonical" href="https://valok.fi/blogi/tekoalyn-nopea-intuitio.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://valok.fi/blogi/tekoalyn-nopea-intuitio.html">
+    <meta property="og:title" content="Tekoälyn nopea intuitio: milloin se riittää ja milloin tarvitaan hidasta harkintaa">
+    <meta property="og:description" content="Kaikki tekoälytehtävät eivät vaadi hidasta harkintaa. Mitä nopea intuitio tarkoittaa tekoälymallissa ja mihin sitä kannattaa käyttää yrityksessä.">
+    <meta property="og:image" content="https://valok.fi/img/tekoalyn-nopea-intuitio.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tekoälyn nopea intuitio: milloin se riittää ja milloin tarvitaan hidasta harkintaa">
+    <meta name="twitter:description" content="Kaikki tekoälytehtävät eivät vaadi hidasta harkintaa. Mitä nopea intuitio tarkoittaa tekoälymallissa ja mihin sitä kannattaa käyttää yrityksessä.">
+    <meta name="twitter:image" content="https://valok.fi/img/tekoalyn-nopea-intuitio.webp">
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Tekoälyn nopea intuitio: milloin se riittää ja milloin tarvitaan hidasta harkintaa",
+  "description": "Kaikki tekoälytehtävät eivät vaadi hidasta harkintaa. Mitä nopea intuitio tarkoittaa tekoälymallissa ja mihin sitä kannattaa käyttää yrityksessä.",
+  "image": "https://valok.fi/img/tekoalyn-nopea-intuitio.webp",
+  "datePublished": "2026-09-26",
+  "dateModified": "2026-09-26",
+  "author": {
+    "@type": "Person",
+    "name": "Aleksanteri Rönkä",
+    "url": "https://valok.fi/",
+    "email": "aleksanteri@valok.fi",
+    "jobTitle": "Perustaja",
+    "worksFor": {
+      "@id": "https://valok.fi/#organization"
+    }
+  },
+  "publisher": {
+    "@id": "https://valok.fi/#organization"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://valok.fi/blogi/tekoalyn-nopea-intuitio.html"
+  }
+}
+</script>
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Mitä nopea intuitio ja hidas harkinta tarkoittavat tekoälyssä?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nopea intuitio ja hidas harkinta ovat psykologiasta lainattu tapa kuvata kahta tekoälymallin toimintatapaa. Nopea malli vastaa suoraan opitun kuvion perusteella yhdellä laskentakierroksella, nopeasti ja halvalla. Päättelymalli eli hitaan harkinnan malli tuottaa ennen vastausta pidemmän sisäisen päättelyketjun, mikä tekee siitä hitaamman ja kalliimman mutta tarkemman monimutkaisissa tehtävissä."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Onko nopea malli huonompi kuin päättelymalli?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ei yleispätevästi, vaan tehtävästä riippuen. Rutiininomaisessa luokittelussa, lyhyessä vastauksessa tai tunnetussa kuviossa nopea malli on usein yhtä tarkka kuin päättelymalli mutta murto-osan hinnasta ja viiveestä. Päättelymalli erottuu vasta tehtävissä, jotka vaativat monivaiheista logiikkaa tai harvinaisen tilanteen punnintaa."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kannattaako PK-yrityksen käyttää päättelymallia ollenkaan?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Useimmiten kyllä, mutta vain osaan tehtävistä. Toimivin malli ei ole jompikumpi vaan yhdistelmä: nopea malli hoitaa suuren volyymin rutiinitehtävät, ja vain epävarmat tai korkean riskin tapaukset ohjataan päättelymallille tai ihmiselle. Tämä reititys on se, mistä suurin osa kustannussäästöstä tulee ilman että vastausten laatu kärsii."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Miten reititys nopean ja hitaan mallin välillä toteutetaan käytännössä?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yleisin tapa on asettaa nopea malli oletukseksi ja määrittää selkeät ehdot, joiden täyttyessä tehtävä ohjataan hitaammalle mallille: mallin oma epävarmuus, tehtävän monivaiheisuus, rahallinen tai oikeudellinen riski, tai se, että kysymys ei vastaa mitään opittua kuviota. Tämä vastaa samaa arkkitehtuuria kuin moniagenttijärjestelmissä, joissa eri agentit erikoistuvat eri tehtäviin."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Onko nopean intuition ja hitaan harkinnan jako tieteellisesti tarkka kuvaus tekoälystä?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ei kirjaimellisesti. Jako on Daniel Kahnemanin ihmisen ajattelusta kuvaama malli, jota tekoälytutkimus käyttää hyödyllisenä vertauskuvana kahdelle eri laskentatavalle, ei väitteenä siitä, että malli ajattelisi tai kokisi asioita ihmisen tavoin. Vertauskuva on silti käytännöllinen, koska se auttaa valitsemaan oikean mallityypin oikeaan tehtävään."
+      }
+    }
+  ]
+}
+</script>
+
+    <style>
+        .post-header {
+            min-height: auto !important;
+            padding: 160px 24px 24px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            background: radial-gradient(circle at top, var(--accent-glow) 0%, transparent 70%);
+        }
+
+        .post-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px 100px;
+            line-height: 1.8;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .post-content h2, .post-content h3 {
+            color: var(--text);
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .post-content p {
+            margin-bottom: 24px;
+        }
+
+        .post-content ul, .post-content ol {
+            margin-bottom: 24px;
+            padding-left: 20px;
+        }
+
+        .post-content li {
+            margin-bottom: 12px;
+        }
+
+        .post-meta {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .post-author {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 24px;
+            text-align: left;
+        }
+
+        .post-author img {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .post-author-name {
+            display: block;
+            font-weight: 600;
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+
+        .post-author-role {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dim);
+            text-decoration: none;
+            margin-bottom: 40px;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        .post-image {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .post-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .toc-box {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+        }
+
+        .toc-box h4 {
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        .toc-box ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .toc-box a {
+            color: #58a6ff;
+            text-decoration: none;
+            display: block;
+            padding: 4px 0;
+            transition: var(--transition);
+        }
+
+        .toc-box a:hover {
+            color: var(--accent);
+            padding-left: 4px;
+        }
+
+        .highlight-box {
+            background: var(--glass);
+            padding: 30px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+            border-left: 4px solid var(--accent);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 40px 0;
+            background: var(--glass);
+            border-radius: var(--radius);
+            overflow: hidden;
+            font-size: 0.95rem;
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 14px 18px;
+            border: 1px solid var(--border);
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .comparison-table th {
+            background: rgba(var(--accent-rgb), 0.12);
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .comparison-table td:first-child {
+            font-weight: 600;
+            color: var(--text);
+            white-space: nowrap;
+        }
+
+        .table-scroll {
+            overflow-x: auto;
+        }
+
+        .reference-list {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            margin-top: 60px;
+        }
+
+        .reference-list ol {
+            padding-left: 20px;
+        }
+
+        .contact-section {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 60px 40px;
+            border-radius: var(--radius);
+            margin-top: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="particles"></canvas>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark" width="4206" height="4206"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light" width="4206" height="4206">VALOK<span
+                     class="logo-dot">.</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="/#palvelut">Palvelut</a>
+                <a href="/#prosessi">Prosessi</a>
+                <a href="../blogi.html">Blogi</a>
+                <a href="/#yhteystiedot" class="nav-cta">Ota yhteyttä</a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Avaa valikko">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <article>
+        <header class="post-header">
+            <a href="../blogi.html" class="back-link">← Takaisin blogiin</a>
+            <span class="post-meta">Tekoäly • Mallien reititys • Kustannustehokkuus</span>
+            <h1>Tekoälyn nopea intuitio: milloin se riittää ja milloin tarvitaan <span class="gradient-text">hidasta harkintaa</span></h1>
+            <p style="color: var(--text-dim); margin-top: 20px;">Kun tekoälystä puhutaan vuonna 2026, keskustelu kääntyy nopeasti päättelymalleihin: hitaisiin, kalliisiin mutta tarkkoihin malleihin, jotka miettivät vastauksensa moneen kertaan ennen kuin antavat sen. Suurin osa yrityksen tekoälytehtävistä ei kuitenkaan tarvitse tätä lainkaan. Psykologiasta lainattu nopean intuition käsite kuvaa mallia, joka vastaa nopeasti ja vaistonvaraisesti, ilman pitkää harkintaa, ja joka riittää useimpiin arjen tehtäviin murto-osalla kustannuksesta. Syyskuussa 2026 markkinoille tuotu TypeSafe AI:n Jev-malli on tuore esimerkki siitä, että tällaisia malleja rakennetaan jo omina kaupallisina tuotteinaan. Tässä artikkelissa käydään läpi, mistä jako tulee, mitä nopea, intuitiivinen malli tarkoittaa käytännössä, ja mihin sitä kannattaa käyttää nyt ja lähitulevaisuudessa.</p>
+            <div class="post-author">
+                <img src="../img/valok-aleksanteri.webp" alt="Aleksanteri Rönkä" width="44" height="44" loading="lazy">
+                <div>
+                    <span class="post-author-name">Aleksanteri Rönkä</span>
+                    <span class="post-author-role">Perustaja, Valok &middot; <a href="mailto:aleksanteri@valok.fi">aleksanteri@valok.fi</a></span>
+                </div>
+            </div>
+        </header>
+
+        <div class="post-image">
+            <img src="../img/tekoalyn-nopea-intuitio.webp" alt="Nopea, intuitiivinen tekoälymalli lajittelee tehtäviä - Valok" width="848" height="1264">
+        </div>
+
+        <main class="post-content">
+            <div class="toc-box">
+                <h4>Sisällysluettelo</h4>
+                <ul>
+                    <li><a href="#tausta">1. Mistä nopea intuitio ja hidas harkinta tulevat</a></li>
+                    <li><a href="#tekoalyssa">2. Nopea intuitio ja hidas harkinta tekoälyssä</a></li>
+                    <li><a href="#hinta-nopeus">3. Miksi hinta ja nopeus ratkaisevat useimmiten</a></li>
+                    <li><a href="#tanaan">4. Missä nopea malli toimii jo tänään</a></li>
+                    <li><a href="#reititys">5. Reititys: kun järjestelmä vaihtaa ajattelutapaa kesken tehtävän</a></li>
+                    <li><a href="#tulevaisuus">6. Tulevaisuuden käyttökohteet PK-yritykselle</a></li>
+                    <li><a href="#rajat">7. Milloin nopea malli ei riitä</a></li>
+                    <li><a href="#ukk">8. Usein kysyttyä</a></li>
+                </ul>
+            </div>
+
+            <h2 id="tausta">1. Mistä nopea intuitio ja hidas harkinta tulevat</h2>
+
+            <div class="highlight-box">
+                <p style="margin-bottom: 0;">Kaikki tekoälytehtävät eivät ansaitse samaa hidasta, kallista ajattelua. Osa kannattaa jättää nopealle vaistolle.</p>
+            </div>
+
+            <p>Nopea intuitio ja hidas harkinta ovat peräisin psykologi Daniel Kahnemanin kirjasta Thinking, Fast and Slow (suomeksi Ajattelu, nopeasti ja hitaasti), jossa Kahneman nimeää ne järjestelmä 1:ksi ja järjestelmä 2:ksi. Kahneman kuvasi ihmisen ajattelua kahtena järjestelmänä: nopea intuitio on nopea, automaattinen ja vaistonvarainen, se tuottaa vastauksia vähällä tai ei lainkaan tietoisella ponnistuksella. Hidas harkinta on sen sijaan hidas, tietoinen ja looginen, ja se käynnistyy vasta, kun tehtävä on monimutkainen tai tuttu kuvio ei riitä.<sup>1</sup> Suurin osa arjen päätöksistä tehdään nopealla intuitiolla, koska se on nopea ja energiatehokas, ja hidas harkinta otetaan käyttöön vain silloin, kun se on todella tarpeen.</p>
+
+            <p>Tämä jako ei ole enää pelkkää psykologiaa. Kun tekoälytutkijat ja -toimittajat ovat etsineet ilmaisua sille, miksi jotkin kielimallit vastaavat välittömästi ja toiset käyttävät sekunteja tai minuutteja sisäiseen päättelyyn ennen vastaustaan, Kahnemanin termistö on sopinut tarkoitukseen hyvin. Se ei väitä, että malli ajattelisi kuten ihminen, mutta se on hyödyllinen tapa erottaa kaksi hyvin erilaista laskentatapaa toisistaan ja valita oikea kulloiseenkin tehtävään.</p>
+
+            <h2 id="tekoalyssa">2. Nopea intuitio ja hidas harkinta tekoälyssä</h2>
+
+            <p>Kielimallien maailmassa nopea malli, joka edustaa nopeaa intuitiota, tuottaa vastauksen yhdellä eteenpäin suuntautuvalla laskentakierroksella: se lukee syötteen ja kirjoittaa vastauksen suoraan opittujen kuvioiden perusteella, ilman että se näkyvästi pysähtyy pohtimaan vaihtoehtoja. Päättelymalli eli hitaan harkinnan malli sen sijaan tuottaa ennen lopullista vastausta pidemmän, usein piilotetun päättelyketjun, jossa se voi kokeilla useita lähestymistapoja, tarkistaa välituloksiaan ja perua virheellisiä polkuja. Tämä lisäpäättely maksaa laskentatehoa, ja siksi se näkyy suoraan hinnassa ja vasteajassa.</p>
+
+            <p>Tutkijat ovat myös alkaneet rakentaa arkkitehtuureja, jotka yhdistävät molemmat tavat samaan järjestelmään: nopea, intuitiivinen kerros hoitaa suurimman osan tehtävästä, ja hitaampi, päättelevä kerros aktivoituu vain silloin, kun se tuo aidosti lisäarvoa. Kansainvälisessä tutkimuksessa tätä on kutsuttu nopean intuition ja hitaan harkinnan fuusioksi (engl. System 1 and System 2 Fusion), ja tavoitteena on rakentaa malleja, jotka ovat sekä laaja-alaisesti osaavia että kykeneviä syvään erikoisosaamiseen tarvittaessa, ilman että jokainen kysymys maksaa saman verran laskentaa.<sup>2</sup> Käytännössä tämä näkyy jo tänään siinä, että lähes jokainen johtava tekoälylaboratorio tarjoaa sekä nopeita peruskielimalleja että erillisiä, hitaampia päättelymalleja samasta mallisukupolvesta.</p>
+
+            <p>Konkreettinen esimerkki tästä suunnasta ilmestyi vain viikkoja ennen tämän artikkelin julkaisua. Yhdysvaltalainen TypeSafe AI julkaisi 15.9.2026 Jev-nimisen mallin ja kutsui sitä suoraan &quot;System One Model&quot; -tuotteeksi, viitaten samaan Kahnemanin termistöön kuin tässä artikkelissa. Jev ei tuota lainkaan vapaamuotoista tekstiä, vaan palauttaa yhdellä laskentakierroksella tyypitetyn, todennäköisyyksin varustetun päätöksen ennalta määriteltyjen vaihtoehtojen joukosta, esimerkiksi luokittelun, pisteytyksen tai kyllä/ei-arvion. Yhtiö ilmoittaa vasteajaksi 70&ndash;500 millisekuntia ja väittää mallin olevan 40&ndash;200 kertaa nopeampi ja jopa 400 kertaa halvempi kuin verrattavat päättelymallit rakenteellisissa tehtävissä.<sup>3</sup> Riippumattomat tekniikka-arvioijat ovat kuitenkin huomauttaneet, ettei kyse ole yleiskäyttöisen kielimallin korvaajasta, vaan kapeasta, erikoistuneesta luokittelu-, pisteytys- ja reititysmoottorista, jonka lupaukset kannattaa suhteuttaa juuri tähän rajaukseen.<sup>4</sup> Silti Jev on hyvä osoitus siitä, että nopean intuition mallit eivät ole enää pelkkä arkkitehtuurikonsepti, vaan niistä rakennetaan jo omia, kaupallisia tuotteita.</p>
+
+            <h2 id="hinta-nopeus">3. Miksi hinta ja nopeus ratkaisevat useimmiten</h2>
+
+            <p>Ero ei ole vain teoreettinen, vaan se näkyy suoraan laskussa. Kun OpenAI toi markkinoille o1-mini-mallin, se hinnoiteltiin noin 80 % edullisemmaksi kuin sitä edeltänyt päättelymalli, ja se säilytti silti suuren osan alkuperäisen mallin päättelykyvystä matematiikassa ja koodauksessa.<sup>5</sup> Samaan aikaan päättelymallien tunnettu haittapuoli on viive: kun nopea malli vastaa sekunnin murto-osassa, päättelymalli voi käyttää vastaukseen kymmeniä sekunteja tai jopa minuutteja, koska osa ajasta kuluu näkymättömään sisäiseen pohdintaan ennen kuin mitään tulostetaan käyttäjälle.</p>
+
+            <p>Tämä tekee valinnasta käytännönläheisen, ei ideologisen. Reaaliaikaisessa chatissa, äänikanavassa tai suuressa volyymissa toistuvassa tehtävässä muutaman kymmenen sekunnin viive ei ole vain epämukava, se rikkoo koko käyttökokemuksen tai tekee ratkaisusta liian kalliin skaalattavaksi. Kävimme aiemmin läpi tarkemmin, <a href="tekoalyn-hinta-ja-roi.html">mistä tekoälyratkaisun todellinen hinta koostuu ja miten ROI lasketaan</a>; mallin tason valinta on yksi suurimmista yksittäisistä kustannustekijöistä tuossa laskelmassa, usein suurempi kuin itse käyttötapauksen monimutkaisuus.</p>
+
+            <h2 id="tanaan">4. Missä nopea malli toimii jo tänään</h2>
+
+            <p>Suuri osa yrityksen tekoälytehtävistä on luonteeltaan tunnistavia, ei päättelyä vaativia: viestin aihepiirin tunnistaminen, tukipyynnön kiireellisyyden arviointi, tuoteluokittelu, lyhyen vastauksen muotoilu tunnetun tiedon pohjalta, tai sen tarkistaminen, vastaako saapunut viesti johonkin usein toistuvaan kysymykseen. Näissä tehtävissä nopea malli on tyypillisesti riittävän tarkka, koska kuvio on tuttu ja vastaus ei vaadi monivaiheista logiikkaa, vain oikean opitun kuvion tunnistamista ja toistamista.</p>
+
+            <p>Tämä ei tarkoita, että nopea malli toimisi ilman tukea. Se toimii hyvin vasta, kun sillä on käytössään oikea tieto oikeaan aikaan, aivan kuten mikä tahansa muukin malli. Kirjoitimme aiemmin siitä, <a href="miksi-tekoaly-tarvitsee-yrityksen-kontekstin.html">miksi yrityksen oma konteksti on välttämätön ehto luotettaville vastauksille</a>; sama pätee nopeaan malliin, ehkä jopa korostuneemmin, koska sillä ei ole aikaa tai tilaa pohtia epävarmuutta ääneen samalla tavalla kuin päättelymallilla.</p>
+
+            <h2 id="reititys">5. Reititys: kun järjestelmä vaihtaa ajattelutapaa kesken tehtävän</h2>
+
+            <p>Toimivin ratkaisu useimmille yrityksille ei ole valita jompaakumpaa mallityyppiä, vaan rakentaa järjestelmä, joka käyttää molempia oikeassa kohtaa. Nopea malli toimii oletuksena ja hoitaa suurimman osan volyymista, ja vain ne tapaukset, joissa malli on epävarma, tehtävä on aidosti monivaiheinen tai riski väärästä vastauksesta on korkea, ohjataan hitaammalle päättelymallille tai ihmiselle. Analyysiyhtiö Gartner on suositellut juuri tätä lähestymistapaa: pienten, kohdennettujen mallien pilotointia alueilla, joissa suuret yleismallit eivät ole täyttäneet odotuksia nopeuden tai vastauslaadun suhteen, yhdistettynä useamman mallin ja työvaiheen yhdistäviin toteutuksiin siellä missä yhden mallin ratkaisu ei ole riittänyt.<sup>6</sup></p>
+
+            <p>Käytännössä tämä reititys muistuttaa samaa arkkitehtuuria, jota käytetään moniagenttijärjestelmissä: eri osat järjestelmästä erikoistuvat eri tehtäviin sen sijaan, että yksi malli yrittäisi tehdä kaiken. Kävimme läpi tarkemmin, <a href="tekoalyagentit-ja-moniagenttijarjestelmat.html">miten moniagenttijärjestelmät jakavat työn erikoistuneiden osien kesken</a>; Nopean ja hitaan mallin välinen reititys on saman periaatteen sovellus, jossa erikoistuminen tapahtuu ajattelutavan, ei roolin, perusteella.</p>
+
+            <h2 id="tulevaisuus">6. Tulevaisuuden käyttökohteet PK-yritykselle</h2>
+
+            <div class="table-scroll">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Käyttökohde</th>
+                            <th>Miksi nopea malli sopii</th>
+                            <th>Milloin eskaloidaan hitaammalle mallille</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Puhepohjainen asiakaspalvelu</td>
+                            <td>Vastauksen pitää tulla lähes viiveettä, jotta keskustelu tuntuu luontevalta</td>
+                            <td>Kun asiakas kysyy jotain, mikä vaatii tulkintaa sopimusehdoista tai poikkeuksista</td>
+                        </tr>
+                        <tr>
+                            <td>Ensivaiheen tukipyyntöjen luokittelu</td>
+                            <td>Kiireellisyys ja aihepiiri tunnistetaan tutuista kuvioista sekunneissa</td>
+                            <td>Kun pyyntö on epäselvä, ristiriitainen tai vaikuttaa poikkeukselliselta</td>
+                        </tr>
+                        <tr>
+                            <td>Agenttiputken välivaiheet</td>
+                            <td>Jokainen välivaihe (tiedon poiminta, muotoilu, tarkistus) tehdään halvalla</td>
+                            <td>Vain lopullinen, sitova päätös tai yhteenveto viedään päättelymallille</td>
+                        </tr>
+                        <tr>
+                            <td>Reunalaitteella tai paikallisesti ajettava tarkistus</td>
+                            <td>Nopea malli mahtuu pienempään laskentatehoon ja toimii ilman jatkuvaa pilviyhteyttä</td>
+                            <td>Kun paikallinen malli ei tunnista tilannetta, pyyntö lähetetään pilveen tarkempaan käsittelyyn</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>Yhteinen nimittäjä näissä on se, että nopea malli ei ole enää vain väliaikainen kompromissi, vaan tietoinen arkkitehtuurivalinta. Kun päättelymallin käyttö rajataan vain siihen murto-osaan tehtävistä, jossa se aidosti tarvitaan, koko järjestelmästä tulee sekä halvempi että nopeampi, ilman että vastausten laatu keskimäärin heikkenee. Tämä on myös suora syy sille, miksi tekoälyinvestointi kannattaa yleensä suunnitella useamman mallitason varaan alusta asti, ei lisätä jälkikäteen kustannusten noustessa liian korkeiksi. McKinseyn mukaan yli 78 % yrityksistä käyttää jo generatiivista tekoälyä ainakin yhdessä toiminnossa, mutta yli 80 % ei silti raportoi mitattavaa vaikutusta tulokseen; syynä on usein juuri se, että laajasti käyttöön otettu yleismalli ei ole suunniteltu oikean mallitason mukaan tehtävä kerrallaan.<sup>7</sup></p>
+
+            <h2 id="rajat">7. Milloin nopea malli ei riitä</h2>
+
+            <p>Nopea malli on vaarallisimmillaan silloin, kun se kohtaa tilanteen, joka näyttää tutulta muttei ole sitä. Koska nopea malli ei näkyvästi pohdi vaihtoehtoja, se ei myöskään näytä epäröintiä silloin, kun sen pitäisi. Tulos voi kuulostaa yhtä varmalta riippumatta siitä, onko se oikein vai väärin. Tämä on sama ilmiö, joka näkyy laajemmin kaikissa kielimalleissa ilman riittävää kontekstia tai varmuuden arviointia, mutta se korostuu nopeassa mallissa, koska sen koko suunnitteluperiaate on nopeus tarkkuuden sijaan silloin, kun molempia ei voi saada yhtä aikaa.</p>
+
+            <p>Tästä syystä toimiva järjestelmä tarvitsee aina selkeät eskalaatioehdot: mittarin sille, milloin malli on riittävän epävarma, jotta tehtävä pitää siirtää hitaammalle mallille tai ihmiselle, ja tavan seurata, kuinka usein näin todella tapahtuu. Ilman tätä nopea malli säästää rahaa lyhyellä aikavälillä mutta voi maksaa moninkertaisesti takaisin väärien vastausten, menetetyn luottamuksen tai korjaustyön muodossa. On myös syytä muistaa, ettei nopean intuition ja hitaan harkinnan jako ole tieteellisesti tarkka kuvaus siitä, miten malli toimii sisäisesti, vaan käytännöllinen vertauskuva, jota kannattaa käyttää suunnittelun apuvälineenä, ei ehdottomana totuutena.</p>
+
+            <h2 id="ukk">8. Usein kysyttyä</h2>
+
+            <h3>Mitä nopea intuitio ja hidas harkinta tarkoittavat tekoälyssä?</h3>
+            <p>Nopea intuitio ja hidas harkinta ovat psykologiasta lainattu tapa kuvata kahta tekoälymallin toimintatapaa. Nopea malli vastaa suoraan opitun kuvion perusteella yhdellä laskentakierroksella, nopeasti ja halvalla. Päättelymalli eli hitaan harkinnan malli tuottaa ennen vastausta pidemmän sisäisen päättelyketjun, mikä tekee siitä hitaamman ja kalliimman mutta tarkemman monimutkaisissa tehtävissä.</p>
+
+            <h3>Onko nopea malli huonompi kuin päättelymalli?</h3>
+            <p>Ei yleispätevästi, vaan tehtävästä riippuen. Rutiininomaisessa luokittelussa, lyhyessä vastauksessa tai tunnetussa kuviossa nopea malli on usein yhtä tarkka kuin päättelymalli mutta murto-osan hinnasta ja viiveestä. Päättelymalli erottuu vasta tehtävissä, jotka vaativat monivaiheista logiikkaa tai harvinaisen tilanteen punnintaa.</p>
+
+            <h3>Kannattaako PK-yrityksen käyttää päättelymallia ollenkaan?</h3>
+            <p>Useimmiten kyllä, mutta vain osaan tehtävistä. Toimivin malli ei ole jompikumpi vaan yhdistelmä: nopea malli hoitaa suuren volyymin rutiinitehtävät, ja vain epävarmat tai korkean riskin tapaukset ohjataan päättelymallille tai ihmiselle. Tämä reititys on se, mistä suurin osa kustannussäästöstä tulee ilman että vastausten laatu kärsii.</p>
+
+            <h3>Miten reititys nopean ja hitaan mallin välillä toteutetaan käytännössä?</h3>
+            <p>Yleisin tapa on asettaa nopea malli oletukseksi ja määrittää selkeät ehdot, joiden täyttyessä tehtävä ohjataan hitaammalle mallille: mallin oma epävarmuus, tehtävän monivaiheisuus, rahallinen tai oikeudellinen riski, tai se, että kysymys ei vastaa mitään opittua kuviota. Tämä vastaa samaa arkkitehtuuria kuin moniagenttijärjestelmissä, joissa eri agentit erikoistuvat eri tehtäviin.</p>
+
+            <h3>Onko nopean intuition ja hitaan harkinnan jako tieteellisesti tarkka kuvaus tekoälystä?</h3>
+            <p>Ei kirjaimellisesti. Jako on Daniel Kahnemanin ihmisen ajattelusta kuvaama malli, jota tekoälytutkimus käyttää hyödyllisenä vertauskuvana kahdelle eri laskentatavalle, ei väitteenä siitä, että malli ajattelisi tai kokisi asioita ihmisen tavoin. Vertauskuva on silti käytännöllinen, koska se auttaa valitsemaan oikean mallityypin oikeaan tehtävään.</p>
+
+            <div class="reference-list">
+                <h4>Lähdeviitteet:</h4>
+                <ol>
+                    <li>Scientific American: <a href="https://www.scientificamerican.com/article/kahneman-excerpt-thinking-fast-and-slow/" target="_blank" rel="noopener">"Of 2 Minds: How Fast and Slow Thinking Shape Perception and Choice"</a>, ote Daniel Kahnemanin kirjasta Thinking, Fast and Slow.</li>
+                    <li>Zhang ym.: <a href="https://arxiv.org/abs/2407.08642" target="_blank" rel="noopener">"Towards Building Specialized Generalist AI with System 1 and System 2 Fusion"</a>. arXiv, 2024.</li>
+                    <li>TypeSafe AI: <a href="https://typesafe.ai/blog/introducing-system-one-models-and-jev" target="_blank" rel="noopener">"Introducing System One Models &amp; Jev"</a>.</li>
+                    <li>Latent Space: <a href="https://www.latent.space/p/ainews-jev-a-system-one-model-that" target="_blank" rel="noopener">"Jev: a &quot;System One Model&quot; that only decides/classifies/routes/scores"</a>.</li>
+                    <li>OpenAI: <a href="https://openai.com/index/openai-o1-mini-advancing-cost-efficient-reasoning/" target="_blank" rel="noopener">"OpenAI o1-mini: Advancing cost-efficient reasoning"</a>.</li>
+                    <li>Gartner: <a href="https://www.gartner.com/en/documents/6606902" target="_blank" rel="noopener">"How to Grow Big With Small Language Models"</a>.</li>
+                    <li>McKinsey: <a href="https://www.mckinsey.com/capabilities/quantumblack/our-insights/seizing-the-agentic-ai-advantage" target="_blank" rel="noopener">"Seizing the agentic AI advantage"</a>.</li>
+                </ol>
+            </div>
+
+            <div class="contact-section">
+                <div class="section-header" style="text-align: center; margin-bottom: 40px;">
+                    <span class="section-tag">Otetaan askel eteenpäin</span>
+                    <h2>Käyttääkö teidän tekoälynne oikeaa mallia oikeaan tehtävään?</h2>
+                    <p>Kerro, mihin tehtävään tekoälyä käytetään tai suunnitellaan. Käymme läpi, missä nopea malli riittää ja missä tarvitaan järeämpää päättelyä, ja miten reititys rakennetaan niin että se säästää rahaa ilman että laatu kärsii. Maksuton, kestää tunnin.</p>
+                </div>
+
+                <div class="contact-container" style="max-width: 100%;">
+                    <div class="contact-form-card">
+                        <form action="https://formspree.io/f/xlgpgyjl" method="POST" id="contact-form">
+                            <div class="form-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 20px;">
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="name">Nimi</label>
+                                    <input type="text" id="name" name="name" autocomplete="name" placeholder="Oma nimesi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                </div>
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="email">Sähköposti</label>
+                                    <input type="email" id="email" name="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="esimerkki@yritys.fi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg full-width" style="width: 100%; padding: 16px; font-weight: bold; cursor: pointer; margin-top: 20px;">
+                                Varaa ilmainen konsultaatio
+                            </button>
+                            <div id="form-status" class="form-status" aria-live="polite"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </article>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer" width="4206" height="4206" loading="lazy"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer" width="4206" height="4206" loading="lazy">VALOK<span class="logo-dot">.</span></div>
+                <p>Prosessien automatisointia ja yrityksen omaan tietoon perustuvia tekoälyratkaisuja suomalaisille PK-yrityksille, tietoturva ja tietosuoja edellä.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Linkit</h4>
+                <ul>
+                    <li><a href="/">Etusivu</a></li>
+                    <li><a href="../blogi.html">Blogi</a></li>
+                    <li><a href="/#palvelut">Palvelut</a></li>
+                    <li><a href="../tietosuoja.html">Tietosuoja</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ota yhteyttä</h4>
+                <ul>
+                    <li>aleksanteri@valok.fi</li>
+                    <li>Jyväskylä, Finland</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Valok. Kaikki oikeudet pidätetään. · <a href="#" id="cookieSettingsLink">Evästeasetukset</a>
+        </div>
+    </footer>
+
+        <div id="cookieBanner" class="cookie-banner">
+        <h5>Yksityisyytesi on meille tärkeää</h5>
+        <p>Käytämme sivustolla vain välttämättömiä toimintoja varmistaaksemme parhaan mahdollisen käyttökokemuksen. Emme
+            käytä kolmannen osapuolen markkinointievästeitä ilman suostumustasi.</p>
+        <div class="cookie-btn-group">
+            <button id="acceptCookies" class="btn btn-primary">Hyväksy kaikki</button>
+            <button id="rejectCookies" class="btn btn-ghost">Hylkää</button>
+            <a href="../tietosuoja.html" class="btn btn-ghost">Lue lisää</a>
+        </div>
+    </div>
+
+    <script src="../main.js"></script>
+</body>
+
+</html>
