@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#030712">
+    <title>"Ihminen tarkistaa" ei ole kontrolli, ellei sitä rakenneta kontrolliksi | Valok</title>
+    <meta name="description"
+        content="'Ihminen tarkistaa lopputuloksen' on useimpien tekoälyhankkeiden ainoa kontrolli. Tutkimus kertoo, miksi se heikkenee ja miten siitä tehdään oikea kontrolli.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet"></noscript>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel=icon type=image/png sizes=32x32 href=../img/favicon-32x32.png>
+    <link rel=apple-touch-icon sizes=180x180 href=../img/favicon-180x180.png>
+
+    <link rel="canonical" href="https://valok.fi/blogi/ihminen-tarkistaa-automaatiovinouma.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://valok.fi/blogi/ihminen-tarkistaa-automaatiovinouma.html">
+    <meta property="og:title" content="'Ihminen tarkistaa' ei ole kontrolli, ellei sitä rakenneta kontrolliksi">
+    <meta property="og:description" content="Automaatiovinouma heikentää tarkastuskykyä juuri silloin, kun kone on useimmiten oikeassa. Tutkimus kertoo miksi, ja miten tarkistamisesta tehdään oikea kontrolli.">
+    <meta property="og:image" content="https://valok.fi/img/ihminen-tarkistaa-automaatiovinouma.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="'Ihminen tarkistaa' ei ole kontrolli, ellei sitä rakenneta kontrolliksi">
+    <meta name="twitter:description" content="Automaatiovinouma heikentää tarkastuskykyä juuri silloin, kun kone on useimmiten oikeassa. Tutkimus kertoo miksi, ja miten tarkistamisesta tehdään oikea kontrolli.">
+    <meta name="twitter:image" content="https://valok.fi/img/ihminen-tarkistaa-automaatiovinouma.webp">
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "'Ihminen tarkistaa' ei ole kontrolli, ellei sitä rakenneta kontrolliksi",
+  "description": "Automaatiovinouma heikentää tarkastuskykyä juuri silloin, kun kone on useimmiten oikeassa. Tutkimus kertoo miksi, ja miten tarkistamisesta tehdään oikea kontrolli.",
+  "image": "https://valok.fi/img/ihminen-tarkistaa-automaatiovinouma.webp",
+  "datePublished": "2026-09-29",
+  "dateModified": "2026-09-29",
+  "author": {
+    "@type": "Person",
+    "name": "Aleksanteri Rönkä",
+    "url": "https://valok.fi/",
+    "email": "aleksanteri@valok.fi",
+    "jobTitle": "Perustaja",
+    "worksFor": {
+      "@id": "https://valok.fi/#organization"
+    }
+  },
+  "publisher": {
+    "@id": "https://valok.fi/#organization"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://valok.fi/blogi/ihminen-tarkistaa-automaatiovinouma.html"
+  }
+}
+</script>
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Mitä automaatiovinouma tarkoittaa?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Automaatiovinouma (engl. automation bias) tarkoittaa taipumusta luottaa automaattisen järjestelmän tuottamaan tulokseen liikaa tai liian usein, jopa silloin, kun saatavilla on ristiriitaista tietoa. Se ei ole huolimattomuutta tai osaamattomuutta, vaan mitattu, toistuva ilmiö: tarkkaavaisuus siirtyy pois luotettavana pidetystä järjestelmästä, järjestelmälle annetaan liikaa auktoriteettia, ja vastuu hajaantuu, kun tehtävä jaetaan koneen kanssa."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Riittääkö, että ihminen tarkistaa tekoälyn vastaukset?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ei sellaisenaan. Tutkimus ihmisen ja automaation yhteistyöstä on mitannut kolmen vuosikymmenen ajan, että pelkkä ohje tarkistaa koneen tuotos ei riitä: tarkastuskyky heikkenee juuri silloin, kun automaatio on useimmiten oikeassa, koska sujuva ja useimmiten oikea vastaus laukaisee liiallisen luottamuksen. Tarkistamisesta tulee oikea kontrolli vasta, kun se rakennetaan prosessiksi: otanta, tunnetut virheet mukaan testeihin, mittarointi ja selkeä raja sille, missä kohdissa tarkastus on pakollinen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Poistaako koulutus automaatiovinouman?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ei. Tutkimus ihmisen ja koneen yhteistyöstä on mitannut, ettei jopa 60 minuutin koulutus vähentänyt automaatiovinoumaa, eikä sitä poistanut myöskään nimenomainen ohje tarkistaa koneen suositus. Sama toistui tuoreessa, kielimalleja koskevassa satunnaistetussa kokeessa, vaikka koulutus oli tällä kertaa paljon pidempi: 20 tunnin koulutuksen tekoälyn kriittiseen arviointiin saaneet lääkärit seurasivat silti virheellistä suositusta huomattavasti useammin kuin oikean suosituksen saanut verrokkiryhmä. Koulutus voi silti olla hyödyllistä muista syistä, se ei vain ole riittävä kontrolli yksinään."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Mitä tekoälyasetuksen 14 artikla vaatii ihmisen valvonnalta?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "EU:n tekoälyasetuksen (2024/1689) 14 artikla koskee suuririskisiä tekoälyjärjestelmiä ja edellyttää, että valvova henkilö pysyy tietoisena taipumuksesta luottaa automaattisesti tai liiallisesti järjestelmän tuottamiin tuotoksiin, eli automaatiovinoumasta nimeltä mainiten. Sama artikla edellyttää, että valvojalla on tosiasiallinen mahdollisuus jättää tulos huomiotta, korjata tai peruuttaa se, tai pysäyttää järjestelmä. 26 artiklan 2 kohdan mukaan valvonta on annettava henkilöille, joilla on siihen tarvittava pätevyys, koulutus ja valtuudet. Tavallisen pk-yrityksen sisäiseen ratkaisuun, joka ei ole suuririskinen, nämä eivät ole lakisääteinen velvoite, mutta ne ovat hyvä käytäntö silti."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kannattaako kaikki tekoälyn tuotokset tarkistaa?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ei useimmiten. Kaiken tarkistaminen johtaa läpileimaamiseen, jolloin tarkastuksesta tulee muodollisuus eikä se enää löydä virheitä. Huolella tehty, esimerkiksi kymmenen prosentin satunnaisotos löytää käytännössä enemmän virheitä kuin sata prosenttia, joka vain selataan läpi. Poikkeus ovat peruuttamattomat toimenpiteet, kuten rahan siirto tai tiedon poisto: niissä tarvitaan sääntöön perustuva este, ei otantaan perustuva tarkastus."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Miten tarkistamisen toimivuutta mitataan?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yksinkertaisin tapa on syöttää tunnettuja virheitä osaksi normaalia työtä ja laskea, montako niistä tarkastaja havaitsee. Ota esimerkiksi 20 tapausta, joita tarkastaja tavallisesti käsittelee, sijoita niistä muutamaan tarkoituksella virhe, ja mittaa havaitsemisaste. Toista sama kolmen kuukauden kuluttua: ensimmäinen mittaus kertoo lähtötason, toinen kertoo, onko tarkastus säilynyt vai näennäistynyt ajan myötä."
+      }
+    }
+  ]
+}
+</script>
+
+    <style>
+        .post-header {
+            min-height: auto !important;
+            padding: 160px 24px 24px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            background: radial-gradient(circle at top, var(--accent-glow) 0%, transparent 70%);
+        }
+
+        .post-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px 100px;
+            line-height: 1.8;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .post-content h2, .post-content h3 {
+            color: var(--text);
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .post-content p {
+            margin-bottom: 24px;
+        }
+
+        .post-content ul, .post-content ol {
+            margin-bottom: 24px;
+            padding-left: 20px;
+        }
+
+        .post-content li {
+            margin-bottom: 12px;
+        }
+
+        .post-meta {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .post-author {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 24px;
+            text-align: left;
+        }
+
+        .post-author img {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .post-author-name {
+            display: block;
+            font-weight: 600;
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+
+        .post-author-role {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dim);
+            text-decoration: none;
+            margin-bottom: 40px;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        .post-image {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .post-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .toc-box {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+        }
+
+        .toc-box h4 {
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        .toc-box ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .toc-box a {
+            color: #58a6ff;
+            text-decoration: none;
+            display: block;
+            padding: 4px 0;
+            transition: var(--transition);
+        }
+
+        .toc-box a:hover {
+            color: var(--accent);
+            padding-left: 4px;
+        }
+
+        .highlight-box {
+            background: var(--glass);
+            padding: 30px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+            border-left: 4px solid var(--accent);
+        }
+
+        .reference-list {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            margin-top: 60px;
+        }
+
+        .reference-list ol {
+            padding-left: 20px;
+        }
+
+        .contact-section {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 60px 40px;
+            border-radius: var(--radius);
+            margin-top: 80px;
+        }
+
+        .finding-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .finding-list li {
+            margin-bottom: 20px;
+            padding: 20px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+        }
+
+        .finding-list strong {
+            display: block;
+            color: var(--text);
+            margin-bottom: 6px;
+        }
+
+        .finding-list p {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .faq-item {
+            margin-bottom: 24px;
+        }
+
+        .faq-item h3 {
+            font-size: 1.05rem;
+            margin-top: 0;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="particles"></canvas>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark" width="4206" height="4206"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light" width="4206" height="4206">VALOK<span
+                     class="logo-dot">.</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="/#palvelut">Palvelut</a>
+                <a href="/#prosessi">Prosessi</a>
+                <a href="../blogi.html">Blogi</a>
+                <a href="/#yhteystiedot" class="nav-cta">Ota yhteyttä</a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Avaa valikko">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <article>
+        <header class="post-header">
+            <a href="../blogi.html" class="back-link">← Takaisin blogiin</a>
+            <span class="post-meta">Tekoäly • Ihmisen valvonta • Tekoälyasetus</span>
+            <h1>"Ihminen tarkistaa" ei ole kontrolli, <span class="gradient-text">ellei sitä rakenneta kontrolliksi</span></h1>
+            <p style="color: var(--text-dim); margin-top: 20px;">Jokainen tekoälyhanke päättyy lauseeseen "ihminen tarkistaa lopputuloksen". Vuosikymmenten tutkimus ihmisen ja koneen yhteistyöstä on kuitenkin mitannut, että tarkastuskyky heikkenee juuri silloin, kun kone on useimmiten oikeassa, eikä sitä poisteta kouluttamalla.</p>
+            <div class="post-author">
+                <img src="../img/valok-aleksanteri.webp" alt="Aleksanteri Rönkä" width="44" height="44" loading="lazy">
+                <div>
+                    <span class="post-author-name">Aleksanteri Rönkä</span>
+                    <span class="post-author-role">Perustaja, Valok &middot; <a href="mailto:aleksanteri@valok.fi">aleksanteri@valok.fi</a></span>
+                </div>
+            </div>
+        </header>
+
+        <div class="post-image">
+            <img src="../img/ihminen-tarkistaa-automaatiovinouma.webp" alt="Automaatiovinouma: ihmisen tarkastus tekoälyn tuotokselle ei ole kontrolli ilman rakennettua prosessia - Valok" width="960" height="1107">
+        </div>
+
+        <main class="post-content">
+            <div class="toc-box">
+                <h4>Sisällysluettelo</h4>
+                <ul>
+                    <li><a href="#mika-on-automaatiovinouma">1. Mitä automaatiovinouma tarkoittaa ja miksi se ei ole laiskuutta</a></li>
+                    <li><a href="#mita-tutkimus-mittasi">2. Mitä tutkimus ihmisen ja koneen yhteistyöstä kertoo</a></li>
+                    <li><a href="#kielimallit">3. Sama ilmiö on nyt mitattu kielimalleilla</a></li>
+                    <li><a href="#tekoalyasetus">4. Tekoälyasetus nimeää ilmiön, mutta ei kerro miten se ratkaistaan</a></li>
+                    <li><a href="#seitseman-tapaa">5. Seitsemän tapaa tehdä tarkistamisesta oikea kontrolli</a></li>
+                    <li><a href="#milloin-poistaa">6. Milloin ihmisen tarkastus kannattaa poistaa kokonaan</a></li>
+                    <li><a href="#testaa-itse">7. Miten tämän voi testata omassa yrityksessä</a></li>
+                    <li><a href="#faq">8. Usein kysyttyä</a></li>
+                </ul>
+            </div>
+
+            <p>Ei ole, jos tarkistaminen tarkoittaa sitä, että ihminen lukee koneen vastauksen ja hyväksyy sen. Ilmiöllä on nimi, automaatiovinouma (engl. automation bias), ja se on mitattu kauan ennen kielimalleja. Parasuraman ja Manzey kokosivat Human Factors -lehdessä vuonna 2010 kolmen vuosikymmenen kokeellisen aineiston, jonka mukaan automaatiovinoumaa ei poisteta kouluttamalla eikä nimenomaisella ohjeella tarkistaa koneen suositus, ja jonka mukaan yhdessä koeasetelmassa vain 33 prosenttia automaation virheistä havaittiin kuormittavassa monitehtävätilanteessa, kun kevyemmässä yhden tehtävän tilanteessa niistä havaittiin 97 prosenttia.</p>
+
+            <p>Sama pätee kielimalleihin. Tuoreessa, satunnaistetussa kokeessa lääkärit, jotka olivat suorittaneet 20 tunnin koulutuksen tekoälyn kriittisestä arvioinnista, saivat virheellisiä suosituksia saadessaan diagnostisen päättelyn tarkkuudeksi 73,3 prosenttia, kun oikeita suosituksia saaneella verrokkiryhmällä luku oli 84,9 prosenttia. Tässä artikkelissa käydään läpi, mitä tämä tarkoittaa yrityksen tekoälyratkaisulle ja miten tarkistamisesta tehdään kontrolli, joka kestää kuuden kuukauden käytön.</p>
+
+            <h2 id="mika-on-automaatiovinouma">1. Mitä automaatiovinouma tarkoittaa ja miksi se ei ole laiskuutta</h2>
+            <p>Sävy ratkaisee tässä kohtaa: automaatiovinouma ei ole huolimattomuutta eikä osaamattomuutta, ja jos teksti antaisi sen vaikutelman, lukija torjuisi koko argumentin heti. Parasuraman ja Manzey kuvaavat ilmiön syntyvän kolmesta mekanismista, jotka kaikki ovat rationaalisia sopeutumia, ei virheitä: tarkkaavaisuus siirtyy pois luotettavana pidetystä järjestelmästä muihin tehtäviin, koneelle annetaan liikaa auktoriteettia, ja vastuu hajaantuu, kun tehtävä jaetaan koneen kanssa.</p>
+
+            <p>Näistä seuraa johtopäätös, joka on vastoin intuitiota: mitä parempi järjestelmä on, sitä nopeammin tarkastaminen heikkenee, ja siksi hyvä järjestelmä tarvitsee enemmän rakennettua kontrollia kuin huono. Kun kone on useimmiten oikeassa, tarkastajan on yhä vaikeampi pysyä valppaana sitä harvaa kertaa varten, jolloin se ei ole.</p>
+
+            <div class="highlight-box">
+                Mitä parempi järjestelmä on, sitä nopeammin tarkastaminen heikkenee. Hyvä järjestelmä tarvitsee siksi enemmän rakennettua kontrollia kuin huono, ei vähemmän, vaikka intuitio sanoo toisin.
+            </div>
+
+            <h2 id="mita-tutkimus-mittasi">2. Mitä tutkimus ihmisen ja koneen yhteistyöstä kertoo</h2>
+            <p>Parasuraman ja Manzey (Human Factors 52(3), s. 381–410, 2010) kokosivat kolmen vuosikymmenen kokeellisen aineiston ihmisen ja automaation yhteistyöstä lento-, prosessi- ja terveydenhuollon tehtävissä. Neljä havaintoa kannattaa kirjoittaa auki, koska jokainen niistä kumoaa yhden yleisen vastaväitteen:</p>
+
+            <ul class="finding-list">
+                <li><strong>Kuormitus ratkaisee.</strong> Yhdessä koeasetelmassa (Parasuraman, Molloy &amp; Singh, 1993) automaation virheiden havaitseminen oli 33 prosenttia kuormittavassa, tasaisen luotettavuuden monitehtävätilanteessa, mutta 97 prosenttia kevyemmässä yhden tehtävän tilanteessa. Vastaväite, jonka tämä kumoaa: "meillä tarkistaja keskittyy".</li>
+                <li><strong>Koulutus ei riitä.</strong> Julkaisussa todetaan, ettei jopa 60 minuutin koulutus vähentänyt ilmiötä, eikä sitä estänyt myöskään nimenomainen ohje tarkistaa koneen suositus. Vastaväite, jonka tämä kumoaa: "koulutamme käyttäjät".</li>
+                <li><strong>Tieto voi olla näkyvissä ilman, että se havaitaan.</strong> Julkaisu kuvaa "looking but not seeing" -ilmiön, jossa tarkastaja katsoo ristiriitaista tietoa muttei prosessoi sitä. Vastaväite, jonka tämä kumoaa: "lähdeviite on näkyvissä".</li>
+                <li><strong>Ensimmäinen kohdattu virhe opettaa eniten.</strong> Automaation ensimmäinen kohdattu virhe heikentää havaintokykyä hetkeksi voimakkaimmin, mutta myöhempien virheiden havaitseminen paranee sen jälkeen selvästi, kun tarkastajan luottamus kalibroituu uudelleen kokemuksen kautta. Tämä on koko tekstin tärkein käytännön löydös: pelkkä tieto siitä, että järjestelmä voi erehtyä, ei riitä samalla tavalla kuin oma kokemus virheestä.</li>
+            </ul>
+
+            <p>Nämä tutkimukset tehtiin lento-, prosessi- ja terveydenhuollon tehtävillä, eivät tilitoimiston laskuntarkastuksella, mutta mekanismi, eli tarkkaavaisuuden siirtyminen pois luotettavana pidetystä järjestelmästä, on sama, ja sen voi todentaa omassa ympäristössä yhdellä testillä, joka on kuvattu tämän tekstin lopussa.</p>
+
+            <h2 id="kielimallit">3. Sama ilmiö on nyt mitattu kielimalleilla</h2>
+            <p>Tämä on koko artikkelin tuorein ja vahvin yksittäinen löydös, koska se sulkee vastaväitteen "tuo on vanhaa tutkimusta lentokoneista". Satunnaistetussa, yksöissokkoutetussa kokeessa (NEJM AI, 2026) 44 lääkäriä, jotka olivat suorittaneet 20 tunnin koulutuksen tekoälyn lukutaidosta ja kriittisestä arvioinnista, ratkaisi kuusi potilastapausta kielimallin avustuksella. Verrokkiryhmä sai virheettömät suositukset, koeryhmä sai suositukset, joihin oli tarkoituksella sijoitettu virhe kolmeen tapaukseen kuudesta.</p>
+
+            <p>Diagnostisen päättelyn tarkkuus oli verrokkiryhmässä 84,9 prosenttia ja koeryhmässä 73,3 prosenttia, eli 14 prosenttiyksikön ero. Ensisijaisen diagnoosin osalta luvut olivat 90,5 ja 76,1 prosenttia, eli 18,3 prosenttiyksikön ero. Kaksi rehellistä rajausta kannattaa sanoa ääneen: otos oli pieni, 44 lääkäriä, ja kyse oli koetilanteesta eikä oikeasta potilastyöstä, joten tarkkaa prosenttilukua ei pidä yleistää sellaisenaan. Rajaukset eivät kuitenkaan tee itse ilmiöstä epäuskottavaa: 14 ja 18,3 prosenttiyksikön kaltaiset erot, jotka toistuvat sekä kokonaistarkkuudessa että ensisijaisessa diagnoosissa, ovat liian suuria ja liian johdonmukaisia selittyäkseen pelkällä sattumalla.</p>
+
+            <p>Johtopäätös ei silti muutu: koulutus tekoälyn kriittiseen arviointiin ei estänyt virheellisen suosituksen seuraamista, ja juuri se koulutus on useimpien yritysten ainoa suunniteltu kontrolli. Jos 20 tuntia erikoiskoulutusta ei riittänyt lääkäreille, jotka tiesivät kokeen aikana, että osa suosituksista on tarkoituksella virheellisiä, on epärealistista odottaa, että lyhyt käyttöönotto-ohjeistus riittäisi arkisessa työssä.</p>
+
+            <h2 id="tekoalyasetus">4. Tekoälyasetus nimeää ilmiön, mutta ei kerro miten se ratkaistaan</h2>
+            <p>EU:n tekoälyasetuksen (2024/1689) 14 artikla koskee ihmisen suorittamaa valvontaa, ja se edellyttää, että valvova henkilö pysyy tietoisena "mahdollisesta taipumuksesta luottaa automaattisesti tai liiallisesti suuririskisen tekoälyjärjestelmän tuottamiin tuotoksiin ("automaatiovinouma")". Ilmiö on siis kirjoitettu asetuksen tekstiin nimeltä, suomeksi käännettynä täsmälleen samalla termillä jota tässä artikkelissa käytetään.</p>
+
+            <p>Sama artikla edellyttää, että valvovalla henkilöllä on tosiasiallinen mahdollisuus "jättää huomiotta, korjata tai peruuttaa" suuririskisen järjestelmän tuotokset, tai "puuttua järjestelmän toimintaan tai pysäyttää järjestelmä pysäytyspainikkeella tai vastaavalla menettelyllä". 26 artiklan 2 kohdan mukaan käyttöönottajan on annettava tämä valvonta henkilöille, joilla on siihen tarvittava pätevyys, koulutus ja valtuudet.</p>
+
+            <p>Rajaus on tärkeä sanoa heti perään: nämä velvoitteet koskevat suuririskisiksi luokiteltuja tekoälyjärjestelmiä, eivät tavallista sisäistä hakuassistenttia tai chattibottia. Aikataulukin on syytä tarkistaa ajantasaisena: alun perin suuririskisten järjestelmien velvoitteiden piti tulla voimaan 2.8.2026, mutta heinäkuussa 2026 voimaan tullut niin kutsuttu tekoälyn omnibus-asetus (2026/1744) siirsi tämän aikataulun myöhemmäksi, itsenäisten suuririskisten järjestelmien osalta 2.12.2027 ja tuoteturvakomponenttina toimivien järjestelmien osalta 2.8.2028. Läpinäkyvyysvelvoitteet, kuten tekoälysisällön merkintä 50 artiklan mukaisesti, pysyivät ennallaan 2.8.2026. Tavallisen pk-yrityksen ratkaisussa nämä valvontavelvoitteet eivät siis vielä ole lakisääteinen pakko, mutta ne kannattaa silti ottaa hyväksi käytännöksi, koska markkinoilla myydään "pakollisina" velvoitteita, jotka eivät sitä vielä ole.</p>
+
+            <h2 id="seitseman-tapaa">5. Seitsemän tapaa tehdä tarkistamisesta oikea kontrolli</h2>
+            <ol>
+                <li><strong>Tarkista otos, älä kaikkea.</strong> Kaiken tarkistaminen johtaa läpileimaamiseen. Huolella tarkistettu kymmenen prosentin satunnaisotos löytää käytännössä enemmän virheitä kuin sata prosenttia, joka vain selataan läpi. Tämä on vastoin intuitiota ja siksi se kannattaa perustella ääneen omalle tiimille.</li>
+                <li><strong>Syötä tarkastajalle tunnettuja virheitä.</strong> Tämä seuraa suoraan ihmistekijätutkimuksen tärkeimmästä havainnosta: oma kokemus virheestä terävöittää havaintokykyä paremmin kuin pelkkä tieto siitä, että virheitä voi tulla. Käytännössä testitapauksia, joissa vastaus on tarkoituksella väärä, ajetaan mukana normaalissa työssä harvakseltaan.</li>
+                <li><strong>Näytä lähde niin, että se on pakko avata.</strong> Linkki, jota ei tarvitse avata, ei tule avatuksi. Vaihtoehto: näytä katkelma ilman valmista vastausta niissä tapauksissa, joissa tarkkuus on kriittinen.</li>
+                <li><strong>Tee koneen epävarmuus näkyväksi.</strong> Jos järjestelmä ei tiedä, sen pitää sanoa se, eikä tuottaa yhtä sujuvaa vastausta kuin varmassa tapauksessa. Sujuvuus on juuri se signaali, joka vinouman laukaisee.</li>
+                <li><strong>Erota tarkastaja tuottajasta.</strong> Sama ihminen, joka pyysi vastauksen, on huonoin mahdollinen tarkastaja, koska hän odottaa valmiiksi tiettyä lopputulosta.</li>
+                <li><strong>Mittaa tarkastamista, älä oleta sitä.</strong> Kirjaa, kuinka usein tarkastaja muuttaa koneen ehdotusta. Jos luku on lähellä nollaa kuukausien ajan, tarkastusta ei todellisuudessa tapahdu.</li>
+                <li><strong>Poista tarkistus sieltä, missä se ei ole tarpeen, ja vahvista se siellä, missä se on.</strong> Tarkastusresurssi on käytännössä vakio. Jos se levitetään tasaisesti kaikkeen, se katoaa kokonaan sieltä, missä sitä eniten tarvittaisiin.</li>
+            </ol>
+
+            <p><a href="tekoalyn-vastausten-laadun-mittaaminen.html">Miten tekoälyn vastausten laatua mitataan</a> -artikkelissamme käydään läpi, miten automaattinen arviointi täydentää tätä listaa: mittaaminen kertoo, onko vastaus yleensä oikein, mutta se ei korvaa sitä, että joku tosiasiassa tarkistaa yksittäisen tapauksen silloin, kun sillä on väliä.</p>
+
+            <h2 id="milloin-poistaa">6. Milloin ihmisen tarkastus kannattaa poistaa kokonaan</h2>
+            <p>Tämä on rehellinen ja epämukava vastapaino, joka erottaa tämän tekstin kaikesta muusta aiheesta kirjoitetusta, myös Valokin omasta vakiovastauksesta. Jos tarkastus ei käytännössä tapahdu, se ei ole kontrolli, vaan vastuun siirto tarkastajalle, jolla ei ole realistista mahdollisuutta huomata virhettä.</p>
+
+            <p>Silloin on kaksi rehellistä vaihtoehtoa: joko rakennetaan oikea kontrolli, kuten sääntö, tarkistussumma, kaksoisvarmennus tai rajattu toimivalta, tai hyväksytään olemassa oleva virhetaso ja kirjataan se tietoisesti. Molemmat ovat parempia kuin nimellinen tarkastus, joka näyttää hyvältä riskiarviossa muttei estä mitään todellisuudessa.</p>
+
+            <p>Peruuttamattomien toimenpiteiden kohdalla vastaus ei ylipäätään ole tarkastus, vaan este: rahan siirto, viestin lähetys asiakkaalle ja tiedon poisto vaativat säännön, joka pysäyttää toiminnon automaattisesti tietyissä olosuhteissa, ei katsetta, joka voi harhautua. <a href="tekoalyn-rajoittaminen.html">Miten annat agentille juuri oikeat valtuudet</a> -artikkelimme käsittelee samaa rajaa toisesta suunnasta: tarkistuspiste ennen peruuttamatonta toimenpidettä on molempien tekstien yhteinen johtopäätös.</p>
+
+            <h2 id="testaa-itse">7. Miten tämän voi testata omassa yrityksessä</h2>
+            <p>Tämä osuus on tarkoituksella lyhyt ja toimenpiteellinen, jotta teksti on hyödyllinen ilman ostopäätöstä:</p>
+            <ol>
+                <li>Ota 20 tapausta, jotka järjestelmä on käsitellyt ja ihminen on hyväksynyt.</li>
+                <li>Sijoita niistä kolmeen tarkoituksella virhe, ja aja ne normaalin prosessin läpi.</li>
+                <li>Laske, montako virhettä havaittiin.</li>
+                <li>Toista kolmen kuukauden päästä, ja vertaa lukuja.</li>
+            </ol>
+            <p>Toinen mittaus on se, joka kertoo tuloksen: ensimmäinen kertoo lähtötason, toinen kertoo, onko tarkastus säilynyt vai onko se ajan myötä näennäistynyt. Tämä on sama testiaineisto, jota käytetään <a href="tekoalyn-nopea-intuitio.html">tekoälymallin nopeuden ja harkinnan valinnassa</a>: silloin, kun nopea, halvempi malli riittää useimpiin tapauksiin mutta osa vaatii hidasta harkintaa, juuri se raja on sama paikka, jossa ihmisen tarkastuksen pitäisi olla tiukin.</p>
+
+            <h2 id="faq">8. Usein kysyttyä</h2>
+
+            <div class="faq-item">
+                <h3>Mitä automaatiovinouma tarkoittaa?</h3>
+                <p>Automaatiovinouma (engl. automation bias) tarkoittaa taipumusta luottaa automaattisen järjestelmän tuottamaan tulokseen liikaa tai liian usein, jopa silloin, kun saatavilla on ristiriitaista tietoa. Se ei ole huolimattomuutta tai osaamattomuutta, vaan mitattu, toistuva ilmiö: tarkkaavaisuus siirtyy pois luotettavana pidetystä järjestelmästä, järjestelmälle annetaan liikaa auktoriteettia, ja vastuu hajaantuu, kun tehtävä jaetaan koneen kanssa.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Riittääkö, että ihminen tarkistaa tekoälyn vastaukset?</h3>
+                <p>Ei sellaisenaan. Tutkimus ihmisen ja automaation yhteistyöstä on mitannut kolmen vuosikymmenen ajan, että pelkkä ohje tarkistaa koneen tuotos ei riitä: tarkastuskyky heikkenee juuri silloin, kun automaatio on useimmiten oikeassa, koska sujuva ja useimmiten oikea vastaus laukaisee liiallisen luottamuksen. Tarkistamisesta tulee oikea kontrolli vasta, kun se rakennetaan prosessiksi: otanta, tunnetut virheet mukaan testeihin, mittarointi ja selkeä raja sille, missä kohdissa tarkastus on pakollinen.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Poistaako koulutus automaatiovinouman?</h3>
+                <p>Ei. Tutkimus ihmisen ja koneen yhteistyöstä on mitannut, ettei jopa 60 minuutin koulutus vähentänyt automaatiovinoumaa, eikä sitä poistanut myöskään nimenomainen ohje tarkistaa koneen suositus. Sama toistui tuoreessa, kielimalleja koskevassa satunnaistetussa kokeessa, vaikka koulutus oli tällä kertaa paljon pidempi: 20 tunnin koulutuksen tekoälyn kriittiseen arviointiin saaneet lääkärit seurasivat silti virheellistä suositusta huomattavasti useammin kuin oikean suosituksen saanut verrokkiryhmä. Koulutus voi silti olla hyödyllistä muista syistä, se ei vain ole riittävä kontrolli yksinään.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Mitä tekoälyasetuksen 14 artikla vaatii ihmisen valvonnalta?</h3>
+                <p>EU:n tekoälyasetuksen (2024/1689) 14 artikla koskee suuririskisiä tekoälyjärjestelmiä ja edellyttää, että valvova henkilö pysyy tietoisena taipumuksesta luottaa automaattisesti tai liiallisesti järjestelmän tuottamiin tuotoksiin, eli automaatiovinoumasta nimeltä mainiten. Sama artikla edellyttää, että valvojalla on tosiasiallinen mahdollisuus jättää tulos huomiotta, korjata tai peruuttaa se, tai pysäyttää järjestelmä. 26 artiklan 2 kohdan mukaan valvonta on annettava henkilöille, joilla on siihen tarvittava pätevyys, koulutus ja valtuudet. Tavallisen pk-yrityksen sisäiseen ratkaisuun, joka ei ole suuririskinen, nämä eivät ole lakisääteinen velvoite, mutta ne ovat hyvä käytäntö silti.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Kannattaako kaikki tekoälyn tuotokset tarkistaa?</h3>
+                <p>Ei useimmiten. Kaiken tarkistaminen johtaa läpileimaamiseen, jolloin tarkastuksesta tulee muodollisuus eikä se enää löydä virheitä. Huolella tehty, esimerkiksi kymmenen prosentin satunnaisotos löytää käytännössä enemmän virheitä kuin sata prosenttia, joka vain selataan läpi. Poikkeus ovat peruuttamattomat toimenpiteet, kuten rahan siirto tai tiedon poisto: niissä tarvitaan sääntöön perustuva este, ei otantaan perustuva tarkastus.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Miten tarkistamisen toimivuutta mitataan?</h3>
+                <p>Yksinkertaisin tapa on syöttää tunnettuja virheitä osaksi normaalia työtä ja laskea, montako niistä tarkastaja havaitsee. Ota esimerkiksi 20 tapausta, joita tarkastaja tavallisesti käsittelee, sijoita niistä muutamaan tarkoituksella virhe, ja mittaa havaitsemisaste. Toista sama kolmen kuukauden kuluttua: ensimmäinen mittaus kertoo lähtötason, toinen kertoo, onko tarkastus säilynyt vai näennäistynyt ajan myötä.</p>
+            </div>
+
+            <div class="reference-list">
+                <h4>Lähdeviitteet:</h4>
+                <ol>
+                    <li><a href="https://journals.sagepub.com/doi/10.1177/0018720810376055" target="_blank" rel="noopener">Parasuraman, R. &amp; Manzey, D. H.: Complacency and Bias in Human Use of Automation: An Attentional Integration</a>. Human Factors, 52(3), 381–410, 2010. Vertaisarvioitu katsaus kolmen vuosikymmenen kokeellisesta tutkimuksesta ihmisen ja automaation yhteistyöstä.</li>
+                    <li><a href="https://academic.oup.com/jamia/article-abstract/19/1/121/732254" target="_blank" rel="noopener">Goddard, K., Roudsari, A. &amp; Wyatt, J. C.: Automation bias – a systematic review of frequency, effect mediators, and mitigators</a>. Journal of the American Medical Informatics Association, 19(1), 121–127, 2012.</li>
+                    <li><a href="https://ai.nejm.org/doi/full/10.1056/AIoa2501001" target="_blank" rel="noopener">Automation Bias in Large Language Model-Assisted Diagnostic Reasoning among Physicians Trained in AI Literacy: A Randomized Clinical Trial</a>. NEJM AI, 3(5), 2026. Satunnaistettu, yksöissokkoutettu koe automaatiovinoumasta kielimalliavusteisessa diagnostisessa päättelyssä.</li>
+                    <li><a href="https://eur-lex.europa.eu/legal-content/FI/TXT/?uri=CELEX:32024R1689" target="_blank" rel="noopener">Euroopan parlamentin ja neuvoston asetus (EU) 2024/1689 (tekoälyasetus)</a>, 14 artikla (ihmisen suorittama valvonta) ja 26 artiklan 2 kohta.</li>
+                    <li><a href="https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf" target="_blank" rel="noopener">NIST AI 100-1 (AI Risk Management Framework 1.0)</a>, MANAGE- ja MEASURE-toiminnot jatkuvasta seurannasta.</li>
+                </ol>
+            </div>
+
+            <div class="contact-section">
+                <div class="section-header" style="text-align: center; margin-bottom: 40px;">
+                    <span class="section-tag">Otetaan askel eteenpäin</span>
+                    <h2>Missä kohtaa teidän prosessianne ihminen tarkistaa koneen tuotoksen?</h2>
+                    <p>Rakennamme kymmenen testitapausta, joista kolmessa on tarkoituksella virhe, ja katsomme yhdessä mitä niistä menee läpi. Maksuton, kestää tunnin.</p>
+                </div>
+
+                <div class="contact-container" style="max-width: 100%;">
+                    <div class="contact-form-card">
+                        <form action="https://formspree.io/f/xlgpgyjl" method="POST" id="contact-form">
+                            <div class="form-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 20px;">
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="name">Nimi</label>
+                                    <input type="text" id="name" name="name" autocomplete="name" placeholder="Oma nimesi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                </div>
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="email">Sähköposti</label>
+                                    <input type="email" id="email" name="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="esimerkki@yritys.fi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg full-width" style="width: 100%; padding: 16px; font-weight: bold; cursor: pointer; margin-top: 20px;">
+                                Varaa ilmainen konsultaatio
+                            </button>
+                            <div id="form-status" class="form-status" aria-live="polite"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </article>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer" width="4206" height="4206" loading="lazy"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer" width="4206" height="4206" loading="lazy">VALOK<span class="logo-dot">.</span></div>
+                <p>Prosessien automatisointia ja yrityksen omaan tietoon perustuvia tekoälyratkaisuja suomalaisille PK-yrityksille, tietoturva ja tietosuoja edellä.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Linkit</h4>
+                <ul>
+                    <li><a href="/">Etusivu</a></li>
+                    <li><a href="../blogi.html">Blogi</a></li>
+                    <li><a href="/#palvelut">Palvelut</a></li>
+                    <li><a href="../tietosuoja.html">Tietosuoja</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ota yhteyttä</h4>
+                <ul>
+                    <li>aleksanteri@valok.fi</li>
+                    <li>Jyväskylä, Finland</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Valok. Kaikki oikeudet pidätetään. · <a href="#" id="cookieSettingsLink">Evästeasetukset</a>
+        </div>
+    </footer>
+
+        <div id="cookieBanner" class="cookie-banner">
+        <h5>Yksityisyytesi on meille tärkeää</h5>
+        <p>Käytämme sivustolla vain välttämättömiä toimintoja varmistaaksemme parhaan mahdollisen käyttökokemuksen. Emme
+            käytä kolmannen osapuolen markkinointievästeitä ilman suostumustasi.</p>
+        <div class="cookie-btn-group">
+            <button id="acceptCookies" class="btn btn-primary">Hyväksy kaikki</button>
+            <button id="rejectCookies" class="btn btn-ghost">Hylkää</button>
+            <a href="../tietosuoja.html" class="btn btn-ghost">Lue lisää</a>
+        </div>
+    </div>
+
+    <script src="../main.js"></script>
+</body>
+
+</html>
