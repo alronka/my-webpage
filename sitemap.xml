@@ -67,20 +67,8 @@
       <priority>0.8</priority>
    </url>
    <url>
-      <loc>https://valok.fi/blogi/pk-yritys-tekoaly.html</loc>
-      <lastmod>2026-05-20</lastmod>
-      <changefreq>monthly</changefreq>
-      <priority>0.8</priority>
-   </url>
-   <url>
       <loc>https://valok.fi/blogi/tekoalyagentit-vs-rag.html</loc>
       <lastmod>2026-05-18</lastmod>
-      <changefreq>monthly</changefreq>
-      <priority>0.8</priority>
-   </url>
-   <url>
-      <loc>https://valok.fi/blogi/tekoalyagenttien-kokeilu-opas.html</loc>
-      <lastmod>2026-05-11</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.8</priority>
    </url>
@@ -153,12 +141,6 @@
    <url>
       <loc>https://valok.fi/blogi/automatisoi-rutiinit.html</loc>
       <lastmod>2026-04-02</lastmod>
-      <changefreq>monthly</changefreq>
-      <priority>0.7</priority>
-   </url>
-   <url>
-      <loc>https://valok.fi/blogi/tekoalyagentit-vs-perinteinen-automaatio.html</loc>
-      <lastmod>2026-03-31</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.7</priority>
    </url>
