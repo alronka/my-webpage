@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#030712">
+    <title>Tekoälytyökalujen perusasetukset yritykselle | Valok</title>
+    <meta name="description"
+        content="Mitkä asetukset kannattaa laittaa kuntoon, kun yritys ottaa käyttöön Clauden, ChatGPT:n, Geminin tai Copilotin? Viisi perusasetusta ja perustelut.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet"></noscript>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel=icon type=image/png sizes=32x32 href=../img/favicon-32x32.png>
+    <link rel=apple-touch-icon sizes=180x180 href=../img/favicon-180x180.png>
+
+    <link rel="canonical" href="https://valok.fi/blogi/tekoalytyokalujen-perusasetukset-yritykselle.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://valok.fi/blogi/tekoalytyokalujen-perusasetukset-yritykselle.html">
+    <meta property="og:title" content="Tekoälytyökalujen perusasetukset yritykselle: viisi asiaa Claudessa, ChatGPT:ssä, Geminissä ja Copilotissa">
+    <meta property="og:description" content="Mitkä asetukset kannattaa laittaa kuntoon, kun yritys ottaa käyttöön Clauden, ChatGPT:n, Geminin tai Copilotin? Yritystili, kirjautuminen, käyttöoikeudet, liittimet ja säilytys käytännössä.">
+    <meta property="og:image" content="https://valok.fi/img/tekoalytyokalujen-perusasetukset-yritykselle.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tekoälytyökalujen perusasetukset yritykselle: viisi asiaa Claudessa, ChatGPT:ssä, Geminissä ja Copilotissa">
+    <meta name="twitter:description" content="Mitkä asetukset kannattaa laittaa kuntoon, kun yritys ottaa käyttöön Clauden, ChatGPT:n, Geminin tai Copilotin? Yritystili, kirjautuminen, käyttöoikeudet, liittimet ja säilytys käytännössä.">
+    <meta name="twitter:image" content="https://valok.fi/img/tekoalytyokalujen-perusasetukset-yritykselle.webp">
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Tekoälytyökalujen perusasetukset yritykselle: viisi asiaa Claudessa, ChatGPT:ssä, Geminissä ja Copilotissa",
+  "description": "Mitkä asetukset kannattaa laittaa kuntoon, kun yritys ottaa käyttöön Clauden, ChatGPT:n, Geminin tai Copilotin? Yritystili, kirjautuminen, käyttöoikeudet, liittimet ja säilytys käytännössä.",
+  "image": "https://valok.fi/img/tekoalytyokalujen-perusasetukset-yritykselle.webp",
+  "datePublished": "2026-10-05",
+  "dateModified": "2026-10-05",
+  "author": {
+    "@type": "Person",
+    "name": "Aleksanteri Rönkä",
+    "url": "https://valok.fi/",
+    "email": "aleksanteri@valok.fi",
+    "jobTitle": "Perustaja",
+    "worksFor": {
+      "@id": "https://valok.fi/#organization"
+    }
+  },
+  "publisher": {
+    "@id": "https://valok.fi/#organization"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://valok.fi/blogi/tekoalytyokalujen-perusasetukset-yritykselle.html"
+  }
+}
+</script>
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Riittääkö henkilökohtainen tili, jos työntekijä käyttää tekoälyä työssä?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ei suositella. Henkilökohtaiset kuluttajatilit kuuluvat eri ehtojen piiriin kuin yrityslisenssit, ja yritys ei voi hallita niiden käyttäjiä, oikeuksia eikä säilytysaikoja. Esimerkiksi Clauden kuluttajatileillä koulutuskäyttö on erillinen valinta, kun taas Team- ja Enterprise-paketit on rajattu tämän muutoksen ulkopuolelle."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Käytetäänkö yrityksen dataa tekoälymallien koulutukseen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yrityslisensseissä ei oletuksena. Anthropic, OpenAI, Google ja Microsoft ilmoittavat kaikki, ettei yritysasiakkaiden sisältöä käytetä mallien koulutukseen oletuksena. Kyse on toimittajan ilmoituksesta sopimusehdoista, ja se koskee vain yrityslisenssin alla tehtyä työtä, joten ehdot kannattaa lukea oman paketin osalta."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Mikä on tärkein yksittäinen asetus?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pakotettu kirjautuminen yritystunnuksilla. Muut asetukset koskevat vain niitä käyttäjiä, jotka käyttävät yritystiliä, joten ilman yritystiliä ja hallittua kirjautumista muut asetukset jäävät osin vaikutuksettomiksi."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Tarvitseeko Copilot erillistä valmistelua ennen käyttöönottoa?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Kyllä, aineiston käyttöoikeuksien tarkistus. Copilot perustaa vastauksensa dataan, johon käyttäjällä on jo lupa, joten liian laajat jakamisoikeudet SharePointissa tulevat esiin heti käyttöönoton jälkeen. Microsoftin ohjeen ensimmäinen pilari on liikajakamisen korjaaminen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kuinka usein asetukset pitää tarkistaa?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Muutaman kuukauden välein ja aina, kun paketti tai lisenssimalli muuttuu. Toimittajat muuttavat nimiä ja oletuksia, esimerkiksi Microsoft on nimennyt Microsoft 365 Copilotin uudelleen Microsoft Copilotiksi, ja ominaisuudet riippuvat paketista."
+      }
+    }
+  ]
+}
+</script>
+
+    <style>
+        .post-header {
+            min-height: auto !important;
+            padding: 160px 24px 24px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            background: radial-gradient(circle at top, var(--accent-glow) 0%, transparent 70%);
+        }
+
+        .post-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px 100px;
+            line-height: 1.8;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .post-content h2, .post-content h3 {
+            color: var(--text);
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .post-content p {
+            margin-bottom: 24px;
+        }
+
+        .post-content ul, .post-content ol {
+            margin-bottom: 24px;
+            padding-left: 20px;
+        }
+
+        .post-content li {
+            margin-bottom: 12px;
+        }
+
+        .post-meta {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .post-author {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 24px;
+            text-align: left;
+        }
+
+        .post-author img {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .post-author-name {
+            display: block;
+            font-weight: 600;
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+
+        .post-author-role {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dim);
+            text-decoration: none;
+            margin-bottom: 40px;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        .post-image {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .post-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .toc-box {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+        }
+
+        .toc-box h4 {
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        .toc-box ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .toc-box a {
+            color: #58a6ff;
+            text-decoration: none;
+            display: block;
+            padding: 4px 0;
+            transition: var(--transition);
+        }
+
+        .toc-box a:hover {
+            color: var(--accent);
+            padding-left: 4px;
+        }
+
+        .highlight-box {
+            background: var(--glass);
+            padding: 30px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+            border-left: 4px solid var(--accent);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 40px 0;
+            background: var(--glass);
+            border-radius: var(--radius);
+            overflow: hidden;
+            font-size: 0.95rem;
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 14px 18px;
+            border: 1px solid var(--border);
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .comparison-table th {
+            background: rgba(var(--accent-rgb), 0.12);
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .comparison-table td:first-child {
+            font-weight: 600;
+            color: var(--text);
+            white-space: nowrap;
+        }
+
+        .table-scroll {
+            overflow-x: auto;
+        }
+
+        .reference-list {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            margin-top: 60px;
+        }
+
+        .reference-list ol {
+            padding-left: 20px;
+        }
+
+        .contact-section {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 60px 40px;
+            border-radius: var(--radius);
+            margin-top: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="particles"></canvas>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark" width="4206" height="4206"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light" width="4206" height="4206">VALOK<span
+                     class="logo-dot">.</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="/#palvelut">Palvelut</a>
+                <a href="/#prosessi">Prosessi</a>
+                <a href="../blogi.html">Blogi</a>
+                <a href="/#yhteystiedot" class="nav-cta">Ota yhteyttä</a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Avaa valikko">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <article>
+        <header class="post-header">
+            <a href="../blogi.html" class="back-link">← Takaisin blogiin</a>
+            <span class="post-meta">Tekoäly • Yrityskäyttö • Asetukset</span>
+            <h1>Tekoälytyökalujen perusasetukset yritykselle: <span class="gradient-text">viisi asiaa, jotka kannattaa laittaa kuntoon Claudessa, ChatGPT:ssä, Geminissä ja Copilotissa</span></h1>
+            <p style="color: var(--text-dim); margin-top: 20px;">Yrityskäytössä työkalujen ero ratkeaa harvoin siinä, mikä niistä on älykkäin, vaan siinä, miten ne on asetettu: kenen tunnuksilla sitä käytetään, kuka näkee mitä ja mihin tekoäly pääsee käsiksi. Tässä artikkelissa käydään läpi viisi perusasetusta, jotka kannattaa laittaa kuntoon Claudessa, ChatGPT:ssä, Geminissä ja Copilotissa ennen kuin työkalu annetaan koko tiimille.</p>
+            <div class="post-author">
+                <img src="../img/valok-aleksanteri.webp" alt="Aleksanteri Rönkä" width="44" height="44" loading="lazy">
+                <div>
+                    <span class="post-author-name">Aleksanteri Rönkä</span>
+                    <span class="post-author-role">Perustaja, Valok &middot; <a href="mailto:aleksanteri@valok.fi">aleksanteri@valok.fi</a></span>
+                </div>
+            </div>
+        </header>
+
+        <div class="post-image">
+            <img src="../img/tekoalytyokalujen-perusasetukset-yritykselle.webp" alt="Kettumaskotti ripustaa työkaluja oikeille paikoilleen työpajan työkalutaululle - Valok" width="960" height="1120">
+        </div>
+
+        <main class="post-content">
+            <div class="toc-box">
+                <h4>Sisällysluettelo</h4>
+                <ul>
+                    <li><a href="#miksi-asetukset">1. Miksi asetukset ratkaisevat enemmän kuin työkalun valinta</a></li>
+                    <li><a href="#yritystili">2. Ensimmäinen asetus: yrityslisenssi ja yritystili</a></li>
+                    <li><a href="#kirjautuminen">3. Toinen asetus: yhteinen kirjautuminen ja käyttäjien hallinta</a></li>
+                    <li><a href="#kuka-nakee">4. Kolmas asetus: kuka näkee mitä</a></li>
+                    <li><a href="#liittimet">5. Neljäs asetus: mihin tekoäly pääsee käsiksi</a></li>
+                    <li><a href="#sailytys">6. Viides asetus: säilytys ja historia</a></li>
+                    <li><a href="#ohje">7. Mitä asetukset eivät ratkaise: ohje ja osaaminen</a></li>
+                    <li><a href="#tehokkaasti">8. Kolme tapaa käyttää tekoälyä tehokkaammin</a></li>
+                    <li><a href="#rajaus">9. Mitä tässä jätettiin pois</a></li>
+                    <li><a href="#ukk">10. Usein kysyttyä</a></li>
+                </ul>
+            </div>
+
+            <h2 id="miksi-asetukset">1. Miksi asetukset ratkaisevat enemmän kuin työkalun valinta</h2>
+
+            <p>Tilastokeskuksen mukaan 38 % suomalaisyrityksistä käytti tekoälyteknologioita keväällä 2025, mutta vain 15 %:lla yrityksistä oli dokumentoidut ohjeet tai käytännöt tekoälyn käytölle.<sup>1</sup> Käyttö on siis yleisempää kuin kirjatut käytännöt.</p>
+
+            <div class="highlight-box">
+                <p style="margin-bottom: 0;">Kaikissa neljässä työkalussa kysymys on sama: kenen tilillä työ tehdään, kuka näkee mitä ja mihin tekoäly pääsee käsiksi.</p>
+            </div>
+
+            <p>Seuraavat viisi asetusta vastaavat näihin kysymyksiin. Ne ovat perustaso eivätkä täydellinen käyttöönotto, ja jokaisen kohdalla kerrotaan, miten asia näkyy eri työkaluissa. Asetusten nimet ja oletukset muuttuvat ja riippuvat paketista, joten tarkista lopullinen tilanne aina oman työkalun hallintapaneelista.</p>
+
+            <h2 id="yritystili">2. Ensimmäinen asetus: yrityslisenssi ja yritystili</h2>
+
+            <p>Kaikki alkaa siitä, että työ tehdään yrityksen hallitsemilla tileillä eikä työntekijän henkilökohtaisella tilillä. Syy on sopimusehdoissa: yrityslisenssit kuuluvat eri ehtojen piiriin kuin kuluttajatilit.</p>
+
+            <div class="table-scroll">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Työkalu</th>
+                            <th>Yrityskäyttöön tarkoitettu paketti</th>
+                            <th>Mitä toimittaja ilmoittaa koulutuskäytöstä</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Claude</td>
+                            <td>Team tai Enterprise</td>
+                            <td>Kuluttajaehtojen koulutusasetus ei koske Team- ja Enterprise-paketteja. Kuluttajatileillä (Free, Pro, Max) koulutuskäyttö on erillinen valinta: jos se on päällä, tietoja säilytetään viisi vuotta, muuten 30 päivää.<sup>2</sup></td>
+                        </tr>
+                        <tr>
+                            <td>ChatGPT</td>
+                            <td>Business tai Enterprise</td>
+                            <td>OpenAI ilmoittaa, ettei Business- ja Enterprise-asiakkaiden sisältöä käytetä mallien koulutukseen oletuksena.<sup>3</sup></td>
+                        </tr>
+                        <tr>
+                            <td>Gemini</td>
+                            <td>Google Workspace -tilauksen mukana tuleva Gemini</td>
+                            <td>Google ilmoittaa, ettei sisältöä käytetä generatiivisten mallien koulutukseen toimialueen ulkopuolella ilman lupaa.<sup>4</sup></td>
+                        </tr>
+                        <tr>
+                            <td>Copilot</td>
+                            <td>Microsoft Copilot ja Copilot Chat Entra-tunnuksella</td>
+                            <td>Microsoft ilmoittaa, ettei kehotteita, vastauksia eikä Microsoft Graphin kautta haettua dataa käytetä peruskielimallien koulutukseen.<sup>5</sup></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>Taulukko kuvaa toimittajan ilmoitusta sopimusehdoista, ei teknistä suojaa. Se pätee vain, kun työ tehdään yrityslisenssin alla. Jos työntekijä käyttää samaa työkalua henkilökohtaisella tilillään, yrityksen asetukset eivät koske sitä.</p>
+
+            <p>Copilotissa on lisäksi yksi helposti ohitettava yksityiskohta: EU:n datarajan (EU Data Boundary) piiriin eivät kuulu verkkohaut, eikä tällä hetkellä Anthropicin mallit.<sup>5</sup> Jos aineisto ei saa lähteä EU:sta, tämä kannattaa tarkistaa ennen käyttöönottoa.</p>
+
+            <h2 id="kirjautuminen">3. Toinen asetus: yhteinen kirjautuminen ja käyttäjien hallinta</h2>
+
+            <p>Yritystili ei auta, jos kuka tahansa voi luoda sellaisen itse tai jos tili jää elämään työntekijän lähdettyä. Tavoite on, että kirjautuminen kulkee yrityksen oman tunnistautumisen kautta ja että käyttäjiä lisätään ja poistetaan hallitusti.</p>
+
+            <ul>
+                <li><strong>Claude.</strong> Kertakirjautuminen (SSO) on käytettävissä Team- ja Enterprise-paketeissa. Käyttöönotossa yrityksen verkkotunnus vahvistetaan DNS-tietueella, minkä jälkeen valinta "Require SSO for Claude" pakottaa kirjautumisen yrityksen tunnistautumisen kautta. Oletuksena käyttäjät lisätään kutsulla, vaihtoehtona on automaattinen lisäys ensimmäisen SSO-kirjautumisen yhteydessä.<sup>6</sup></li>
+                <li><strong>ChatGPT.</strong> Business-työtilan omistajan hallintaoikeudet ovat suppeammat kuin Enterprise-työtilassa, joten tarvittavat ominaisuudet kannattaa tarkistaa ennen paketin valintaa.<sup>7</sup></li>
+                <li><strong>Gemini ja Copilot.</strong> Ne hallitaan samassa Google Workspace- tai Microsoft Entra -ympäristössä kuin muu yrityksen ohjelmisto, joten kirjautumisen säännöt ovat jo olemassa ja ne täytyy vain tarkistaa.<sup>4,5</sup></li>
+            </ul>
+
+            <p>Päätä lisäksi kaksi asiaa, jotka eivät ole teknisiä: kuka on työkalun omistaja ja kuka poistaa käyttöoikeuden, kun joku lähtee yrityksestä. Suosittelemme vähintään kahta omistajaa, jotta yksittäisen ihmisen poissaolo ei lukitse hallintaa.</p>
+
+            <h2 id="kuka-nakee">4. Kolmas asetus: kuka näkee mitä</h2>
+
+            <p>Tekoälytyökalu ei yleensä anna kenellekään uusia oikeuksia, mutta se tekee olemassa olevat oikeudet näkyviksi. Googlen mukaan Gemini hakee Workspacesta vain sellaista sisältöä, johon käyttäjällä on jo pääsy.<sup>4</sup> Microsoft kuvaa Copilotin samoin: se perustaa vastauksensa dataan, johon käyttäjällä on jo lupa.<sup>8</sup> Periaate on hyvä, mutta se tarkoittaa myös sitä, että liian laajat jakamisoikeudet tulevat esiin heti, kun joku kysyy tekoälyltä oikean kysymyksen.</p>
+
+            <div class="highlight-box">
+                <p style="margin-bottom: 0;">Tekoäly ei riko käyttöoikeuksia. Se paljastaa, jos ne on alun perinkin annettu liian laajoiksi.</p>
+            </div>
+
+            <p>Microsoftin Copilotin käyttöönotto-ohjeen ensimmäinen kolmesta pilarista on liikajakamisen korjaaminen, ja SharePoint Advanced Management, joka auttaa hallitsemaan jakamista ja pääsyä, sisältyy Copilot-lisenssiin.<sup>8</sup> Käytännön ensiaskel on sama kaikilla alustoilla: käy läpi, mitkä jaetut kansiot ja sivustot näkyvät koko organisaatiolle, ja rajaa ne ennen kuin tekoäly otetaan käyttöön.</p>
+
+            <p>Hakuindeksien ja käyttöoikeuksien suhdetta käsittelimme tarkemmin artikkelissa <a href="rag-kayttooikeudet-kuka-nakee-mita.html">kuka näkee mitä, kun koko yrityksen aineisto on yhdessä hakuindeksissä</a>.</p>
+
+            <h2 id="liittimet">5. Neljäs asetus: mihin tekoäly pääsee käsiksi</h2>
+
+            <p>Liittimet yhdistävät tekoälytyökalun sähköpostiin, tiedostoihin ja muihin järjestelmiin, ja ne muuttavat työkalun keskustelukumppanista toimijaksi. ChatGPT:ssä liittimiä hallitaan sekä Business- että Enterprise-työtilassa ylläpitäjän paneelista, ja ylläpitäjä voi myös ottaa pois käytöstä esimerkiksi verkkohaun.<sup>7</sup> Copilotin agenttien kohdalla Microsoft neuvoo tarkistamaan jokaisen agentin oman tietosuojaselosteen ja käyttöehdot, koska ne määrittävät, miten agentti käsittelee organisaation dataa.<sup>5</sup></p>
+
+            <p>Perussääntö on aloittaa vähimmästä. Ota käyttöön vain ne liittimet ja ominaisuudet, joille on nimetty käyttötarkoitus, ja lisää muita yksi kerrallaan. Erottele myös lukeminen ja kirjoittaminen: lukuoikeus on turvallisempi lähtökohta kuin oikeus lähettää viestejä tai muuttaa tietoja. Tätä periaatetta käsittelimme artikkelissa <a href="tekoalyagentin-tietoturva-kayttooikeudet.html">mitä tekoälyagentti saa tehdä</a>.</p>
+
+            <h2 id="sailytys">6. Viides asetus: säilytys ja historia</h2>
+
+            <p>Keskusteluhistoria on yrityksen dataa, ja sen säilytysaika kannattaa päättää aktiivisesti. Esimerkiksi Clauden Enterprise-paketissa tietoja säilytetään oletuksena toistaiseksi, kunnes organisaatio asettaa oman säilytysajan.<sup>9</sup></p>
+
+            <ul>
+                <li><strong>Claude.</strong> Räätälöidyt säilytysajat ovat käytettävissä vain Enterprise-paketissa, lyhimmillään 30 päivää, ja asetus löytyy kohdasta Organization settings &gt; Data and Privacy. Team-paketissa sitä ei voi säätää.<sup>9</sup></li>
+                <li><strong>Gemini.</strong> Ylläpitäjä voi poistaa keskustelut automaattisesti 3, 18 tai 36 kuukauden jälkeen.<sup>4</sup></li>
+                <li><strong>Copilot.</strong> Microsoftin mukaan Copilot soveltaa organisaation säilytyskäytäntöjä ja vuorovaikutukset ovat tarkastettavissa. Tarkat ominaisuudet riippuvat tilauksesta.<sup>5</sup></li>
+                <li><strong>ChatGPT.</strong> Hallinta riippuu paketista, ja Businessin työtilakohtaiset asetukset ovat Enterprisea suppeammat.<sup>7</sup></li>
+            </ul>
+
+            <p>Tällä voi olla vaikutusta pakettivalintaan: jos säilytysaikaa pitää pystyä rajaamaan, Clauden kohdalla ominaisuus vaatii Enterprise-paketin, vaikka Team riittäisi muuten.</p>
+
+            <h2 id="ohje">7. Mitä asetukset eivät ratkaise: ohje ja osaaminen</h2>
+
+            <p>Hallintapaneelin asetukset rajaavat sitä, mitä työkalulla voi tehdä, mutta eivät sitä, mitä työntekijä sille kirjoittaa. Siihen tarvitaan lyhyt kirjallinen ohje: mitä dataa saa syöttää ja mitä ei, kuka hyväksyy uudet työkalut ja kuka vastaa asetuksista. Se on kohta, joka puuttuu useimmilta, sillä vain 15 %:lla yrityksistä oli dokumentoidut käytännöt.<sup>1</sup></p>
+
+            <p>EU:n tekoälyasetuksen 4 artikla velvoittaa tekoälyjärjestelmien tarjoajat ja käyttäjäorganisaatiot tukemaan henkilöstönsä tekoälyosaamista käyttöyhteys huomioon ottaen. Artiklaa on muutettu digitaalisella omnibus-muutoksella, se ei edellytä mitään tiettyä osaamistasoa, ja komissio sekä jäsenvaltiot tukevat erityisesti pk-yrityksiä.<sup>10</sup> Tarkka velvoite kannattaa varmistaa viranomaislähteestä.</p>
+
+            <h2 id="tehokkaasti">8. Kolme tapaa käyttää tekoälyä tehokkaammin</h2>
+
+            <p>Kun perusasetukset ovat kunnossa, tehokkuus syntyy tavoista, ei lisäasetuksista:</p>
+
+            <ol>
+                <li><strong>Anna työkalulle yhteinen konteksti.</strong> Yhteiset projektit tai omat avustajat, joihin on koottu yrityksen ohjeet, hinnastot ja tyyli, vähentävät sitä, että jokainen kirjoittaa samat taustatiedot alusta. Esimerkkejä ovat Clauden Projects, Googlen Gems ja ChatGPT:n GPT:t.</li>
+                <li><strong>Aloita yhdestä toistuvasta työstä.</strong> Valitse työ, joka tehdään viikoittain ja jonka tuloksen ihminen voi tarkistaa nopeasti, ja mittaa aika ennen ja jälkeen. Valintaan löytyy lisää artikkelista <a href="mita-kannattaa-automatisoida-tekoalylla-2026.html">mitä kannattaa automatisoida tekoälyllä 2026</a>.</li>
+                <li><strong>Tarkista lähteet.</strong> Pyydä tekoälyä kertomaan, mihin vastaus perustuu, ja tarkista tärkeimmät väitteet itse ennen kuin ne menevät asiakkaalle.</li>
+            </ol>
+
+            <h2 id="rajaus">9. Mitä tässä jätettiin pois</h2>
+
+            <p>Nämä viisi asetusta ovat perustaso. Tarkemmat ratkaisut riippuvat yrityksestä: käyttäjäroolien ja ryhmien rakenne, tietojen luokittelu ja vuotosuojaus, liittimien sallintalistat, lisenssimalli eri tiimeille sekä käyttöönoton ja koulutuksen aikataulu. Valok auttaa pk-yrityksiä ottamaan tekoälytyökalut käyttöön: laitamme perusasetukset ja tiimilisenssit kuntoon ja autamme sovittamaan ne yrityksen omaan tilanteeseen. Jos haluat käydä oman yrityksesi tilanteen läpi, varaa ilmainen kartoitus sivun lopun lomakkeella.</p>
+
+            <h2 id="ukk">10. Usein kysyttyä</h2>
+
+            <h3>Riittääkö henkilökohtainen tili, jos työntekijä käyttää tekoälyä työssä?</h3>
+            <p>Ei suositella. Henkilökohtaiset kuluttajatilit kuuluvat eri ehtojen piiriin kuin yrityslisenssit, ja yritys ei voi hallita niiden käyttäjiä, oikeuksia eikä säilytysaikoja. Esimerkiksi Clauden kuluttajatileillä koulutuskäyttö on erillinen valinta, kun taas Team- ja Enterprise-paketit on rajattu tämän muutoksen ulkopuolelle.</p>
+
+            <h3>Käytetäänkö yrityksen dataa tekoälymallien koulutukseen?</h3>
+            <p>Yrityslisensseissä ei oletuksena. Anthropic, OpenAI, Google ja Microsoft ilmoittavat kaikki, ettei yritysasiakkaiden sisältöä käytetä mallien koulutukseen oletuksena. Kyse on toimittajan ilmoituksesta sopimusehdoista, ja se koskee vain yrityslisenssin alla tehtyä työtä, joten ehdot kannattaa lukea oman paketin osalta.</p>
+
+            <h3>Mikä on tärkein yksittäinen asetus?</h3>
+            <p>Pakotettu kirjautuminen yritystunnuksilla. Muut asetukset koskevat vain niitä käyttäjiä, jotka käyttävät yritystiliä, joten ilman yritystiliä ja hallittua kirjautumista muut asetukset jäävät osin vaikutuksettomiksi.</p>
+
+            <h3>Tarvitseeko Copilot erillistä valmistelua ennen käyttöönottoa?</h3>
+            <p>Kyllä, aineiston käyttöoikeuksien tarkistus. Copilot perustaa vastauksensa dataan, johon käyttäjällä on jo lupa, joten liian laajat jakamisoikeudet SharePointissa tulevat esiin heti käyttöönoton jälkeen. Microsoftin ohjeen ensimmäinen pilari on liikajakamisen korjaaminen.</p>
+
+            <h3>Kuinka usein asetukset pitää tarkistaa?</h3>
+            <p>Muutaman kuukauden välein ja aina, kun paketti tai lisenssimalli muuttuu. Toimittajat muuttavat nimiä ja oletuksia, esimerkiksi Microsoft on nimennyt Microsoft 365 Copilotin uudelleen Microsoft Copilotiksi, ja ominaisuudet riippuvat paketista.</p>
+
+            <div class="reference-list">
+                <h4>Lähdeviitteet:</h4>
+                <ol>
+                    <li><a href="https://stat.fi/fi/julkaisu/cm1hnps701dbm07w59uo0jw6u" target="_blank" rel="noopener">Tilastokeskus: "Tekoälyteknologioita käytti 38 % yrityksistä vuonna 2025"</a> (27.11.2025). Tekoälyn käyttö suomalaisyrityksissä ja käytäntöjen dokumentointi.</li>
+                    <li><a href="https://www.anthropic.com/news/updates-to-our-consumer-terms" target="_blank" rel="noopener">Anthropic: "Updates to Consumer Terms and Privacy Policy"</a>. Kuluttajatilien koulutusasetus ja säilytysajat; Team, Enterprise ja API on rajattu muutoksen ulkopuolelle.</li>
+                    <li><a href="https://openai.com/enterprise-privacy/" target="_blank" rel="noopener">OpenAI: "Enterprise privacy at OpenAI"</a>. Yritysasiakkaiden sisällön käsittely.</li>
+                    <li><a href="https://knowledge.workspace.google.com/admin/generative-ai/generative-ai-in-google-workspace-privacy-hub" target="_blank" rel="noopener">Google: "Generative AI in Google Workspace Privacy Hub"</a>. Koulutuskäyttö, käyttöoikeuksien noudattaminen ja keskusteluhistorian säilytys.</li>
+                    <li><a href="https://learn.microsoft.com/en-us/microsoft-365/copilot/enterprise-data-protection" target="_blank" rel="noopener">Microsoft: "Enterprise data protection in Microsoft Copilot and Microsoft Copilot Chat"</a>. Koulutuskäyttö, säilytys, EU:n datarajan rajaukset ja agentit.</li>
+                    <li><a href="https://support.claude.com/en/articles/13132885-set-up-single-sign-on-sso" target="_blank" rel="noopener">Claude Help Center: "Set up single sign-on (SSO)"</a>. Tuetut paketit, verkkotunnuksen vahvistus ja pakotettu SSO.</li>
+                    <li><a href="https://academy.openai.com/public/clubs/admins-6o6xf/resources/feature-controls-and-integrations-with-your-tools" target="_blank" rel="noopener">OpenAI Academy: "Feature controls and integrations with your tools"</a>. ChatGPT-työtilan ominaisuuksien ja liittimien hallinta, Businessin ja Enterprisen ero.</li>
+                    <li><a href="https://learn.microsoft.com/en-us/microsoft-365/copilot/secure-govern-copilot-foundational-deployment-guidance" target="_blank" rel="noopener">Microsoft: "Secure &amp; Governed Data Foundation for Microsoft Copilot"</a>. Liikajakamisen korjaaminen, suojakaiteet ja SharePoint Advanced Management.</li>
+                    <li><a href="https://support.claude.com/en/articles/10440198-configure-custom-data-retention-controls-for-enterprise-plans" target="_blank" rel="noopener">Claude Help Center: "Configure custom data retention controls for Enterprise plans"</a>. Säilytysasetukset vain Enterprise-paketissa.</li>
+                    <li><a href="https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-4" target="_blank" rel="noopener">AI Act Service Desk: "Article 4: AI literacy"</a>. Tekoälyosaamisen artikla ja digitaalisen omnibus-muutoksen vaikutus.</li>
+                </ol>
+            </div>
+
+            <div class="contact-section">
+                <div class="section-header" style="text-align: center; margin-bottom: 40px;">
+                    <span class="section-tag">Otetaan askel eteenpäin</span>
+                    <h2>Ovatko tekoälytyökalunne kunnossa ennen kuin tiimi aloittaa?</h2>
+                    <p>Käymme kanssasi läpi, mitkä asetukset ja lisenssit yrityksenne tarvitsee. Kartoitus on maksuton.</p>
+                </div>
+
+                <div class="contact-container" style="max-width: 100%;">
+                    <div class="contact-form-card">
+                        <form action="https://formspree.io/f/xlgpgyjl" method="POST" id="contact-form">
+                            <div class="form-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 20px;">
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="name">Nimi</label>
+                                    <input type="text" id="name" name="name" autocomplete="name" placeholder="Oma nimesi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                </div>
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="email">Sähköposti</label>
+                                    <input type="email" id="email" name="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="esimerkki@yritys.fi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg full-width" style="width: 100%; padding: 16px; font-weight: bold; cursor: pointer; margin-top: 20px;">
+                                Varaa ilmainen kartoitus
+                            </button>
+                            <div id="form-status" class="form-status" aria-live="polite"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </article>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer" width="4206" height="4206" loading="lazy"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer" width="4206" height="4206" loading="lazy">VALOK<span class="logo-dot">.</span></div>
+                <p>Prosessien automatisointia ja yrityksen omaan tietoon perustuvia tekoälyratkaisuja suomalaisille PK-yrityksille, tietoturva ja tietosuoja edellä.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Linkit</h4>
+                <ul>
+                    <li><a href="/">Etusivu</a></li>
+                    <li><a href="../blogi.html">Blogi</a></li>
+                    <li><a href="/#palvelut">Palvelut</a></li>
+                    <li><a href="../tietosuoja.html">Tietosuoja</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ota yhteyttä</h4>
+                <ul>
+                    <li>aleksanteri@valok.fi</li>
+                    <li>Jyväskylä, Finland</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Valok. Kaikki oikeudet pidätetään. · <a href="#" id="cookieSettingsLink">Evästeasetukset</a>
+        </div>
+    </footer>
+
+        <div id="cookieBanner" class="cookie-banner">
+        <h5>Yksityisyytesi on meille tärkeää</h5>
+        <p>Käytämme sivustolla vain välttämättömiä toimintoja varmistaaksemme parhaan mahdollisen käyttökokemuksen. Emme
+            käytä kolmannen osapuolen markkinointievästeitä ilman suostumustasi.</p>
+        <div class="cookie-btn-group">
+            <button id="acceptCookies" class="btn btn-primary">Hyväksy kaikki</button>
+            <button id="rejectCookies" class="btn btn-ghost">Hylkää</button>
+            <a href="../tietosuoja.html" class="btn btn-ghost">Lue lisää</a>
+        </div>
+    </div>
+
+    <script src="../main.js"></script>
+</body>
+
+</html>
