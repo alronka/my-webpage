@@ -369,25 +369,65 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 })();
 
 // ---- FAQ ACCORDION ----
+// Suljettuna näkyy kaksi riviä (CSS max-height). .is-truncated lisätään, jos vastaus on
+// pidempi kuin kaksi riviä, jolloin CSS häivyttää toisen rivin alaosan. Avattaessa
+// max-height asetetaan sisällön todelliseksi korkeudeksi, jotta siirtymä animoituu.
 (function initFaq() {
     const faqItems = document.querySelectorAll('.faq-item');
     if (!faqItems.length) return;
 
+    function textHeight(answer) {
+        const paras = answer.querySelectorAll('p');
+        if (!paras.length) return answer.scrollHeight;
+        const first = getComputedStyle(paras[0]);
+        const last = getComputedStyle(paras[paras.length - 1]);
+        return answer.scrollHeight - parseFloat(first.paddingTop) - parseFloat(last.paddingBottom);
+    }
+
+    function markTruncation() {
+        faqItems.forEach(item => {
+            const answer = item.querySelector('.faq-answer');
+            const p = answer && answer.querySelector('p');
+            if (!p) return;
+            const lineHeight = parseFloat(getComputedStyle(p).lineHeight);
+            item.classList.toggle('is-truncated', textHeight(answer) > lineHeight * 2 + 2);
+            if (item.classList.contains('active')) {
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+            }
+        });
+    }
+
     faqItems.forEach(item => {
         const question = item.querySelector('.faq-question');
+        const answer = item.querySelector('.faq-answer');
+        question.setAttribute('aria-expanded', 'false');
         question.addEventListener('click', () => {
             const isActive = item.classList.contains('active');
 
-            // Close all — the CSS grid-template-rows transition on .faq-answer
-            // handles the height animation, no inline max-height needed here.
-            faqItems.forEach(faq => faq.classList.remove('active'));
+            faqItems.forEach(faq => {
+                faq.classList.remove('active');
+                faq.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                const a = faq.querySelector('.faq-answer');
+                if (a) a.style.maxHeight = '';
+            });
 
-            // Open clicked if it wasn't active
             if (!isActive) {
                 item.classList.add('active');
+                question.setAttribute('aria-expanded', 'true');
+                if (answer) answer.style.maxHeight = answer.scrollHeight + 'px';
             }
         });
     });
+
+    markTruncation();
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(markTruncation, 150);
+    });
+    if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(markTruncation);
+    }
 })();
 
 // ---- THEME TOGGLE (Vaalea / Tumma teema) ----

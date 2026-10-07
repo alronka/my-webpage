@@ -3,13 +3,13 @@
 
 <head>
     <script>
-        if (localStorage.getItem('theme') === 'light') {
+        if (localStorage.getItem('theme') !== 'dark') {
             document.documentElement.setAttribute('data-theme', 'light');
         }
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#030712">
+    <meta name="theme-color" content="#f8fafc">
     <title>Valok — Miksi tehdä itse, kun voi automatisoida?</title>
     <meta name="description"
         content="Valok rakentaa suomalaisille PK-yrityksille räätälöidyt työnkulkuautomaatiot ja tekoälyratkaisut, jotka sovitetaan juuri sinun järjestelmiisi ja tarpeisiisi.">
@@ -82,70 +82,6 @@
             line-height: 1.15;
             max-width: 780px;
             margin-top: 28px;
-        }
-
-        /* Kettu kurkkii heron oikeasta reunasta, dock.cool-vertailun jälkeen 2026-08.
-           Kuvan omaa tiedostoa EI kierretä (kokeiltu 2026-08: koko kuvan kierto käänsi myös
-           kasvot/kaulapannan kyljelleen, näytti rikkinäiseltä) — sen sijaan kuva pyörähtää
-           CSS:n rotate(-90deg):lla, jolloin kasvot ja tunnusmerkit pysyvät ehjinä paikoillaan
-           kuvan sisällä, vain koko kuva kallistuu.
-
-           --fox-w on kuvan OMA (kiertämätön) leveys. Koska kuva on muotokuva (644x746,
-           korkeampi kuin leveä), -90deg-kierto vaihtaa näkyvät mitat keskenään: se mikä oli
-           kuvan ALAreuna (tassut, jotka koskettavat kuvatiedoston alinta pikseliriviä) siirtyy
-           kierrossa OIKEALLE reunalle, ja ulottuu oman laatikkonsa oikean reunan ohi täsmälleen
-           (korkeus−leveys)/2 verran (johdettu kiertomatriisista, ks. keskustelu 2026-08).
-           right-arvo laskee tämän offsetin pois calc():lla, jotta tassut asettuvat juuri
-           heron oikeaan reunaan (plus pieni "bleed"-arvo, jotta keho näyttää jatkuvan ruudun
-           ulkopuolelle). top:50% + translateY(-50%) keskittää kuvan OMAN keskipisteen heron
-           pystysuunnassa; koska -90deg-kierto tapahtuu juuri tämän keskipisteen ympäri,
-           pystykeskitys säilyy kierrosta huolimatta.
-
-           Sisääntuloanimaatio liikuttaa right-arvoa (ei transform-liukua), jotta rotate(-90deg)
-           transformissa pysyy koko ajan muuttumattomana eikä transform-järjestyksen kanssa
-           tarvitse taiteilla. Kettu pysyy myös kokonaan heron laatikon sisällä (ei negatiivista
-           bottom-arvoa kuten vanhassa alareunaversiossa), joten se katoaa automaattisesti
-           tavallisen sivun vierityksen mukana kun hero vieritetään pois näkyvistä eikä
-           scroll-sidottua häivytys-JS:ää tarvita, ks. sivun lopun kertaalleen ajettava
-           nousuanimaatio. */
-        .hero-fox-peek {
-            display: none;
-            position: absolute;
-            top: 50%;
-            --fox-w: clamp(140px, 14vw, 220px);
-            /* #hero on max-width:1280px ja keskitetty, joten leveillä näytöillä heron oma
-               oikea reuna jää kauas näytön todellisesta reunasta. --hero-gap laskee tämän
-               tyhjän marginaalin ja right-arvo vähentää sen pois, jotta kettu asettuu aina
-               NÄYTÖN oikeaan reunaan, ei vain heron sisäiseen reunaan. */
-            --hero-gap: max(0px, (100vw - 1280px) / 2);
-            /* piilotila: painettu vielä pidemmälle oikealle/reunan yli, "saapuu" sisään */
-            right: calc(0.0792 * var(--fox-w) - 110px - var(--hero-gap));
-            width: var(--fox-w);
-            height: auto;
-            pointer-events: none;
-            z-index: 2;
-            opacity: 0;
-            transform: translateY(-50%) rotate(-90deg);
-            transition: right 2200ms cubic-bezier(0.16, 1, 0.3, 1), opacity 1400ms ease;
-        }
-
-        .hero-fox-peek.is-risen {
-            opacity: 1;
-            /* lepotila: tassut n. 20px NÄYTÖN oikean reunan yli, "jatkuu ruudun ulkopuolelle" */
-            right: calc(0.0792 * var(--fox-w) - 20px - var(--hero-gap));
-        }
-
-        @media (min-width: 1100px) {
-            .hero-fox-peek {
-                display: block;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .hero-fox-peek {
-                transition: opacity 300ms ease;
-                right: calc(0.0792 * var(--fox-w) - 20px - var(--hero-gap));
-            }
         }
 
         .hero-glow {
@@ -806,6 +742,265 @@
             color: var(--text-dim);
             margin: 0 0 20px;
         }
+
+        /* Kielimallien logorivi heron alla (2026-10, Fostiran etusivun mallin mukaan).
+           SVG:t Simple Iconsista (currentColor), OpenAI-siluetti webp:nä. */
+        .hero-models {
+            margin-top: 56px;
+        }
+
+        .hero-models-label {
+            display: block;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-bottom: 14px;
+        }
+
+        .hero-models-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 14px 32px;
+        }
+
+        .hero-model {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .hero-model svg {
+            width: 22px;
+            height: 22px;
+            fill: currentColor;
+        }
+
+        .hero-model img {
+            height: 22px;
+            width: auto;
+            filter: invert(1);
+            opacity: 0.85;
+        }
+
+        [data-theme="light"] .hero-model img {
+            filter: none;
+        }
+
+        /* Integraatio-osion alaviite ja tekstiruutujen leveämmät logot (wordmarkit). */
+        .tech-footnote {
+            max-width: 1000px;
+            margin: 24px auto 0;
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            text-align: center;
+        }
+
+        .tech-category.visible .tech-tile:nth-child(6) { transition-delay: 250ms; }
+
+        /* styles.css:n yleinen .tech-grid (max-width 800px, margin auto) keskitti ruudukon
+           1000px:n kategorian sisällä, jolloin ruudut alkoivat ~100px otsikkoviivaa oikeammalta. */
+        .tech-stack-section .tech-grid {
+            max-width: none;
+            margin: 0;
+        }
+
+        /* Asiakaslogot (luvat käyttöön saatu 2026-10). Mustat siluetit, käännetään tummassa teemassa. */
+        .client-strip {
+            max-width: 1100px;
+            margin: 56px auto 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 16px 40px;
+        }
+
+        .client-strip-label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+        }
+
+        .client-strip-logos {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px 48px;
+        }
+
+        .client-logo img {
+            width: auto;
+            filter: invert(1);
+            opacity: 0.8;
+        }
+
+        .client-logo-wide img {
+            height: 22px;
+        }
+
+        .client-logo-mark img {
+            height: 44px;
+        }
+
+        [data-theme="light"] .client-logo img {
+            filter: none;
+            opacity: 0.75;
+        }
+
+        .service-link {
+            display: inline-block;
+            margin-top: 14px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .service-link:hover {
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        /* ISO-HERO:START  Heron isometrinen viivapiirros (2026-10). Alkuperäinen sommitelma,
+           tyyli viivapiirros + räjäytyskuva. Värit teemamuuttujista, yksi korostusväri.
+           Generaattori: tools/iso_hero.py repojen juuressa (ks. CLAUDE.md). Älä muokkaa koordinaatteja käsin. */
+        :root {
+            --iso-line: rgba(226, 232, 240, 0.82);
+            --iso-paper: #0d1526;
+            --iso-shade: #121c31;
+            --iso-shade2: #0a1120;
+            --iso-ink: #e5e9f0;
+            --iso-ink2: #c7ceda;
+            --iso-ink3: #aab3c2;
+            --iso-grid: rgba(255, 255, 255, 0.06);
+            --iso-pipe: rgba(255, 255, 255, 0.10);
+            --iso-accent-side: #23a874;
+        }
+
+        [data-theme="light"] {
+            --iso-line: #1e293b;
+            --iso-paper: #ffffff;
+            --iso-shade: #eef1f5;
+            --iso-shade2: #dde3eb;
+            --iso-ink: #1f2937;
+            --iso-ink2: #374151;
+            --iso-ink3: #4b5563;
+            --iso-grid: rgba(15, 23, 42, 0.07);
+            --iso-pipe: rgba(15, 23, 42, 0.08);
+            --iso-accent-side: #075c3d;
+        }
+
+        .hero-visual {
+            display: none;
+        }
+
+        @media (min-width: 1024px) {
+            #hero {
+                display: grid;
+                grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+                column-gap: 32px;
+                align-items: center;
+            }
+
+            #hero > :not(.hero-visual):not(.hero-glow) {
+                grid-column: 1;
+            }
+
+            .hero-visual {
+                display: block;
+                grid-column: 2;
+                grid-row: 1 / span 4;
+                align-self: center;
+                position: relative;
+                z-index: 1;
+            }
+        }
+
+        .iso-scene {
+            width: 100%;
+            height: auto;
+            overflow: visible;
+        }
+
+        .iso-scene g {
+            transform-box: view-box;
+        }
+
+        .iso-grid line { stroke: var(--iso-grid); stroke-width: 1; }
+
+        .iso-face { stroke: var(--iso-line); stroke-width: 1.2; stroke-linejoin: round; }
+        .iso-paper { fill: var(--iso-paper); }
+        .iso-shade { fill: var(--iso-shade); }
+        .iso-shade2 { fill: var(--iso-shade2); }
+        .iso-ink-top { fill: var(--iso-ink); }
+        .iso-ink-side { fill: var(--iso-ink2); }
+        .iso-ink-side2 { fill: var(--iso-ink3); }
+
+        .iso-ink-stroke { fill: none; stroke: var(--iso-line); stroke-width: 1.6; stroke-linejoin: round; stroke-linecap: round; }
+        .iso-ink-line { stroke: var(--iso-line); stroke-width: 2; stroke-linecap: round; }
+        .iso-paper-line { stroke: var(--iso-paper); stroke-width: 2; stroke-linecap: round; }
+        .iso-thin { stroke-width: 1; }
+        .iso-gear-shape { fill: var(--iso-paper); stroke: var(--iso-line); stroke-width: 1.6; stroke-linejoin: round; }
+        .iso-mount { fill: none; stroke: var(--iso-paper); stroke-width: 1.4; stroke-dasharray: 3 4; opacity: 0.7; }
+        .iso-accent-side-fill { fill: var(--iso-accent-side); }
+        .iso-cyl-edge { stroke: var(--iso-line); stroke-width: 1.2; }
+        .iso-ink-fill { fill: var(--iso-ink); }
+        .iso-paper-fill { fill: var(--iso-paper); }
+        .iso-accent-fill { fill: var(--accent); }
+
+        .iso-post { stroke: var(--iso-line); stroke-width: 2.2; stroke-linecap: round; }
+
+        .iso-pipe { fill: none; stroke: var(--iso-pipe); stroke-width: 9; stroke-linecap: round; stroke-linejoin: round; }
+        .iso-pipe-core { fill: none; stroke: var(--iso-line); stroke-width: 1.2; stroke-linejoin: round; opacity: 0.55; }
+        .iso-node { fill: var(--iso-paper); stroke: var(--iso-line); stroke-width: 1.4; }
+
+        .iso-label {
+            fill: var(--text-dim);
+            font-size: 10.5px;
+            font-weight: 700;
+            letter-spacing: 1.4px;
+        }
+
+        .iso-accent-top { fill: var(--accent); stroke: var(--iso-line); stroke-width: 1.2; }
+        .iso-accent-side { fill: var(--iso-accent-side); stroke: var(--iso-line); stroke-width: 1.2; }
+
+        /* Logo kannessa: tummassa teemassa musta logo mintunvihreällä, vaaleassa valkoinen tummanvihreällä. */
+        .iso-logo-onlight { display: none; }
+        [data-theme="light"] .iso-logo-ondark { display: none; }
+        [data-theme="light"] .iso-logo-onlight { display: inline; }
+
+        .iso-led { fill: var(--accent); animation: iso-led 1.8s steps(2, jump-none) infinite; }
+
+        .iso-dot-core { fill: var(--accent); }
+        .iso-dot-glow { fill: var(--accent); opacity: 0.25; }
+
+        /* SMIL hoitaa räjäytyskuvan (levyt ja pylväiden päät samassa 8 s syklissä), männän,
+           hammasrattaat ja datapisteet. CSS hoitaa vain korttien keinunnan ja ledit. */
+        .iso-bob { animation: iso-bob 6s ease-in-out infinite; }
+
+        @keyframes iso-bob {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        @keyframes iso-led {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.25; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .iso-bob, .iso-led { animation: none; }
+            .iso-dot { display: none; }
+        }
+        /* ISO-HERO:END */
     </style>
     <link rel="icon" type="image/x-icon" href="img/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
@@ -974,8 +1169,20 @@
             </a>
             <a href="#miten-toimii" class="hero-link">Miten automaatio toimii →</a>
         </div>
+        <div class="hero-models animate-in">
+            <span class="hero-models-label">Työskentelemme johtavien tekoälymallien kanssa</span>
+            <div class="hero-models-row">
+                <span class="hero-model"><img src="img/tech-openai.webp" alt="" width="640" height="635" loading="lazy"><span>OpenAI</span></span>
+                <span class="hero-model"><svg viewBox="0 0 24 24"><path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></svg><span>Claude</span></span>
+                <span class="hero-model"><svg viewBox="0 0 24 24"><path d="M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81"/></svg><span>Gemini</span></span>
+                <span class="hero-model"><img src="img/tech-copilot.webp" alt="" width="184" height="160" loading="lazy"><span>Microsoft Copilot</span></span>
+                <span class="hero-model"><svg viewBox="0 0 24 24"><path d="M17.143 3.429v3.428h-3.429v3.429h-3.428V6.857H6.857V3.43H3.43v13.714H0v3.428h10.286v-3.428H6.857v-3.429h3.429v3.429h3.429v-3.429h3.428v3.429h-3.428v3.428H24v-3.428h-3.43V3.429z"/></svg><span>Mistral AI</span></span>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <svg class="iso-scene" viewBox="9 -39 611 611" role="img" aria-label="Kuvitus: sähköposti, CRM, laskut, raportit ja data on kytketty putkilla keskellä olevaan automaatioon, joka kokoontuu ja avautuu kerroksiksi. Tieto liikkuu putkia pitkin."><defs><radialGradient id="isoFade" cx="50%" cy="50%" r="50%"><stop offset="0.5" stop-color="#fff"/><stop offset="1" stop-color="#000"/></radialGradient><mask id="isoGridMask"><rect x="9" y="-39" width="611" height="611" fill="url(#isoFade)"/></mask><clipPath id="isoCapClip"><circle cx="0" cy="0" r="28"/></clipPath></defs><g class="iso-grid" mask="url(#isoGridMask)"><line x1="300.0" y1="10.0" x2="-254.2" y2="330.0"/><line x1="300.0" y1="10.0" x2="854.2" y2="330.0"/><line x1="334.6" y1="30.0" x2="-219.6" y2="350.0"/><line x1="265.4" y1="30.0" x2="819.6" y2="350.0"/><line x1="369.3" y1="50.0" x2="-185.0" y2="370.0"/><line x1="230.7" y1="50.0" x2="785.0" y2="370.0"/><line x1="403.9" y1="70.0" x2="-150.3" y2="390.0"/><line x1="196.1" y1="70.0" x2="750.3" y2="390.0"/><line x1="438.6" y1="90.0" x2="-115.7" y2="410.0"/><line x1="161.4" y1="90.0" x2="715.7" y2="410.0"/><line x1="473.2" y1="110.0" x2="-81.0" y2="430.0"/><line x1="126.8" y1="110.0" x2="681.0" y2="430.0"/><line x1="507.8" y1="130.0" x2="-46.4" y2="450.0"/><line x1="92.2" y1="130.0" x2="646.4" y2="450.0"/><line x1="542.5" y1="150.0" x2="-11.8" y2="470.0"/><line x1="57.5" y1="150.0" x2="611.8" y2="470.0"/><line x1="577.1" y1="170.0" x2="22.9" y2="490.0"/><line x1="22.9" y1="170.0" x2="577.1" y2="490.0"/><line x1="611.8" y1="190.0" x2="57.5" y2="510.0"/><line x1="-11.8" y1="190.0" x2="542.5" y2="510.0"/><line x1="646.4" y1="210.0" x2="92.2" y2="530.0"/><line x1="-46.4" y1="210.0" x2="507.8" y2="530.0"/><line x1="681.0" y1="230.0" x2="126.8" y2="550.0"/><line x1="-81.0" y1="230.0" x2="473.2" y2="550.0"/><line x1="715.7" y1="250.0" x2="161.4" y2="570.0"/><line x1="-115.7" y1="250.0" x2="438.6" y2="570.0"/><line x1="750.3" y1="270.0" x2="196.1" y2="590.0"/><line x1="-150.3" y1="270.0" x2="403.9" y2="590.0"/><line x1="785.0" y1="290.0" x2="230.7" y2="610.0"/><line x1="-185.0" y1="290.0" x2="369.3" y2="610.0"/><line x1="819.6" y1="310.0" x2="265.4" y2="630.0"/><line x1="-219.6" y1="310.0" x2="334.6" y2="630.0"/><line x1="854.2" y1="330.0" x2="300.0" y2="650.0"/><line x1="-254.2" y1="330.0" x2="300.0" y2="650.0"/></g><path class="iso-pipe" d="M171.8,254.0 L241.1,294.0"/><path class="iso-pipe-core" d="M171.8,254.0 L241.1,294.0"/><circle class="iso-node" cx="171.8" cy="254.0" r="3.4"/><circle class="iso-node" cx="241.1" cy="294.0" r="3.4"/><path class="iso-pipe" d="M438.6,252.0 L362.4,296.0"/><path class="iso-pipe-core" d="M438.6,252.0 L362.4,296.0"/><circle class="iso-node" cx="438.6" cy="252.0" r="3.4"/><circle class="iso-node" cx="362.4" cy="296.0" r="3.4"/><path class="iso-pipe" d="M173.6,403.0 L239.4,365.0"/><path class="iso-pipe-core" d="M173.6,403.0 L239.4,365.0"/><circle class="iso-node" cx="173.6" cy="403.0" r="3.4"/><circle class="iso-node" cx="239.4" cy="365.0" r="3.4"/><path class="iso-pipe" d="M402.2,417.0 L336.4,379.0"/><path class="iso-pipe-core" d="M402.2,417.0 L336.4,379.0"/><circle class="iso-node" cx="402.2" cy="417.0" r="3.4"/><circle class="iso-node" cx="336.4" cy="379.0" r="3.4"/><path class="iso-pipe" d="M179.6,131.5 L377.1,245.5 L326.0,275.0"/><path class="iso-pipe-core" d="M179.6,131.5 L377.1,245.5 L326.0,275.0"/><circle class="iso-node" cx="179.6" cy="131.5" r="3.4"/><circle class="iso-node" cx="326.0" cy="275.0" r="3.4"/><g class="iso-dot" opacity="0"><circle r="7" class="iso-dot-glow"/><circle r="3.6" class="iso-dot-core"/><animateMotion dur="2.6s" begin="0.0s" repeatCount="indefinite" path="M171.8,254.0 L241.1,294.0" keyPoints="0;1" keyTimes="0;1" calcMode="linear"/><animate attributeName="opacity" dur="2.6s" begin="0.0s" repeatCount="indefinite" values="0;1;1;0" keyTimes="0;0.12;0.82;1"/></g><g class="iso-dot" opacity="0"><circle r="7" class="iso-dot-glow"/><circle r="3.6" class="iso-dot-core"/><animateMotion dur="2.6s" begin="1.3s" repeatCount="indefinite" path="M171.8,254.0 L241.1,294.0" keyPoints="1;0" keyTimes="0;1" calcMode="linear"/><animate attributeName="opacity" dur="2.6s" begin="1.3s" repeatCount="indefinite" values="0;1;1;0" keyTimes="0;0.12;0.82;1"/></g><g class="iso-dot" opacity="0"><circle r="7" class="iso-dot-glow"/><circle r="3.6" class="iso-dot-core"/><animateMotion dur="2.6s" begin="0.9s" repeatCount="indefinite" path="M438.6,252.0 L362.4,296.0" keyPoints="0;1" keyTimes="0;1" calcMode="linear"/><animate attributeName="opacity" dur="2.6s" begin="0.9s" repeatCount="indefinite" values="0;1;1;0" keyTimes="0;0.12;0.82;1"/></g><g class="iso-dot" opacity="0"><circle r="7" class="iso-dot-glow"/><circle r="3.6" class="iso-dot-core"/><animateMotion dur="2.6s" begin="2.2s" repeatCount="indefinite" path="M438.6,252.0 L362.4,296.0" keyPoints="1;0" keyTimes="0;1" calcMode="linear"/><animate attributeName="opacity" dur="2.6s" begin="2.2s" repeatCount="indefinite" values="0;1;1;0" keyTimes="0;0.12;0.82;1"/></g><g class="iso-dot" opacity="0"><circle r="7" class="iso-dot-glow"/><circle r="3.6" class="iso-dot-core"/><animateMotion dur="2.6s" begin="1.8s" repeatCount="indefinite" path="M173.6,403.0 L239.4,365.0" keyPoints="0;1" keyTimes="0;1" calcMode="linear"/><animate attributeName="opacity" dur="2.6s" begin="1.8s" repeatCount="indefinite" values="0;1;1;0" keyTimes="0;0.12;0.82;1"/></g><g class="iso-dot" opacity="0"><circle r="7" class="iso-dot-glow"/><circle r="3.6" class="iso-dot-core"/><animateMotion dur="2.6s" begin="3.1s" repeatCount="indefinite" path="M173.6,403.0 L239.4,365.0" keyPoints="1;0" keyTimes="0;1" calcMode="linear"/><animate attributeName="opacity" dur="2.6s" begin="3.1s" repeatCount="indefinite" values="0;1;1;0" keyTimes="0;0.12;0.82;1"/></g><g class="iso-dot" opacity="0"><circle r="7" class="iso-dot-glow"/><circle r="3.6" class="iso-dot-core"/><animateMotion dur="2.6s" begin="2.7s" repeatCount="indefinite" path="M402.2,417.0 L336.4,379.0" keyPoints="0;1" keyTimes="0;1" calcMode="linear"/><animate attributeName="opacity" dur="2.6s" begin="2.7s" repeatCount="indefinite" values="0;1;1;0" keyTimes="0;0.12;0.82;1"/></g><g class="iso-dot" opacity="0"><circle r="7" class="iso-dot-glow"/><circle r="3.6" class="iso-dot-core"/><animateMotion dur="2.6s" begin="4.0s" repeatCount="indefinite" path="M402.2,417.0 L336.4,379.0" keyPoints="1;0" keyTimes="0;1" calcMode="linear"/><animate attributeName="opacity" dur="2.6s" begin="4.0s" repeatCount="indefinite" values="0;1;1;0" keyTimes="0;0.12;0.82;1"/></g><g class="iso-dot" opacity="0"><circle r="7" class="iso-dot-glow"/><circle r="3.6" class="iso-dot-core"/><animateMotion dur="2.6s" begin="3.6s" repeatCount="indefinite" path="M179.6,131.5 L377.1,245.5 L326.0,275.0" keyPoints="0;1" keyTimes="0;1" calcMode="linear"/><animate attributeName="opacity" dur="2.6s" begin="3.6s" repeatCount="indefinite" values="0;1;1;0" keyTimes="0;0.12;0.82;1"/></g><g class="iso-dot" opacity="0"><circle r="7" class="iso-dot-glow"/><circle r="3.6" class="iso-dot-core"/><animateMotion dur="2.6s" begin="4.9s" repeatCount="indefinite" path="M179.6,131.5 L377.1,245.5 L326.0,275.0" keyPoints="1;0" keyTimes="0;1" calcMode="linear"/><animate attributeName="opacity" dur="2.6s" begin="4.9s" repeatCount="indefinite" values="0;1;1;0" keyTimes="0;0.12;0.82;1"/></g><g class="iso-obj iso-bob" style="animation-delay:-1.2s"><polygon class="iso-face iso-shade" points="99.1,100.0 152.8,131.0 152.8,147.0 99.1,116.0"/><polygon class="iso-face iso-shade2" points="152.8,131.0 206.5,100.0 206.5,116.0 152.8,147.0"/><polygon class="iso-face iso-paper" points="152.8,69.0 206.5,100.0 152.8,131.0 99.1,100.0"/><polygon class="iso-face iso-shade" points="99.1,82.0 152.8,113.0 152.8,129.0 99.1,98.0"/><polygon class="iso-face iso-shade2" points="152.8,113.0 206.5,82.0 206.5,98.0 152.8,129.0"/><polygon class="iso-face iso-paper" points="152.8,51.0 206.5,82.0 152.8,113.0 99.1,82.0"/><polygon class="iso-face iso-shade" points="99.1,64.0 152.8,95.0 152.8,111.0 99.1,80.0"/><polygon class="iso-face iso-shade2" points="152.8,95.0 206.5,64.0 206.5,80.0 152.8,111.0"/><polygon class="iso-face iso-paper" points="152.8,33.0 206.5,64.0 152.8,95.0 99.1,64.0"/><polygon class="iso-face iso-shade" points="99.1,46.0 152.8,77.0 152.8,93.0 99.1,62.0"/><polygon class="iso-face iso-shade2" points="152.8,77.0 206.5,46.0 206.5,62.0 152.8,93.0"/><polygon class="iso-face iso-paper" points="152.8,15.0 206.5,46.0 152.8,77.0 99.1,46.0"/><circle class="iso-led" style="animation-delay:0.00s" cx="194.3" cy="115.0" r="2.2"/><circle class="iso-led" style="animation-delay:0.45s" cx="194.3" cy="97.0" r="2.2"/><circle class="iso-led" style="animation-delay:0.90s" cx="194.3" cy="79.0" r="2.2"/><circle class="iso-led" style="animation-delay:1.35s" cx="194.3" cy="61.0" r="2.2"/></g><text class="iso-label" x="152.8" y="1.0" text-anchor="middle">DATA</text><g class="iso-obj iso-bob" style="animation-delay:-2.4s"><polygon class="iso-face iso-shade" points="398.7,224.0 478.4,270.0 478.4,275.0 398.7,229.0"/><polygon class="iso-face iso-shade2" points="478.4,270.0 568.5,218.0 568.5,223.0 478.4,275.0"/><polygon class="iso-face iso-paper" points="488.8,172.0 568.5,218.0 478.4,270.0 398.7,224.0"/><g transform="translate(488.8,172.0) matrix(0.866,0.5,-0.866,0.5,0,0)"><circle class="iso-ink-stroke" cx="16" cy="20" r="7"/><line class="iso-ink-line" x1="30" y1="16" x2="80" y2="16"/><line class="iso-ink-line" x1="30" y1="25" x2="64" y2="25"/><circle class="iso-ink-stroke" cx="16" cy="50" r="7"/><line class="iso-ink-line" x1="30" y1="46" x2="80" y2="46"/><line class="iso-ink-line" x1="30" y1="55" x2="64" y2="55"/><circle class="iso-ink-stroke" cx="16" cy="80" r="7"/><line class="iso-ink-line" x1="30" y1="76" x2="80" y2="76"/><line class="iso-ink-line" x1="30" y1="85" x2="64" y2="85"/></g></g><text class="iso-label" x="478.4" y="295.0" text-anchor="middle">CRM</text><g class="iso-obj iso-bob" style="animation-delay:-0.6s"><polygon class="iso-face iso-shade" points="38.5,214.0 135.5,270.0 135.5,275.0 38.5,219.0"/><polygon class="iso-face iso-shade2" points="135.5,270.0 208.2,228.0 208.2,233.0 135.5,275.0"/><polygon class="iso-face iso-paper" points="111.2,172.0 208.2,228.0 135.5,270.0 38.5,214.0"/><g transform="translate(111.2,172.0) matrix(0.866,0.5,-0.866,0.5,0,0)"><rect class="iso-ink-stroke" x="12" y="14" width="42" height="30" rx="2"/><polyline class="iso-ink-stroke" points="12,14 33,32 54,14"/><line class="iso-ink-line" x1="64" y1="18" x2="100" y2="18"/><line class="iso-ink-line" x1="64" y1="27" x2="92" y2="27"/><line class="iso-ink-line" x1="64" y1="36" x2="86" y2="36"/><line class="iso-ink-line" x1="12" y1="58" x2="100" y2="58"/><line class="iso-ink-line" x1="12" y1="67" x2="70" y2="67"/></g></g><text class="iso-label" x="135.5" y="295.0" text-anchor="middle">SÄHKÖPOSTI</text><g class="iso-stack"><polygon class="iso-face iso-shade2" points="178.8,320.0 300.0,390.0 300.0,400.0 178.8,330.0"/><polygon class="iso-face iso-ink-side" points="300.0,390.0 421.2,320.0 421.2,330.0 300.0,400.0"/><polygon class="iso-face iso-shade" points="300.0,250.0 421.2,320.0 300.0,390.0 178.8,320.0"/><g transform="translate(300.0,250.0) matrix(0.866,0.5,-0.866,0.5,0,0)"><circle class="iso-ink-stroke iso-thin" cx="10" cy="10" r="3"/><circle class="iso-ink-stroke iso-thin" cx="130" cy="10" r="3"/><circle class="iso-ink-stroke iso-thin" cx="10" cy="130" r="3"/><circle class="iso-ink-stroke iso-thin" cx="130" cy="130" r="3"/></g><line class="iso-post" x1="300.0" y1="216.0" x2="300.0" y2="260.0"><animate attributeName="y1" dur="8s" repeatCount="indefinite" values="216.0;216.0;258.0;258.0;216.0;216.0" keyTimes="0;0.3;0.4;0.7;0.8;1" calcMode="spline" keySplines="0 0 1 1;0.65 0 0.35 1;0 0 1 1;0.65 0 0.35 1;0 0 1 1"/><animate attributeName="y2" dur="8s" repeatCount="indefinite" values="260.0;260.0;260.0;260.0;260.0;260.0" keyTimes="0;0.3;0.4;0.7;0.8;1" calcMode="spline" keySplines="0 0 1 1;0.65 0 0.35 1;0 0 1 1;0.65 0 0.35 1;0 0 1 1"/></line><line class="iso-post" x1="403.9" y1="276.0" x2="403.9" y2="320.0"><animate attributeName="y1" dur="8s" repeatCount="indefinite" values="276.0;276.0;318.0;318.0;276.0;276.0" keyTimes="0;0.3;0.4;0.7;0.8;1" calcMode="spline" keySplines="0 0 1 1;0.65 0 0.35 1;0 0 1 1;0.65 0 0.35 1;0 0 1 1"/><animate attributeName="y2" dur="8s" repeatCount="indefinite" values="320.0;320.0;320.0;320.0;320.0;320.0" keyTimes="0;0.3;0.4;0.7;0.8;1" calcMode="spline" keySplines="0 0 1 1;0.65 0 0.35 1;0 0 1 1;0.65 0 0.35 1;0 0 1 1"/></line><line class="iso-post" x1="196.1" y1="276.0" x2="196.1" y2="320.0"><animate attributeName="y1" dur="8s" repeatCount="indefinite" values="276.0;276.0;318.0;318.0;276.0;276.0" keyTimes="0;0.3;0.4;0.7;0.8;1" calcMode="spline" keySplines="0 0 1 1;0.65 0 0.35 1;0 0 1 1;0.65 0 0.35 1;0 0 1 1"/><animate attributeName="y2" dur="8s" repeatCount="indefinite" values="320.0;320.0;320.0;320.0;320.0;320.0" keyTimes="0;0.3;0.4;0.7;0.8;1" calcMode="spline" keySplines="0 0 1 1;0.65 0 0.35 1;0 0 1 1;0.65 0 0.35 1;0 0 1 1"/></line><line class="iso-post" x1="300.0" y1="336.0" x2="300.0" y2="380.0"><animate attributeName="y1" dur="8s" repeatCount="indefinite" values="336.0;336.0;378.0;378.0;336.0;336.0" keyTimes="0;0.3;0.4;0.7;0.8;1" calcMode="spline" keySplines="0 0 1 1;0.65 0 0.35 1;0 0 1 1;0.65 0 0.35 1;0 0 1 1"/><animate attributeName="y2" dur="8s" repeatCount="indefinite" values="380.0;380.0;380.0;380.0;380.0;380.0" keyTimes="0;0.3;0.4;0.7;0.8;1" calcMode="spline" keySplines="0 0 1 1;0.65 0 0.35 1;0 0 1 1;0.65 0 0.35 1;0 0 1 1"/></line><g><animateTransform attributeName="transform" type="translate" dur="8s" repeatCount="indefinite" values="0 0;0 0;0 42;0 42;0 0;0 0" keyTimes="0;0.3;0.4;0.7;0.8;1" calcMode="spline" keySplines="0 0 1 1;0.65 0 0.35 1;0 0 1 1;0.65 0 0.35 1;0 0 1 1"/><polygon class="iso-face iso-shade" points="178.8,270.0 300.0,340.0 300.0,346.0 178.8,276.0"/><polygon class="iso-face iso-shade2" points="300.0,340.0 421.2,270.0 421.2,276.0 300.0,346.0"/><polygon class="iso-face iso-paper" points="300.0,200.0 421.2,270.0 300.0,340.0 178.8,270.0"/><g transform="translate(300.0,200.0) matrix(0.866,0.5,-0.866,0.5,0,0)"><rect class="iso-ink-stroke" x="18" y="18" width="48" height="36"/><line class="iso-ink-line iso-thin" x1="26" y1="18" x2="26" y2="54"/><line class="iso-ink-line iso-thin" x1="34" y1="18" x2="34" y2="54"/><line class="iso-ink-line iso-thin" x1="42" y1="18" x2="42" y2="54"/><line class="iso-ink-line iso-thin" x1="50" y1="18" x2="50" y2="54"/><line class="iso-ink-line iso-thin" x1="58" y1="18" x2="58" y2="54"/><g><path class="iso-gear-shape" d="M115.00,96.00 L119.89,98.26 L119.18,102.21 L113.81,102.62 L112.45,105.50 L115.56,109.90 L112.97,112.97 L108.11,110.64 L105.50,112.45 L105.99,117.82 L102.21,119.18 L99.17,114.73 L96.00,115.00 L93.74,119.89 L89.79,119.18 L89.38,113.81 L86.50,112.45 L82.10,115.56 L79.03,112.97 L81.36,108.11 L79.55,105.50 L74.18,105.99 L72.82,102.21 L77.27,99.17 L77.00,96.00 L72.11,93.74 L72.82,89.79 L78.19,89.38 L79.55,86.50 L76.44,82.10 L79.03,79.03 L83.89,81.36 L86.50,79.55 L86.01,74.18 L89.79,72.82 L92.83,77.27 L96.00,77.00 L98.26,72.11 L102.21,72.82 L102.62,78.19 L105.50,79.55 L109.90,76.44 L112.97,79.03 L110.64,83.89 L112.45,86.50 L117.82,86.01 L119.18,89.79 L114.73,92.83 Z"/><circle class="iso-ink-stroke" cx="96" cy="96" r="7"/><line class="iso-ink-line" x1="89" y1="96" x2="103" y2="96"/><animateTransform attributeName="transform" type="rotate" from="0 96 96" to="360 96 96" dur="8s" repeatCount="indefinite"/></g><g><path class="iso-gear-shape" d="M74.50,110.00 L77.82,112.25 L76.61,116.07 L72.60,116.02 L70.55,118.21 L70.85,122.21 L67.12,123.65 L64.66,120.48 L61.66,120.24 L58.73,122.97 L55.27,120.95 L56.22,117.05 L54.54,114.56 L50.57,113.97 L50.00,110.00 L53.64,108.31 L54.54,105.44 L52.53,101.98 L55.27,99.05 L58.86,100.84 L61.66,99.76 L63.12,96.03 L67.12,96.35 L67.95,100.27 L70.55,101.79 L74.38,100.60 L76.61,103.93 L74.07,107.03 Z"/><circle class="iso-ink-stroke" cx="64" cy="110" r="4"/><animateTransform attributeName="transform" type="rotate" from="0 64 110" to="-360 64 110" dur="4.67s" repeatCount="indefinite"/></g><circle class="iso-ink-stroke" cx="104" cy="34" r="15"/><g><line class="iso-ink-line iso-thin" x1="104" y1="34" x2="117.0" y2="34.0"/><line class="iso-ink-line iso-thin" x1="104" y1="34" x2="110.5" y2="45.3"/><line class="iso-ink-line iso-thin" x1="104" y1="34" x2="97.5" y2="45.3"/><line class="iso-ink-line iso-thin" x1="104" y1="34" x2="91.0" y2="34.0"/><line class="iso-ink-line iso-thin" x1="104" y1="34" x2="97.5" y2="22.7"/><line class="iso-ink-line iso-thin" x1="104" y1="34" x2="110.5" y2="22.7"/><animateTransform attributeName="transform" type="rotate" from="0 104 34" to="360 104 34" dur="1.6s" repeatCount="indefinite"/></g></g></g><line class="iso-post" x1="300.0" y1="162.0" x2="300.0" y2="210.0"><animate attributeName="y1" dur="8s" repeatCount="indefinite" values="162.0;162.0;250.0;250.0;162.0;162.0" keyTimes="0;0.3;0.4;0.7;0.8;1" calcMode="spline" keySplines="0 0 1 1;0.65 0 0.35 1;0 0 1 1;0.65 0 0.35 1;0 0 1 1"/><animate attributeName="y2" dur="8s" repeatCount="indefinite" values="210.0;210.0;252.0;252.0;210.0;210.0" keyTimes="0;0.3;0.4;0.7;0.8;1" calcMode="spline" keySplines="0 0 1 1;0.65 0 0.35 1;0 0 1 1;0.65 0 0.35 1;0 0 1 1"/></line><line class="iso-post" x1="403.9" y1="222.0" x2="403.9" y2="270.0"><animate attributeName="y1" dur="8s" repeatCount="indefinite" values="222.0;222.0;310.0;310.0;222.0;222.0" keyTimes="0;0.3;0.4;0.7;0.8;1" calcMode="spline" keySplines="0 0 1 1;0.65 0 0.35 1;0 0 1 1;0.65 0 0.35 1;0 0 1 1"/><animate attributeName="y2" dur="8s" repeatCount="indefinite" values="270.0;270.0;312.0;312.0;270.0;270.0" keyTimes="0;0.3;0.4;0.7;0.8;1" calcMode="spline" keySplines="0 0 1 1;0.65 0 0.35 1;0 0 1 1;0.65 0 0.35 1;0 0 1 1"/></line><line class="iso-post" x1="196.1" y1="222.0" x2="196.1" y2="270.0"><animate attributeName="y1" dur="8s" repeatCount="indefinite" values="222.0;222.0;310.0;310.0;222.0;222.0" keyTimes="0;0.3;0.4;0.7;0.8;1" calcMode="spline" keySplines="0 0 1 1;0.65 0 0.35 1;0 0 1 1;0.65 0 0.35 1;0 0 1 1"/><animate attributeName="y2" dur="8s" repeatCount="indefinite" values="270.0;270.0;312.0;312.0;270.0;270.0" keyTimes="0;0.3;0.4;0.7;0.8;1" calcMode="spline" keySplines="0 0 1 1;0.65 0 0.35 1;0 0 1 1;0.65 0 0.35 1;0 0 1 1"/></line><line class="iso-post" x1="300.0" y1="282.0" x2="300.0" y2="330.0"><animate attributeName="y1" dur="8s" repeatCount="indefinite" values="282.0;282.0;370.0;370.0;282.0;282.0" keyTimes="0;0.3;0.4;0.7;0.8;1" calcMode="spline" keySplines="0 0 1 1;0.65 0 0.35 1;0 0 1 1;0.65 0 0.35 1;0 0 1 1"/><animate attributeName="y2" dur="8s" repeatCount="indefinite" values="330.0;330.0;372.0;372.0;330.0;330.0" keyTimes="0;0.3;0.4;0.7;0.8;1" calcMode="spline" keySplines="0 0 1 1;0.65 0 0.35 1;0 0 1 1;0.65 0 0.35 1;0 0 1 1"/></line><g><animateTransform attributeName="transform" type="translate" dur="8s" repeatCount="indefinite" values="0 0;0 0;0 88;0 88;0 0;0 0" keyTimes="0;0.3;0.4;0.7;0.8;1" calcMode="spline" keySplines="0 0 1 1;0.65 0 0.35 1;0 0 1 1;0.65 0 0.35 1;0 0 1 1"/><polygon class="iso-face iso-ink-side" points="178.8,212.0 300.0,282.0 300.0,292.0 178.8,222.0"/><polygon class="iso-face iso-ink-side2" points="300.0,282.0 421.2,212.0 421.2,222.0 300.0,292.0"/><polygon class="iso-face iso-ink-top" points="300.0,142.0 421.2,212.0 300.0,282.0 178.8,212.0"/><g transform="translate(300.0,142.0) matrix(0.866,0.5,-0.866,0.5,0,0)"><circle class="iso-mount" cx="70" cy="70" r="37"/><rect class="iso-paper-fill" x="14" y="98" width="34" height="24"/><line class="iso-ink-line" x1="31" y1="98" x2="31" y2="122"/><line class="iso-paper-line" x1="94" y1="104" x2="126" y2="104"/><line class="iso-paper-line" x1="94" y1="111" x2="126" y2="111"/><line class="iso-paper-line" x1="94" y1="118" x2="126" y2="118"/></g><ellipse class="iso-accent-side" cx="300.0" cy="212.0" rx="36.7" ry="21.2"/><rect class="iso-accent-side-fill" x="263.3" y="200.0" width="73.5" height="12.0"><animate attributeName="y" values="200.0;184.0;200.0" dur="2.4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.5;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/><animate attributeName="height" values="12.0;28.0;12.0" dur="2.4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.5;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></rect><line class="iso-cyl-edge" x1="263.3" y1="200.0" x2="263.3" y2="212.0"><animate attributeName="y1" values="200.0;184.0;200.0" dur="2.4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.5;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></line><line class="iso-cyl-edge" x1="336.7" y1="200.0" x2="336.7" y2="212.0"><animate attributeName="y1" values="200.0;184.0;200.0" dur="2.4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.5;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/></line><g><animateTransform attributeName="transform" type="translate" values="0 0;0 -16;0 0" dur="2.4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.5;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/><ellipse class="iso-accent-top" cx="300.0" cy="200.0" rx="36.7" ry="21.2"/><g transform="translate(300.0,200.0) matrix(0.866,0.5,-0.866,0.5,0,0)" clip-path="url(#isoCapClip)"><image class="iso-logo iso-logo-ondark" href="img/valok-black-with-white-outline.webp" x="-68.2" y="-68.2" width="136.4" height="136.4" transform="rotate(-45)"/><image class="iso-logo iso-logo-onlight" href="img/valok-white-with-black-outline.webp" x="-68.2" y="-68.2" width="136.4" height="136.4" transform="rotate(-45)"/></g></g></g></g><g class="iso-obj iso-bob" style="animation-delay:-3.6s"><polygon class="iso-face iso-shade" points="21.1,434.0 111.2,486.0 111.2,491.0 21.1,439.0"/><polygon class="iso-face iso-shade2" points="111.2,486.0 218.6,424.0 218.6,429.0 111.2,491.0"/><polygon class="iso-face iso-paper" points="128.5,372.0 218.6,424.0 111.2,486.0 21.1,434.0"/><g transform="translate(128.5,372.0) matrix(0.866,0.5,-0.866,0.5,0,0)"><rect class="iso-ink-fill" x="12" y="12" width="46" height="9"/><line class="iso-ink-line" x1="12" y1="34" x2="92" y2="34"/><line class="iso-ink-line" x1="12" y1="44" x2="80" y2="44"/><line class="iso-ink-line" x1="12" y1="54" x2="88" y2="54"/><line class="iso-ink-line" x1="12" y1="64" x2="72" y2="64"/><line class="iso-ink-line" x1="12" y1="74" x2="84" y2="74"/><line class="iso-ink-line" x1="12" y1="84" x2="62" y2="84"/><rect class="iso-ink-stroke" x="12" y="96" width="9" height="9"/><polyline class="iso-ink-stroke" points="14,100 16.5,103 20,98"/><rect class="iso-accent-fill" x="56" y="98" width="36" height="9"/></g></g><text class="iso-label" x="111.2" y="511.0" text-anchor="middle">LASKUT</text><g class="iso-obj iso-bob" style="animation-delay:-1.8s"><polygon class="iso-face iso-shade" points="348.5,443.0 500.9,531.0 500.9,536.0 348.5,448.0"/><polygon class="iso-face iso-shade2" points="500.9,531.0 608.3,469.0 608.3,474.0 500.9,536.0"/><polygon class="iso-face iso-paper" points="455.9,381.0 608.3,469.0 500.9,531.0 348.5,443.0"/><g transform="translate(455.9,381.0) matrix(0.866,0.5,-0.866,0.5,0,0)"><rect class="iso-ink-fill" x="0" y="0" width="176" height="16"/><circle class="iso-paper-fill" cx="10" cy="8" r="2.6"/><circle class="iso-paper-fill" cx="19" cy="8" r="2.6"/><circle class="iso-paper-fill" cx="28" cy="8" r="2.6"/><rect class="iso-ink-stroke" x="16" y="70" width="9" height="26"/><rect class="iso-ink-stroke" x="30" y="52" width="9" height="44"/><rect class="iso-ink-stroke" x="44" y="62" width="9" height="34"/><rect class="iso-ink-stroke" x="58" y="36" width="9" height="60"/><circle class="iso-ink-stroke" cx="128" cy="62" r="24"/><path class="iso-accent-fill" d="M128,62 L128,38 A24,24 0 0 1 150.8,69.4 Z"/><line class="iso-ink-line" x1="16" y1="108" x2="120" y2="108"/></g></g><text class="iso-label" x="500.9" y="556.0" text-anchor="middle">RAPORTIT</text></svg>
+        </div>
         <div class="hero-glow"></div>
-        <img class="hero-fox-peek" srcset="img/valok-kettu-hero-peek-mobile.webp 500w, img/valok-kettu-hero-peek.webp 644w" sizes="220px" src="img/valok-kettu-hero-peek.webp" alt="" width="644" height="746" loading="eager" aria-hidden="true">
     </header>
 
     <!-- ONGELMA / RATKAISU -->
@@ -1046,6 +1253,15 @@
                 <h3>Konsultointi</h3>
                 <p>Autamme kartoittamaan, mistä automaatio tai tekoäly kannattaa aloittaa juuri sinun
                     yrityksessäsi.</p>
+                <a href="tekoalytyokalujen-kayttoonotto.html" class="service-link">Tekoälytyökalujen käyttöönotto →</a>
+            </div>
+        </div>
+
+        <div class="client-strip" data-animate>
+            <span class="client-strip-label">Asiakkaitamme</span>
+            <div class="client-strip-logos">
+                <span class="client-logo client-logo-wide"><img src="img/ref-sijoitusasunnot.webp" alt="Sijoitusasunnot.com" width="300" height="59" loading="lazy"></span>
+                <span class="client-logo client-logo-mark"><img src="img/ref-tenderx.webp" alt="TenderX" width="192" height="160" loading="lazy"></span>
             </div>
         </div>
     </section>
@@ -1124,6 +1340,72 @@
         </div>
     </section>
 
+    <!-- INTEGRAATIOT -->
+    <section id="integraatiot" class="section section-roomy tech-stack-section">
+        <div class="section-header">
+            <span class="section-tag">Integraatiot</span>
+            <h2>Toimii järjestelmiesi kanssa.</h2>
+            <p class="section-desc">Liitämme automaatiot ja tekoälyn järjestelmiin, joita yrityksesi jo käyttää.
+                Alla esimerkkejä järjestelmistä, joihin on valmis integraatio tai rajapinta n8n:n kautta.</p>
+        </div>
+
+        <div class="tech-category" data-animate>
+            <div class="tech-category-header">
+                <span class="tech-category-label">Asiakkuudenhallinta (CRM)</span>
+                <span class="tech-category-tags">Myynti · Asiakkaat</span>
+            </div>
+            <div class="tech-grid">
+                <div class="tech-tile"><span class="tech-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18.164 7.93V5.084a2.198 2.198 0 001.267-1.978v-.067A2.2 2.2 0 0017.238.845h-.067a2.2 2.2 0 00-2.193 2.193v.067a2.196 2.196 0 001.252 1.973l.013.006v2.852a6.22 6.22 0 00-2.969 1.31l.012-.01-7.828-6.095A2.497 2.497 0 104.3 4.656l-.012.006 7.697 5.991a6.176 6.176 0 00-1.038 3.446c0 1.343.425 2.588 1.147 3.607l-.013-.02-2.342 2.343a1.968 1.968 0 00-.58-.095h-.002a2.033 2.033 0 102.033 2.033 1.978 1.978 0 00-.1-.595l.005.014 2.317-2.317a6.247 6.247 0 104.782-11.134l-.036-.005zm-.964 9.378a3.206 3.206 0 113.215-3.207v.002a3.206 3.206 0 01-3.207 3.207z"/></svg></span><span>HubSpot</span></div>
+                <div class="tech-tile"><img src="img/tech-pipedrive.webp" alt="" width="256" height="256" loading="lazy"><span>Pipedrive</span></div>
+                <div class="tech-tile"><img src="img/tech-salesforce.webp" alt="" width="728" height="510" loading="lazy"><span>Salesforce</span></div>
+                <div class="tech-tile"><span class="tech-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8.66 6.897a1.299 1.299 0 0 0-1.205.765l-.642 1.44-.062-.385A1.291 1.291 0 0 0 5.27 7.648l-4.185.678A1.291 1.291 0 0 0 .016 9.807l.678 4.18a1.293 1.293 0 0 0 1.27 1.087c.074 0 .143-.01.216-.017l4.18-.678c.436-.07.784-.351.96-.723l2.933 1.307a1.304 1.304 0 0 0 .988.026c.321-.12.575-.365.716-.678l.28-.629.038.276a1.297 1.297 0 0 0 1.455 1.103l3.712-.501a1.29 1.29 0 0 0 1.03.514h4.236c.713 0 1.29-.58 1.291-1.291V9.545c0-.712-.58-1.291-1.291-1.291h-4.236c-.079 0-.155.008-.23.022a1.309 1.309 0 0 0-.275-.288c-.275-.21-.614-.3-.958-.253l-4.197.571c-.155.021-.3.07-.432.14L9.159 7.01a1.27 1.27 0 0 0-.499-.113zm-.025.705c.077 0 .159.013.24.052l2.971 1.324c-.128.238-.18.508-.142.782l.357 2.596h.002l-.745 1.672a.59.59 0 0 1-.777.296l-3.107-1.385-.004-.041-.41-2.526L8.1 7.95a.589.589 0 0 1 .536-.348zm-3.159.733c.125 0 .245.039.343.112.13.09.21.227.237.382l.234 1.446-.56 1.259a1.27 1.27 0 0 0-.026.987c.12.322.364.575.678.717l.295.131a.585.585 0 0 1-.428.314l-4.185.678a.59.59 0 0 1-.674-.485l-.678-4.18a.588.588 0 0 1 .485-.674l4.185-.678c.03-.004.064-.01.094-.01zm11.705.09a.59.59 0 0 1 .415.173 1.287 1.287 0 0 0-.416.947v4.237c0 .033.003.065.005.097l-3.55.482a.586.586 0 0 1-.66-.502l-.191-1.403.899-2.017a1.29 1.29 0 0 0-.333-1.5l3.754-.51c.026-.004.051-.004.077-.004zm1.3.532h4.227c.326 0 .588.266.588.588v4.237a.589.589 0 0 1-.588.588h-4.237a.564.564 0 0 1-.12-.013c.47-.246.758-.765.684-1.318zm-5.988.309.254.113c.296.133.43.48.296.777l-.432.97-.207-1.465a.58.58 0 0 1 .09-.395zm5.39.538.453 3.325a.583.583 0 0 1-.453.65zM6.496 11.545l.17 1.052a.588.588 0 0 1-.293-.776zm3.985 4.344a.588.588 0 0 0-.612.603c0 .358.244.61.601.61a.582.582 0 0 0 .607-.608c0-.35-.242-.605-.596-.605zm5.545 0a.588.588 0 0 0-.612.603c0 .358.245.61.602.61a.582.582 0 0 0 .606-.608c0-.35-.24-.605-.596-.605zm-8.537.018a.047.047 0 0 0-.048.047v.085c0 .026.021.047.048.047h.52l-.623.9a.052.052 0 0 0-.009.027v.027c0 .026.021.047.048.047h.815a.047.047 0 0 0 .047-.047v-.085a.047.047 0 0 0-.047-.047h-.55l.606-.9a.05.05 0 0 0 .008-.026v-.028a.047.047 0 0 0-.047-.047zm5.303 0a.047.047 0 0 0-.047.047v1.086c0 .026.02.047.047.047h.135a.047.047 0 0 0 .047-.047v-.454h.545v.454c0 .026.02.047.047.047h.134a.047.047 0 0 0 .047-.047v-1.086a.047.047 0 0 0-.047-.047h-.134a.047.047 0 0 0-.047.047v.453h-.545v-.453a.047.047 0 0 0-.047-.047zm-2.324.164c.25 0 .372.194.372.425 0 .219-.109.425-.358.426-.242 0-.375-.197-.375-.419 0-.235.108-.432.36-.432zm5.545 0c.25 0 .372.194.372.425 0 .219-.108.425-.358.426-.242 0-.374-.197-.374-.419 0-.235.108-.432.36-.432z"/></svg></span><span>Zoho CRM</span></div>
+            </div>
+        </div>
+
+        <div class="tech-category" data-animate>
+            <div class="tech-category-header">
+                <span class="tech-category-label">Laskutus ja kirjanpito</span>
+                <span class="tech-category-tags">Laskut · Tositteet · Maksut</span>
+            </div>
+            <div class="tech-grid">
+                <div class="tech-tile"><img src="img/tech-netvisor.webp" alt="" width="70" height="68" loading="lazy"><span>Netvisor</span></div>
+                <div class="tech-tile"><img src="img/tech-procountor.webp" alt="" width="214" height="96" loading="lazy"><span>Procountor</span></div>
+                <div class="tech-tile"><img src="img/tech-fennoa.webp" alt="" width="75" height="78" loading="lazy"><span>Fennoa</span></div>
+                <div class="tech-tile"><span class="tech-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.545-2.354 1.545-1.875 0-4.965-.921-6.99-2.109l-.9 5.555C5.175 22.99 8.385 24 11.714 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.305 2.525-3.236 2.525-5.732 0-4.128-2.524-5.851-6.594-7.305h.003z"/></svg></span><span>Stripe</span></div>
+            </div>
+        </div>
+
+        <div class="tech-category" data-animate>
+            <div class="tech-category-header">
+                <span class="tech-category-label">Dokumentit ja tiedostot</span>
+                <span class="tech-category-tags">Tiedostot · Tietopankit</span>
+            </div>
+            <div class="tech-grid">
+                <div class="tech-tile"><img src="img/tech-sharepoint.webp" alt="" width="163" height="160" loading="lazy"><span>SharePoint</span></div>
+                <div class="tech-tile"><img src="img/tech-onedrive.webp" alt="" width="249" height="160" loading="lazy"><span>OneDrive</span></div>
+                <div class="tech-tile"><span class="tech-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12.01 1.485c-2.082 0-3.754.02-3.743.047.01.02 1.708 3.001 3.774 6.62l3.76 6.574h3.76c2.081 0 3.753-.02 3.742-.047-.005-.02-1.708-3.001-3.775-6.62l-3.76-6.574zm-4.76 1.73a789.828 789.861 0 0 0-3.63 6.319L0 15.868l1.89 3.298 1.885 3.297 3.62-6.335 3.618-6.33-1.88-3.287C8.1 4.704 7.255 3.22 7.25 3.214zm2.259 12.653-.203.348c-.114.198-.96 1.672-1.88 3.287a423.93 423.948 0 0 1-1.698 2.97c-.01.026 3.24.042 7.222.042h7.244l1.796-3.157c.992-1.734 1.85-3.23 1.906-3.323l.104-.167h-7.249z"/></svg></span><span>Google Drive</span></div>
+                <div class="tech-tile"><span class="tech-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4.459 4.208c.746.606 1.026.56 2.428.466l13.215-.793c.28 0 .047-.28-.046-.326L17.86 1.968c-.42-.326-.981-.7-2.055-.607L3.01 2.295c-.466.046-.56.28-.374.466zm.793 3.08v13.904c0 .747.373 1.027 1.214.98l14.523-.84c.841-.046.935-.56.935-1.167V6.354c0-.606-.233-.933-.748-.887l-15.177.887c-.56.047-.747.327-.747.933zm14.337.745c.093.42 0 .84-.42.888l-.7.14v10.264c-.608.327-1.168.514-1.635.514-.748 0-.935-.234-1.495-.933l-4.577-7.186v6.952L12.21 19s0 .84-1.168.84l-3.222.186c-.093-.186 0-.653.327-.746l.84-.233V9.854L7.822 9.76c-.094-.42.14-1.026.793-1.073l3.456-.233 4.764 7.279v-6.44l-1.215-.139c-.093-.514.28-.887.747-.933zM1.936 1.035l13.31-.98c1.634-.14 2.055-.047 3.082.7l4.249 2.986c.7.513.934.653.934 1.213v16.378c0 1.026-.373 1.634-1.68 1.726l-15.458.934c-.98.047-1.448-.093-1.962-.747l-3.129-4.06c-.56-.747-.793-1.306-.793-1.96V2.667c0-.839.374-1.54 1.447-1.632z"/></svg></span><span>Notion</span></div>
+                <div class="tech-tile"><span class="tech-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M.87 18.257c-.248.382-.53.875-.763 1.245a.764.764 0 0 0 .255 1.04l4.965 3.054a.764.764 0 0 0 1.058-.26c.199-.332.454-.763.733-1.221 1.967-3.247 3.945-2.853 7.508-1.146l4.957 2.337a.764.764 0 0 0 1.028-.382l2.364-5.346a.764.764 0 0 0-.382-1 599.851 599.851 0 0 1-4.965-2.361C10.911 10.97 5.224 11.185.87 18.257zM23.131 5.743c.249-.405.531-.875.764-1.25a.764.764 0 0 0-.256-1.034L18.675.404a.764.764 0 0 0-1.058.26c-.195.335-.451.763-.734 1.225-1.966 3.246-3.945 2.85-7.508 1.146L4.437.694a.764.764 0 0 0-1.027.382L1.046 6.422a.764.764 0 0 0 .382 1c1.039.49 3.105 1.467 4.965 2.361 6.698 3.246 12.392 3.029 16.738-4.04z"/></svg></span><span>Confluence</span></div>
+                <div class="tech-tile"><span class="tech-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 1.807L0 5.629l6 3.822 6.001-3.822L6 1.807zM18 1.807l-6 3.822 6 3.822 6-3.822-6-3.822zM0 13.274l6 3.822 6.001-3.822L6 9.452l-6 3.822zM18 9.452l-6 3.822 6 3.822 6-3.822-6-3.822zM6 18.371l6.001 3.822 6-3.822-6-3.822L6 18.371z"/></svg></span><span>Dropbox</span></div>
+            </div>
+        </div>
+
+        <div class="tech-category" data-animate>
+            <div class="tech-category-header">
+                <span class="tech-category-label">Työnohjaus ja projektit</span>
+                <span class="tech-category-tags">Projektit · Tehtävät · Tunnit</span>
+            </div>
+            <div class="tech-grid">
+                <div class="tech-tile"><img src="img/tech-severa.webp" alt="" width="62" height="76" loading="lazy"><span>Severa</span></div>
+                <div class="tech-tile"><span class="tech-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M11.571 11.513H0a5.218 5.218 0 0 0 5.232 5.215h2.13v2.057A5.215 5.215 0 0 0 12.575 24V12.518a1.005 1.005 0 0 0-1.005-1.005zm5.723-5.756H5.736a5.215 5.215 0 0 0 5.215 5.214h2.129v2.058a5.218 5.218 0 0 0 5.215 5.214V6.758a1.001 1.001 0 0 0-1.001-1.001zM23.013 0H11.455a5.215 5.215 0 0 0 5.215 5.215h2.129v2.057A5.215 5.215 0 0 0 24 12.483V1.005A1.001 1.001 0 0 0 23.013 0Z"/></svg></span><span>Jira</span></div>
+                <div class="tech-tile"><span class="tech-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18.78 12.653c-2.882 0-5.22 2.336-5.22 5.22s2.338 5.22 5.22 5.22 5.22-2.34 5.22-5.22-2.336-5.22-5.22-5.22zm-13.56 0c-2.88 0-5.22 2.337-5.22 5.22s2.338 5.22 5.22 5.22 5.22-2.338 5.22-5.22-2.336-5.22-5.22-5.22zm12-6.525c0 2.883-2.337 5.22-5.22 5.22-2.882 0-5.22-2.337-5.22-5.22 0-2.88 2.338-5.22 5.22-5.22 2.883 0 5.22 2.34 5.22 5.22z"/></svg></span><span>Asana</span></div>
+                <div class="tech-tile"><span class="tech-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21.147 0H2.853A2.86 2.86 0 000 2.853v18.294A2.86 2.86 0 002.853 24h18.294A2.86 2.86 0 0024 21.147V2.853A2.86 2.86 0 0021.147 0zM10.34 17.287a.953.953 0 01-.953.953h-4a.954.954 0 01-.954-.953V5.38a.953.953 0 01.954-.953h4a.954.954 0 01.953.953zm9.233-5.467a.944.944 0 01-.953.947h-4a.947.947 0 01-.953-.947V5.38a.953.953 0 01.953-.953h4a.954.954 0 01.953.953z"/></svg></span><span>Trello</span></div>
+                <div class="tech-tile"><span class="tech-tile-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M2 18.439l3.69-2.828c1.961 2.56 4.044 3.739 6.363 3.739 2.307 0 4.33-1.166 6.203-3.704L22 18.405C19.298 22.065 15.941 24 12.053 24 8.178 24 4.788 22.078 2 18.439zM12.04 6.15l-6.568 5.66-3.036-3.52L12.055 0l9.543 8.296-3.05 3.509z"/></svg></span><span>ClickUp</span></div>
+            </div>
+        </div>
+
+        <p class="tech-footnote">Eikö järjestelmääsi ole listalla? Jos sillä on rajapinta, se voidaan yleensä liittää.</p>
+    </section>
     <!-- TEKNOLOGIAT -->
     <section id="teknologiat" class="section section-roomy tech-stack-section">
         <div class="section-header">
@@ -1328,6 +1610,7 @@
                     <li><a href="prosessiautomaatio.html">Prosessiautomaatio: lue lisää</a></li>
                     <li><a href="#palvelut">Yrityksen oma tekoälyhaku (RAG)</a></li>
                     <li><a href="#palvelut">Tekoälyagentit</a></li>
+                    <li><a href="tekoalytyokalujen-kayttoonotto.html">Tekoälytyökalujen käyttöönotto</a></li>
                 </ul>
             </div>
             <div class="footer-col">
@@ -1366,18 +1649,16 @@
     </div>
 
     <script src="main.js"></script>
+
     <script>
-        // Kettu kurkistaa sisään oikealta pienellä viiveellä sivun latautumisen jälkeen
-        // (800ms — antaa hero-tekstin ehtiä ilmestyä ensin). Ei enää scroll-sidottua
-        // häivytystä (ks. selitys yllä .hero-fox-peek:in kohdalla) — kettu pysyy heron
-        // laatikon sisällä ja katoaa siksi automaattisesti tavallisen sivun vierityksen
-        // mukana, ilman erillistä JS-logiikkaa.
+        // Hero-kuvituksen SMIL-animaatiot (datapisteet) pysäytetään, jos käyttäjä on pyytänyt
+        // vähemmän liikettä. CSS-animaatiot hoitaa prefers-reduced-motion-mediakysely.
         (function () {
-            var fox = document.querySelector('.hero-fox-peek');
-            if (!fox) return;
-            setTimeout(function () {
-                fox.classList.add('is-risen');
-            }, 800);
+            var scene = document.querySelector('.iso-scene');
+            if (!scene || !window.matchMedia) return;
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches && scene.pauseAnimations) {
+                scene.pauseAnimations();
+            }
         })();
     </script>
 </body>

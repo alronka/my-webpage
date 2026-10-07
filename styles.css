@@ -1534,25 +1534,33 @@ a:hover {
     transform: rotate(180deg);
 }
 
+/* Suljettuna vastauksesta näkyy kaksi riviä (2026-10, käyttäjän toive). Jos teksti jatkuu,
+   main.js lisää .is-truncated-luokan ja toisen rivin alaosa häivytetään, jotta lukija näkee
+   tekstiä olevan lisää. Avattaessa main.js asettaa max-heightin sisällön korkeudeksi.
+   Aiempi grid-template-rows: 0fr -toteutus vuoti noin yhden rivin, koska kappaleen
+   pystypehmuste ei kutistunut, ja teksti katkesi kesken. */
 .faq-answer {
-    display: grid;
-    grid-template-rows: 0fr;
+    --faq-line: calc(1.05rem * 1.7);
+    max-height: calc(4px + 2 * var(--faq-line) + 18px);
     overflow: hidden;
-    transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.faq-item.active .faq-answer {
-    grid-template-rows: 1fr;
+.faq-item.is-truncated:not(.active) .faq-answer {
+    -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 18px - 1.1 * var(--faq-line)), transparent calc(100% - 18px));
+    mask-image: linear-gradient(to bottom, #000 calc(100% - 18px - 1.1 * var(--faq-line)), transparent calc(100% - 18px));
 }
 
 .faq-answer p {
-    overflow: hidden;
-    min-height: 0;
     padding: 4px 32px 34px;
     color: var(--text-muted);
     font-size: 1.05rem;
     line-height: 1.7;
     margin: 0;
+}
+
+.faq-answer p + p {
+    padding-top: 0;
 }
 
 .faq-answer strong {
@@ -1578,6 +1586,10 @@ a:hover {
 }
 
 @media (prefers-reduced-motion: reduce) {
+    .faq-answer {
+        transition: none;
+    }
+
     *,
     *::before,
     *::after {

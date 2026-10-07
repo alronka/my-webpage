@@ -3,13 +3,13 @@
 
 <head>
     <script>
-        if (localStorage.getItem('theme') === 'light') {
+        if (localStorage.getItem('theme') !== 'dark') {
             document.documentElement.setAttribute('data-theme', 'light');
         }
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#030712">
+    <meta name="theme-color" content="#f8fafc">
     <title>Mitä tekoälyagentti saa tehdä? Käyttöoikeudet, prompt injection ja agentin turvallinen rajaus | Valok</title>
     <meta name="description"
         content="Tekoälyagentin riski ei ole malli vaan sille annetut oikeudet. Näin rajaat agentin käyttöoikeudet, tunnistat prompt injectionin ja rakennat tarkistuspisteet.">

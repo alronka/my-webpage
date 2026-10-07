@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <script>
+        if (localStorage.getItem('theme') !== 'dark') {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f8fafc">
+    <title>Tekoälytyökalujen käyttöönotto yritykselle | Valok</title>
+    <meta name="description"
+        content="Otamme Clauden, ChatGPT:n, Geminin tai Copilotin käyttöön yrityksessäsi turvallisesti: asetukset, oma konteksti, ohjepohjat, koulutus ja käyttöpolitiikka.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://api.fontshare.com">
+    <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" as="style" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet"></noscript>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon-180x180.png">
+    <link rel="canonical" href="https://valok.fi/tekoalytyokalujen-kayttoonotto.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://valok.fi/tekoalytyokalujen-kayttoonotto.html">
+    <meta property="og:title" content="Tekoälytyökalujen käyttöönotto yritykselle">
+    <meta property="og:description" content="Otamme Clauden, ChatGPT:n, Geminin tai Copilotin käyttöön yrityksessäsi turvallisesti: asetukset, oma konteksti, ohjepohjat, koulutus ja käyttöpolitiikka.">
+    <meta property="og:image" content="https://valok.fi/img/valok-black-with-white-outline.webp">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Tekoälytyökalujen käyttöönotto yritykselle">
+    <meta name="twitter:description" content="Otamme Clauden, ChatGPT:n, Geminin tai Copilotin käyttöön yrityksessäsi turvallisesti: asetukset, oma konteksti, ohjepohjat, koulutus ja käyttöpolitiikka.">
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Tekoälytyökalujen käyttöönotto",
+  "serviceType": "AI-työkalujen käyttöönotto",
+  "description": "Otamme Clauden, ChatGPT:n, Geminin tai Copilotin käyttöön yrityksessäsi turvallisesti: asetukset, oma konteksti, ohjepohjat, koulutus ja käyttöpolitiikka.",
+  "url": "https://valok.fi/tekoalytyokalujen-kayttoonotto.html",
+  "provider": {
+    "@id": "https://valok.fi/#organization"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "Suomi"
+  },
+  "audience": {
+    "@type": "BusinessAudience",
+    "name": "Suomalaiset pk-yritykset"
+  }
+}
+</script>
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Mitä työkaluja otatte käyttöön?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Claude, ChatGPT, Gemini ja Microsoft Copilot. Käyttöönotto tehdään sille työkalulle, jonka yrityksesi valitsee. Jos valinta on vielä auki, käydään vaihtoehdot läpi kartoituksessa."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Tarvitaanko meillä valmiiksi lisenssit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Hankit lisenssit suoraan työkalun toimittajalta, sillä emme jälleenmyy niitä. Käyttöönottoa varten tarvitsemme pääkäyttäjäoikeudet."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Tehdäänkö käyttöönotto paikan päällä vai etänä?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Kumpi tahansa sopii. Käyttöönottopäivä voidaan pitää toimistollanne tai etänä."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Mitä käyttöönotto maksaa?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Kerromme hinnan kartoituksen jälkeen kirjallisessa tarjouksessa. Kartoitus on maksuton."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Mitä tapahtuu käyttöönoton jälkeen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pidämme seurantapalaverin 30 päivän kuluttua. Sen jälkeen voit valita kuukausittaisen jatkotuen, jossa vastaamme kysymyksiin ja päivitämme asetuksia työkalujen muuttuessa."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Miten käyttöönotto liittyy automaatioihin?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Käyttöönoton lopuksi saat kirjallisen ehdotuksen siitä, mitä kannattaa automatisoida seuraavaksi. Esimerkiksi tietojen siirto järjestelmästä toiseen voidaan hoitaa n8n-automaatiolla."
+      }
+    }
+  ]
+}
+</script>
+
+    <style>
+h1, h2, h3 {
+            font-family: 'Calistoga', serif;
+            font-weight: 400;
+        }
+.section-header h2 {
+            font-weight: 400;
+            letter-spacing: 0;
+        }
+body {
+            font-family: 'Satoshi', var(--font-sans);
+        }
+.accent-text {
+            color: var(--accent);
+        }
+#hero .hero-actions {
+            justify-content: flex-start;
+        }
+.section-tag {
+            color: var(--text-dim);
+        }
+.section-roomy {
+            padding: 160px 24px;
+        }
+@media (max-width: 768px) {
+    .section-roomy {
+                padding: 96px 24px;
+            }
+}
+.split-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.15fr;
+            gap: 64px;
+            align-items: start;
+            text-align: left;
+        }
+@media (max-width: 860px) {
+    .split-grid {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+}
+.split-kicker {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent);
+            margin-bottom: 16px;
+            display: block;
+        }
+.split-grid h2 {
+            font-size: clamp(1.5rem, 2.6vw, 1.9rem);
+            font-weight: 400;
+            letter-spacing: 0;
+            line-height: 1.3;
+            margin-bottom: 20px;
+        }
+.split-grid p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            line-height: 1.75;
+        }
+.stat-callout {
+            margin-top: 28px;
+            padding: 22px 24px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+.stat-number {
+            font-family: 'Calistoga', serif;
+            font-size: 2.75rem;
+            line-height: 1;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+.stat-callout p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: var(--text);
+            line-height: 1.5;
+        }
+.stat-source {
+            display: block;
+            margin-top: 6px;
+            font-size: 0.75rem;
+            color: var(--text-dim);
+        }
+@media (max-width: 480px) {
+    .stat-callout {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+}
+.diff-list {
+            list-style: none;
+            margin-top: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+.diff-list li {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+            font-size: 1rem;
+            color: var(--text);
+            line-height: 1.6;
+            padding: 16px 18px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+        }
+.diff-list li:hover {
+            transform: scale(1.02);
+            border-color: var(--border-hover);
+            background: var(--glass-hover);
+            box-shadow: 0 8px 24px -12px rgba(0, 0, 0, 0.25);
+        }
+.diff-list svg {
+            flex-shrink: 0;
+            margin-top: 3px;
+            color: var(--accent);
+        }
+.services-grid {
+            max-width: 1100px;
+            margin: 64px auto 0;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+@media (max-width: 860px) {
+    .services-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+}
+@media (max-width: 560px) {
+    .services-grid {
+                grid-template-columns: 1fr;
+            }
+}
+.service-card {
+            padding: 22px 20px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            text-align: left;
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s ease, background 0.25s ease;
+        }
+.service-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--border-hover);
+            background: var(--glass-hover);
+        }
+.service-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: var(--bg-subtle);
+            color: var(--text-muted);
+            margin-bottom: 14px;
+        }
+.service-card h3 {
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+.service-card p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+.prosessi-section .section-header {
+            margin-bottom: 48px;
+        }
+.tech-stack-section {
+            padding-top: 96px;
+            padding-bottom: 96px;
+        }
+.tech-stack-section .section-header {
+            margin-bottom: 40px;
+        }
+.tech-category {
+            max-width: 1000px;
+            margin: 0 auto 28px;
+        }
+.tech-category:last-child {
+            margin-bottom: 0;
+        }
+.tech-category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 12px;
+            padding-bottom: 10px;
+            margin-bottom: 14px;
+            border-bottom: 1px solid var(--border);
+        }
+.tech-category-label {
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text);
+        }
+.tech-category-tags {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+        }
+.tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(78px, 1fr));
+            gap: 8px;
+        }
+.tech-tile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            padding: 12px 8px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            opacity: 0;
+            transform: translateY(14px) scale(0.94);
+            transition: border-color 0.25s ease, background 0.25s ease;
+        }
+.tech-category.visible .tech-tile {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            transition: opacity 400ms cubic-bezier(0.16, 1, 0.3, 1), transform 400ms cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, background 0.25s ease;
+        }
+.tech-category.visible .tech-tile:nth-child(1) { transition-delay: 0ms; }
+.tech-category.visible .tech-tile:nth-child(2) { transition-delay: 50ms; }
+.tech-category.visible .tech-tile:nth-child(3) { transition-delay: 100ms; }
+.tech-category.visible .tech-tile:nth-child(4) { transition-delay: 150ms; }
+.tech-category.visible .tech-tile:nth-child(5) { transition-delay: 200ms; }
+.tech-tile:hover {
+            transform: translateY(-3px) scale(1.04) !important;
+            border-color: var(--border-hover);
+            background: var(--glass-hover);
+        }
+.tech-tile img {
+            height: 22px;
+            width: auto;
+            max-width: 100%;
+            filter: invert(1);
+            opacity: 0.85;
+        }
+[data-theme="light"] .tech-tile img {
+            filter: none;
+        }
+.tech-tile-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 22px;
+        }
+.tech-tile-icon svg {
+            height: 22px;
+            width: auto;
+            max-width: 26px;
+            fill: var(--text);
+            opacity: 0.85;
+        }
+.tech-tile span {
+            font-size: 0.66rem;
+            color: var(--text-dim);
+            text-align: center;
+        }
+@media (prefers-reduced-motion: reduce) {
+    .tech-tile {
+                opacity: 1;
+                transform: none;
+            }
+    .tech-category.visible .tech-tile {
+                transition: border-color 0.25s ease, background 0.25s ease;
+                transition-delay: 0ms !important;
+            }
+}
+.contact-grid {
+            max-width: 1180px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 5fr 7fr;
+            gap: 72px;
+            align-items: center;
+            text-align: left;
+        }
+@media (max-width: 860px) {
+    .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 48px;
+                text-align: center;
+            }
+}
+.cta-simple {
+            max-width: 460px;
+        }
+@media (max-width: 860px) {
+    .cta-simple {
+                max-width: 100%;
+                margin: 0 auto;
+            }
+}
+.contact-mascot {
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 0 20px;
+            display: block;
+            box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px var(--border);
+        }
+@media (max-width: 860px) {
+    .contact-mascot {
+                margin: 0 auto 20px;
+            }
+}
+.contact-form-card {
+            margin: 0;
+        }
+.form-card-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--text-dim);
+            margin: 0 0 20px;
+        }
+.hero-models {
+            margin-top: 56px;
+        }
+.hero-models-label {
+            display: block;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-bottom: 14px;
+        }
+.hero-models-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 14px 32px;
+        }
+.hero-model {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+.hero-model svg {
+            width: 22px;
+            height: 22px;
+            fill: currentColor;
+        }
+.hero-model img {
+            height: 22px;
+            width: auto;
+            filter: invert(1);
+            opacity: 0.85;
+        }
+[data-theme="light"] .hero-model img {
+            filter: none;
+        }
+.tech-footnote {
+            max-width: 1000px;
+            margin: 24px auto 0;
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            text-align: center;
+        }
+.tech-category.visible .tech-tile:nth-child(6) { transition-delay: 250ms; }
+.tech-stack-section .tech-grid {
+            max-width: none;
+            margin: 0;
+        }
+.client-strip {
+            max-width: 1100px;
+            margin: 56px auto 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 16px 40px;
+        }
+.client-strip-label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+        }
+.client-strip-logos {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px 48px;
+        }
+.client-logo img {
+            width: auto;
+            filter: invert(1);
+            opacity: 0.8;
+        }
+.client-logo-wide img {
+            height: 22px;
+        }
+.client-logo-mark img {
+            height: 44px;
+        }
+[data-theme="light"] .client-logo img {
+            filter: none;
+            opacity: 0.75;
+        }
+.service-link {
+            display: inline-block;
+            margin-top: 14px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--accent);
+            text-decoration: none;
+        }
+.service-link:hover {
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+/* Käyttöönottosivun oma hero (vastaa etusivun #heroa: vasen tasaus, 1280px). */
+.lp-hero {
+    position: relative;
+    padding: 180px 24px 110px;
+    max-width: 1280px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    text-align: center;
+}
+.lp-hero h1 {
+    font-size: clamp(2.4rem, 5.6vw, 4rem);
+    line-height: 1.15;
+    max-width: 820px;
+    margin: 24px auto 0;
+}
+.lp-hero .hero-sub {
+    max-width: 680px;
+    margin-top: 22px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.lp-hero .hero-actions {
+    justify-content: center;
+}
+.lp-hero .hero-models-row {
+    justify-content: center;
+}
+.hero-model-text {
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+.lp-steps-note {
+    margin-top: 28px;
+    padding: 22px 24px;
+    background: var(--glass);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+}
+.lp-steps-note h3 {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+.lp-steps-note p {
+    color: var(--text-muted);
+    margin: 0;
+}
+.lp-services .service-card h3 {
+    font-size: 1.05rem;
+}
+.section-desc a {
+    color: var(--accent);
+}
+@media (max-width: 768px) {
+    .lp-hero {
+        padding: 140px 20px 80px;
+    }
+}
+
+    </style>
+</head>
+
+<body>
+
+    <canvas id="particles"></canvas>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo"><img srcset="img/valok-white-with-black-outline-mobile.webp 800w, img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 1600px" src="img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark" width="4206" height="4206"><img srcset="img/valok-black-with-white-outline-mobile.webp 800w, img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 1600px" src="img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light" width="4206" height="4206">VALOK<span class="logo-dot">.</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="/#palvelut">Palvelut</a>
+                <a href="/#prosessi">Prosessi</a>
+                <a href="meista.html">Meistä</a>
+                <a href="blogi.html">Blogi</a>
+                <a href="#yhteystiedot" class="nav-cta">Ota yhteyttä</a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Avaa valikko">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <header class="lp-hero">
+        <div class="hero-badge animate-in">AI-työkalujen käyttöönotto</div>
+        <h1 class="animate-in">Tekoäly alkaa tuottaa, kun se on otettu käyttöön <span class="accent-text">oikein</span>.</h1>
+        <p class="hero-sub animate-in">Otamme yrityksesi tekoälytyökalun käyttöön yhden käyttöönottopäivän aikana:
+            turvalliset asetukset, yrityksesi oma konteksti, valmiit ohjepohjat ja koulutus koko tiimille.</p>
+        <div class="hero-actions animate-in">
+            <a href="https://calendar.app.google/go2sDgLdm6r2eKTK7" target="_blank" rel="noopener" class="btn btn-primary">
+                Varaa maksuton kartoitus
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+            </a>
+            <a href="#sisalto" class="hero-link">Mitä käyttöönottoon kuuluu →</a>
+        </div>
+        <div class="hero-models animate-in">
+            <span class="hero-models-label">Otamme käyttöön esimerkiksi</span>
+            <div class="hero-models-row">
+                <span class="hero-model"><img src="img/tech-openai.webp" alt="" width="640" height="635" loading="lazy"><span>ChatGPT</span></span>
+                <span class="hero-model"><svg viewBox="0 0 24 24"><path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></svg><span>Claude</span></span>
+                <span class="hero-model"><svg viewBox="0 0 24 24"><path d="M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81"/></svg><span>Gemini</span></span>
+                <span class="hero-model"><img src="img/tech-copilot.webp" alt="" width="184" height="160" loading="lazy"><span>Microsoft Copilot</span></span>
+            </div>
+        </div>
+        <div class="hero-glow"></div>
+    </header>
+
+    <section id="lahtotilanne" class="section section-roomy">
+        <div class="split-grid">
+            <div data-animate>
+                <span class="split-kicker">Lähtötilanne</span>
+                <h2>Työkalu on jo käytössä. Pelisäännöt eivät.</h2>
+                <p>Jos tiimisi käyttää tekoälyä henkilökohtaisilla tileillä, yritys ei tiedä, mitä tietoa työkaluihin
+                    syötetään, eikä kenenkään hyvä tapa käyttää tekoälyä siirry muille. Kirjatut pelisäännöt puuttuvat
+                    useimmilta yrityksiltä.</p>
+                <div class="stat-callout">
+                    <span class="stat-number">15 %</span>
+                    <div>
+                        <p>Suomalaisyrityksistä oli dokumentoidut ohjeet tai käytännöt tekoälyn käytölle vuonna 2025.</p>
+                        <span class="stat-source">Lähde: <a href="https://stat.fi/fi/julkaisu/cm1hnps701dbm07w59uo0jw6u" target="_blank" rel="noopener">Tilastokeskus, 2025</a></span>
+                    </div>
+                </div>
+            </div>
+            <div data-animate>
+                <span class="split-kicker">Ratkaisu</span>
+                <h2>Turvallisuus ei ole jarru. Se on syy edetä rohkeasti.</h2>
+                <p>Kun tilit, oikeudet ja pelisäännöt ovat kunnossa, tiimi voi käyttää tekoälyä arvailematta, mitä
+                    saa tehdä. Siksi käyttöönotto alkaa asetuksista ja päättyy siihen, että jokainen osaa käyttää
+                    työkalua omassa työssään.</p>
+                <ul class="diff-list">
+                    <li>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5" /></svg>
+                        <span>Organisaation tilit ja vahva tunnistautuminen kaikille käyttäjille</span>
+                    </li>
+                    <li>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5" /></svg>
+                        <span>Tietosuoja-asetukset: datan koulutuskäyttö pois, säilytys ja jakaminen sovittu</span>
+                    </li>
+                    <li>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5" /></svg>
+                        <span>Yrityksesi konteksti ja valmiit ohjepohjat toistuviin töihin</span>
+                    </li>
+                    <li>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5" /></svg>
+                        <span>Kirjallinen käyttöpolitiikka, jonka koko tiimi tuntee</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="sisalto" class="section section-roomy lp-services">
+        <div class="section-header">
+            <span class="section-tag">Sisältö</span>
+            <h2>Mitä käyttöönottoon kuuluu.</h2>
+            <p class="section-desc">Yksi kokonaisuus, joka toteutetaan paikan päällä tai etänä. Tärkeimmät asetukset
+                avasimme myös blogissa: <a href="blogi/tekoalytyokalujen-perusasetukset-yritykselle.html">tekoälytyökalujen perusasetukset yritykselle</a>.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card" data-animate>
+                <h3>Peruskonfigurointi</h3>
+                <p>Organisaatiotili ja käyttäjät, tietosuoja-asetukset sekä yhteiset ohjeet työkalulle: rooli, kieli ja sävy.</p>
+            </div>
+            <div class="service-card" data-animate>
+                <h3>Dokumenttivarastot</h3>
+                <p>SharePoint-, OneDrive- tai Google Drive -kansioiden kytkentä ja käyttöoikeuksien tarkistus ennen kuin tekoäly pääsee niihin.</p>
+            </div>
+            <div class="service-card" data-animate>
+                <h3>Yrityksesi konteksti</h3>
+                <p>Taustatiedot, termistö ja vakiovastaukset, jotta työkalu vastaa yrityksesi kielellä eikä yleisellä tasolla.</p>
+            </div>
+            <div class="service-card" data-animate>
+                <h3>Ohjepohjat</h3>
+                <p>Valmiit ohjepohjat toistuviin tehtäviin, kuten asiakasviesteihin, raportteihin ja tarjouspyyntöihin.</p>
+            </div>
+            <div class="service-card" data-animate>
+                <h3>Koulutus</h3>
+                <p>Turvallisen käytön koulutus koko tiimille ja rooleittaiset sessiot oikeilla työtehtävillä.</p>
+            </div>
+            <div class="service-card" data-animate>
+                <h3>Materiaalit</h3>
+                <p>Turvallisen käytön opas, pikaohje siitä, mitä työkaluun saa syöttää ja mitä ei, sekä ohjepohjakirjasto.</p>
+            </div>
+            <div class="service-card" data-animate>
+                <h3>Käyttöpolitiikka</h3>
+                <p>Kirjallinen tekoälyn käyttöpolitiikka yrityksesi omaksi, jotta pelisäännöt ovat kaikille samat.</p>
+            </div>
+            <div class="service-card" data-animate>
+                <h3>Seuranta ja jatko</h3>
+                <p>Seurantapalaveri 30 päivän kuluttua ja kirjallinen ehdotus siitä, mitä kannattaa automatisoida seuraavaksi.</p>
+            </div>
+        </div>
+        <div class="client-strip" data-animate>
+            <span class="client-strip-label">Asiakkaitamme</span>
+            <div class="client-strip-logos">
+                <span class="client-logo client-logo-wide"><img src="img/ref-sijoitusasunnot.webp" alt="Sijoitusasunnot.com" width="300" height="59" loading="lazy"></span>
+                <span class="client-logo client-logo-mark"><img src="img/ref-tenderx.webp" alt="TenderX" width="192" height="160" loading="lazy"></span>
+            </div>
+        </div>
+    </section>
+
+    <section id="eteneminen" class="section section-roomy">
+        <div class="split-grid">
+            <div data-animate>
+                <span class="split-kicker">Eteneminen</span>
+                <h2>Näin käyttöönotto etenee.</h2>
+                <p>Varsinainen työ tehdään yhden käyttöönottopäivän aikana. Ennen sitä sovitaan tavoitteet, ja
+                    jälkikäteen seuranta varmistaa, että työkalu on oikeasti käytössä.</p>
+                <div class="lp-steps-note">
+                    <h3>Lisenssit ostat suoraan toimittajalta</h3>
+                    <p>Emme jälleenmyy tekoälytyökalujen lisenssejä. Maksat lisenssit suoraan toimittajalle, ja me
+                        laskutamme vain käyttöönotosta, koulutuksesta ja valinnaisesta jatkotuesta.</p>
+                </div>
+            </div>
+            <div data-animate>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-number">01</div>
+                        <div class="timeline-content">
+                            <h3>Maksuton kartoitus</h3>
+                            <p>Käydään läpi, mitä työkalua käytätte tai harkitsette, keitä käyttäjät ovat ja mihin töihin tekoälyn pitäisi auttaa.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-number">02</div>
+                        <div class="timeline-content">
+                            <h3>Alkupalaveri ja valmistelu</h3>
+                            <p>Sovitaan tavoitteet ja käyttäjäroolit ja valmistellaan asetukset. Sinä hankit lisenssit ja annat pääkäyttäjäoikeudet.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-number">03</div>
+                        <div class="timeline-content">
+                            <h3>Käyttöönottopäivä</h3>
+                            <p>Aamupäivällä asetukset ja kytkennät, iltapäivällä koulutus. Paikan päällä tai etänä.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-number">04</div>
+                        <div class="timeline-content">
+                            <h3>Materiaalit ja seuranta</h3>
+                            <p>Materiaalit viikon kuluessa käyttöönottopäivästä ja seurantapalaveri 30 päivän kuluttua.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ukk" class="section section-roomy">
+        <div class="section-header">
+            <span class="section-tag">Usein kysyttyä</span>
+            <h2>Kysymyksiä ja vastauksia.</h2>
+        </div>
+        <div class="faq-container">
+            <div class="faq-item" data-animate>
+                <button class="faq-question">
+                    Mitä työkaluja otatte käyttöön?
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6" /></svg>
+                </button>
+                <div class="faq-answer">
+                    <p>Claude, ChatGPT, Gemini ja Microsoft Copilot. Käyttöönotto tehdään sille työkalulle, jonka yrityksesi valitsee. Jos valinta on vielä auki, käydään vaihtoehdot läpi kartoituksessa.</p>
+                </div>
+            </div>
+            <div class="faq-item" data-animate>
+                <button class="faq-question">
+                    Tarvitaanko meillä valmiiksi lisenssit?
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6" /></svg>
+                </button>
+                <div class="faq-answer">
+                    <p>Hankit lisenssit suoraan työkalun toimittajalta, sillä emme jälleenmyy niitä. Käyttöönottoa varten tarvitsemme pääkäyttäjäoikeudet.</p>
+                </div>
+            </div>
+            <div class="faq-item" data-animate>
+                <button class="faq-question">
+                    Tehdäänkö käyttöönotto paikan päällä vai etänä?
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6" /></svg>
+                </button>
+                <div class="faq-answer">
+                    <p>Kumpi tahansa sopii. Käyttöönottopäivä voidaan pitää toimistollanne tai etänä.</p>
+                </div>
+            </div>
+            <div class="faq-item" data-animate>
+                <button class="faq-question">
+                    Mitä käyttöönotto maksaa?
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6" /></svg>
+                </button>
+                <div class="faq-answer">
+                    <p>Kerromme hinnan kartoituksen jälkeen kirjallisessa tarjouksessa. Kartoitus on maksuton.</p>
+                </div>
+            </div>
+            <div class="faq-item" data-animate>
+                <button class="faq-question">
+                    Mitä tapahtuu käyttöönoton jälkeen?
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6" /></svg>
+                </button>
+                <div class="faq-answer">
+                    <p>Pidämme seurantapalaverin 30 päivän kuluttua. Sen jälkeen voit valita kuukausittaisen jatkotuen, jossa vastaamme kysymyksiin ja päivitämme asetuksia työkalujen muuttuessa.</p>
+                </div>
+            </div>
+            <div class="faq-item" data-animate>
+                <button class="faq-question">
+                    Miten käyttöönotto liittyy automaatioihin?
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6" /></svg>
+                </button>
+                <div class="faq-answer">
+                    <p>Käyttöönoton lopuksi saat kirjallisen ehdotuksen siitä, mitä kannattaa automatisoida seuraavaksi. Esimerkiksi tietojen siirto järjestelmästä toiseen voidaan hoitaa n8n-automaatiolla.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="yhteystiedot" class="section section-roomy">
+        <div class="contact-grid">
+            <div class="cta-simple">
+                <img class="contact-mascot" srcset="img/valok-aleksanteri-mobile.webp 800w, img/valok-aleksanteri.webp 600w" sizes="120px" src="img/valok-aleksanteri.webp" alt="Aleksanteri, Valok" width="600" height="600" loading="lazy">
+                <span class="section-tag">Ota yhteyttä</span>
+                <h2>Aloitetaan kartoituksella.</h2>
+                <p class="section-desc">Käydään läpi, mitä tekoälytyökalua käytätte tai harkitsette ja mihin töihin sen pitäisi
+                    teillä auttaa. Kartoitus on maksuton.</p>
+                <div style="margin-top: 32px;">
+                    <a href="https://calendar.app.google/go2sDgLdm6r2eKTK7" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
+                        Varaa maksuton kartoitus
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="contact-form-card" data-animate style="text-align: left;">
+                <p class="form-card-label">Tai jätä viesti</p>
+                <form action="https://formspree.io/f/xlgpgyjl" method="POST" id="contact-form">
+                    <div class="form-grid" style="grid-template-columns: 1fr;">
+                        <div class="form-group">
+                            <label for="name">Nimi</label>
+                            <input type="text" id="name" name="name" autocomplete="name" placeholder="Oma nimesi" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Sähköposti</label>
+                            <input type="email" id="email" name="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="esimerkki@yritys.fi" required>
+                        </div>
+
+                        <!-- Bot anti-spam (honeypot) -->
+                        <input type="text" name="_gotcha" class="form-gotcha">
+
+                        <div class="form-group">
+                            <label for="message">Viesti</label>
+                            <textarea id="message" name="message" rows="4"
+                                placeholder="Mitä tekoälytyökalua käytätte tai harkitsette?" required></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-ghost full-width">
+                        Lähetä viesti
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </button>
+                    <div id="form-status" class="form-status" aria-live="polite"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <div class="logo"><img srcset="img/valok-white-with-black-outline-mobile.webp 800w, img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 1600px" src="img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer" width="4206" height="4206" loading="lazy"><img srcset="img/valok-black-with-white-outline-mobile.webp 800w, img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 1600px" src="img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer" width="4206" height="4206" loading="lazy">VALOK<span class="logo-dot">.</span></div>
+                <p>Prosessien automatisointia ja yrityksen omaan tietoon perustuvia tekoälyratkaisuja suomalaisille PK-yrityksille, tietoturva ja tietosuoja edellä.</p>
+                <div class="footer-social">
+                    <a href="https://linkedin.com/company/valok" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Palvelut</h4>
+                <ul>
+                    <li><a href="/#palvelut">Prosessien automatisointi</a></li>
+                    <li><a href="prosessiautomaatio.html">Prosessiautomaatio: lue lisää</a></li>
+                    <li><a href="/#palvelut">Yrityksen oma tekoälyhaku (RAG)</a></li>
+                    <li><a href="/#palvelut">Tekoälyagentit</a></li>
+                    <li><a href="tekoalytyokalujen-kayttoonotto.html">Tekoälytyökalujen käyttöönotto</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Yritys</h4>
+                <ul>
+                    <li><a href="meista.html">Meistä</a></li>
+                    <li><a href="/#miten-toimii">Näin toimimme</a></li>
+                    <li><a href="blogi.html">Blogi</a></li>
+                    <li><a href="tietosuoja.html">Tietosuoja</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Yhteystiedot</h4>
+                <ul>
+                    <li>aleksanteri@valok.fi</li>
+                    <li><a href="https://linkedin.com/company/valok" target="_blank" rel="noopener">Ota yhteyttä LinkedInissä</a></li>
+                    <li>Jyväskylä, Finland</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Valok. Kaikki oikeudet pidätetään. · <a href="#" id="cookieSettingsLink">Evästeasetukset</a>
+        </div>
+    </footer>
+
+    <!-- PRIVACY BANNER -->
+    <div id="cookieBanner" class="cookie-banner">
+        <h5>Yksityisyytesi on meille tärkeää</h5>
+        <p>Käytämme sivustolla vain välttämättömiä toimintoja varmistaaksemme parhaan mahdollisen käyttökokemuksen. Emme
+            käytä kolmannen osapuolen markkinointievästeitä ilman suostumustasi.</p>
+        <div class="cookie-btn-group">
+            <button id="acceptCookies" class="btn btn-primary">Hyväksy kaikki</button>
+            <button id="rejectCookies" class="btn btn-ghost">Hylkää</button>
+            <a href="tietosuoja.html" class="btn btn-ghost">Lue lisää</a>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
