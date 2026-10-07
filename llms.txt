@@ -8,7 +8,7 @@ Valok (Y-tunnus 3490027-7) auttaa pienten ja keskisuurten yritysten johtoa ja IT
 
 - [Etusivu](https://valok.fi/): Yritysesittely, ratkaisualueet, tekninen stack ja yhteydenotto.
 - [Prosessiautomaatio](https://valok.fi/prosessiautomaatio.html): PK-yrityksille suunnattu prosessiautomaation palvelukuvaus.
-- [Tekoälytyökalujen käyttöönotto](https://valok.fi/tekoalytyokalujen-kayttoonotto.html): Clauden, ChatGPT:n, Geminin tai Microsoft Copilotin käyttöönotto yrityksessä yhden käyttöönottopäivän aikana: organisaatiotilit ja tietosuoja-asetukset, dokumenttivarastojen kytkentä ja käyttöoikeudet, yrityksen konteksti, ohjepohjat, koulutus, kirjallinen käyttöpolitiikka ja 30 päivän seuranta. Valok ei jälleenmyy lisenssejä. Maksuton kartoitus.
+- [Tekoälytyökalujen käyttöönotto](https://valok.fi/tekoalytyokalujen-kayttoonotto.html): Clauden, ChatGPT:n, Geminin tai Microsoft Copilotin käyttöönotto yrityksessä yhden käyttöönottopäivän aikana, niin että tiimi voi käyttää työkalua turvallisesti ja hyödyllisesti. Valok ei jälleenmyy lisenssejä. Maksuton kartoitus.
 - [Tekoäly ROI-laskuri](https://valok.fi/tekoaly-roi-laskuri.html): Työkalu tekoälyinvestoinnin säästöpotentiaalin arviointiin.
 - [Asiakaspalvelu AI ROI-laskuri](https://valok.fi/asiakaspalvelu-roi-laskuri.html): Työkalu tekoälypohjaisen asiakaspalvelun säästöpotentiaalin arviointiin.
 

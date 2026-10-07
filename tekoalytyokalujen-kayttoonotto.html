@@ -12,7 +12,7 @@
     <meta name="theme-color" content="#f8fafc">
     <title>Tekoälytyökalujen käyttöönotto yritykselle | Valok</title>
     <meta name="description"
-        content="Otamme Clauden, ChatGPT:n, Geminin tai Copilotin käyttöön yrityksessäsi turvallisesti: asetukset, oma konteksti, ohjepohjat, koulutus ja käyttöpolitiikka.">
+        content="Otamme Clauden, ChatGPT:n, Geminin tai Copilotin käyttöön yrityksessäsi turvallisesti ja niin, että tiimi saa niistä oikeaa hyötyä jo arjessa.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://api.fontshare.com">
@@ -31,11 +31,11 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://valok.fi/tekoalytyokalujen-kayttoonotto.html">
     <meta property="og:title" content="Tekoälytyökalujen käyttöönotto yritykselle">
-    <meta property="og:description" content="Otamme Clauden, ChatGPT:n, Geminin tai Copilotin käyttöön yrityksessäsi turvallisesti: asetukset, oma konteksti, ohjepohjat, koulutus ja käyttöpolitiikka.">
+    <meta property="og:description" content="Otamme Clauden, ChatGPT:n, Geminin tai Copilotin käyttöön yrityksessäsi turvallisesti ja niin, että tiimi saa niistä oikeaa hyötyä jo arjessa.">
     <meta property="og:image" content="https://valok.fi/img/valok-black-with-white-outline.webp">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Tekoälytyökalujen käyttöönotto yritykselle">
-    <meta name="twitter:description" content="Otamme Clauden, ChatGPT:n, Geminin tai Copilotin käyttöön yrityksessäsi turvallisesti: asetukset, oma konteksti, ohjepohjat, koulutus ja käyttöpolitiikka.">
+    <meta name="twitter:description" content="Otamme Clauden, ChatGPT:n, Geminin tai Copilotin käyttöön yrityksessäsi turvallisesti ja niin, että tiimi saa niistä oikeaa hyötyä jo arjessa.">
 
     <script type="application/ld+json">
 {
@@ -43,7 +43,7 @@
   "@type": "Service",
   "name": "Tekoälytyökalujen käyttöönotto",
   "serviceType": "AI-työkalujen käyttöönotto",
-  "description": "Otamme Clauden, ChatGPT:n, Geminin tai Copilotin käyttöön yrityksessäsi turvallisesti: asetukset, oma konteksti, ohjepohjat, koulutus ja käyttöpolitiikka.",
+  "description": "Otamme Clauden, ChatGPT:n, Geminin tai Copilotin käyttöön yrityksessäsi turvallisesti ja niin, että tiimi saa niistä oikeaa hyötyä jo arjessa.",
   "url": "https://valok.fi/tekoalytyokalujen-kayttoonotto.html",
   "provider": {
     "@id": "https://valok.fi/#organization"
@@ -101,7 +101,7 @@
       "name": "Mitä tapahtuu käyttöönoton jälkeen?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Pidämme seurantapalaverin 30 päivän kuluttua. Sen jälkeen voit valita kuukausittaisen jatkotuen, jossa vastaamme kysymyksiin ja päivitämme asetuksia työkalujen muuttuessa."
+        "text": "Sovimme käyttöönoton jälkeen seurannan, jossa katsomme, miten käyttö on lähtenyt liikkeelle. Halutessasi voit valita kuukausittaisen jatkotuen."
       }
     },
     {
@@ -109,7 +109,7 @@
       "name": "Miten käyttöönotto liittyy automaatioihin?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Käyttöönoton lopuksi saat kirjallisen ehdotuksen siitä, mitä kannattaa automatisoida seuraavaksi. Esimerkiksi tietojen siirto järjestelmästä toiseen voidaan hoitaa n8n-automaatiolla."
+        "text": "Käyttöönoton jälkeen saat ehdotuksen siitä, mitä kannattaa automatisoida seuraavaksi. Esimerkiksi tietojen siirto järjestelmästä toiseen voidaan hoitaa automaatiolla."
       }
     }
   ]
@@ -616,6 +616,70 @@ body {
     }
 }
 
+        /* Kettu kurkkii heron oikeasta reunasta, dock.cool-vertailun jälkeen 2026-08.
+           Kuvan omaa tiedostoa EI kierretä (kokeiltu 2026-08: koko kuvan kierto käänsi myös
+           kasvot/kaulapannan kyljelleen, näytti rikkinäiseltä) — sen sijaan kuva pyörähtää
+           CSS:n rotate(-90deg):lla, jolloin kasvot ja tunnusmerkit pysyvät ehjinä paikoillaan
+           kuvan sisällä, vain koko kuva kallistuu.
+
+           --fox-w on kuvan OMA (kiertämätön) leveys. Koska kuva on muotokuva (644x746,
+           korkeampi kuin leveä), -90deg-kierto vaihtaa näkyvät mitat keskenään: se mikä oli
+           kuvan ALAreuna (tassut, jotka koskettavat kuvatiedoston alinta pikseliriviä) siirtyy
+           kierrossa OIKEALLE reunalle, ja ulottuu oman laatikkonsa oikean reunan ohi täsmälleen
+           (korkeus−leveys)/2 verran (johdettu kiertomatriisista, ks. keskustelu 2026-08).
+           right-arvo laskee tämän offsetin pois calc():lla, jotta tassut asettuvat juuri
+           heron oikeaan reunaan (plus pieni "bleed"-arvo, jotta keho näyttää jatkuvan ruudun
+           ulkopuolelle). top:50% + translateY(-50%) keskittää kuvan OMAN keskipisteen heron
+           pystysuunnassa; koska -90deg-kierto tapahtuu juuri tämän keskipisteen ympäri,
+           pystykeskitys säilyy kierrosta huolimatta.
+
+           Sisääntuloanimaatio liikuttaa right-arvoa (ei transform-liukua), jotta rotate(-90deg)
+           transformissa pysyy koko ajan muuttumattomana eikä transform-järjestyksen kanssa
+           tarvitse taiteilla. Kettu pysyy myös kokonaan heron laatikon sisällä (ei negatiivista
+           bottom-arvoa kuten vanhassa alareunaversiossa), joten se katoaa automaattisesti
+           tavallisen sivun vierityksen mukana kun hero vieritetään pois näkyvistä eikä
+           scroll-sidottua häivytys-JS:ää tarvita, ks. sivun lopun kertaalleen ajettava
+           nousuanimaatio. */
+        .hero-fox-peek {
+            display: none;
+            position: absolute;
+            top: 50%;
+            --fox-w: clamp(140px, 14vw, 220px);
+            /* #hero on max-width:1280px ja keskitetty, joten leveillä näytöillä heron oma
+               oikea reuna jää kauas näytön todellisesta reunasta. --hero-gap laskee tämän
+               tyhjän marginaalin ja right-arvo vähentää sen pois, jotta kettu asettuu aina
+               NÄYTÖN oikeaan reunaan, ei vain heron sisäiseen reunaan. */
+            --hero-gap: max(0px, (100vw - 1280px) / 2);
+            /* piilotila: painettu vielä pidemmälle oikealle/reunan yli, "saapuu" sisään */
+            right: calc(0.0792 * var(--fox-w) - 110px - var(--hero-gap));
+            width: var(--fox-w);
+            height: auto;
+            pointer-events: none;
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(-50%) rotate(-90deg);
+            transition: right 2200ms cubic-bezier(0.16, 1, 0.3, 1), opacity 1400ms ease;
+        }
+
+        .hero-fox-peek.is-risen {
+            opacity: 1;
+            /* lepotila: tassut n. 20px NÄYTÖN oikean reunan yli, "jatkuu ruudun ulkopuolelle" */
+            right: calc(0.0792 * var(--fox-w) - 20px - var(--hero-gap));
+        }
+
+        @media (min-width: 1100px) {
+            .hero-fox-peek {
+                display: block;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .hero-fox-peek {
+                transition: opacity 300ms ease;
+                right: calc(0.0792 * var(--fox-w) - 20px - var(--hero-gap));
+            }
+        }
+
     </style>
 </head>
 
@@ -642,8 +706,8 @@ body {
     <header class="lp-hero">
         <div class="hero-badge animate-in">AI-työkalujen käyttöönotto</div>
         <h1 class="animate-in">Tekoäly alkaa tuottaa, kun se on otettu käyttöön <span class="accent-text">oikein</span>.</h1>
-        <p class="hero-sub animate-in">Otamme yrityksesi tekoälytyökalun käyttöön yhden käyttöönottopäivän aikana:
-            turvalliset asetukset, yrityksesi oma konteksti, valmiit ohjepohjat ja koulutus koko tiimille.</p>
+        <p class="hero-sub animate-in">Otamme yrityksesi tekoälytyökalun käyttöön yhden käyttöönottopäivän aikana,
+            niin että tiimi voi alkaa käyttää sitä turvallisesti ja hyödyllisesti.</p>
         <div class="hero-actions animate-in">
             <a href="https://calendar.app.google/go2sDgLdm6r2eKTK7" target="_blank" rel="noopener" class="btn btn-primary">
                 Varaa maksuton kartoitus
@@ -661,6 +725,7 @@ body {
             </div>
         </div>
         <div class="hero-glow"></div>
+        <img class="hero-fox-peek" srcset="img/valok-kettu-hero-peek-mobile.webp 500w, img/valok-kettu-hero-peek.webp 644w" sizes="220px" src="img/valok-kettu-hero-peek.webp" alt="" width="644" height="746" loading="eager" aria-hidden="true">
     </header>
 
     <section id="lahtotilanne" class="section section-roomy">
@@ -683,24 +748,24 @@ body {
                 <span class="split-kicker">Ratkaisu</span>
                 <h2>Turvallisuus ei ole jarru. Se on syy edetä rohkeasti.</h2>
                 <p>Kun tilit, oikeudet ja pelisäännöt ovat kunnossa, tiimi voi käyttää tekoälyä arvailematta, mitä
-                    saa tehdä. Siksi käyttöönotto alkaa asetuksista ja päättyy siihen, että jokainen osaa käyttää
-                    työkalua omassa työssään.</p>
+                    saa tehdä. Siksi käyttöönotto tähtää siihen, että jokainen osaa käyttää työkalua omassa
+                    työssään.</p>
                 <ul class="diff-list">
                     <li>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5" /></svg>
-                        <span>Organisaation tilit ja vahva tunnistautuminen kaikille käyttäjille</span>
+                        <span>Turvallinen lähtötilanne tilien, tietosuojan ja käyttöoikeuksien osalta</span>
                     </li>
                     <li>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5" /></svg>
-                        <span>Tietosuoja-asetukset: datan koulutuskäyttö pois, säilytys ja jakaminen sovittu</span>
+                        <span>Työkalu, joka palvelee juuri yrityksesi töitä</span>
                     </li>
                     <li>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5" /></svg>
-                        <span>Yrityksesi konteksti ja valmiit ohjepohjat toistuviin töihin</span>
+                        <span>Tiimi, joka osaa käyttää sitä</span>
                     </li>
                     <li>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5" /></svg>
-                        <span>Kirjallinen käyttöpolitiikka, jonka koko tiimi tuntee</span>
+                        <span>Pelisäännöt, jotka kaikki tuntevat</span>
                     </li>
                 </ul>
             </div>
@@ -709,43 +774,27 @@ body {
 
     <section id="sisalto" class="section section-roomy lp-services">
         <div class="section-header">
-            <span class="section-tag">Sisältö</span>
-            <h2>Mitä käyttöönottoon kuuluu.</h2>
-            <p class="section-desc">Yksi kokonaisuus, joka toteutetaan paikan päällä tai etänä. Tärkeimmät asetukset
+            <span class="section-tag">Tavoite</span>
+            <h2>Mihin käyttöönotto tähtää.</h2>
+            <p class="section-desc">Toteutetaan yhtenä kokonaisuutena paikan päällä tai etänä. Tärkeimmät asetukset
                 avasimme myös blogissa: <a href="blogi/tekoalytyokalujen-perusasetukset-yritykselle.html">tekoälytyökalujen perusasetukset yritykselle</a>.</p>
         </div>
         <div class="services-grid">
             <div class="service-card" data-animate>
-                <h3>Peruskonfigurointi</h3>
-                <p>Organisaatiotili ja käyttäjät, tietosuoja-asetukset sekä yhteiset ohjeet työkalulle: rooli, kieli ja sävy.</p>
+                <h3>Turvallinen alku</h3>
+                <p>Työkalu otetaan käyttöön niin, että yrityksesi tiedot ja käyttöoikeudet ovat hallinnassa alusta asti.</p>
             </div>
             <div class="service-card" data-animate>
-                <h3>Dokumenttivarastot</h3>
-                <p>SharePoint-, OneDrive- tai Google Drive -kansioiden kytkentä ja käyttöoikeuksien tarkistus ennen kuin tekoäly pääsee niihin.</p>
+                <h3>Hyötyä omiin töihin</h3>
+                <p>Työkalu sovitetaan yrityksesi tapaan työskennellä, jotta siitä on apua arjessa heti.</p>
             </div>
             <div class="service-card" data-animate>
-                <h3>Yrityksesi konteksti</h3>
-                <p>Taustatiedot, termistö ja vakiovastaukset, jotta työkalu vastaa yrityksesi kielellä eikä yleisellä tasolla.</p>
+                <h3>Tiimi osaa käyttää</h3>
+                <p>Opastus mitoitetaan tiimisi omiin tehtäviin eikä tekoälyyn yleisellä tasolla.</p>
             </div>
             <div class="service-card" data-animate>
-                <h3>Ohjepohjat</h3>
-                <p>Valmiit ohjepohjat toistuviin tehtäviin, kuten asiakasviesteihin, raportteihin ja tarjouspyyntöihin.</p>
-            </div>
-            <div class="service-card" data-animate>
-                <h3>Koulutus</h3>
-                <p>Turvallisen käytön koulutus koko tiimille ja rooleittaiset sessiot oikeilla työtehtävillä.</p>
-            </div>
-            <div class="service-card" data-animate>
-                <h3>Materiaalit</h3>
-                <p>Turvallisen käytön opas, pikaohje siitä, mitä työkaluun saa syöttää ja mitä ei, sekä ohjepohjakirjasto.</p>
-            </div>
-            <div class="service-card" data-animate>
-                <h3>Käyttöpolitiikka</h3>
-                <p>Kirjallinen tekoälyn käyttöpolitiikka yrityksesi omaksi, jotta pelisäännöt ovat kaikille samat.</p>
-            </div>
-            <div class="service-card" data-animate>
-                <h3>Seuranta ja jatko</h3>
-                <p>Seurantapalaveri 30 päivän kuluttua ja kirjallinen ehdotus siitä, mitä kannattaa automatisoida seuraavaksi.</p>
+                <h3>Selkeät pelisäännöt</h3>
+                <p>Kaikki tietävät, mitä työkaluun saa syöttää ja miten sitä käytetään yrityksessäsi.</p>
             </div>
         </div>
         <div class="client-strip" data-animate>
@@ -763,7 +812,7 @@ body {
                 <span class="split-kicker">Eteneminen</span>
                 <h2>Näin käyttöönotto etenee.</h2>
                 <p>Varsinainen työ tehdään yhden käyttöönottopäivän aikana. Ennen sitä sovitaan tavoitteet, ja
-                    jälkikäteen seuranta varmistaa, että työkalu on oikeasti käytössä.</p>
+                    jälkeenpäin varmistetaan, että työkalu on oikeasti käytössä.</p>
                 <div class="lp-steps-note">
                     <h3>Lisenssit ostat suoraan toimittajalta</h3>
                     <p>Emme jälleenmyy tekoälytyökalujen lisenssejä. Maksat lisenssit suoraan toimittajalle, ja me
@@ -782,22 +831,22 @@ body {
                     <div class="timeline-item">
                         <div class="timeline-number">02</div>
                         <div class="timeline-content">
-                            <h3>Alkupalaveri ja valmistelu</h3>
-                            <p>Sovitaan tavoitteet ja käyttäjäroolit ja valmistellaan asetukset. Sinä hankit lisenssit ja annat pääkäyttäjäoikeudet.</p>
+                            <h3>Suunnittelu</h3>
+                            <p>Sovitaan tavoitteet ja valmistellaan käyttöönotto. Sinä hankit lisenssit ja annat pääkäyttäjäoikeudet.</p>
                         </div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-number">03</div>
                         <div class="timeline-content">
                             <h3>Käyttöönottopäivä</h3>
-                            <p>Aamupäivällä asetukset ja kytkennät, iltapäivällä koulutus. Paikan päällä tai etänä.</p>
+                            <p>Työkalu otetaan käyttöön, ja tiimi pääsee kokeilemaan sitä omissa töissään. Paikan päällä tai etänä.</p>
                         </div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-number">04</div>
                         <div class="timeline-content">
-                            <h3>Materiaalit ja seuranta</h3>
-                            <p>Materiaalit viikon kuluessa käyttöönottopäivästä ja seurantapalaveri 30 päivän kuluttua.</p>
+                            <h3>Seuranta</h3>
+                            <p>Käyttöönoton jälkeen varmistetaan, että työkalu on oikeasti käytössä, ja mietitään, mitä seuraavaksi.</p>
                         </div>
                     </div>
                 </div>
@@ -853,7 +902,7 @@ body {
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6" /></svg>
                 </button>
                 <div class="faq-answer">
-                    <p>Pidämme seurantapalaverin 30 päivän kuluttua. Sen jälkeen voit valita kuukausittaisen jatkotuen, jossa vastaamme kysymyksiin ja päivitämme asetuksia työkalujen muuttuessa.</p>
+                    <p>Sovimme käyttöönoton jälkeen seurannan, jossa katsomme, miten käyttö on lähtenyt liikkeelle. Halutessasi voit valita kuukausittaisen jatkotuen.</p>
                 </div>
             </div>
             <div class="faq-item" data-animate>
@@ -862,7 +911,7 @@ body {
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6" /></svg>
                 </button>
                 <div class="faq-answer">
-                    <p>Käyttöönoton lopuksi saat kirjallisen ehdotuksen siitä, mitä kannattaa automatisoida seuraavaksi. Esimerkiksi tietojen siirto järjestelmästä toiseen voidaan hoitaa n8n-automaatiolla.</p>
+                    <p>Käyttöönoton jälkeen saat ehdotuksen siitä, mitä kannattaa automatisoida seuraavaksi. Esimerkiksi tietojen siirto järjestelmästä toiseen voidaan hoitaa automaatiolla.</p>
                 </div>
             </div>
         </div>
@@ -977,6 +1026,20 @@ body {
     </div>
 
     <script src="main.js"></script>
+    <script>
+        // Kettu kurkistaa sisään oikealta pienellä viiveellä sivun latautumisen jälkeen
+        // (800ms — antaa hero-tekstin ehtiä ilmestyä ensin). Ei enää scroll-sidottua
+        // häivytystä (ks. selitys yllä .hero-fox-peek:in kohdalla) — kettu pysyy heron
+        // laatikon sisällä ja katoaa siksi automaattisesti tavallisen sivun vierityksen
+        // mukana, ilman erillistä JS-logiikkaa.
+        (function () {
+            var fox = document.querySelector('.hero-fox-peek');
+            if (!fox) return;
+            setTimeout(function () {
+                fox.classList.add('is-risen');
+            }, 800);
+        })();
+    </script>
 </body>
 
 </html>
