@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <script>
+        if (localStorage.getItem('theme') !== 'dark') {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f8fafc">
+    <title>AI-natiivi yritys: mitä se tarkoittaa ja ei | Valok</title>
+    <meta name="description"
+        content="Mitä AI-natiivi (tekoälynatiivi) yritys tarkoittaa ja mitä se ei tarkoita? Selkeä selitys pk-yritykselle ja vaiheittainen tie sinne.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet"></noscript>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel=icon type=image/png sizes=32x32 href=../img/favicon-32x32.png>
+    <link rel=apple-touch-icon sizes=180x180 href=../img/favicon-180x180.png>
+
+    <link rel="canonical" href="https://valok.fi/blogi/ai-natiivi-yritys-mita-se-tarkoittaa.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://valok.fi/blogi/ai-natiivi-yritys-mita-se-tarkoittaa.html">
+    <meta property="og:title" content="AI-natiivi yritys: mitä se tarkoittaa ja mitä ei">
+    <meta property="og:description" content="AI-natiivi ei tarkoita, että yrityksellä on tekoälytyökalu. Selkeä selitys siitä, mitä termi tarkoittaa, mitä se ei tarkoita ja miten pk-yritys etenee kohti sitä vaiheittain.">
+    <meta property="og:image" content="https://valok.fi/img/ai-natiivi-yritys-mita-se-tarkoittaa.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI-natiivi yritys: mitä se tarkoittaa ja mitä ei">
+    <meta name="twitter:description" content="AI-natiivi ei tarkoita, että yrityksellä on tekoälytyökalu. Selkeä selitys siitä, mitä termi tarkoittaa, mitä se ei tarkoita ja miten pk-yritys etenee kohti sitä vaiheittain.">
+    <meta name="twitter:image" content="https://valok.fi/img/ai-natiivi-yritys-mita-se-tarkoittaa.webp">
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI-natiivi yritys: mitä se tarkoittaa ja mitä ei",
+  "description": "AI-natiivi ei tarkoita, että yrityksellä on tekoälytyökalu. Selkeä selitys siitä, mitä termi tarkoittaa, mitä se ei tarkoita ja miten pk-yritys etenee kohti sitä vaiheittain.",
+  "image": "https://valok.fi/img/ai-natiivi-yritys-mita-se-tarkoittaa.webp",
+  "datePublished": "2026-10-16",
+  "dateModified": "2026-10-16",
+  "author": {
+    "@type": "Person",
+    "name": "Aleksanteri Rönkä",
+    "url": "https://valok.fi/",
+    "email": "aleksanteri@valok.fi",
+    "jobTitle": "Perustaja",
+    "worksFor": {
+      "@id": "https://valok.fi/#organization"
+    }
+  },
+  "publisher": {
+    "@id": "https://valok.fi/#organization"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://valok.fi/blogi/ai-natiivi-yritys-mita-se-tarkoittaa.html"
+  }
+}
+</script>
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Mitä AI-natiivi yritys tarkoittaa?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AI-natiivi yritys on yritys, jonka työt, päätökset ja vastuut on suunniteltu niin, että tekoäly tekee osan työstä ja ihminen asettaa tavoitteet, hyväksyy tärkeät päätökset ja vastaa lopputuloksesta. Pelkkä tekoälytyökalun käyttö ei tee yrityksestä AI-natiivia."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Ovatko AI-natiivi ja tekoälynatiivi sama asia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Kyllä. Termit tarkoittavat samaa asiaa. AI-natiivi on yleisempi, koska se tulee englannin sanoista Artificial Intelligence Native, lyhennettynä AI-native, ja tekoälynatiivi on sen suomennos."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Mikä ero on AI-natiivin ja tekoälyä hyödyntävän yrityksen välillä?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tekoälyä hyödyntävässä yrityksessä työ on suunniteltu ihmisille, ja tekoäly nopeuttaa sitä. AI-natiivissa yrityksessä työ suunnitellaan niin, että tekoäly tekee osan siitä ja ihminen valvoo. Ero on työn rakenteessa, ei käytettyjen työkalujen määrässä."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Pitääkö pk-yrityksen olla AI-natiivi?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ei. Yrityksen ei tarvitse olla AI-natiivi, eikä termi ole laatumerkki. Moni pk-yritys saa suurimman hyödyn siitä, että työkalut, pelisäännöt ja yksi toistuva työ saadaan kuntoon, ja jatkaa siitä vaiheittain vain sinne asti, mihin hyöty riittää."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Mistä pk-yritys aloittaa matkan kohti AI-natiivia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Aloita työkalujen käyttöönotosta ja kirjallisista pelisäännöistä. Valitse sen jälkeen yksi toistuva työ, jonka voi automatisoida, ja anna tekoälylle rajatut valtuudet vasta, kun käytäntö toimii."
+      }
+    }
+  ]
+}
+</script>
+
+    <style>
+        .post-header {
+            min-height: auto !important;
+            padding: 160px 24px 24px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            background: radial-gradient(circle at top, var(--accent-glow) 0%, transparent 70%);
+        }
+
+        .post-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px 100px;
+            line-height: 1.8;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .post-content h2, .post-content h3 {
+            color: var(--text);
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .post-content p {
+            margin-bottom: 24px;
+        }
+
+        .post-content ul, .post-content ol {
+            margin-bottom: 24px;
+            padding-left: 20px;
+        }
+
+        .post-content li {
+            margin-bottom: 12px;
+        }
+
+        .post-meta {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .post-author {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 24px;
+            text-align: left;
+        }
+
+        .post-author img {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .post-author-name {
+            display: block;
+            font-weight: 600;
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+
+        .post-author-role {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dim);
+            text-decoration: none;
+            margin-bottom: 40px;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        .post-image {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .post-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .toc-box {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+        }
+
+        .toc-box h4 {
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        .toc-box ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .toc-box a {
+            color: #58a6ff;
+            text-decoration: none;
+            display: block;
+            padding: 4px 0;
+            transition: var(--transition);
+        }
+
+        .toc-box a:hover {
+            color: var(--accent);
+            padding-left: 4px;
+        }
+
+        .highlight-box {
+            background: var(--glass);
+            padding: 30px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+            border-left: 4px solid var(--accent);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 40px 0;
+            background: var(--glass);
+            border-radius: var(--radius);
+            overflow: hidden;
+            font-size: 0.95rem;
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 14px 18px;
+            border: 1px solid var(--border);
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .comparison-table th {
+            background: rgba(var(--accent-rgb), 0.12);
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .comparison-table td:first-child {
+            font-weight: 600;
+            color: var(--text);
+            white-space: nowrap;
+        }
+
+        .table-scroll {
+            overflow-x: auto;
+        }
+
+        .reference-list {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            margin-top: 60px;
+        }
+
+        .reference-list ol {
+            padding-left: 20px;
+        }
+
+        .contact-section {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 60px 40px;
+            border-radius: var(--radius);
+            margin-top: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="particles"></canvas>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark" width="4206" height="4206"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light" width="4206" height="4206">VALOK<span
+                     class="logo-dot">.</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="/#palvelut">Palvelut</a>
+                <a href="/#prosessi">Prosessi</a>
+                <a href="../blogi.html">Blogi</a>
+                <a href="/#yhteystiedot" class="nav-cta">Ota yhteyttä</a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Avaa valikko">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <article>
+        <header class="post-header">
+            <a href="../blogi.html" class="back-link">← Takaisin blogiin</a>
+            <span class="post-meta">Tekoäly • Strategia • Yrityskäyttö</span>
+            <h1>AI-natiivi yritys: <span class="gradient-text">mitä se tarkoittaa ja mitä ei</span></h1>
+            <p style="color: var(--text-dim); margin-top: 20px;">AI-natiivista eli tekoälynatiivista yrityksestä puhutaan paljon, mutta termin merkitys vaihtelee puhujan mukaan. Tässä selitetään, mitä sillä tarkoitetaan, mitä se ei tarkoita ja mitä se merkitsee pk-yritykselle.</p>
+            <div class="post-author">
+                <img src="../img/valok-aleksanteri.webp" alt="Aleksanteri Rönkä" width="44" height="44" loading="lazy">
+                <div>
+                    <span class="post-author-name">Aleksanteri Rönkä</span>
+                    <span class="post-author-role">Perustaja, Valok &middot; <a href="mailto:aleksanteri@valok.fi">aleksanteri@valok.fi</a></span>
+                </div>
+            </div>
+        </header>
+
+        <div class="post-image">
+            <img src="../img/ai-natiivi-yritys-mita-se-tarkoittaa.webp" alt="Kettumaskotti rakentaa palikoista porrasta ylös kohti valoa työpöydällä - Valok" width="960" height="1120">
+        </div>
+
+        <main class="post-content">
+            <div class="toc-box">
+                <h4>Sisällysluettelo</h4>
+                <ul>
+                    <li><a href="#mita-tarkoittaa">1. Mitä AI-natiivi tarkoittaa</a></li>
+                    <li><a href="#mita-ei">2. Mitä AI-natiivi ei tarkoita</a></li>
+                    <li><a href="#vaiheet">3. Miltä suunta näyttää pk-yrityksessä</a></li>
+                    <li><a href="#milloin-ei">4. Milloin AI-natiivi ei ole oikea tavoite</a></li>
+                    <li><a href="#kysymykset">5. Viisi kysymystä aloittamiseen</a></li>
+                    <li><a href="#ukk">6. Usein kysyttyä</a></li>
+                </ul>
+            </div>
+
+            <p>Termi tulee englannin sanasta <em>AI-native</em>. Se on lainattu ohjelmistoalalta, jossa "natiivi" kuvaa tuotetta, joka on suunniteltu alusta asti tietyn teknologian varaan. Yrityksiin sovellettuna se tarkoittaa, että tekoäly ei ole lisätty olemassa olevien työtapojen päälle vaan työt on suunniteltu sen ympärille.</p>
+
+            <div class="highlight-box">
+                <strong>Lyhyt vastaus:</strong> AI-natiivi yritys on yritys, jonka työt, päätökset ja vastuut on suunniteltu niin, että tekoäly tekee osan työstä ja ihminen asettaa tavoitteet, hyväksyy tärkeät päätökset ja vastaa lopputuloksesta. Pelkkä tekoälytyökalun käyttö ei vielä tee yrityksestä AI-natiivia.
+            </div>
+
+            <h2 id="mita-tarkoittaa">1. Mitä AI-natiivi tarkoittaa</h2>
+            <p>Boston Consulting Group kirjoittaa huhtikuussa 2026 julkaistussa artikkelissaan, ettei tekoälyä kannata lisätä vanhaan työnjakoon. Sen sijaan yritys suunnitellaan uudelleen niin, että tekoälyagentit tekevät työtä ja ihmiset asettavat tavoitteet, hallitsevat riskejä ja päättävät harkintaa vaativista asioista. BCG:n mukaan pelkkä tekoälyn lisääminen nykyiseen toimintatapaan tuottaa vain pieniä parannuksia. Lisäksi vain noin 5 % organisaatioista onnistuu saamaan tekoälystä merkittävää hyötyä laajassa mittakaavassa, vaikka kokeiluja tehdään paljon.<sup>1</sup></p>
+            <p>Deloitte laajentaa määritelmää tavalla, joka on pk-yritykselle tärkeä: AI-natiivi yritys ei välttämättä ole rakennettu alusta asti tekoälyn varaan. Deloitten mukaan kyse on toimintakyvystä, jota olemassa oleva yritys voi kehittää vaiheittain. Siihen kuuluu kolme asiaa:<sup>2</sup></p>
+            <ol>
+                <li><strong>Tilannekuva:</strong> yritys näkee reaaliajassa, missä tilassa liiketoiminta on.</li>
+                <li><strong>Toiminta:</strong> yritys tekee päätöksiä ja toimii itsenäisesti, mutta rajatuin valtuuksin.</li>
+                <li><strong>Oppiminen:</strong> yritys seuraa tuloksia ja oppii niistä.</li>
+            </ol>
+            <p>Deloitten mukaan pelkkä tilannekuva ilman toimintaa on vain parempi mittaristo, ja toiminta ilman tilannekuvaa on nopea tapa erehtyä suuressa mittakaavassa.</p>
+            <p>Karkea ero tekoälyä hyödyntävän ja AI-natiivin yrityksen välillä on se, että tekoälyä hyödyntävässä yrityksessä työ on suunniteltu ihmisille ja tekoäly nopeuttaa sitä, kun taas AI-natiivissa yrityksessä työ suunnitellaan niin, että tekoäly tekee osan siitä ja ihminen valvoo.</p>
+
+            <h2 id="mita-ei">2. Mitä AI-natiivi ei tarkoita</h2>
+            <ul style="list-style: none; padding-left: 0;">
+                <li>❌ <strong>Yrityksellä on tekoälylisenssi.</strong> Tilastokeskuksen mukaan 38 % suomalaisyrityksistä käytti tekoälyteknologioita keväällä 2025, mutta vain 15 %:lla oli kirjatut ohjeet tai käytännöt sen käytölle.<sup>3</sup> Käyttö ja rakenne ovat eri asioita.</li>
+                <li>❌ <strong>Ihmiset korvataan.</strong> BCG korostaa, että ihmisen harkinta pysyy keskiössä silloin, kun tarvitaan luottamusta, empatiaa tai vastuunkantoa.<sup>1</sup></li>
+                <li>❌ <strong>Kaikki tehdään tekoälyllä.</strong> Tekoäly kannattaa ottaa mukaan vain siihen, mihin se tuo oikeaa hyötyä. Moni työ hoituu paremmin tavallisella automaatiolla tai ei ollenkaan.</li>
+                <li>❌ <strong>Kaikki pitää rakentaa alusta.</strong> Olemassa olevaa yritystä voi kehittää vaiheittain, kuten Deloitte toteaa.<sup>2</sup></li>
+                <li>❌ <strong>Se on laatumerkki.</strong> Termi on markkinoinnissa usein käytetty, eikä pk-yritys tarvitse leimaa. Tarvitaan hyötyä, joka näkyy ajassa, virheissä tai kustannuksissa.</li>
+            </ul>
+
+            <h2 id="vaiheet">3. Miltä suunta näyttää pk-yrityksessä</h2>
+            <p>Suunta kohti AI-natiivia etenee käytännössä neljän vaiheen kautta. Vaiheet ovat järjestys, eivät aikataulu, ja moni yritys pysähtyy järkevästi vaiheeseen 1 tai 2.</p>
+            <ol>
+                <li><strong>Työkalut ja pelisäännöt kuntoon.</strong> Yrityksen omat tilit, hallitut oikeudet, tiimin opastus ja <a href="tekoalyn-kayttoohje-yritykselle.html">yhden sivun käyttöohje</a>. Ilman tätä seuraavilla vaiheilla ei ole kunnollista pohjaa. Tähän vaiheeseen kuuluu <a href="../tekoalytyokalujen-kayttoonotto.html">tekoälytyökalujen käyttöönotto</a>.</li>
+                <li><strong>Toistuva työ automaatioksi.</strong> Valitaan yksi työ, joka tehdään viikoittain ja jonka tuloksen ihminen voi tarkistaa nopeasti. Valintaan löytyy apua artikkelista <a href="miten-pk-yritys-paasee-alkuun-tekoalyn-kanssa.html">miten pk-yritys pääsee alkuun tekoälyn kanssa</a>. Toteutus tehdään <a href="../prosessiautomaatio.html">prosessiautomaatiolla</a>.</li>
+                <li><strong>Tekoäly tekee osan työstä rajatuilla valtuuksilla.</strong> Tekoälyagentti saa lukea, ehdottaa ja valmistella, mutta lähettäminen, poistaminen ja maksaminen vaativat ihmisen hyväksynnän. Valtuuksien rajaamisesta kerrotaan lisää artikkelissa <a href="tekoalyn-rajoittaminen.html">tekoälyn rajoittaminen</a>.</li>
+                <li><strong>Mittaa ja opi.</strong> Seuraa, paljonko aikaa ja virheitä säästyy, ja päätä mittausten perusteella, mihin seuraavaksi mennään. Deloitten mainitsema oppiminen tarkoittaa juuri tätä.<sup>2</sup></li>
+            </ol>
+
+            <h2 id="milloin-ei">4. Milloin AI-natiivi ei ole oikea tavoite</h2>
+            <ul>
+                <li><strong>Kun yrityksellä ei ole toistuvaa työtä.</strong> Jos jokainen projekti on ainutlaatuinen, automatisoitavaa on vähän, eikä hyöty ole suuri.</li>
+                <li><strong>Kun prosessia ei ymmärretä.</strong> Automaatio vahvistaa sitä, mitä prosessi jo tekee. Epäselvä prosessi tuottaa epäselviä tuloksia nopeammin.</li>
+                <li><strong>Kun tietoja ei saa antaa tekoälylle.</strong> Salassapito- ja tietosuojavelvoitteet voivat rajata, mihin tekoälyä voi käyttää. Silloin pelisäännöt tulevat ennen tavoitetta.</li>
+                <li><strong>Kun kyse on korkean riskin päätöksistä.</strong> EU:n tekoälyasetus (AI Act) luokittelee rekrytoinnin, luottopäätökset ja muun tiukasti säännellyn käytön korkean riskin käytöksi. Näiden velvoitteet alkavat 2. joulukuuta 2027, ja ne vaativat erillisen arvion, joten päätöksiä ei kannata siirtää tekoälylle vain suunnan vuoksi.<sup>4</sup></li>
+            </ul>
+
+            <h2 id="kysymykset">5. Viisi kysymystä aloittamiseen</h2>
+            <ol>
+                <li>Mitkä työt toistuvat meillä viikoittain ja vievät eniten aikaa?</li>
+                <li>Kuka vastaa siitä, että tekoälyn tuottama tulos on oikein?</li>
+                <li>Mitä tietoa tekoälylle saa ja ei saa syöttää?</li>
+                <li>Missä kohtaa ihminen hyväksyy tuloksen ennen kuin se etenee?</li>
+                <li>Mitä mittaamme, jotta tiedämme, onko muutos auttanut?</li>
+            </ol>
+            <p>Jos kaikkiin viiteen on vastaus, yritys on jo hyvässä vauhdissa. Jos ei, kysymykset kertovat, mistä kannattaa aloittaa.</p>
+
+            <h2 id="ukk">6. Usein kysyttyä</h2>
+
+            <h3>Mitä AI-natiivi yritys tarkoittaa?</h3>
+            <p>AI-natiivi yritys on yritys, jonka työt, päätökset ja vastuut on suunniteltu niin, että tekoäly tekee osan työstä ja ihminen asettaa tavoitteet, hyväksyy tärkeät päätökset ja vastaa lopputuloksesta. Pelkkä tekoälytyökalun käyttö ei tee yrityksestä AI-natiivia.</p>
+
+            <h3>Ovatko AI-natiivi ja tekoälynatiivi sama asia?</h3>
+            <p>Kyllä. Termit tarkoittavat samaa asiaa. AI-natiivi on yleisempi, koska se tulee englannin sanoista Artificial Intelligence Native, lyhennettynä AI-native, ja tekoälynatiivi on sen suomennos.</p>
+
+            <h3>Mikä ero on AI-natiivin ja tekoälyä hyödyntävän yrityksen välillä?</h3>
+            <p>Tekoälyä hyödyntävässä yrityksessä työ on suunniteltu ihmisille, ja tekoäly nopeuttaa sitä. AI-natiivissa yrityksessä työ suunnitellaan niin, että tekoäly tekee osan siitä ja ihminen valvoo. Ero on työn rakenteessa, ei käytettyjen työkalujen määrässä.</p>
+
+            <h3>Pitääkö pk-yrityksen olla AI-natiivi?</h3>
+            <p>Ei. Yrityksen ei tarvitse olla AI-natiivi, eikä termi ole laatumerkki. Moni pk-yritys saa suurimman hyödyn siitä, että työkalut, pelisäännöt ja yksi toistuva työ saadaan kuntoon, ja jatkaa siitä vaiheittain vain sinne asti, mihin hyöty riittää.</p>
+
+            <h3>Mistä pk-yritys aloittaa matkan kohti AI-natiivia?</h3>
+            <p>Aloita työkalujen käyttöönotosta ja kirjallisista pelisäännöistä. Valitse sen jälkeen yksi toistuva työ, jonka voi automatisoida, ja anna tekoälylle rajatut valtuudet vasta, kun käytäntö toimii.</p>
+
+            <div class="reference-list">
+                <h4>Lähdeviitteet:</h4>
+                <ol>
+                    <li><a href="https://www.bcg.com/publications/2026/design-your-company-for-ai-not-ai-for-your-company" target="_blank" rel="noopener">Boston Consulting Group: "Design Your Company for AI, Not AI for Your Company"</a> (23.4.2026). Yrityksen suunnittelu tekoälyagenttien ympärille, ihmisen rooli ja arvon syntyminen mittakaavassa.</li>
+                    <li><a href="https://www.deloitte.com/us/en/services/consulting/articles/enterprise-ai-operating-model-for-ai-native-businesses.html" target="_blank" rel="noopener">Deloitte: "The Enterprise AI Operating Model for AI-Native Businesses"</a>. AI-natiivi toimintakykynä, jota voi kehittää vaiheittain: tilannekuva, toiminta ja oppiminen.</li>
+                    <li><a href="https://stat.fi/fi/julkaisu/cm1hnps701dbm07w59uo0jw6u" target="_blank" rel="noopener">Tilastokeskus: "Tekoälyteknologioita käytti 38 % yrityksistä vuonna 2025"</a> (27.11.2025). Tekoälyn käyttö suomalaisyrityksissä ja ohjeiden dokumentointi.</li>
+                    <li><a href="https://eur-lex.europa.eu/eli/reg/2026/1744/oj" target="_blank" rel="noopener">Euroopan parlamentti ja neuvosto: asetus (EU) 2026/1744 (Digital Omnibus on AI)</a> (2026), jolla muutetaan tekoälyasetusta (EU) 2024/1689. Korkean riskin velvoitteiden määräpäivät.</li>
+                </ol>
+            </div>
+
+            <div class="contact-section">
+                <div class="section-header" style="text-align: center; margin-bottom: 40px;">
+                    <span class="section-tag">Otetaan askel eteenpäin</span>
+                    <h2>Missä vaiheessa yrityksenne tekoälymatka on?</h2>
+                    <p>Kartoituksessa käydään läpi nykytila ja seuraava järkevä askel. Kartoitus on maksuton.</p>
+                </div>
+
+                <div class="contact-container" style="max-width: 100%;">
+                    <div class="contact-form-card">
+                        <form action="https://formspree.io/f/xlgpgyjl" method="POST" id="contact-form">
+                            <div class="form-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 20px;">
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="name">Nimi</label>
+                                    <input type="text" id="name" name="name" autocomplete="name" placeholder="Oma nimesi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                </div>
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="email">Sähköposti</label>
+                                    <input type="email" id="email" name="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="esimerkki@yritys.fi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg full-width" style="width: 100%; padding: 16px; font-weight: bold; cursor: pointer; margin-top: 20px;">
+                                Varaa ilmainen kartoitus
+                            </button>
+                            <div id="form-status" class="form-status" aria-live="polite"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </article>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer" width="4206" height="4206" loading="lazy"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer" width="4206" height="4206" loading="lazy">VALOK<span class="logo-dot">.</span></div>
+                <p>Prosessien automatisointia ja yrityksen omaan tietoon perustuvia tekoälyratkaisuja suomalaisille PK-yrityksille, tietoturva ja tietosuoja edellä.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Linkit</h4>
+                <ul>
+                    <li><a href="/">Etusivu</a></li>
+                    <li><a href="../blogi.html">Blogi</a></li>
+                    <li><a href="/#palvelut">Palvelut</a></li>
+                    <li><a href="../tietosuoja.html">Tietosuoja</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ota yhteyttä</h4>
+                <ul>
+                    <li>aleksanteri@valok.fi</li>
+                    <li>Jyväskylä, Finland</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Valok. Kaikki oikeudet pidätetään. · <a href="#" id="cookieSettingsLink">Evästeasetukset</a>
+        </div>
+    </footer>
+
+        <div id="cookieBanner" class="cookie-banner">
+        <h5>Yksityisyytesi on meille tärkeää</h5>
+        <p>Käytämme sivustolla vain välttämättömiä toimintoja varmistaaksemme parhaan mahdollisen käyttökokemuksen. Emme
+            käytä kolmannen osapuolen markkinointievästeitä ilman suostumustasi.</p>
+        <div class="cookie-btn-group">
+            <button id="acceptCookies" class="btn btn-primary">Hyväksy kaikki</button>
+            <button id="rejectCookies" class="btn btn-ghost">Hylkää</button>
+            <a href="../tietosuoja.html" class="btn btn-ghost">Lue lisää</a>
+        </div>
+    </div>
+
+    <script src="../main.js"></script>
+</body>
+
+</html>
