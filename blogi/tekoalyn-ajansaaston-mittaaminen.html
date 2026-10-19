@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <script>
+        if (localStorage.getItem('theme') !== 'dark') {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f8fafc">
+    <title>Tekoälyn ajansäästön mittaaminen: väärä tapa kysyä | Valok</title>
+    <meta name="description"
+        content="Kehittäjät arvioivat tekoälyn nopeuttaneen työtään 20 prosenttia. Mittaus näytti 19 prosenttia hitaampaa. Näin ajansäästö mitataan niin, että se kestää.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet"></noscript>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel=icon type=image/png sizes=32x32 href=../img/favicon-32x32.png>
+    <link rel=apple-touch-icon sizes=180x180 href=../img/favicon-180x180.png>
+
+    <link rel="canonical" href="https://valok.fi/blogi/tekoalyn-ajansaaston-mittaaminen.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://valok.fi/blogi/tekoalyn-ajansaaston-mittaaminen.html">
+    <meta property="og:title" content="Kysyit tiimiltä, paljonko aikaa säästyi. Se on väärä tapa mitata">
+    <meta property="og:description" content="Kolme satunnaistettua koetta antoi kolme eri tulosta, ja yhdessä niistä kehittäjien arvio ja mittaus olivat vastakkaisia. Näin ajansäästö mitataan pk-yrityksessä niin, että luku kestää tarkastelun.">
+    <meta property="og:image" content="https://valok.fi/img/tekoalyn-ajansaaston-mittaaminen.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Kysyit tiimiltä, paljonko aikaa säästyi. Se on väärä tapa mitata">
+    <meta name="twitter:description" content="Kolme satunnaistettua koetta antoi kolme eri tulosta, ja yhdessä niistä kehittäjien arvio ja mittaus olivat vastakkaisia. Näin ajansäästö mitataan pk-yrityksessä niin, että luku kestää tarkastelun.">
+    <meta name="twitter:image" content="https://valok.fi/img/tekoalyn-ajansaaston-mittaaminen.webp">
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Kysyit tiimiltä, paljonko aikaa säästyi. Se on väärä tapa mitata",
+  "description": "Kolme satunnaistettua koetta antoi kolme eri tulosta, ja yhdessä niistä kehittäjien arvio ja mittaus olivat vastakkaisia. Näin ajansäästö mitataan pk-yrityksessä niin, että luku kestää tarkastelun.",
+  "image": "https://valok.fi/img/tekoalyn-ajansaaston-mittaaminen.webp",
+  "datePublished": "2026-10-19",
+  "dateModified": "2026-10-19",
+  "author": {
+    "@type": "Person",
+    "name": "Aleksanteri Rönkä",
+    "url": "https://valok.fi/",
+    "email": "aleksanteri@valok.fi",
+    "jobTitle": "Perustaja",
+    "worksFor": {
+      "@id": "https://valok.fi/#organization"
+    }
+  },
+  "publisher": {
+    "@id": "https://valok.fi/#organization"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://valok.fi/blogi/tekoalyn-ajansaaston-mittaaminen.html"
+  }
+}
+</script>
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Miten tekoälyn tuomaa ajansäästöä mitataan luotettavasti?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mittaa sama työ ennen automaatiota ja sen jälkeen järjestelmän aikaleimoista, ei ihmisiltä kysymällä. Valitse yksi prosessi ja kiinteä tapausmäärä, esimerkiksi 50 laskua, ja laske mukaan poikkeukset ja uudelleen tehty työ. Mittari sovitaan ennen käyttöönottoa, jotta jälkikäteen ei valita sitä, joka näyttää parhaalta."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Miksi itsearvioitu ajansäästö on epäluotettava?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Itsearvio mittaa kokemusta työn sujuvuudesta, ei työn kestoa. METR:n kokeessa kokeneet kehittäjät arvioivat nopeutuneensa 20 prosenttia, mutta mitattu työaika piteni 19 prosenttia. Vertailukohta puuttuu, odotukset vaikuttavat muistiin, ja odottaminen sekä tarkistaminen tuntuvat kevyemmältä kuin kirjoittaminen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Nopeuttaako tekoäly työtä vai ei?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Se riippuu tehtävästä. Kolmessa satunnaistetussa kokeessa tulokset olivat erilaiset: Copilot-ryhmä oli 55,8 prosenttia nopeampi, BCG:n konsultit tekivät 18 tehtävää 25,1 prosenttia nopeammin mutta menestyivät huonommin yhdessä monimutkaisessa tehtävässä, ja kokeneet kehittäjät hidastuivat omissa projekteissaan 19 prosenttia."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Mitä mittareita automaation hyödystä kannattaa seurata?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Läpimenoaika yhdelle tapaukselle, käsiteltyjen tapausten määrä samalla henkilömäärällä, poikkeusten osuus ja niiden selvittämiseen kulunut aika sekä uudelleen tehdyn työn osuus. Kolme ensimmäistä saa yleensä suoraan järjestelmän lokista, joten niitä ei tarvitse kysyä keneltäkään."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Voiko pk-yritys tehdä oman mittauksen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Kyllä, kahdessa viikossa. Valitse yksi prosessi ja tapausmäärä, mittaa nykytila aikaleimoista ennen kuin kerrot tiimille mitään, aja sama määrä automaation kanssa ja laske mukaan poikkeukset. Satunnaistettua koetta ei tarvita, koska sama prosessi ja sama mittari ennen ja jälkeen antavat luotettavamman pohjan kuin arvio."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kannattaako tiimiltä kysyä kokemusta lainkaan?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Kannattaa, mutta erillisenä lukuna. Kokemus kertoo käyttöönotosta, osaamisesta ja siitä, tuntuuko työ sujuvammalta. Se ei ole sama asia kuin työn kesto, eikä sitä pidä käyttää investointipäätöksen perusteena tuntilukuna."
+      }
+    }
+  ]
+}
+</script>
+
+    <style>
+        .post-header {
+            min-height: auto !important;
+            padding: 160px 24px 24px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            background: radial-gradient(circle at top, var(--accent-glow) 0%, transparent 70%);
+        }
+
+        .post-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px 100px;
+            line-height: 1.8;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .post-content h2, .post-content h3 {
+            color: var(--text);
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .post-content p {
+            margin-bottom: 24px;
+        }
+
+        .post-content ul, .post-content ol {
+            margin-bottom: 24px;
+            padding-left: 20px;
+        }
+
+        .post-content li {
+            margin-bottom: 12px;
+        }
+
+        .post-meta {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .post-date {
+            display: block;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            margin-top: 12px;
+        }
+        .post-author {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 24px;
+            text-align: left;
+        }
+
+        .post-author img {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .post-author-name {
+            display: block;
+            font-weight: 600;
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+
+        .post-author-role {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dim);
+            text-decoration: none;
+            margin-bottom: 40px;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        .post-image {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .post-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .toc-box {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+        }
+
+        .toc-box h4 {
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        .toc-box ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .toc-box a {
+            color: #58a6ff;
+            text-decoration: none;
+            display: block;
+            padding: 4px 0;
+            transition: var(--transition);
+        }
+
+        .toc-box a:hover {
+            color: var(--accent);
+            padding-left: 4px;
+        }
+
+        .highlight-box {
+            background: var(--glass);
+            padding: 30px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+            border-left: 4px solid var(--accent);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 40px 0;
+            background: var(--glass);
+            border-radius: var(--radius);
+            overflow: hidden;
+            font-size: 0.95rem;
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 14px 18px;
+            border: 1px solid var(--border);
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .comparison-table th {
+            background: rgba(var(--accent-rgb), 0.12);
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .comparison-table td:first-child {
+            font-weight: 600;
+            color: var(--text);
+            white-space: nowrap;
+        }
+
+        .table-scroll {
+            overflow-x: auto;
+        }
+
+        .reference-list {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            margin-top: 60px;
+        }
+
+        .reference-list ol {
+            padding-left: 20px;
+        }
+
+        .contact-section {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 60px 40px;
+            border-radius: var(--radius);
+            margin-top: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="particles"></canvas>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark" width="4206" height="4206"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light" width="4206" height="4206">VALOK<span
+                     class="logo-dot">.</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="/#palvelut">Palvelut</a>
+                <a href="/#prosessi">Prosessi</a>
+                <a href="../blogi.html">Blogi</a>
+                <a href="/#yhteystiedot" class="nav-cta">Ota yhteyttä</a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Avaa valikko">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <article>
+        <header class="post-header">
+            <a href="../blogi.html" class="back-link">← Takaisin blogiin</a>
+            <span class="post-meta">Tekoäly • Mittaaminen • Tutkimus</span>
+            <h1>Kysyit tiimiltä, paljonko aikaa säästyi. <span class="gradient-text">Se on väärä tapa mitata</span></h1>
+            <p style="color: var(--text-dim); margin-top: 20px;">Ihminen ei pysty arvioimaan omaa työnopeuttaan luotettavasti, ja tekoälyn kohdalla virhe voi olla suuri. Tässä käydään läpi kolme satunnaistettua koetta ja se, miten ajansäästö mitataan niin, että luku kestää tarkastelun.</p>
+            <span class="post-date">19. lokakuuta 2026</span>
+            <div class="post-author">
+                <img src="../img/valok-aleksanteri.webp" alt="Aleksanteri Rönkä" width="44" height="44" loading="lazy">
+                <div>
+                    <span class="post-author-name">Aleksanteri Rönkä</span>
+                    <span class="post-author-role">Perustaja, Valok &middot; <a href="mailto:aleksanteri@valok.fi">aleksanteri@valok.fi</a></span>
+                </div>
+            </div>
+        </header>
+
+        <div class="post-image">
+            <img src="../img/tekoalyn-ajansaaston-mittaaminen.webp" alt="Kettumaskotti pitää kädessään sekuntikelloa ja mittaa työtä työpöydän ääressä - Valok" width="960" height="1120">
+        </div>
+
+        <main class="post-content">
+            <div class="toc-box">
+                <h4>Sisällysluettelo</h4>
+                <ul>
+                    <li><a href="#itsearvio">1. Mitä itsearviointi tosiasiassa mittaa</a></li>
+                    <li><a href="#kolme-koetta">2. Kolme satunnaistettua koetta, kolme eri tulosta</a></li>
+                    <li><a href="#miksi-tekoaly">3. Miksi juuri tekoälyn kohdalla arvio menee pieleen</a></li>
+                    <li><a href="#mita-mitata">4. Mitä mitata sen sijaan</a></li>
+                    <li><a href="#oma-mittaus">5. Miten pk-yritys tekee oman mittauksen kahdessa viikossa</a></li>
+                    <li><a href="#ostajalle">6. Mitä tämä tarkoittaa, kun ostat automaatiota</a></li>
+                    <li><a href="#ukk">7. Usein kysyttyä</a></li>
+                </ul>
+            </div>
+
+            <p>Ihminen ei pysty arvioimaan omaa työnopeuttaan luotettavasti, ja tekoälyn kohdalla virhe on ollut mitatussa tapauksessa poikkeuksellisen suuri. METR:n satunnaistetussa kokeessa (Becker, Rush, Barnes ja Rein, 2025) 16 kokenutta avoimen lähdekoodin kehittäjää teki 246 tehtävää projekteissa, joita he olivat kehittäneet keskimäärin viisi vuotta. Tehtävät arvottiin niin, että osassa tekoälytyökalut olivat sallittuja ja osassa ei. Ennen koetta kehittäjät arvioivat tekoälyn lyhentävän työaikaa 24 prosenttia, ja kokeen jälkeen he arvioivat nopeutuneensa 20 prosenttia. Mitattu tulos oli päinvastainen: tekoälyn salliminen pidensi tehtävän kestoa 19 prosenttia.<sup>1</sup></p>
+
+            <p>Tässä artikkelissa käydään läpi, miksi arvio ja mittaus eroavat näin paljon, mitä kaksi muuta satunnaistettua koetta kertovat ja miten pk-yritys mittaa ajansäästön itse ilman tutkimusbudjettia.</p>
+
+            <div class="highlight-box">
+                <strong>Lyhyt vastaus:</strong> itsearvio mittaa kokemusta työn sujuvuudesta, ei työn kestoa, ja nämä kaksi voivat liikkua eri suuntiin. Ajansäästö kannattaa mitata järjestelmän aikaleimoista ennen ja jälkeen automaation. Tiimin kokemus kysytään erikseen ja merkitään erikseen.
+            </div>
+
+            <h2 id="itsearvio">1. Mitä itsearviointi tosiasiassa mittaa</h2>
+            <p>Kun ihmiseltä kysytään, paljonko aikaa säästyi, hän ei palauta mieleen kelloa vaan tunteen. Kolme asiaa selittää, miksi tunne ja kello voivat erota:</p>
+            <ul>
+                <li><strong>Vertailukohta puuttuu.</strong> Samaa tehtävää ei tehty rinnakkain ilman työkalua, joten verrataan muistikuvaan siitä, miten kauan työ olisi vienyt.</li>
+                <li><strong>Odotus ohjaa muistia.</strong> Uuteen työkaluun kohdistuva odotus on osa vastausta jo ennen kuin työ on tehty.</li>
+                <li><strong>Työn luonne muuttuu.</strong> Odottaminen, lukeminen ja korjaaminen tuntuvat kevyemmiltä kuin kirjoittaminen, vaikka ne kuluttaisivat saman ajan.</li>
+            </ul>
+            <p>Johtopäätös on siis tämä: itsearvio mittaa kokemusta työn sujuvuudesta, ei työn kestoa, ja nämä kaksi voivat liikkua eri suuntiin. Kokemus sujuvuudesta ei ole arvoton. Se vain ei ole tuntiluku, eikä se kelpaa investointipäätöksen perusteluksi.</p>
+
+            <h2 id="kolme-koetta">2. Kolme satunnaistettua koetta, kolme eri tulosta</h2>
+            <p>Tekoälyn vaikutusta työnopeuteen on mitattu satunnaistetuissa kokeissa, joissa osa tekijöistä sai työkalun ja osa ei. Kolmen tunnetuimman tulokset poikkeavat toisistaan selvästi:</p>
+
+            <div class="table-scroll">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Koe ja vuosi</th>
+                            <th>Mitä mitattiin</th>
+                            <th>Otos</th>
+                            <th>Tulos</th>
+                            <th>Todennäköinen selittäjä</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Peng, Kalliamvakou, Cihon ja Demirer (2023), GitHub Copilot<sup>2</sup></td>
+                            <td>HTTP-palvelimen toteutus JavaScriptillä mahdollisimman nopeasti</td>
+                            <td>95 rekrytoitua kehittäjää, arvottu kahteen ryhmään (45 ja 50). Tehtävän ja kyselyn suoritti 35 kummastakin ryhmästä.</td>
+                            <td>Copilot-ryhmä oli 55,8 % nopeampi: 71,17 minuuttia vastaan 160,89 minuuttia (p = 0,0017, 95 %:n luottamusväli 21-89 %).</td>
+                            <td>Uusi, suljettu ja tavanomainen tehtävä, josta malli on voinut nähdä paljon esimerkkejä. Tämä on tulkinta, ei tutkimuksen tulos.</td>
+                        </tr>
+                        <tr>
+                            <td>Dell'Acqua ym. (2023), BCG<sup>3</sup></td>
+                            <td>18 realistista konsulttityön tehtävää ja yksi monimutkainen johtamistehtävä, joka oli tekoälyn osaamisen ulkopuolella</td>
+                            <td>758 tietotyöntekijää, ennakkorekisteröity koe, arvonta kolmeen ryhmään: ei tekoälyä, GPT-4, GPT-4 ja kehoteopastus.</td>
+                            <td>18 tehtävässä tekoälyä käyttäneet tekivät 12,2 % enemmän tehtäviä ja 25,1 % nopeammin, ja laatu oli merkitsevästi parempi. Johtamistehtävässä oikean ratkaisun osuus laski keskimäärin 19 prosenttiyksikköä (84 %:sta 60-71 %:iin).</td>
+                            <td>Tekijöiden termi on rikkonainen teknologiaraja: hyöty ja haitta vaihtelevat tehtävästä toiseen saman työnkulun sisällä, eikä rajaa näe päältä.</td>
+                        </tr>
+                        <tr>
+                            <td>Becker, Rush, Barnes ja Rein (2025), METR<sup>1</sup></td>
+                            <td>246 tehtävää kehittäjien omissa, kypsissä projekteissa</td>
+                            <td>16 kokenutta kehittäjää, keskimäärin viisi vuotta kokemusta juuri niistä projekteista.</td>
+                            <td>Tekoälyn salliminen pidensi tehtävän kestoa 19 %. Kehittäjät arvioivat ennakkoon 24 % lyhenemistä ja jälkikäteen 20 % nopeutumista. Asiantuntijat ennustivat 39 % (taloustieteilijät) ja 38 % (koneoppimisen asiantuntijat) lyhenemistä.</td>
+                            <td>Tekijät tarkastelevat selityksinä muun muassa projektin kokoa, laatuvaatimuksia ja kehittäjien kokemusta. Kokeesta ei voi sanoa varmasti, mikä niistä vaikutti.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>Kaikki kolme koetta ovat satunnaistettuja, ja kaikki kolme ovat oikeassa. Kysymys ei siis ole siitä, kumpaan uskoa, vaan siitä, kummassa asetelmassa oma työ on. METR:n kokeessa osallistujien oma arvio voitiin lisäksi verrata suoraan mitattuun: arvio nopeutumisesta ja mitattu hidastuminen olivat noin 39 prosenttiyksikön päässä toisistaan, päinvastaisiin suuntiin.</p>
+            <p>METR:n tulos on arXivissa julkaistu esijulkaisu. Tekijät käyvät läpi 20 mahdollista selitystä hidastumiselle ja toteavat, ettei kokeen asetelman vaikutusta voi täysin sulkea pois.<sup>1</sup></p>
+
+            <h2 id="miksi-tekoaly">3. Miksi juuri tekoälyn kohdalla arvio menee pieleen</h2>
+            <p>Seuraavat kolme ovat työnkulun ominaisuuksia, eivät luonteenpiirteitä. Ne ovat uskottavia selityksiä, mutta kokeet eivät ole todistaneet niitä yksitellen.</p>
+            <ul>
+                <li><strong>Odottaminen ei tunnu työltä.</strong> Mallin vastausta odottaessa ei kirjoiteta, ja tauko muistetaan taukona eikä kestona.</li>
+                <li><strong>Tarkistaminen tuntuu kevyemmältä kuin tekeminen.</strong> Valmiin ehdotuksen lukeminen tuntuu helpolta silloinkin, kun sen korjaaminen vie kauemmin kuin alusta kirjoittaminen. Sama mekanismi on automaatiovinoumassa, ja siitä kerrotaan lisää artikkelissa <a href="ihminen-tarkistaa-automaatiovinouma.html">miksi valmiin ehdotuksen tarkistaminen tuntuu kevyemmältä kuin se on</a>.</li>
+                <li><strong>Onnistumiset muistetaan, keskeytykset eivät.</strong> Kerta, jolloin malli ratkaisi asian sekunneissa, jää mieleen. Kolme kertaa, jolloin se johti harhaan, sulautuvat tavalliseen työhön.</li>
+            </ul>
+            <p>Työn tuntu voi siis parantua, vaikka työn kesto kasvaa, eikä kumpikaan havainto kumoa toista.</p>
+
+            <h2 id="mita-mitata">4. Mitä mitata sen sijaan</h2>
+            <p>Neljä mittaria on pk-yrityksen ulottuvilla ilman tutkimusbudjettia. Mitkä mittarit sopivat erityisesti agenttiautomaatiolle, selviää artikkelista <a href="tekoalyagenttien-roi-mittarit.html">mitkä mittarit agenttiautomaatiolle kannattaa valita</a>.</p>
+            <ol>
+                <li><strong>Läpimenoaika yhdelle tapaukselle, mitattuna järjestelmästä.</strong> Milloin lasku saapui, milloin se oli hyväksyttävänä ja milloin se oli kirjattu. Nämä aikaleimat ovat jo olemassa.</li>
+                <li><strong>Käsiteltyjen tapausten määrä samalla henkilömäärällä.</strong> Tämä on ainoa mittari, joka kestää myös sen, että työ muuttuu laadullisesti.</li>
+                <li><strong>Poikkeusten osuus ja niiden selvittämiseen kulunut aika.</strong> Automaation todellinen kustannus on tässä, ei ajossa.</li>
+                <li><strong>Uudelleen tehdyn työn osuus.</strong> Jos sama tapaus käsitellään kahdesti, ensimmäinen käsittely ei ollut säästöä.</li>
+            </ol>
+            <p>Kolme ensimmäistä saa yleensä suoraan järjestelmän lokista, eikä yhtäkään niistä tarvitse kysyä keneltäkään.</p>
+
+            <h2 id="oma-mittaus">5. Miten pk-yritys tekee oman mittauksen kahdessa viikossa</h2>
+            <p>Lista on tarkoituksella vaatimaton, koska satunnaistettua koetta ei kannata yrittää. Tulosta voi verrata siihen, <a href="automaatio-tutkimus-roi.html">mitä tutkimus sanoo automaation tuotosta</a>.</p>
+            <ol>
+                <li>Valitse yksi prosessi ja yksi tapausmäärä, esimerkiksi 50 ostolaskua tai 50 saapunutta viestiä.</li>
+                <li>Mittaa nykytila järjestelmän aikaleimoista, ennen kuin kerrot kenellekään mitään. Ennakkoon tehty kysely muuttaa tulosta.</li>
+                <li>Aja sama määrä automaation kanssa ja mittaa samat aikaleimat.</li>
+                <li>Laske mukaan poikkeukset ja uudelleen tehty työ, älä vain onnistuneita tapauksia.</li>
+                <li>Kysy tiimiltä kokemus erikseen ja merkitse se erikseen. Se on arvokas tieto käyttöönotosta ja osaamisesta, mutta se ei ole sama luku kuin kesto.</li>
+            </ol>
+            <p>Kohta 2 jää helposti tekemättä, ja ilman sitä koko mittaus on vertailu muistiin.</p>
+
+            <h2 id="ostajalle">6. Mitä tämä tarkoittaa, kun ostat automaatiota</h2>
+            <ul>
+                <li><strong>Älä hyväksy tarjousta, jonka hyötylaskelma perustuu arvioon siitä, montako tuntia työ nyt vie.</strong> Pyydä, että luku otetaan järjestelmästä. Se voi olla projektin ensimmäinen, erikseen hinnoiteltu vaihe, tai asiakas voi hakea aikaleimat itse esimerkiksi 50 viimeisimmästä tapauksesta.</li>
+                <li><strong>Älä hyväksy sitä, että hyöty todistetaan jälkikäteen kyselyllä.</strong> Kysely mittaa tyytyväisyyttä, joka on eri asia kuin säästö.</li>
+                <li><strong>Vaadi, että mittari sovitaan ennen käyttöönottoa.</strong> Jälkikäteen valittu mittari on helposti se, joka näyttää parhaalta.</li>
+            </ul>
+            <p>Sama sääntö koskee myös meitä: hyötyä ei kannata luvata ennen kuin lähtöluku on otettu järjestelmästä, ja mittaus on osa sovittua työtä.</p>
+            <p>Tutkimukset eivät kerro kaikkea: yksikään kolmesta kokeesta ei mitannut pk-yrityksen taloushallinnon työnkulkua, vaan ne koskevat ohjelmistokehitystä ja konsultointia. Tämän artikkelin argumentti ei silti nojaa siihen, että luvut siirtyisivät sellaisenaan, vaan siihen, että itsearvio ja mittaus erosivat toisistaan siinä kokeessa, jossa molemmat olivat tiedossa.</p>
+
+            <h2 id="ukk">7. Usein kysyttyä</h2>
+
+            <h3>Miten tekoälyn tuomaa ajansäästöä mitataan luotettavasti?</h3>
+            <p>Mittaa sama työ ennen automaatiota ja sen jälkeen järjestelmän aikaleimoista, ei ihmisiltä kysymällä. Valitse yksi prosessi ja kiinteä tapausmäärä, esimerkiksi 50 laskua, ja laske mukaan poikkeukset ja uudelleen tehty työ. Mittari sovitaan ennen käyttöönottoa, jotta jälkikäteen ei valita sitä, joka näyttää parhaalta.</p>
+
+            <h3>Miksi itsearvioitu ajansäästö on epäluotettava?</h3>
+            <p>Itsearvio mittaa kokemusta työn sujuvuudesta, ei työn kestoa. METR:n kokeessa kokeneet kehittäjät arvioivat nopeutuneensa 20 prosenttia, mutta mitattu työaika piteni 19 prosenttia. Vertailukohta puuttuu, odotukset vaikuttavat muistiin, ja odottaminen sekä tarkistaminen tuntuvat kevyemmältä kuin kirjoittaminen.</p>
+
+            <h3>Nopeuttaako tekoäly työtä vai ei?</h3>
+            <p>Se riippuu tehtävästä. Kolmessa satunnaistetussa kokeessa tulokset olivat erilaiset: Copilot-ryhmä oli 55,8 prosenttia nopeampi, BCG:n konsultit tekivät 18 tehtävää 25,1 prosenttia nopeammin mutta menestyivät huonommin yhdessä monimutkaisessa tehtävässä, ja kokeneet kehittäjät hidastuivat omissa projekteissaan 19 prosenttia.</p>
+
+            <h3>Mitä mittareita automaation hyödystä kannattaa seurata?</h3>
+            <p>Läpimenoaika yhdelle tapaukselle, käsiteltyjen tapausten määrä samalla henkilömäärällä, poikkeusten osuus ja niiden selvittämiseen kulunut aika sekä uudelleen tehdyn työn osuus. Kolme ensimmäistä saa yleensä suoraan järjestelmän lokista, joten niitä ei tarvitse kysyä keneltäkään.</p>
+
+            <h3>Voiko pk-yritys tehdä oman mittauksen?</h3>
+            <p>Kyllä, kahdessa viikossa. Valitse yksi prosessi ja tapausmäärä, mittaa nykytila aikaleimoista ennen kuin kerrot tiimille mitään, aja sama määrä automaation kanssa ja laske mukaan poikkeukset. Satunnaistettua koetta ei tarvita, koska sama prosessi ja sama mittari ennen ja jälkeen antavat luotettavamman pohjan kuin arvio.</p>
+
+            <h3>Kannattaako tiimiltä kysyä kokemusta lainkaan?</h3>
+            <p>Kannattaa, mutta erillisenä lukuna. Kokemus kertoo käyttöönotosta, osaamisesta ja siitä, tuntuuko työ sujuvammalta. Se ei ole sama asia kuin työn kesto, eikä sitä pidä käyttää investointipäätöksen perusteena tuntilukuna.</p>
+
+            <div class="reference-list">
+                <h4>Lähdeviitteet:</h4>
+                <ol>
+                    <li><a href="https://arxiv.org/abs/2507.09089" target="_blank" rel="noopener">Becker, J., Rush, N., Barnes, E. ja Rein, D.: "Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity"</a>. METR, arXiv 2507.09089, esijulkaisu (12.7.2025, päivitetty 25.7.2025). 16 kehittäjää, 246 tehtävää, mitattu vaikutus +19 % kestoon.</li>
+                    <li><a href="https://arxiv.org/abs/2302.06590" target="_blank" rel="noopener">Peng, S., Kalliamvakou, E., Cihon, P. ja Demirer, M.: "The Impact of AI on Developer Productivity: Evidence from GitHub Copilot"</a>. arXiv 2302.06590 (2023). 95 kehittäjää, Copilot-ryhmä 55,8 % nopeampi.</li>
+                    <li><a href="https://www.hbs.edu/faculty/Pages/item.aspx?num=64700" target="_blank" rel="noopener">Dell'Acqua, F., McFowland III, E., Mollick, E., Lifshitz-Assaf, H., Kellogg, K., Rajendran, S., Krayer, L., Candelon, F. ja Lakhani, K.: "Navigating the Jagged Technological Frontier"</a>. Harvard Business School Working Paper 24-013, syyskuu 2023. Julkaistu Organization Science -lehdessä maalis-huhtikuussa 2026. 758 tietotyöntekijää Boston Consulting Groupilla.</li>
+                </ol>
+            </div>
+
+            <div class="contact-section">
+                <div class="section-header" style="text-align: center; margin-bottom: 40px;">
+                    <span class="section-tag">Otetaan askel eteenpäin</span>
+                    <h2>Valitse yksi prosessi.</h2>
+                    <p>Kartoituksessa käydään läpi, mistä järjestelmästä prosessin läpimenoaika saadaan ja mikä mittari sovitaan ennen käyttöönottoa. Kartoitus on maksuton.</p>
+                </div>
+
+                <div class="contact-container" style="max-width: 100%;">
+                    <div class="contact-form-card">
+                        <form action="https://formspree.io/f/xlgpgyjl" method="POST" id="contact-form">
+                            <div class="form-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 20px;">
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="name">Nimi</label>
+                                    <input type="text" id="name" name="name" autocomplete="name" placeholder="Oma nimesi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                </div>
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="email">Sähköposti</label>
+                                    <input type="email" id="email" name="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="esimerkki@yritys.fi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg full-width" style="width: 100%; padding: 16px; font-weight: bold; cursor: pointer; margin-top: 20px;">
+                                Varaa ilmainen kartoitus
+                            </button>
+                            <div id="form-status" class="form-status" aria-live="polite"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </article>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer" width="4206" height="4206" loading="lazy"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer" width="4206" height="4206" loading="lazy">VALOK<span class="logo-dot">.</span></div>
+                <p>Prosessien automatisointia ja yrityksen omaan tietoon perustuvia tekoälyratkaisuja suomalaisille PK-yrityksille, tietoturva ja tietosuoja edellä.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Linkit</h4>
+                <ul>
+                    <li><a href="/">Etusivu</a></li>
+                    <li><a href="../blogi.html">Blogi</a></li>
+                    <li><a href="/#palvelut">Palvelut</a></li>
+                    <li><a href="../tietosuoja.html">Tietosuoja</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ota yhteyttä</h4>
+                <ul>
+                    <li>aleksanteri@valok.fi</li>
+                    <li>Jyväskylä, Finland</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Valok. Kaikki oikeudet pidätetään. · <a href="#" id="cookieSettingsLink">Evästeasetukset</a>
+        </div>
+    </footer>
+
+        <div id="cookieBanner" class="cookie-banner">
+        <h5>Yksityisyytesi on meille tärkeää</h5>
+        <p>Käytämme sivustolla vain välttämättömiä toimintoja varmistaaksemme parhaan mahdollisen käyttökokemuksen. Emme
+            käytä kolmannen osapuolen markkinointievästeitä ilman suostumustasi.</p>
+        <div class="cookie-btn-group">
+            <button id="acceptCookies" class="btn btn-primary">Hyväksy kaikki</button>
+            <button id="rejectCookies" class="btn btn-ghost">Hylkää</button>
+            <a href="../tietosuoja.html" class="btn btn-ghost">Lue lisää</a>
+        </div>
+    </div>
+
+    <script src="../main.js"></script>
+</body>
+
+</html>
