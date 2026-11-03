@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <script>
+        if (localStorage.getItem('theme') !== 'dark') {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f8fafc">
+    <title>Mikä on integraatioalusta ja milloin se kannattaa? | Valok</title>
+    <meta name="description"
+        content="Integraatioalusta on palvelu, jonka kautta järjestelmät vaihtavat tietoa. Näin päätät, riittävätkö suorat API-integraatiot vai tarvitaanko alusta.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet"></noscript>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel=icon type=image/png sizes=32x32 href=../img/favicon-32x32.png>
+    <link rel=apple-touch-icon sizes=180x180 href=../img/favicon-180x180.png>
+
+    <link rel="canonical" href="https://valok.fi/blogi/mika-on-integraatioalusta.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://valok.fi/blogi/mika-on-integraatioalusta.html">
+    <meta property="og:title" content="Mikä on integraatioalusta ja tarvitseeko pk-yritys sellaisen?">
+    <meta property="og:description" content="Integraatioalusta kokoaa järjestelmien väliset yhteydet yhteen paikkaan. Tässä kerrotaan, mistä alusta koostuu, milloin suorat API-integraatiot riittävät, milloin alusta kannattaa ja mitä sen valinnassa pitää tarkistaa.">
+    <meta property="og:image" content="https://valok.fi/img/mika-on-integraatioalusta.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Mikä on integraatioalusta ja tarvitseeko pk-yritys sellaisen?">
+    <meta name="twitter:description" content="Integraatioalusta kokoaa järjestelmien väliset yhteydet yhteen paikkaan. Tässä kerrotaan, mistä alusta koostuu, milloin suorat API-integraatiot riittävät, milloin alusta kannattaa ja mitä sen valinnassa pitää tarkistaa.">
+    <meta name="twitter:image" content="https://valok.fi/img/mika-on-integraatioalusta.webp">
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Mikä on integraatioalusta ja tarvitseeko pk-yritys sellaisen?",
+  "description": "Integraatioalusta kokoaa järjestelmien väliset yhteydet yhteen paikkaan. Tässä kerrotaan, mistä alusta koostuu, milloin suorat API-integraatiot riittävät, milloin alusta kannattaa ja mitä sen valinnassa pitää tarkistaa.",
+  "image": "https://valok.fi/img/mika-on-integraatioalusta.webp",
+  "datePublished": "2026-11-03",
+  "dateModified": "2026-11-03",
+  "author": {
+    "@type": "Person",
+    "name": "Aleksanteri Rönkä",
+    "url": "https://valok.fi/",
+    "email": "aleksanteri@valok.fi",
+    "jobTitle": "Perustaja",
+    "worksFor": {
+      "@id": "https://valok.fi/#organization"
+    }
+  },
+  "publisher": {
+    "@id": "https://valok.fi/#organization"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://valok.fi/blogi/mika-on-integraatioalusta.html"
+  }
+}
+</script>
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Mikä on integraatioalusta?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Integraatioalusta on palvelu, jossa yrityksen järjestelmien väliset yhteydet rakennetaan, ajetaan ja valvotaan yhdessä paikassa. Siinä on valmiita liittimiä yleisiin ohjelmistoihin, työnkulkuja, tiedon muunnos ja ajohistoria, josta näkee, mikä ajo onnistui ja mikä epäonnistui."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Mitä eroa on iPaaS:lla ja integraatioalustalla?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "iPaaS (integration platform as a service) on pilvipalveluna ostettava integraatioalusta. Integraatioalusta on laajempi käsite, sillä sama ohjelmisto voi toimia toimittajan pilvessä tai yrityksen omalla palvelimella."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Tarvitseeko pieni yritys integraatioalustan?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ei välttämättä. Jos järjestelmien välillä on yksi tai kaksi vakaata yhteyttä, suora API-integraatio tai ohjelmistotoimittajan valmis kytkentä riittää. Alustaa kannattaa harkita, kun sama tieto kulkee kolmen tai useamman järjestelmän läpi, yhteyksiä muutetaan usein tai virheet pitää nähdä heti."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Voiko integraatioalustan ajaa omalla palvelimella?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Voi, jos alusta sen sallii. Osan alustoista voi asentaa omaan infrastruktuuriin tai yksityiseen pilveen. Silloin ylläpito, päivitykset ja varmuuskopiot ovat yrityksen tai sen kumppanin vastuulla."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Miten tekoäly liittyy integraatioalustaan?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Kielimalli on integraatioalustassa yksi työnkulun vaihe. Se voi esimerkiksi lukea saapuvan sähköpostin ja poimia siitä tilauksen tiedot, minkä jälkeen alusta vie tiedot oikeaan järjestelmään. Ilman integraatiota tekoälyn tulos jää keskusteluikkunaan."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Mitä integraatioalustan valinnassa pitää tarkistaa?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tarkista valmiit liittimet omiin järjestelmiisi, datan säilytyspaikka, virheenkäsittely ja ajojen uusinta sekä se, kuka alustaa ylläpitää. Laske hinnoittelu omalla ajomäärälläsi ja selvitä, voiko työnkulut viedä ulos alustasta."
+      }
+    }
+  ]
+}
+</script>
+
+    <style>
+        .post-header {
+            min-height: auto !important;
+            padding: 160px 24px 24px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            background: radial-gradient(circle at top, var(--accent-glow) 0%, transparent 70%);
+        }
+
+        .post-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px 100px;
+            line-height: 1.8;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .post-content h2, .post-content h3 {
+            color: var(--text);
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .post-content p {
+            margin-bottom: 24px;
+        }
+
+        .post-content ul, .post-content ol {
+            margin-bottom: 24px;
+            padding-left: 20px;
+        }
+
+        .post-content li {
+            margin-bottom: 12px;
+        }
+
+        .post-meta {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .post-date {
+            display: block;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            margin-top: 12px;
+        }
+        .post-author {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 24px;
+            text-align: left;
+        }
+
+        .post-author img {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .post-author-name {
+            display: block;
+            font-weight: 600;
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+
+        .post-author-role {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dim);
+            text-decoration: none;
+            margin-bottom: 40px;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        .post-image {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .post-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .toc-box {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+        }
+
+        .toc-box h4 {
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        .toc-box ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .toc-box a {
+            color: #58a6ff;
+            text-decoration: none;
+            display: block;
+            padding: 4px 0;
+            transition: var(--transition);
+        }
+
+        .toc-box a:hover {
+            color: var(--accent);
+            padding-left: 4px;
+        }
+
+        .highlight-box {
+            background: var(--glass);
+            padding: 30px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+            border-left: 4px solid var(--accent);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 40px 0;
+            background: var(--glass);
+            border-radius: var(--radius);
+            overflow: hidden;
+            font-size: 0.95rem;
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 14px 18px;
+            border: 1px solid var(--border);
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .comparison-table th {
+            background: rgba(var(--accent-rgb), 0.12);
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .comparison-table td:first-child {
+            font-weight: 600;
+            color: var(--text);
+            white-space: nowrap;
+        }
+
+        .table-scroll {
+            overflow-x: auto;
+        }
+
+        .reference-list {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            margin-top: 60px;
+        }
+
+        .reference-list ol {
+            padding-left: 20px;
+        }
+
+        .contact-section {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 60px 40px;
+            border-radius: var(--radius);
+            margin-top: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="particles"></canvas>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark" width="4206" height="4206"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light" width="4206" height="4206">VALOK<span
+                     class="logo-dot">.</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="/#palvelut">Palvelut</a>
+                <a href="/#prosessi">Prosessi</a>
+                <a href="../blogi.html">Blogi</a>
+                <a href="/#yhteystiedot" class="nav-cta">Ota yhteyttä</a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Avaa valikko">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <article>
+        <header class="post-header">
+            <a href="../blogi.html" class="back-link">← Takaisin blogiin</a>
+            <span class="post-meta">Integraatiot • Automaatio • Opas</span>
+            <h1>Mikä on integraatioalusta <span class="gradient-text">ja tarvitseeko pk-yritys sellaisen?</span></h1>
+            <p style="color: var(--text-dim); margin-top: 20px;">Integraatioalusta kokoaa järjestelmien väliset yhteydet yhteen paikkaan. Tässä kerrotaan, mistä alusta koostuu, milloin suorat API-integraatiot riittävät ja miten valinta tehdään.</p>
+            <span class="post-date">3. marraskuuta 2026</span>
+            <div class="post-author">
+                <img src="../img/valok-aleksanteri.webp" alt="Aleksanteri Rönkä" width="44" height="44" loading="lazy">
+                <div>
+                    <span class="post-author-name">Aleksanteri Rönkä</span>
+                    <span class="post-author-role">Perustaja, Valok &middot; <a href="mailto:aleksanteri@valok.fi">aleksanteri@valok.fi</a></span>
+                </div>
+            </div>
+        </header>
+
+        <div class="post-image">
+            <img src="../img/mika-on-integraatioalusta.webp" alt="Kettumaskotti seisoo verstaalla ja kytkee värillisiä johtoja seinällä olevaan puiseen kytkentätauluun - Valok" width="960" height="1120">
+        </div>
+
+        <main class="post-content">
+            <div class="toc-box">
+                <h4>Sisällysluettelo</h4>
+                <ul>
+                    <li><a href="#mika-on">1. Mikä integraatioalusta on</a></li>
+                    <li><a href="#suora-vai-alusta">2. Suora API-integraatio vai integraatioalusta</a></li>
+                    <li><a href="#milloin-suora">3. Milloin suorat integraatiot riittävät</a></li>
+                    <li><a href="#milloin-alusta">4. Milloin integraatioalusta kannattaa</a></li>
+                    <li><a href="#valinta">5. Mitä alustan valinnassa kannattaa tarkistaa</a></li>
+                    <li><a href="#rajat">6. Mitä integraatioalusta ei ratkaise</a></li>
+                    <li><a href="#paatos">7. Näin teet päätöksen yhdessä iltapäivässä</a></li>
+                    <li><a href="#ukk">8. Usein kysyttyä</a></li>
+                </ul>
+            </div>
+
+            <p>Integraatioalusta on palvelu, jonka kautta yrityksen järjestelmät vaihtavat tietoa keskenään. Sen sijaan, että jokainen ohjelmisto kytketään erikseen jokaiseen toiseen, yhteydet rakennetaan, ajetaan ja valvotaan yhdessä paikassa. Pk-yritys hyötyy alustasta silloin, kun sama tieto kulkee kolmen tai useamman järjestelmän läpi tai kun yhteyksiä pitää muuttaa usein. Yksi tai kaksi vakaata yhteyttä hoituu suoralla API-integraatiolla ilman alustaa.</p>
+
+            <p>Aiemmin on käsitelty, <a href="tekoaly-ilman-integraatioita-on-kuin-auto-ilman-renkaita.html">miksi tekoäly ilman integraatioita jää erilliseksi ikkunaksi</a> ja <a href="api-integraatiot-liiketoimintaprosessit.html">mitä API-integraatiot tarkoittavat käytännössä</a>. Tämä kirjoitus vastaa seuraavaan kysymykseen: mihin integraatiot rakennetaan, ja miten valinta suorien yhteyksien ja alustan välillä tehdään.</p>
+
+            <div class="highlight-box">
+                <strong>Lyhyt vastaus:</strong> integraatioalusta on yhteinen paikka järjestelmien välisille tietovirroille. Jos yhteyksiä on yksi tai kaksi ja ne muuttuvat harvoin, suora API-integraatio riittää. Kun tietovirtoja on useita tai virheet pitää nähdä heti, alusta on helpompi ylläpitää kuin joukko erillisiä yhteyksiä.
+            </div>
+
+            <h2 id="mika-on">1. Mikä integraatioalusta on</h2>
+            <p>Integraatioalusta on ohjelmisto tai palvelu, jossa järjestelmien väliset yhteydet rakennetaan työnkuluiksi. Kun alusta ostetaan pilvipalveluna, siitä käytetään englanninkielistä nimeä iPaaS (integration platform as a service). Sama ajatus toimii myös omalla palvelimella. Osan alustoista voi asentaa omaan infrastruktuuriin, omaan konesaliin tai yksityiseen pilveen.</p>
+            <p>Alustoista löytyy yleensä viisi osaa:</p>
+            <ul>
+                <li><strong>Liittimet.</strong> Valmiit yhteydet yleisiin ohjelmistoihin, kuten sähköpostiin, asiakkuudenhallintaan ja taloushallintoon. Microsoftin Azure Logic Apps -palvelussa niitä on Microsoftin oman dokumentaation mukaan yli 1 400.<sup>1</sup></li>
+                <li><strong>Käynnistimet ja työnkulut.</strong> Työnkulku alkaa tapahtumasta, esimerkiksi "uusi tilaus saapui", ja sen jälkeen ajetaan sovitut vaiheet järjestyksessä.</li>
+                <li><strong>Tiedon muunnos.</strong> Kentät muutetaan muotoon, jonka vastaanottava järjestelmä ymmärtää. Esimerkiksi päivämäärä, asiakasnumero tai alv-kanta voi olla kahdessa järjestelmässä eri muodossa.</li>
+                <li><strong>Ajohistoria ja virheenkäsittely.</strong> Ajoista jää jälki, ja epäonnistunut ajo voidaan ajaa uudelleen.</li>
+                <li><strong>Tunnukset yhdessä paikassa.</strong> Rajapintojen avaimet ja käyttöoikeudet hallitaan keskitetysti, eivätkä ne ole hajallaan eri skripteissä.</li>
+            </ul>
+            <p>Tunnettuja alustoja ovat esimerkiksi Make, Zapier, Microsoft Power Automate ja Azure Logic Apps sekä suurille organisaatioille suunnatut MuleSoft ja Boomi. Alla olevat kriteerit pätevät mihin tahansa alustaan.</p>
+
+            <h2 id="suora-vai-alusta">2. Suora API-integraatio vai integraatioalusta</h2>
+            <p>Suora API-integraatio tarkoittaa, että kaksi järjestelmää kytketään toisiinsa ilman välikättä. Kytkentä on joko ohjelmistotoimittajan valmis ominaisuus tai tätä varten kirjoitettu pieni ohjelma. Integraatioalustassa jokainen järjestelmä kytketään alustaan, ja alusta hoitaa tiedon siirron järjestelmien välillä.</p>
+            <p>Ero näkyy, kun järjestelmiä tulee lisää. Jos jokainen järjestelmä kytketään suoraan jokaiseen toiseen, yhteyksien määrä kasvaa nopeammin kuin järjestelmien määrä. Laskuesimerkki: neljällä järjestelmällä mahdollisia pareja on kuusi, kahdeksalla jo 28. Kaikkia pareja ei kytketä, mutta jokainen suora yhteys on oma ohjelmansa, jolla on omat tunnukset, oma loki tai ei lokia lainkaan ja oma tapansa epäonnistua.</p>
+            <p>Määrää tärkeämpää on se, missä yhteyksien logiikka on. Kun tilaus kulkee verkkokaupasta varastoon, laskutukseen ja asiakasrekisteriin neljän erillisen kytkennän kautta, kukaan ei näe koko ketjua yhdestä paikasta. Alustassa sama ketju on yksi työnkulku, jonka jokainen vaihe näkyy ajohistoriassa.</p>
+
+            <div class="table-scroll">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Asia</th>
+                            <th>Suora API-integraatio</th>
+                            <th>Integraatioalusta</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Sopii</td>
+                            <td>Yksi tai kaksi vakaata yhteyttä</td>
+                            <td>Useita tietovirtoja, jotka muuttuvat</td>
+                        </tr>
+                        <tr>
+                            <td>Aloitus</td>
+                            <td>Nopea, jos toimittajalla on valmis kytkentä</td>
+                            <td>Vaatii alustan valinnan ja käyttöönoton</td>
+                        </tr>
+                        <tr>
+                            <td>Näkyvyys</td>
+                            <td>Jokaisella yhteydellä oma loki tai ei lokia</td>
+                            <td>Ajohistoria yhdessä paikassa</td>
+                        </tr>
+                        <tr>
+                            <td>Muutokset</td>
+                            <td>Koodiin tai toimittajan asetuksiin, yhteys kerrallaan</td>
+                            <td>Työnkulkuun, jossa koko ketju on näkyvissä</td>
+                        </tr>
+                        <tr>
+                            <td>Riippuvuudet</td>
+                            <td>Kaksi kytkettyä järjestelmää</td>
+                            <td>Kytketyt järjestelmät ja lisäksi alusta, sen hinnoittelu ja ylläpito</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2 id="milloin-suora">3. Milloin suorat integraatiot riittävät</h2>
+            <p>Alusta ei ole aina parempi vaihtoehto. Suora integraatio riittää, kun nämä ehdot täyttyvät:</p>
+            <ul>
+                <li><strong>Yhteyksiä on yksi tai kaksi, eikä uusia ole tulossa.</strong> Alustan tuoma näkyvyys ja muutosten helppous jäävät silloin pieniksi verrattuna siihen, mitä alustan käyttöönotto ja ylläpito vaativat.</li>
+                <li><strong>Ohjelmistotoimittajalla on valmis, ylläpidetty kytkentä.</strong> Esimerkiksi taloushallinto-ohjelmiston oma pankkiyhteys tai verkkokaupan valmis kirjanpitoliittymä. Silloin toimittaja vastaa siitä, että kytkentä toimii myös päivitysten jälkeen.</li>
+                <li><strong>Tieto kulkee yhteen suuntaan ja kenttiä on vähän.</strong> Uutiskirjeen tilaajan siirto markkinointityökaluun on tällainen.</li>
+                <li><strong>Katkos huomataan ja korjataan ilman erillistä valvontaa.</strong> Jos tilaajalista ei päivity yhtenä päivänä, seuraus on yksi myöhästynyt tervetuloviesti. Jos laskut eivät siirry kirjanpitoon, virhe voi näkyä vasta kuukauden lopussa, eikä tämä ehto silloin täyty.</li>
+            </ul>
+            <p>Toimittajan valmis kytkentä on hyvä vaihtoehto juuri siksi, että ylläpito ei jää sinulle. Kun sellainen on olemassa, kannattaa käyttää sitä ennen kuin rakennetaan mitään omaa.</p>
+
+            <h2 id="milloin-alusta">4. Milloin integraatioalusta kannattaa</h2>
+            <p>Alustaa kannattaa harkita, kun yksikin näistä pitää paikkansa:</p>
+            <ul>
+                <li><strong>Sama tieto kulkee kolmen tai useamman järjestelmän läpi.</strong> Tilaus, joka päätyy varastoon, laskulle ja asiakasrekisteriin, on yksi prosessi. Se kannattaa rakentaa yhdeksi työnkuluksi eikä kolmeksi erilliseksi kytkennäksi.</li>
+                <li><strong>Tietovirtoja muutetaan useammin kuin kerran vuodessa.</strong> Uusi tuote, uusi hinnasto tai uusi järjestelmä tarkoittaa muutosta yhteen työnkulkuun, ei usean erillisen ohjelman päivittämistä.</li>
+                <li><strong>Sinun pitää pystyä vastaamaan kysymykseen, mikä meni pieleen ja milloin.</strong> Ajohistoria näyttää, missä vaiheessa ajo pysähtyi ja millä tiedoilla.</li>
+                <li><strong>Työnkulkuun halutaan tekoälyä.</strong> Kielimalli on yksi vaihe työnkulussa: se lukee sähköpostin tai liitteen, ja alusta vie tuloksen oikeaan järjestelmään. Esimerkiksi Azure Logic Apps tukee dokumentaationsa mukaan työnkulkuja, joissa on mukana tekoälyagentteja ja kielimalleja.<sup>1</sup></li>
+            </ul>
+            <p>Järjestelmiä on pienissäkin yrityksissä. Eurostatin mukaan vuonna 2025 EU:n pienistä yrityksistä (10-49 henkilöä) noin 41 prosenttia käytti toiminnanohjausjärjestelmää (ERP) ja noin 25 prosenttia asiakkuudenhallintajärjestelmää (CRM).<sup>2</sup> Kun nämä ovat käytössä sähköpostin, verkkokaupan ja taloushallinnon rinnalla, tietovirtoja on jo useita.</p>
+            <p>Suurissa organisaatioissa mittakaava on toinen. MuleSoftin vuoden 2025 Connectivity Benchmark -kyselyssä 1 050 IT-johtajan organisaatioissa oli keskimäärin 897 sovellusta, ja niistä 29 prosenttia oli integroitu.<sup>3</sup> Kysely ei kerro pk-yrityksistä suoraan, mutta se osoittaa, ettei kytkemättömien järjestelmien ongelma ratkea yrityksen kasvaessa itsestään.</p>
+
+            <h2 id="valinta">5. Mitä alustan valinnassa kannattaa tarkistaa</h2>
+            <ol>
+                <li><strong>Liittimet omiin järjestelmiisi.</strong> Tee lista järjestelmistä ja tarkista jokaisen kohdalla, onko alustassa valmis liitin. Jos ei ole, tarkista, onko järjestelmällä rajapinta, jota alusta voi kutsua suoraan. Suomalaiset taloushallinto- ja toimialaohjelmistot kannattaa käydä läpi yksitellen, sillä liitinluettelo ei kerro, kattaako liitin juuri ne toiminnot, joita tarvitset.</li>
+                <li><strong>Missä data kulkee ja säilyy.</strong> Ajohistoriaan tallentuu työnkulun tietoja, myös henkilötietoja. Kysy, missä maassa tiedot säilytetään ja kuinka kauan. Microsoftin dokumentaatio kertoo esimerkiksi, että Logic Appsin monivuokralaisversiossa tekoälyagentin käyttämä malli voi olla miltä tahansa alueelta, joten mallin käsittelemän datan sijaintia ei taata.<sup>1</sup></li>
+                <li><strong>Virheenkäsittely ja uusinta.</strong> Microsoft kertoo Logic Appsin toimittavan viestin vähintään kerran: viestit eivät katoa, mutta harvoin sama viesti voi tulla kahdesti.<sup>1</sup> Käytännössä työnkulku pitää rakentaa niin, ettei sama lasku synny kahdesti, vaikka sama tilaus saapuisi kahteen kertaan. Tavallinen keino on tarkistaa ennen laskun luontia, onko tilausnumerolle jo lasku. Kysy mistä tahansa alustasta, miten se toimii tässä tilanteessa.</li>
+                <li><strong>Kuka ylläpitää.</strong> Alusta on yksi järjestelmä lisää: päivitykset, tunnusten vaihto ja valvonta. Pilvipalvelussa toimittaja hoitaa palvelimen. Omalla palvelimella se on sinun tai kumppanisi vastuulla.</li>
+                <li><strong>Hinnoittelun peruste.</strong> Alustat hinnoittelevat eri perusteilla. Esimerkiksi Logic Appsissa on sekä ajokohtainen hinnoittelu että kapasiteettiin perustuva palvelupaketti.<sup>1</sup> Laske arvio omalla ajomäärälläsi: montako tilausta, laskua tai viestiä kuukaudessa ja montako vaihetta kussakin.</li>
+                <li><strong>Siirrettävyys.</strong> Selvitä, voiko työnkulut viedä ulos alustasta. Esimerkiksi Logic Appsin työnkulut tallentuvat JSON-muotoiseksi määrittelyksi.<sup>1</sup> Se helpottaa versionhallintaa, mutta ei tee työnkulusta siirrettävää toiselle alustalle. Alustan vaihto tarkoittaa käytännössä työnkulkujen rakentamista uudelleen.</li>
+            </ol>
+
+            <h2 id="rajat">6. Mitä integraatioalusta ei ratkaise</h2>
+            <ul>
+                <li><strong>Järjestelmä ilman rajapintaa.</strong> Alusta ei pääse käsiksi järjestelmään, joka ei tarjoa rajapintaa tai tiedostosiirtoa. Silloin vaihtoehtoja ovat toimittajan kanssa sovittu tiedostosiirto tai ohjelmistorobotti, jonka heikkouksista kerrotaan kirjoituksessa <a href="rpa-vs-api-pohjainen-automaatio.html">RPA vai API-pohjainen automaatio</a>.</li>
+                <li><strong>Epäselvä prosessi.</strong> Jos kukaan ei osaa sanoa, mitä tilaukselle tapahtuu poikkeustilanteessa, alusta automatisoi epäselvyyden. Prosessi kannattaa kirjata ennen kuin sitä kytketään.</li>
+                <li><strong>Huono data.</strong> Kahteen kertaan tallennettu asiakas siirtyy alustan läpi yhtä tarkasti kuin oikea. Alusta siirtää tiedon, mutta ei korjaa sitä.</li>
+            </ul>
+
+            <h2 id="paatos">7. Näin teet päätöksen yhdessä iltapäivässä</h2>
+            <ol>
+                <li>Kirjoita paperille kaikki järjestelmät, joita yrityksessä käytetään viikoittain.</li>
+                <li>Vedä viiva jokaisen sellaisen järjestelmäparin välille, joiden välillä tietoa siirretään käsin tai jo olemassa olevalla kytkennällä. Merkitse viivaan, mitä tietoa siirtyy ja kuinka usein.</li>
+                <li>Merkitse jokaiseen olemassa olevaan kytkentään, kuka huomaa, jos se lakkaa toimimasta, ja kuinka nopeasti.</li>
+                <li>Laske viivat. Jos niitä on yksi tai kaksi, aloita suoralla integraatiolla tai toimittajan valmiilla kytkennällä. Jos niitä on kolme tai enemmän tai sama tieto kulkee usean järjestelmän läpi, alusta on perusteltu.</li>
+                <li>Valitse yksi tietovirta, jossa käsin tehty työ toistuu viikoittain, ja aloita siitä. Ensimmäisen kuukauden aikana näet, toimivatko ajohistoria, virheilmoitukset ja uusinta käytännössä.</li>
+            </ol>
+            <p>Viivojen määrä on nyrkkisääntö, ei raja-arvo. Yksi kriittinen tietovirta, esimerkiksi laskujen siirto kirjanpitoon, voi yksinään perustella alustan, jos sen virheet pitää nähdä heti eikä kuukauden lopussa.</p>
+
+            <h2 id="ukk">8. Usein kysyttyä</h2>
+
+            <h3>Mikä on integraatioalusta?</h3>
+            <p>Integraatioalusta on palvelu, jossa yrityksen järjestelmien väliset yhteydet rakennetaan, ajetaan ja valvotaan yhdessä paikassa. Siinä on valmiita liittimiä yleisiin ohjelmistoihin, työnkulkuja, tiedon muunnos ja ajohistoria, josta näkee, mikä ajo onnistui ja mikä epäonnistui.</p>
+
+            <h3>Mitä eroa on iPaaS:lla ja integraatioalustalla?</h3>
+            <p>iPaaS (integration platform as a service) on pilvipalveluna ostettava integraatioalusta. Integraatioalusta on laajempi käsite, sillä sama ohjelmisto voi toimia toimittajan pilvessä tai yrityksen omalla palvelimella.</p>
+
+            <h3>Tarvitseeko pieni yritys integraatioalustan?</h3>
+            <p>Ei välttämättä. Jos järjestelmien välillä on yksi tai kaksi vakaata yhteyttä, suora API-integraatio tai ohjelmistotoimittajan valmis kytkentä riittää. Alustaa kannattaa harkita, kun sama tieto kulkee kolmen tai useamman järjestelmän läpi, yhteyksiä muutetaan usein tai virheet pitää nähdä heti.</p>
+
+            <h3>Voiko integraatioalustan ajaa omalla palvelimella?</h3>
+            <p>Voi, jos alusta sen sallii. Osan alustoista voi asentaa omaan infrastruktuuriin tai yksityiseen pilveen. Silloin ylläpito, päivitykset ja varmuuskopiot ovat yrityksen tai sen kumppanin vastuulla.</p>
+
+            <h3>Miten tekoäly liittyy integraatioalustaan?</h3>
+            <p>Kielimalli on integraatioalustassa yksi työnkulun vaihe. Se voi esimerkiksi lukea saapuvan sähköpostin ja poimia siitä tilauksen tiedot, minkä jälkeen alusta vie tiedot oikeaan järjestelmään. Ilman integraatiota tekoälyn tulos jää keskusteluikkunaan.</p>
+
+            <h3>Mitä integraatioalustan valinnassa pitää tarkistaa?</h3>
+            <p>Tarkista valmiit liittimet omiin järjestelmiisi, datan säilytyspaikka, virheenkäsittely ja ajojen uusinta sekä se, kuka alustaa ylläpitää. Laske hinnoittelu omalla ajomäärälläsi ja selvitä, voiko työnkulut viedä ulos alustasta.</p>
+
+            <div class="reference-list">
+                <h4>Lähdeviitteet:</h4>
+                <ol>
+                    <li><a href="https://learn.microsoft.com/en-us/azure/logic-apps/logic-apps-overview" target="_blank" rel="noopener">Microsoft Learn: "What is Azure Logic Apps?"</a> Päivitetty 11.9.2026. Yli 1 400 valmista liitintä, viestien toimitus vähintään kerran, tekoälyagentit työnkuluissa, datan sijainti monivuokralaisversiossa, hinnoittelumallit ja JSON-muotoinen työnkulun määrittely.</li>
+                    <li><a href="https://ec.europa.eu/eurostat/statistics-explained/index.php?title=E-business_integration" target="_blank" rel="noopener">Eurostat: "E-business integration"</a>, Statistics Explained. Tiedot poimittu toukokuussa 2026. EU:n pienistä yrityksistä 41,08 % käytti ERP-järjestelmää ja 24,69 % CRM-järjestelmää vuonna 2025.</li>
+                    <li><a href="https://www.mulesoft.com/lp/reports/connectivity-benchmark" target="_blank" rel="noopener">MuleSoft: "Connectivity Benchmark Report"</a>, 2025, toteutettu yhdessä Vanson Bournen ja Deloitte Digitalin kanssa. 1 050 IT-johtajaa, keskimäärin 897 sovellusta, joista 29 % integroitu.</li>
+                </ol>
+            </div>
+
+            <div class="contact-section">
+                <div class="section-header" style="text-align: center; margin-bottom: 40px;">
+                    <span class="section-tag">Otetaan askel eteenpäin</span>
+                    <h2>Piirretään tietovirrat yhdessä.</h2>
+                    <p>Kartoituksessa käydään läpi yrityksesi järjestelmät ja niiden väliset tietovirrat. Sen jälkeen tiedät, riittääkö suora integraatio vai kannattaako työnkulut koota alustalle. Toteutuksesta kerrotaan lisää <a href="../prosessiautomaatio.html">prosessiautomaation</a> sivulla.</p>
+                </div>
+
+                <div class="contact-container" style="max-width: 100%;">
+                    <div class="contact-form-card">
+                        <form action="https://formspree.io/f/xlgpgyjl" method="POST" id="contact-form">
+                            <div class="form-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 20px;">
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="name">Nimi</label>
+                                    <input type="text" id="name" name="name" autocomplete="name" placeholder="Oma nimesi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                </div>
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="email">Sähköposti</label>
+                                    <input type="email" id="email" name="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="esimerkki@yritys.fi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg full-width" style="width: 100%; padding: 16px; font-weight: bold; cursor: pointer; margin-top: 20px;">
+                                Varaa ilmainen kartoitus
+                            </button>
+                            <div id="form-status" class="form-status" aria-live="polite"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </article>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer" width="4206" height="4206" loading="lazy"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer" width="4206" height="4206" loading="lazy">VALOK<span class="logo-dot">.</span></div>
+                <p>Prosessien automatisointia ja yrityksen omaan tietoon perustuvia tekoälyratkaisuja suomalaisille PK-yrityksille, tietoturva ja tietosuoja edellä.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Linkit</h4>
+                <ul>
+                    <li><a href="/">Etusivu</a></li>
+                    <li><a href="../blogi.html">Blogi</a></li>
+                    <li><a href="/#palvelut">Palvelut</a></li>
+                    <li><a href="../tietosuoja.html">Tietosuoja</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ota yhteyttä</h4>
+                <ul>
+                    <li>aleksanteri@valok.fi</li>
+                    <li>Jyväskylä, Finland</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Valok. Kaikki oikeudet pidätetään. · <a href="#" id="cookieSettingsLink">Evästeasetukset</a>
+        </div>
+    </footer>
+
+        <div id="cookieBanner" class="cookie-banner">
+        <h5>Yksityisyytesi on meille tärkeää</h5>
+        <p>Käytämme sivustolla vain välttämättömiä toimintoja varmistaaksemme parhaan mahdollisen käyttökokemuksen. Emme
+            käytä kolmannen osapuolen markkinointievästeitä ilman suostumustasi.</p>
+        <div class="cookie-btn-group">
+            <button id="acceptCookies" class="btn btn-primary">Hyväksy kaikki</button>
+            <button id="rejectCookies" class="btn btn-ghost">Hylkää</button>
+            <a href="../tietosuoja.html" class="btn btn-ghost">Lue lisää</a>
+        </div>
+    </div>
+
+    <script src="../main.js"></script>
+</body>
+
+</html>
