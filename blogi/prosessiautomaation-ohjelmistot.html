@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <script>
+        if (localStorage.getItem('theme') !== 'dark') {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f8fafc">
+    <title>Prosessiautomaation ohjelmistot pk-yritykselle | Valok</title>
+    <meta name="description"
+        content="Prosessiautomaation ohjelmistot ovat viittä tyyppiä. Näin pk-yritys valitsee RPA:n, integraatioalustan, low-code-työkalun, agentin ja ERP:n välillä.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet"></noscript>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel=icon type=image/png sizes=32x32 href=../img/favicon-32x32.png>
+    <link rel=apple-touch-icon sizes=180x180 href=../img/favicon-180x180.png>
+
+    <link rel="canonical" href="https://valok.fi/blogi/prosessiautomaation-ohjelmistot.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://valok.fi/blogi/prosessiautomaation-ohjelmistot.html">
+    <meta property="og:title" content="Prosessiautomaation ohjelmistot pk-yritykselle: mikä tyyppi sopii mihinkin prosessiin">
+    <meta property="og:description" content="Prosessiautomaation ohjelmistot tyypeittäin: nykyisten ohjelmistojen omat automaatiot, integraatioalustat, low-code-työnkulkutyökalut, RPA ja tekoälyagentit. Mihin prosessiin kukin sopii, mistä kustannus syntyy ja miten valitset.">
+    <meta property="og:image" content="https://valok.fi/img/prosessiautomaation-ohjelmistot.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Prosessiautomaation ohjelmistot pk-yritykselle: mikä tyyppi sopii mihinkin prosessiin">
+    <meta name="twitter:description" content="Prosessiautomaation ohjelmistot tyypeittäin: nykyisten ohjelmistojen omat automaatiot, integraatioalustat, low-code-työnkulkutyökalut, RPA ja tekoälyagentit. Mihin prosessiin kukin sopii, mistä kustannus syntyy ja miten valitset.">
+    <meta name="twitter:image" content="https://valok.fi/img/prosessiautomaation-ohjelmistot.webp">
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Prosessiautomaation ohjelmistot pk-yritykselle: mikä tyyppi sopii mihinkin prosessiin",
+  "description": "Prosessiautomaation ohjelmistot tyypeittäin: nykyisten ohjelmistojen omat automaatiot, integraatioalustat, low-code-työnkulkutyökalut, RPA ja tekoälyagentit. Mihin prosessiin kukin sopii, mistä kustannus syntyy ja miten valitset.",
+  "image": "https://valok.fi/img/prosessiautomaation-ohjelmistot.webp",
+  "datePublished": "2026-11-25",
+  "dateModified": "2026-11-25",
+  "author": {
+    "@type": "Person",
+    "name": "Aleksanteri Rönkä",
+    "url": "https://valok.fi/",
+    "email": "aleksanteri@valok.fi",
+    "jobTitle": "Perustaja",
+    "worksFor": {
+      "@id": "https://valok.fi/#organization"
+    }
+  },
+  "publisher": {
+    "@id": "https://valok.fi/#organization"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://valok.fi/blogi/prosessiautomaation-ohjelmistot.html"
+  }
+}
+</script>
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Mitä prosessiautomaation ohjelmistot ovat?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Prosessiautomaation ohjelmistot hoitavat toistuvia työvaiheita ilman, että ihminen tekee jokaista vaihetta käsin. Ne jakautuvat viiteen tyyppiin: nykyisten ohjelmistojen omat automaatiot, integraatioalustat, low-code-työnkulkutyökalut, ohjelmistorobotiikka (RPA) ja tekoälyagentit."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Mikä ero on RPA:lla ja integraatioalustalla?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ohjelmistorobotti käyttää järjestelmää käyttöliittymän kautta kuten ihminen. Se toimii myös ilman rajapintaa, mutta voi pysähtyä, kun käyttöliittymä muuttuu. Integraatioalusta siirtää tietoa rajapintojen kautta. Se kestää käyttöliittymän muutokset, mutta tarvitsee rajapinnan tai tiedostosiirron."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Tarvitseeko pk-yritys erillisen automaatio-ohjelmiston?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ei aina. Jos työ tapahtuu yhden järjestelmän sisällä, toiminnanohjaus- tai taloushallinto-ohjelmiston omat automaatiot voivat riittää. Erillistä ohjelmistoa kannattaa harkita, kun tieto kulkee usean järjestelmän välillä."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Milloin tekoälyagentti kannattaa?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tekoälyagentti kannattaa, kun työ alkaa vapaamuotoisesta tekstistä, kuten sähköpostista tai liitteestä, jota ei saa kirjoitettua säännöiksi. Ihminen hyväksyy agentin tuloksen, kunnes tiedetään, miten usein se erehtyy. Laskentaan ja tarkkoihin sääntöihin sopii paremmin tavallinen sääntö tai ohjelmakoodi."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Mitä prosessiautomaatio maksaa?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Kokonaiskustannus syntyy käyttömaksusta, rakentamisesta, ylläpidosta ja omasta ajasta. Käyttömaksun peruste vaihtelee tyypin mukaan: käyttäjät, ajot, robotit tai kielimallin käyttö. Pyydä toimittajalta hinta omalla määrälläsi."
+      }
+    }
+  ]
+}
+</script>
+
+    <style>
+        .post-header {
+            min-height: auto !important;
+            padding: 160px 24px 24px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            background: radial-gradient(circle at top, var(--accent-glow) 0%, transparent 70%);
+        }
+
+        .post-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px 100px;
+            line-height: 1.8;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .post-content h2, .post-content h3 {
+            color: var(--text);
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .post-content p {
+            margin-bottom: 24px;
+        }
+
+        .post-content ul, .post-content ol {
+            margin-bottom: 24px;
+            padding-left: 20px;
+        }
+
+        .post-content li {
+            margin-bottom: 12px;
+        }
+
+        .post-meta {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .post-date {
+            display: block;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            margin-top: 12px;
+        }
+        .post-author {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 24px;
+            text-align: left;
+        }
+
+        .post-author img {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .post-author-name {
+            display: block;
+            font-weight: 600;
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+
+        .post-author-role {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dim);
+            text-decoration: none;
+            margin-bottom: 40px;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        .post-image {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .post-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .toc-box {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+        }
+
+        .toc-box h4 {
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        .toc-box ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .toc-box a {
+            color: #58a6ff;
+            text-decoration: none;
+            display: block;
+            padding: 4px 0;
+            transition: var(--transition);
+        }
+
+        .toc-box a:hover {
+            color: var(--accent);
+            padding-left: 4px;
+        }
+
+        .highlight-box {
+            background: var(--glass);
+            padding: 30px;
+            border-radius: var(--radius);
+            margin: 40px 0;
+            border-left: 4px solid var(--accent);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 40px 0;
+            background: var(--glass);
+            border-radius: var(--radius);
+            overflow: hidden;
+            font-size: 0.95rem;
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 14px 18px;
+            border: 1px solid var(--border);
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .comparison-table th {
+            background: rgba(var(--accent-rgb), 0.12);
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .comparison-table td:first-child {
+            font-weight: 600;
+            color: var(--text);
+            white-space: nowrap;
+        }
+
+        .table-scroll {
+            overflow-x: auto;
+        }
+
+        .reference-list {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            margin-top: 60px;
+        }
+
+        .reference-list ol {
+            padding-left: 20px;
+        }
+
+        .contact-section {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 60px 40px;
+            border-radius: var(--radius);
+            margin-top: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="particles"></canvas>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark" width="4206" height="4206"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light" width="4206" height="4206">VALOK<span
+                     class="logo-dot">.</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="/#palvelut">Palvelut</a>
+                <a href="/#prosessi">Prosessi</a>
+                <a href="../blogi.html">Blogi</a>
+                <a href="/#yhteystiedot" class="nav-cta">Ota yhteyttä</a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Avaa valikko">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <article>
+        <header class="post-header">
+            <a href="../blogi.html" class="back-link">← Takaisin blogiin</a>
+            <span class="post-meta">Automaatio • Ohjelmistot • Opas</span>
+            <h1>Prosessiautomaation ohjelmistot pk-yritykselle: <span class="gradient-text">mikä tyyppi sopii mihinkin prosessiin</span></h1>
+            <p style="color: var(--text-dim); margin-top: 20px;">Viisi ohjelmistotyyppiä rinnakkain: mihin prosessiin kukin sopii, mistä kustannus syntyy, mitkä ovat valinnan sudenkuopat ja miten valitset yhden prosessin kohdalla.</p>
+            <span class="post-date">25. marraskuuta 2026</span>
+            <div class="post-author">
+                <img src="../img/valok-aleksanteri.webp" alt="Aleksanteri Rönkä" width="44" height="44" loading="lazy">
+                <div>
+                    <span class="post-author-name">Aleksanteri Rönkä</span>
+                    <span class="post-author-role">Perustaja, Valok &middot; <a href="mailto:aleksanteri@valok.fi">aleksanteri@valok.fi</a></span>
+                </div>
+            </div>
+        </header>
+
+        <div class="post-image">
+            <img src="../img/prosessiautomaation-ohjelmistot.webp" alt="Kettumaskotti seisoo lämpimässä verstaassa puisen työkaluseinän edessä ja valitsee yhden monista erilaisista työkaluista - Valok" width="960" height="1120">
+        </div>
+
+        <main class="post-content">
+            <div class="toc-box">
+                <h4>Sisällysluettelo</h4>
+                <ul>
+                    <li><a href="#tyypit">1. Viisi ohjelmistotyyppiä rinnakkain</a></li>
+                    <li><a href="#omat-automaatiot">2. Nykyisten ohjelmistojen omat automaatiot</a></li>
+                    <li><a href="#integraatioalusta">3. Integraatioalusta</a></li>
+                    <li><a href="#low-code">4. Low-code-työnkulkutyökalut</a></li>
+                    <li><a href="#rpa">5. Ohjelmistorobotiikka (RPA)</a></li>
+                    <li><a href="#agentit">6. Tekoälyagentit</a></li>
+                    <li><a href="#kustannukset">7. Mistä kustannus syntyy</a></li>
+                    <li><a href="#sudenkuopat">8. Valinnan sudenkuopat pk-yrityksessä</a></li>
+                    <li><a href="#valintapolku">9. Yksinkertainen valintapolku</a></li>
+                    <li><a href="#ukk">10. Usein kysyttyä</a></li>
+                </ul>
+            </div>
+
+            <p>Prosessiautomaation ohjelmistot jakautuvat viiteen tyyppiin: nykyisten ohjelmistojen omat automaatiot, integraatioalustat, low-code-työnkulkutyökalut, ohjelmistorobotiikka (RPA) ja tekoälyagentit. Pk-yrityksen kannattaa valita tyyppi prosessin mukaan eikä tuotteen mukaan. Ensin katsotaan, osaako jo käytössä oleva ohjelmisto tehdä työn itse. Jos tieto kulkee usean järjestelmän välillä, tarvitaan integraatio. Ohjelmistorobotti on varavaihtoehto järjestelmälle, jossa ei ole rajapintaa. Tekoälyagentti on perusteltu silloin, kun työ alkaa vapaamuotoisesta tekstistä, jota ei saa kirjoitettua säännöiksi.</p>
+
+            <p>Tämä kirjoitus vastaa kysymykseen, millä automatisoidaan. Sitä, mitä kannattaa automatisoida ja miten hanke aloitetaan, käsitellään <a href="prosessien-automatisointi-pk-yritykselle.html">prosessien automatisoinnin oppaassa</a>. Tuotteita ei tässä vertailla, koska sama tuote voi kuulua kahteen tyyppiin ja tuotelistat vanhenevat nopeasti. Tyyppi kertoo, mihin työhön ohjelmisto on alun perin tehty.</p>
+
+            <div class="highlight-box">
+                <strong>Lyhyt vastaus:</strong> aloita nykyisten ohjelmistojen omista automaatioista. Kun sama tieto kulkee kolmen tai useamman järjestelmän läpi, harkitse integraatioalustaa. Ohjelmistorobotti sopii vain järjestelmään, jossa ei ole rajapintaa. Tekoälyagentti kannattaa, kun työ alkaa sähköpostista, liitteestä tai muusta vapaamuotoisesta tekstistä ja ihminen hyväksyy tuloksen.
+            </div>
+
+            <h2 id="tyypit">1. Viisi ohjelmistotyyppiä rinnakkain</h2>
+            <p>Taulukko kokoaa tyypit yhteen. Raja tyyppien välillä ei ole tarkka: moni integraatioalusta osaa tehdä lomakkeita, ja moni RPA-tuote on lisännyt tekoälyominaisuuksia. Valinnassa ratkaisee se, mihin tehtävään ohjelmiston ydin on tehty. Hinnoitteluperuste on tavallisin malli, ja se vaihtelee toimittajittain.</p>
+
+            <div class="table-scroll">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Tyyppi</th>
+                            <th>Sopii</th>
+                            <th>Ei sovi</th>
+                            <th>Tavallinen hinnoitteluperuste</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Omat automaatiot</td>
+                            <td>Työ, joka tapahtuu yhden järjestelmän sisällä: hyväksyntäkierrot, muistutukset, toistuvat laskut</td>
+                            <td>Tieto, jonka pitää kulkea muihin järjestelmiin</td>
+                            <td>Sisältyy lisenssiin tai lisäosaan</td>
+                        </tr>
+                        <tr>
+                            <td>Integraatioalusta</td>
+                            <td>Sama tieto kulkee usean järjestelmän läpi, esimerkiksi tilaus varastoon, laskulle ja asiakasrekisteriin</td>
+                            <td>Järjestelmä, jossa ei ole rajapintaa eikä tiedostosiirtoa</td>
+                            <td>Ajot, työnkulut tai kapasiteetti</td>
+                        </tr>
+                        <tr>
+                            <td>Low-code-työnkulku</td>
+                            <td>Ihmisten väliset vaiheet: lomake, hyväksyntä, tehtävä seuraavalle</td>
+                            <td>Suuret tietomäärät ja monimutkaiset järjestelmäkytkennät</td>
+                            <td>Käyttäjät tai sovellukset</td>
+                        </tr>
+                        <tr>
+                            <td>RPA</td>
+                            <td>Vanha järjestelmä ilman rajapintaa, käyttöliittymä pysyy samana</td>
+                            <td>Käyttöliittymä, joka muuttuu usein</td>
+                            <td>Robotit tai ajoaika</td>
+                        </tr>
+                        <tr>
+                            <td>Tekoälyagentti</td>
+                            <td>Vapaamuotoinen syöte: sähköpostit, liitteet, asiakkaiden kysymykset</td>
+                            <td>Tehtävä, jossa saman syötteen pitää antaa aina sama tulos, kuten alv-laskenta</td>
+                            <td>Käyttö eli kielimallin käsittelemän tekstin määrä</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2 id="omat-automaatiot">2. Nykyisten ohjelmistojen omat automaatiot</h2>
+            <p>Ensimmäinen automaatio-ohjelmisto on usein jo käytössä. Toiminnanohjausjärjestelmissä (ERP), taloushallinto-ohjelmistoissa, asiakkuudenhallinnassa (CRM) ja toimisto-ohjelmistoissa on omia sääntöjä ja työnkulkuja. Tyypillisiä ovat ostolaskun hyväksyntäkierto, maksumuistutus, uuden asiakkaan tehtävälista ja toistuva lasku.</p>
+            <p>Eurostatin mukaan vuonna 2025 EU:n pienistä yrityksistä (10-49 henkilöä) 41 prosenttia käytti toiminnanohjausjärjestelmää ja noin 25 prosenttia asiakkuudenhallintajärjestelmää.<sup>1</sup> Ennen uuden ohjelmiston hankintaa kannattaa siis tarkistaa, mitä nykyinen lisenssi jo sisältää.</p>
+            <p><strong>Sopii,</strong> kun koko työ tapahtuu yhden järjestelmän sisällä. Esimerkki: ostolasku kulkee taloushallinto-ohjelmistossa kirjaajalta esihenkilön hyväksyttäväksi ja sieltä maksuun, eikä tietoa tarvitse viedä muualle.</p>
+            <p><strong>Raja tulee vastaan,</strong> kun tieto pitää viedä toiseen järjestelmään. Ohjelmiston omat automaatiot toimivat yleensä vain sen omien tietojen kanssa. Valmiit kytkennät muihin ohjelmistoihin ovat toimittajan päätettävissä: jos kytkentää ei ole, sitä ei voi itse lisätä.</p>
+            <p><strong>Sudenkuoppa:</strong> oma automaatio jää näkymättömäksi. Sääntö, jonka joku teki asetuksiin vuosia sitten, lähettää yhä muistutuksia, eikä kukaan muista, mistä ne tulevat. Kirjaa jokainen käytössä oleva sääntö listaan, jossa on sen omistaja.</p>
+
+            <h2 id="integraatioalusta">3. Integraatioalusta</h2>
+            <p>Integraatioalusta on palvelu, jonka kautta järjestelmät vaihtavat tietoa. Siinä on valmiita liittimiä yleisiin ohjelmistoihin, työnkulkuja, tiedon muunnos ja ajohistoria. Tarkempi kuvaus ja valintakriteerit ovat kirjoituksessa <a href="mika-on-integraatioalusta.html">mikä on integraatioalusta ja milloin se kannattaa</a>.</p>
+            <p><strong>Sopii,</strong> kun sama tieto kulkee kolmen tai useamman järjestelmän läpi. Esimerkki: verkkokaupan tilaus päätyy varastoon, laskulle ja asiakasrekisteriin. Alustassa se on yksi työnkulku, jonka jokainen vaihe näkyy ajohistoriassa.</p>
+            <p><strong>Ei sovi</strong> järjestelmään, jossa ei ole rajapintaa eikä tiedostosiirtoa. Alusta tarvitsee jonkin tavan lukea ja kirjoittaa tietoa.</p>
+            <p><strong>Kustannus</strong> syntyy alustan käyttömaksusta, työnkulkujen rakentamisesta ja ylläpidosta. Käyttömaksu lasketaan usein ajojen tai vaiheiden määrän mukaan, joten arvio kannattaa tehdä omalla määrällä: montako tilausta tai laskua kuukaudessa ja montako vaihetta kussakin.</p>
+            <p><strong>Sudenkuoppa:</strong> alusta valitaan liitinluettelon pituuden perusteella. Luettelo ei kerro, kattaako liitin juuri ne toiminnot, joita tarvitset. Tarkista omat järjestelmäsi yksitellen.</p>
+
+            <h2 id="low-code">4. Low-code-työnkulkutyökalut</h2>
+            <p>Low-code-työnkulkutyökalulla rakennetaan sovelluksia ja työnkulkuja yhdistämällä valmiita osia ilman, että kaikkea ohjelmoidaan. Integraatioalustan ydin on tiedon siirto järjestelmien välillä. Low-code-työnkulkutyökalun ydin on ihmisten työn vaiheet: lomake, hyväksyntä, tehtävä seuraavalle ja ilmoitus, kun asia on valmis.</p>
+            <p><strong>Sopii</strong> sisäisiin pyyntöihin, joita nyt hoidetaan sähköpostiketjuissa. Esimerkki: hankintapyyntö täytetään lomakkeelle, se menee esihenkilölle hyväksyttäväksi, ja hyväksytty pyyntö näkyy ostajalle tehtävänä.</p>
+            <p><strong>Ei sovi</strong> suuriin tietomääriin tai monimutkaisiin järjestelmäkytkentöihin. Se ei myöskään korvaa järjestelmää, jossa tieto oikeasti pidetään.</p>
+            <p><strong>Kustannus</strong> perustuu yleensä käyttäjien tai sovellusten määrään. Jos työkalu kuuluu jo yrityksen toimisto-ohjelmistopakettiin, lisäkustannus voi jäädä pieneksi.</p>
+            <p><strong>Sudenkuoppa:</strong> kun kuka tahansa voi rakentaa, kukaan ei omista. Toimistoon voi syntyä kymmeniä pieniä työnkulkuja, joista osa lakkaa toimimasta, kun tekijä vaihtaa työpaikkaa. Sovi ennen ensimmäistä työnkulkua, kuka hyväksyy uudet, missä niistä pidetään listaa ja kenen tunnuksilla ne ajetaan.</p>
+
+            <h2 id="rpa">5. Ohjelmistorobotiikka (RPA)</h2>
+            <p>Ohjelmistorobotti käyttää järjestelmää samalla tavalla kuin ihminen: se klikkaa, kirjoittaa kenttiin ja lukee ruudulta. Siksi se toimii myös järjestelmässä, jossa ei ole rajapintaa.</p>
+            <p><strong>Sopii</strong> vanhaan järjestelmään, jonka käyttöliittymä pysyy samana ja jota ei ole tarkoitus vaihtaa lähiaikoina. Esimerkki: vanhasta toimialaohjelmasta pitää siirtää tiedot kerran viikossa taulukkoon, eikä ohjelmassa ole tiedostovientiä eikä rajapintaa.</p>
+            <p><strong>Ei sovi,</strong> jos käyttöliittymä muuttuu. Kun painike siirtyy tai kentän nimi vaihtuu, robotti voi pysähtyä tai kirjoittaa tiedon väärään kenttään. Syyt ja kestävämmät vaihtoehdot on kerrottu kirjoituksessa <a href="rpa-vs-api-pohjainen-automaatio.html">RPA vai API-pohjainen automaatio</a>.</p>
+            <p><strong>Kustannus</strong> perustuu yleensä robottien määrään tai ajoaikaan. Laske mukaan ylläpito, sillä jokainen käyttöliittymän muutos voi vaatia robotin korjaamista.</p>
+            <p><strong>Sudenkuoppa:</strong> robotti rakennetaan järjestelmään, jossa rajapinta on jo olemassa. Kysy toimittajalta ensin, onko järjestelmässä rajapinta tai tiedostovienti. Rajapinnan kautta kulkeva integraatio kestää käyttöliittymän muutokset, robotti ei.</p>
+
+            <h2 id="agentit">6. Tekoälyagentit</h2>
+            <p>Tekoälyagentti on ohjelmisto, jossa kielimalli lukee tehtävän, päättää seuraavan vaiheen ja käyttää sille annettuja työkaluja. Se voi esimerkiksi hakea tiedon järjestelmästä tai laatia vastausluonnoksen. Käytännössä agentti on usein yksi vaihe integraatioalustan tai muun työnkulun sisällä.</p>
+            <p><strong>Sopii,</strong> kun työ alkaa vapaamuotoisesta syötteestä, jota ei saa kirjoitettua säännöiksi. Esimerkki: asiakkaiden sähköposteista pitää tunnistaa, onko kyse tilauksesta, reklamaatiosta vai kysymyksestä, ja poimia viestistä tilausnumero. Agentti valmistelee, ihminen hyväksyy.</p>
+            <p><strong>Ei sovi</strong> tehtävään, jossa saman syötteen pitää antaa aina täsmälleen sama tulos, kuten alv-laskentaan tai tilisiirron summaan. Kielimallin vastaus voi vaihdella ajosta toiseen, joten tavallinen sääntö tai ohjelmakoodi sopii siihen paremmin.</p>
+            <p>Eurostatin mukaan vuonna 2025 EU:n pienistä yrityksistä 17 prosenttia käytti jotain tekoälyteknologiaa. Suomessa osuus oli vähintään kymmenen hengen yrityksistä 37,82 prosenttia, toiseksi suurin EU:ssa.<sup>2</sup> Agentteja ei tilastossa eritellä, joten luku kertoo tekoälyn käytöstä yleensä.</p>
+            <p>Gartner ennusti kesäkuussa 2025, että yli 40 prosenttia agenttisen tekoälyn hankkeista lopetetaan vuoden 2027 loppuun mennessä kasvavien kustannusten, epäselvän liiketoimintahyödyn tai puutteellisen riskienhallinnan vuoksi.<sup>3</sup> Gartner varoitti samalla ilmiöstä, jota se kutsuu nimellä agent washing: vanhoja keskusteluavustajia ja RPA-tuotteita markkinoidaan uudelleen agentteina. Kysy toimittajalta, mitä agentti käytännössä päättää itse ja mitä se ei saa tehdä.</p>
+            <p><strong>Kustannus</strong> perustuu yleensä käyttöön: mitä enemmän tekstiä kielimalli käsittelee, sitä enemmän se maksaa. Kustannus kasvaa siis määrän mukana, ja se kannattaa arvioida koeajolla omalla aineistolla.</p>
+            <p><strong>Sudenkuoppa:</strong> agentti saa liikaa oikeuksia. Anna sille vain ne työkalut ja tiedot, joita tehtävä vaatii, ja pidä hyväksyntä ihmisellä, kunnes tiedät, miten usein se erehtyy.</p>
+
+            <h2 id="kustannukset">7. Mistä kustannus syntyy</h2>
+            <p>Lisenssin peruste vaihtelee tyypin mukaan, mutta kokonaiskustannus syntyy kaikissa tyypeissä samoista osista:</p>
+            <ul>
+                <li><strong>Käyttömaksu.</strong> Lisenssi, käyttäjät, ajot, robotit tai kielimallin käyttö. Pyydä toimittajalta hinta omalla määrälläsi, älä hinnaston pienimmällä tasolla.</li>
+                <li><strong>Rakentaminen.</strong> Kuka tekee työnkulun, oma henkilö vai kumppani, ja montako tuntia ensimmäinen versio vie.</li>
+                <li><strong>Ylläpito.</strong> Tunnusten vaihto, päivitykset, virheiden seuranta ja muutokset, kun prosessi muuttuu.</li>
+                <li><strong>Oma aika.</strong> Prosessin kirjaaminen, testaus ja tulosten tarkistus käyttöönoton alussa.</li>
+            </ul>
+            <p>Yleistä hintajärjestystä tyyppien välillä ei kannata uskoa, koska se riippuu tilanteesta. Ohjelmiston oma automaatio voi olla lähes maksuton, jos ominaisuus sisältyy jo lisenssiin. Sama ominaisuus voi tulla kalliiksi, jos se vaatii ylemmän hintatason koko henkilöstölle.</p>
+
+            <h2 id="sudenkuopat">8. Valinnan sudenkuopat pk-yrityksessä</h2>
+            <ol>
+                <li><strong>Ohjelmisto valitaan ennen prosessia.</strong> Kun työkalu on ostettu, sille etsitään käyttöä. Kirjaa ensin yksi prosessi vaiheittain: mistä tieto tulee, kuka tekee mitä ja mihin tulos menee. Vasta sitten tiedät, mikä tyyppi sopii.</li>
+                <li><strong>Yksi työkalu kaikkeen.</strong> Sama tuote on harvoin hyvä sekä järjestelmäkytkentöihin, lomakkeisiin että vapaan tekstin lukemiseen. Kahden tyypin yhdistelmä voi olla yksinkertaisempi kuin yksi työkalu, jota venytetään. Esimerkki: integraatioalusta siirtää tilauksen, ja sen sisällä yksi kielimallivaihe lukee tilaajan sähköpostin.</li>
+                <li><strong>Ylläpitäjää ei nimetä.</strong> Jokaisella automaatiolla pitää olla omistaja, joka huomaa, kun se lakkaa toimimasta, ja joka tietää, kenelle asiasta kerrotaan.</li>
+                <li><strong>Datan sijainti unohtuu.</strong> Automaatio käsittelee usein henkilötietoja. Selvitä, missä maassa ohjelmisto säilyttää tiedot, kuinka kauan ja käytetäänkö niitä toimittajan omiin tarkoituksiin, kuten mallien koulutukseen.</li>
+                <li><strong>Lukkiutuminen.</strong> Selvitä, voiko työnkulut ja tiedot viedä ulos. Ohjelmiston vaihto tarkoittaa yleensä työnkulkujen rakentamista uudelleen.</li>
+            </ol>
+            <p>Oma havaintoni pk-yrityksistä on, että yleisin virhe on valita halvin vaihtoehto. Silloin jää tekemättä kaksi asiaa: oman yrityksen tarpeiden kartoitus ja työkalun valinta käyttötapauksen mukaan.</p>
+
+            <h2 id="valintapolku">9. Yksinkertainen valintapolku</h2>
+            <p>Käy kysymykset läpi järjestyksessä yhden prosessin kohdalla. Pysähdy ensimmäiseen kohtaan, johon vastaus on kyllä.</p>
+            <ol>
+                <li><strong>Tapahtuuko koko työ yhden järjestelmän sisällä?</strong> Tarkista ensin järjestelmän omat automaatiot.</li>
+                <li><strong>Kulkeeko tieto vain kahden järjestelmän välillä, ja onko toimittajalla siihen valmis kytkentä?</strong> Käytä valmista kytkentää.</li>
+                <li><strong>Kulkeeko sama tieto kolmen tai useamman järjestelmän läpi, tai pitääkö virheet nähdä heti?</strong> Valitse integraatioalusta.</li>
+                <li><strong>Onko työ pääosin ihmisten välisiä vaiheita, kuten pyyntöjä ja hyväksyntöjä?</strong> Valitse low-code-työnkulkutyökalu.</li>
+                <li><strong>Puuttuuko jostain järjestelmästä sekä rajapinta että tiedostovienti?</strong> Käytä ohjelmistorobottia tähän vaiheeseen ja kysy toimittajalta rajapinnasta seuraavaa versiota varten.</li>
+                <li><strong>Alkaako työ vapaamuotoisesta tekstistä, jota ei saa säännöiksi?</strong> Lisää tekoälyagentti tai kielimallivaihe ja pidä ihminen hyväksyjänä.</li>
+            </ol>
+            <p>Kohdat 5 ja 6 eivät sulje pois aiempia. Robotti tai agentti on yleensä yksi vaihe muun työnkulun sisällä eikä koko ratkaisu.</p>
+            <p>Valintapolku on nyrkkisääntö, ei raja-arvo. Jos prosessi on liiketoiminnalle kriittinen, kuten laskujen siirto kirjanpitoon, virheiden näkyvyys voi yksinään ratkaista valinnan integraatioalustan hyväksi, vaikka järjestelmiä olisi vain kaksi.</p>
+
+            <h2 id="ukk">10. Usein kysyttyä</h2>
+
+            <h3>Mitä prosessiautomaation ohjelmistot ovat?</h3>
+            <p>Prosessiautomaation ohjelmistot hoitavat toistuvia työvaiheita ilman, että ihminen tekee jokaista vaihetta käsin. Ne jakautuvat viiteen tyyppiin: nykyisten ohjelmistojen omat automaatiot, integraatioalustat, low-code-työnkulkutyökalut, ohjelmistorobotiikka (RPA) ja tekoälyagentit.</p>
+
+            <h3>Mikä ero on RPA:lla ja integraatioalustalla?</h3>
+            <p>Ohjelmistorobotti käyttää järjestelmää käyttöliittymän kautta kuten ihminen. Se toimii myös ilman rajapintaa, mutta voi pysähtyä, kun käyttöliittymä muuttuu. Integraatioalusta siirtää tietoa rajapintojen kautta. Se kestää käyttöliittymän muutokset, mutta tarvitsee rajapinnan tai tiedostosiirron.</p>
+
+            <h3>Tarvitseeko pk-yritys erillisen automaatio-ohjelmiston?</h3>
+            <p>Ei aina. Jos työ tapahtuu yhden järjestelmän sisällä, toiminnanohjaus- tai taloushallinto-ohjelmiston omat automaatiot voivat riittää. Erillistä ohjelmistoa kannattaa harkita, kun tieto kulkee usean järjestelmän välillä.</p>
+
+            <h3>Milloin tekoälyagentti kannattaa?</h3>
+            <p>Tekoälyagentti kannattaa, kun työ alkaa vapaamuotoisesta tekstistä, kuten sähköpostista tai liitteestä, jota ei saa kirjoitettua säännöiksi. Ihminen hyväksyy agentin tuloksen, kunnes tiedetään, miten usein se erehtyy. Laskentaan ja tarkkoihin sääntöihin sopii paremmin tavallinen sääntö tai ohjelmakoodi.</p>
+
+            <h3>Mitä prosessiautomaatio maksaa?</h3>
+            <p>Kokonaiskustannus syntyy käyttömaksusta, rakentamisesta, ylläpidosta ja omasta ajasta. Käyttömaksun peruste vaihtelee tyypin mukaan: käyttäjät, ajot, robotit tai kielimallin käyttö. Pyydä toimittajalta hinta omalla määrälläsi.</p>
+
+            <div class="reference-list">
+                <h4>Lähdeviitteet:</h4>
+                <ol>
+                    <li><a href="https://ec.europa.eu/eurostat/statistics-explained/index.php?title=E-business_integration" target="_blank" rel="noopener">Eurostat: "E-business integration"</a>, Statistics Explained. Tiedot poimittu toukokuussa 2026. EU:n pienistä yrityksistä (10-49 henkilöä) 41,08 % käytti ERP-järjestelmää ja 24,69 % CRM-järjestelmää vuonna 2025.</li>
+                    <li><a href="https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Use_of_artificial_intelligence_in_enterprises" target="_blank" rel="noopener">Eurostat: "Use of artificial intelligence in enterprises"</a>, Statistics Explained. Tiedot poimittu joulukuussa 2025. Vuonna 2025 tekoälyä käytti 19,95 % EU:n yrityksistä, 17 % pienistä yrityksistä ja 37,82 % suomalaisista yrityksistä. Kyselyssä ovat mukana vähintään kymmenen hengen yritykset.</li>
+                    <li><a href="https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027" target="_blank" rel="noopener">Gartner: "Gartner Predicts Over 40% of Agentic AI Projects Will Be Canceled by End of 2027"</a>, lehdistötiedote 25.6.2025. Ennuste: yli 40 % agenttisen tekoälyn hankkeista lopetetaan vuoden 2027 loppuun mennessä. Tiedotteessa kuvataan myös agent washing -ilmiö.</li>
+                </ol>
+            </div>
+
+            <div class="contact-section">
+                <div class="section-header" style="text-align: center; margin-bottom: 40px;">
+                    <span class="section-tag">Otetaan askel eteenpäin</span>
+                    <h2>Katsotaan, mikä tyyppi sopii prosessiisi.</h2>
+                    <p>Kartoituksessa käydään läpi prosessi ja järjestelmät, joita se koskee. Sen jälkeen tiedät, millä ohjelmistotyypillä prosessi kannattaa automatisoida ja mitä nykyiset ohjelmistosi jo osaavat. Toteutuksesta kerrotaan lisää <a href="../prosessiautomaatio.html">prosessiautomaation</a> sivulla.</p>
+                </div>
+
+                <div class="contact-container" style="max-width: 100%;">
+                    <div class="contact-form-card">
+                        <form action="https://formspree.io/f/xlgpgyjl" method="POST" id="contact-form">
+                            <div class="form-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 20px;">
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="name">Nimi</label>
+                                    <input type="text" id="name" name="name" autocomplete="name" placeholder="Oma nimesi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                </div>
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label for="email">Sähköposti</label>
+                                    <input type="email" id="email" name="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="esimerkki@yritys.fi" required style="width: 100%; padding: 12px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text); border-radius: 8px;">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg full-width" style="width: 100%; padding: 16px; font-weight: bold; cursor: pointer; margin-top: 20px;">
+                                Varaa ilmainen kartoitus
+                            </button>
+                            <div id="form-status" class="form-status" aria-live="polite"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </article>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col footer-brand">
+                <div class="logo"><img srcset="../img/valok-white-with-black-outline-mobile.webp 800w, ../img/valok-white-with-black-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-white-with-black-outline.webp" alt="Valok logo" class="logo-img logo-img-dark logo-img-footer" width="4206" height="4206" loading="lazy"><img srcset="../img/valok-black-with-white-outline-mobile.webp 800w, ../img/valok-black-with-white-outline.webp 1600w" sizes="(max-width: 800px) 100vw, 800px" src="../img/valok-black-with-white-outline.webp" alt="Valok logo" class="logo-img logo-img-light logo-img-footer" width="4206" height="4206" loading="lazy">VALOK<span class="logo-dot">.</span></div>
+                <p>Prosessien automatisointia ja yrityksen omaan tietoon perustuvia tekoälyratkaisuja suomalaisille PK-yrityksille, tietoturva ja tietosuoja edellä.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Linkit</h4>
+                <ul>
+                    <li><a href="/">Etusivu</a></li>
+                    <li><a href="../blogi.html">Blogi</a></li>
+                    <li><a href="/#palvelut">Palvelut</a></li>
+                    <li><a href="../tietosuoja.html">Tietosuoja</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ota yhteyttä</h4>
+                <ul>
+                    <li>aleksanteri@valok.fi</li>
+                    <li>Jyväskylä, Finland</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Valok. Kaikki oikeudet pidätetään. · <a href="#" id="cookieSettingsLink">Evästeasetukset</a>
+        </div>
+    </footer>
+
+        <div id="cookieBanner" class="cookie-banner">
+        <h5>Yksityisyytesi on meille tärkeää</h5>
+        <p>Käytämme sivustolla vain välttämättömiä toimintoja varmistaaksemme parhaan mahdollisen käyttökokemuksen. Emme
+            käytä kolmannen osapuolen markkinointievästeitä ilman suostumustasi.</p>
+        <div class="cookie-btn-group">
+            <button id="acceptCookies" class="btn btn-primary">Hyväksy kaikki</button>
+            <button id="rejectCookies" class="btn btn-ghost">Hylkää</button>
+            <a href="../tietosuoja.html" class="btn btn-ghost">Lue lisää</a>
+        </div>
+    </div>
+
+    <script src="../main.js"></script>
+</body>
+
+</html>

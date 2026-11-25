@@ -408,4 +408,10 @@
       <changefreq>monthly</changefreq>
       <priority>0.7</priority>
    </url>
+   <url>
+      <loc>https://valok.fi/blogi/prosessiautomaation-ohjelmistot.html</loc>
+      <lastmod>2026-11-25</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+   </url>
 </urlset>
